@@ -1,9 +1,6 @@
-require 'echowrap'
 require 'json'
-#require 'rubygems'
-#require 'ostruct'
-#require 'hashie/mash'
-require 'hashie'
+require 'bundler'
+Bundler.require
 
 
 
@@ -28,17 +25,75 @@ end
 file = File.read('tasteprofiletest.json')
 object = JSON.parse(file)
 
+# Note the following are some examples. Comment then out or delete as you understand them.
+# Note `ap`  is just like `puts` but formats the output
 
-object.extend Hashie::Extensions::DeepFetch
+# object is a ruby Array - which is a collection of objects
+# we can count the items in this array using the `count` method
+#
+puts object.count
 
-# a nested array
-puts object.deep_fetch :action, 0, :update # => 'Open source enthusiasts'
+# We can access each item using an index. Note that the index starts at 0
+# To get the first item in the array we use
+ap object[0]
+
+# To get 10th item we can say
+ap object[9]
+
+# And the last one
+puts object[object.count - 1]
+
+# Or we can cheat a little
+ap object.last
+
+# Each object in the array is a ruby Hash
+puts object[0].class == Hash
+
+# A Hash consists of a list of key and value pairs. The key is typically a Sting like "action" or "item"   while the value can be anything.
+
+# Lets look at the first item, it looks like this:
+# {
+#   "action"=>"update",
+#    "item"=>{
+#       "song_id"=>"SOFSRZH1315CD477A3",
+#        "item_keyvalues"=>{
+#           "undergroundness"=>"1"
+#         }
+#     }
+# }
+#
+# 
+# This Hash has two keys:  "action" and "item", the value for "action" is "update" while the value or "item" is another Hash.
+#
+# We can access the values of a hash using [] brackets and the keys
+ap object.first["action"] # => "update"
+ap object.first["item"] # => {"song_id"=>"SOFSRZH1315CD477A3", "item_keyvalues"=>{"undergroundness"=>"1"}}
+
+# As you can see the 'item' hash has two keys "song_id" and "item_keyvalues",  the value for "item_keyvalues" is another hash.
+ap object.first["item"]["song_id"]
+ap object.first["item"]["item_keyvalues"]
+
+# So lets grab the undergroundness
+ap object.first["item"]["item_keyvalues"]["undergroundness"]
 
 
 
+# You can loop or iterate through an Array using the `each` method.
+# So if we wanted to print a list of each songs id and undergroundness we can do it like this
+object.each do |song|
+  if song["item"]["item_keyvalues"] # some songs don't have "item_keyvalues so we need an if statment to check whether it exists"
+
+    puts "id: #{song['song_id']}, undergroundness: #{song['item']['item_keyvalues']['undergroundness']}"
+  end
+end
 
 
-# data = OpenStruct.new(object)
+# There is a whole bunch of useful methods for an Array
+# We can for example filter or `select` songs that have an undergroundness greater than 1 and return a new array of these songs...
+underground_songs =  object.select do |song|
+  if song["item"]["item_keyvalues"]
+    song["item"]["item_keyvalues"]["undergroundness"].to_i > 1
+  end
+end
 
-# print object
-
+ap underground_songs

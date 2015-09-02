@@ -2,16 +2,23 @@ GEM
   remote: https://rubygems.org/
   specs:
     awesome_print (1.6.1)
+    coderay (1.1.0)
     echowrap (0.2.0)
       faraday (~> 0.9)
-      hashie (= 3.4.2)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    hashie (3.4.2)
+    method_source (0.8.2)
     multi_json (1.11.2)
     multipart-post (2.0.0)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     simple_oauth (0.3.1)
+    slop (3.6.0)
 
 PLATFORMS
   ruby
@@ -20,6 +27,7 @@ DEPENDENCIES
   awesome_print
   echowrap
   hashie
+  pry
 
 BUNDLED WITH
-   1.10.6
+   1.10.5
