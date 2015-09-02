@@ -4,5 +4,5 @@ gem 'echowrap'
 
 gem 'awesome_print'
 
-gem ’hashie’
+gem 'hashie'
 
