@@ -1,8 +1,8 @@
 require 'json'
 require 'bundler'
+# require 'echowrap'
 
-Dir["/config/initializers/*.rb"].each {|file| require file }
-#require 'hipHop1.rb'
+require_relative 'config/initializers/echowrap'
 Bundler.require
 
 #beginning = Time.now
@@ -16,16 +16,22 @@ underground_songs_1 =  object.select do |song|
     song["item"]["item_keyvalues"]["undergroundness"].to_i >= 1 && song["item"]["item_keyvalues"]["undergroundness"].to_i <= 2
   end
 end
-
-fileHipHop1 = File.open("public/hipHip1.json","w") do |f|
+ 
+ File.open("public/hipHip1.json","w") do |f|
   f.write(underground_songs_1.to_json)
 end
 
+fileHipHop1 = File.read ('public/hipHip1.json')
 
+# hipHopTasteProfile_1 = Echowrap.taste_profile_create(:name => "hipHip1", :type => 'song')
 
-#puts Echowrap.taste_profile_create(:name => "hipHopProfile1", :type => 'general')
+# ap hipHopTasteProfile_1
 
-# Echowrap.taste_profile_update(:id => 'hipHopProfileId', :data=> 'fileHipHop1')
+# hipHopProfileId_1 = 'CADAFWK14F9559034D'
+
+Echowrap.taste_profile_update(:id => 'CADAFWK14F9559034D', :data => fileHipHop1)
+
+ap Echowrap.taste_profile_read(:id => 'CADAFWK14F9559034D', :results => 10)
 
 # puts Echowrap.taste_profile_read(:id => 'hipHopProfileId').inspect
 
