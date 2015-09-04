@@ -23,6 +23,8 @@ end
 
 fileHipHop1 = File.read ('public/hipHip1.json')
 
+#testing
+
 # hipHopTasteProfile_1 = Echowrap.taste_profile_create(:name => "hipHip1", :type => 'song')
 
 # ap hipHopTasteProfile_1
