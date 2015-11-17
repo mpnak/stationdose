@@ -10,11 +10,13 @@ import UIKit
 
 class RequestPremiumViewController: UIViewController {
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var timer:NSTimer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addFullBackground()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -35,6 +37,7 @@ class RequestPremiumViewController: UIViewController {
     func checkPremium(timer:NSTimer){
         SpotifyManager.sharedInstance.checkPremium { isPremium in
             if isPremium{
+                self.activityIndicator.stopAnimating()
                 timer.invalidate()
                 self.performSegueWithIdentifier(Constants.Segues.RequestPremiumToHomeSegue, sender: self)
             }
@@ -43,6 +46,7 @@ class RequestPremiumViewController: UIViewController {
     
 
     @IBAction func signUpPremium(sender: AnyObject) {
+        activityIndicator.startAnimating()
         performSegueWithIdentifier(Constants.Segues.RequestPremiumToRequestPremiumWebSegue, sender: self)
     }
 
