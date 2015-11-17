@@ -22,11 +22,6 @@ class LoginViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func loginWithSpotify(sender: UIButton) {
         SpotifyManager.sharedInstance.openLogin()
@@ -34,14 +29,20 @@ class LoginViewController: UIViewController {
     
     func onSessionValid(notification:NSNotification){
         
-        performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
-
+        SpotifyManager.sharedInstance.checkPremium { isPremium in
+            if isPremium{
+                self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
+            }else{
+                self.performSegueWithIdentifier(Constants.Segues.LoginToRequestPremiumSegue, sender: self)
+            }
+        }
         
     }
     
     
     func onSessionError(notification:NSNotification){
         
+        showErrorMessage("There was a problem while trying to login to Spotify. Please rety in a few minutes.")
         
     }
     

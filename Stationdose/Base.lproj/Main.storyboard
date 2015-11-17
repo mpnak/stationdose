@@ -11,8 +11,11 @@
         <mutableArray key="Yantramanav-Light.ttf">
             <string>Yantramanav-Light</string>
             <string>Yantramanav-Light</string>
+            <string>Yantramanav-Light</string>
+            <string>Yantramanav-Light</string>
         </mutableArray>
         <mutableArray key="Yantramanav-Regular.ttf">
+            <string>Yantramanav-Regular</string>
             <string>Yantramanav-Regular</string>
         </mutableArray>
     </customFonts>
@@ -60,6 +63,9 @@
                                     <constraint firstAttribute="width" secondItem="MaZ-hK-t1C" secondAttribute="height" multiplier="317:46" id="mfF-Ok-ruy"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="sOd-Aj-ifF">
+                                <rect key="frame" x="177" y="446" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -67,8 +73,10 @@
                             <constraint firstItem="MaZ-hK-t1C" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.84" id="4lQ-0h-892"/>
                             <constraint firstItem="TpR-cu-YYe" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="6k2-dp-jsN"/>
                             <constraint firstItem="TpR-cu-YYe" firstAttribute="top" secondItem="Zis-dX-uzJ" secondAttribute="bottom" constant="35" id="9rl-kr-iJd"/>
+                            <constraint firstItem="sOd-Aj-ifF" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="ATg-T3-J8t"/>
                             <constraint firstItem="Dpn-hw-NLz" firstAttribute="top" secondItem="TpR-cu-YYe" secondAttribute="bottom" constant="18" id="DYR-1w-sPe"/>
                             <constraint firstItem="Zis-dX-uzJ" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="Jjb-qE-6wR"/>
+                            <constraint firstItem="sOd-Aj-ifF" firstAttribute="top" secondItem="MaZ-hK-t1C" secondAttribute="bottom" constant="53" id="KWU-xa-bMI"/>
                             <constraint firstItem="Zis-dX-uzJ" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.42" id="MJB-6u-Kss"/>
                             <constraint firstItem="wWn-Hi-gDH" firstAttribute="top" secondItem="o85-PH-mQD" secondAttribute="bottom" constant="27" id="NJk-qq-i4z"/>
                             <constraint firstItem="o85-PH-mQD" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="SZq-nX-QcV"/>
@@ -85,6 +93,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="SplashToLoginSegue" id="l4Z-Ym-l6q"/>
                         <segue destination="4mP-Aw-GMw" kind="presentation" identifier="SplashToHomeSegue" id="Gip-Xw-DHz"/>
+                        <segue destination="Tod-Qa-F7D" kind="presentation" identifier="SplashToRequestPremiumSegue" id="2NR-pA-uPA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQJ-tC-BEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -182,6 +191,7 @@
                     </view>
                     <connections>
                         <segue destination="4mP-Aw-GMw" kind="presentation" identifier="LoginToHomeSegue" id="etf-Up-yf7"/>
+                        <segue destination="Tod-Qa-F7D" kind="presentation" identifier="LoginToRequestPremiumSegue" id="Fl5-av-fhj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -199,7 +209,7 @@
                     <view key="view" contentMode="scaleToFill" id="oeH-Qm-5Im">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="c2C-3j-vdH"/>
                 </viewController>
@@ -223,7 +233,151 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIX-wE-BxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189" y="1134"/>
+            <point key="canvasLocation" x="158.5" y="1201.5"/>
+        </scene>
+        <!--Request Premium View Controller-->
+        <scene sceneID="B2q-jL-Oo5">
+            <objects>
+                <viewController id="Tod-Qa-F7D" customClass="RequestPremiumViewController" customModule="Stationdose" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NOy-7n-BOg"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ryx-Cz-yLE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="O91-nR-DfB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1r-oQ-Fqq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hju-j6-oZW">
+                                        <rect key="frame" x="144" y="121" width="86" height="73"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hju-j6-oZW" secondAttribute="height" multiplier="161:136" id="djM-03-Nwg"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZB-5e-fQh">
+                                        <rect key="frame" x="62" y="350" width="251" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="pMq-un-jRt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="18"/>
+                                        <state key="normal" title="Sign up for Spotify Premium › ">
+                                            <color key="titleColor" red="0.070588235294117646" green="0.82352941176470584" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signUpPremium:" destination="Tod-Qa-F7D" eventType="touchUpInside" id="3Xw-UL-1fX"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, you must be a Spotify Premium suscriber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeY-kN-N8I">
+                                        <rect key="frame" x="0.0" y="208" width="375" height="68"/>
+                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="spotifyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="czK-i2-ikF">
+                                        <rect key="frame" x="117" y="561" width="143" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="czK-i2-ikF" secondAttribute="height" multiplier="145:81" id="xtc-Vu-io7"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spotify requires you to be a Premium subscriber to use Spotify-powered apps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1P3-jf-GvO">
+                                        <rect key="frame" x="8" y="288" width="359" height="42"/>
+                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="KZB-5e-fQh" firstAttribute="width" secondItem="c1r-oQ-Fqq" secondAttribute="width" multiplier="0.67" id="7Gr-wA-Vzd"/>
+                                    <constraint firstItem="czK-i2-ikF" firstAttribute="centerX" secondItem="c1r-oQ-Fqq" secondAttribute="centerX" id="8sM-W9-oWA"/>
+                                    <constraint firstItem="1P3-jf-GvO" firstAttribute="leading" secondItem="c1r-oQ-Fqq" secondAttribute="leadingMargin" id="AkF-AC-iyi"/>
+                                    <constraint firstItem="1P3-jf-GvO" firstAttribute="trailing" secondItem="c1r-oQ-Fqq" secondAttribute="trailingMargin" id="DGB-sE-1wk"/>
+                                    <constraint firstItem="KZB-5e-fQh" firstAttribute="centerY" secondItem="c1r-oQ-Fqq" secondAttribute="centerY" constant="44.5" id="EH2-aY-eck"/>
+                                    <constraint firstAttribute="bottom" secondItem="czK-i2-ikF" secondAttribute="bottom" constant="27" id="Mee-PA-nT4"/>
+                                    <constraint firstItem="XeY-kN-N8I" firstAttribute="leading" secondItem="c1r-oQ-Fqq" secondAttribute="leading" id="O8M-xY-gHR"/>
+                                    <constraint firstItem="1P3-jf-GvO" firstAttribute="top" secondItem="XeY-kN-N8I" secondAttribute="bottom" constant="13" id="Vlo-gr-8Wk"/>
+                                    <constraint firstItem="KZB-5e-fQh" firstAttribute="centerX" secondItem="c1r-oQ-Fqq" secondAttribute="centerX" id="VuB-kh-89Z"/>
+                                    <constraint firstItem="czK-i2-ikF" firstAttribute="width" secondItem="c1r-oQ-Fqq" secondAttribute="width" multiplier="0.38" id="gX4-gU-naY"/>
+                                    <constraint firstItem="hju-j6-oZW" firstAttribute="centerX" secondItem="c1r-oQ-Fqq" secondAttribute="centerX" id="gkN-RM-yWm"/>
+                                    <constraint firstItem="hju-j6-oZW" firstAttribute="width" secondItem="c1r-oQ-Fqq" secondAttribute="width" multiplier="0.23" id="hUq-hl-SSO"/>
+                                    <constraint firstItem="KZB-5e-fQh" firstAttribute="top" secondItem="1P3-jf-GvO" secondAttribute="bottom" constant="20" id="hvB-u4-f9K"/>
+                                    <constraint firstAttribute="trailing" secondItem="XeY-kN-N8I" secondAttribute="trailing" id="iTB-Qp-UJo"/>
+                                    <constraint firstItem="XeY-kN-N8I" firstAttribute="top" secondItem="hju-j6-oZW" secondAttribute="bottom" constant="14" id="lhU-1G-ybe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="c1r-oQ-Fqq" secondAttribute="trailing" id="0np-A6-4Ed"/>
+                            <constraint firstItem="c1r-oQ-Fqq" firstAttribute="leading" secondItem="O91-nR-DfB" secondAttribute="leading" id="5Tu-Hl-JdM"/>
+                            <constraint firstItem="Ryx-Cz-yLE" firstAttribute="top" secondItem="c1r-oQ-Fqq" secondAttribute="bottom" id="CJk-lX-ScC"/>
+                            <constraint firstItem="c1r-oQ-Fqq" firstAttribute="top" secondItem="O91-nR-DfB" secondAttribute="top" id="puN-Be-n3w"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="4mP-Aw-GMw" kind="presentation" identifier="RequestPremiumToHomeSegue" id="N0U-zU-k6a"/>
+                        <segue destination="RVk-ll-xBb" kind="presentation" identifier="RequestPremiumToRequestPremiumWebSegue" id="bsQ-cR-gwH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jy9-eR-B86" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-472.5" y="1201.5"/>
+        </scene>
+        <!--Request Premium Web View Controller-->
+        <scene sceneID="etb-nJ-iW6">
+            <objects>
+                <viewController id="RVk-ll-xBb" customClass="RequestPremiumWebViewController" customModule="Stationdose" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LbZ-Fu-zKc"/>
+                        <viewControllerLayoutGuide type="bottom" id="x4o-3s-8Fs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I9w-YL-i8K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNO-PD-P42">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Request Spotify Premium" id="abv-F5-FIC">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="0uW-4R-6KP">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="done:" destination="RVk-ll-xBb" id="iqX-ao-aAX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5d-Es-1aL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Z5d-Es-1aL" firstAttribute="top" secondItem="sNO-PD-P42" secondAttribute="bottom" id="DTD-3C-nO2"/>
+                            <constraint firstAttribute="trailing" secondItem="sNO-PD-P42" secondAttribute="trailing" id="Hjc-jo-gbI"/>
+                            <constraint firstAttribute="trailing" secondItem="Z5d-Es-1aL" secondAttribute="trailing" id="VvL-RK-dPj"/>
+                            <constraint firstItem="Z5d-Es-1aL" firstAttribute="leading" secondItem="I9w-YL-i8K" secondAttribute="leading" id="Xm5-i1-eaz"/>
+                            <constraint firstItem="Z5d-Es-1aL" firstAttribute="top" secondItem="sNO-PD-P42" secondAttribute="bottom" id="cXb-Ja-g3J"/>
+                            <constraint firstItem="sNO-PD-P42" firstAttribute="leading" secondItem="I9w-YL-i8K" secondAttribute="leading" id="dZ9-Im-mYj"/>
+                            <constraint firstItem="sNO-PD-P42" firstAttribute="top" secondItem="LbZ-Fu-zKc" secondAttribute="bottom" id="eoM-O1-wJa"/>
+                            <constraint firstItem="x4o-3s-8Fs" firstAttribute="top" secondItem="Z5d-Es-1aL" secondAttribute="bottom" id="f7i-1x-4Md"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="webView" destination="Z5d-Es-1aL" id="2Lv-Va-GPo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kaw-Vr-tfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-472.5" y="1972.5"/>
         </scene>
     </scenes>
     <resources>
@@ -233,6 +387,7 @@
         <image name="spotifyLogo" width="143" height="75"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="etf-Up-yf7"/>
+        <segue reference="2NR-pA-uPA"/>
+        <segue reference="Gip-Xw-DHz"/>
     </inferredMetricsTieBreakers>
 </document>

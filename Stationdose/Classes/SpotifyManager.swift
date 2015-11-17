@@ -25,6 +25,7 @@ class SpotifyManager: NSObject {
     }
     
     
+    
     private let callback:SPTAuthCallback = {(error: NSError!,session: SPTSession!) in
         
         if let error = error{
@@ -47,7 +48,7 @@ class SpotifyManager: NSObject {
         spotifyAuthenticator.clientID = Constants.Spotify.ClientId
         spotifyAuthenticator.redirectURL = NSURL(string: Constants.Spotify.RedirectUrl)
         spotifyAuthenticator.sessionUserDefaultsKey = "SpotifySession"
-        spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope]
+        spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope,SPTAuthUserReadPrivateScope]
     }
     
     func handleOpenURL(url: NSURL) ->Bool{
@@ -59,10 +60,18 @@ class SpotifyManager: NSObject {
         return false
     }
     
+    
+    
     func openLogin(){
-
         let spotifyAuthenticator = SPTAuth.defaultInstance()
         UIApplication.sharedApplication().openURL(spotifyAuthenticator.loginURL)
+        //UIApplication.sharedApplication().openURL(Constants.Spotify.LoginUrl!)
+    }
+    
+    func checkPremium(callback:(Bool)->()){
+        SPTUser.requestCurrentUserWithAccessToken(session.accessToken) { (error, user) in
+            callback(user.product == .Premium)
+        }
     }
     
     func renewSession(){

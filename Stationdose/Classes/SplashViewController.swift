@@ -35,7 +35,7 @@ class SplashViewController: UIViewController {
     func moveToNextController(){
         if (SpotifyManager.sharedInstance.hasSession){
             if (SpotifyManager.sharedInstance.hasValidSession){
-                moveToLogin()
+                moveToPremiumOrHome()
             }else{
                 SpotifyManager.sharedInstance.renewSession()
             }
@@ -47,11 +47,29 @@ class SplashViewController: UIViewController {
     
     func onSessionValid(notification:NSNotification){
         
-        moveToLogin()
+        moveToPremiumOrHome()
+    }
+    
+    func moveToPremiumOrHome(){
+        SpotifyManager.sharedInstance.checkPremium { isPremium in
+            if isPremium{
+                self.moveToHome()
+            }else{
+                self.moveToRequestPremium()
+            }
+        }
+    }
+    
+    func moveToRequestPremium(){
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier(Constants.Segues.SplashToRequestPremiumSegue, sender: self)
+        }
+        
     }
     
     func moveToHome(){
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             self.performSegueWithIdentifier(Constants.Segues.SplashToHomeSegue, sender: self)
         }
@@ -59,27 +77,14 @@ class SplashViewController: UIViewController {
     }
     
     func moveToLogin(){
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             self.performSegueWithIdentifier(Constants.Segues.SplashToLoginSegue, sender: self)
         }
     }
     
     func onSessionError(notification:NSNotification){
-        
-        
+        showErrorMessage("There was a problem while trying to login to Spotify. Please rety in a few minutes.")
     }
-    
-    
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
 
 }
