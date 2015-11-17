@@ -17,8 +17,7 @@ class SplashViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionValid:", name: Constants.Notifications.sessionValidNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionError:", name: Constants.Notifications.sessionErrorNotification, object: nil)
-        
-        // Do any additional setup after loading the view.
+    
     }
     
     deinit {
@@ -36,20 +35,34 @@ class SplashViewController: UIViewController {
     func moveToNextController(){
         if (SpotifyManager.sharedInstance.hasSession){
             if (SpotifyManager.sharedInstance.hasValidSession){
-                performSegueWithIdentifier(Constants.Segues.SplashToHomeSegue, sender: self)
+                moveToLogin()
             }else{
                 SpotifyManager.sharedInstance.renewSession()
             }
         }else{
-            performSegueWithIdentifier(Constants.Segues.SplashToLoginSegue, sender: self)
+            moveToLogin()
         }
     }
+
     
     func onSessionValid(notification:NSNotification){
         
-        performSegueWithIdentifier(Constants.Segues.SplashToHomeSegue, sender: self)
+        moveToLogin()
+    }
+    
+    func moveToHome(){
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier(Constants.Segues.SplashToHomeSegue, sender: self)
+        }
         
-        
+    }
+    
+    func moveToLogin(){
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier(Constants.Segues.SplashToLoginSegue, sender: self)
+        }
     }
     
     func onSessionError(notification:NSNotification){

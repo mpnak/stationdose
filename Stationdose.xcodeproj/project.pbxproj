@@ -16,6 +16,13 @@
 		CD9FA45D1BFA8483003B8A62 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA45C1BFA8483003B8A62 /* SplashViewController.swift */; };
 		CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA45E1BFA873F003B8A62 /* SpotifyManager.swift */; };
 		CD9FA4611BFA993C003B8A62 /* UIViewController+Stationdose.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA4601BFA993C003B8A62 /* UIViewController+Stationdose.swift */; };
+		CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA4691BFB6BB0003B8A62 /* UIView+Inspectable.swift */; };
+		CD9FA46B1BFB71A4003B8A62 /* Yantramanav-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9FA4631BFAA197003B8A62 /* Yantramanav-Black.ttf */; };
+		CD9FA46C1BFB71A4003B8A62 /* Yantramanav-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9FA4641BFAA197003B8A62 /* Yantramanav-Bold.ttf */; };
+		CD9FA46D1BFB71A4003B8A62 /* Yantramanav-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9FA4651BFAA197003B8A62 /* Yantramanav-Light.ttf */; };
+		CD9FA46E1BFB71A4003B8A62 /* Yantramanav-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9FA4661BFAA197003B8A62 /* Yantramanav-Medium.ttf */; };
+		CD9FA46F1BFB71A4003B8A62 /* Yantramanav-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9FA4671BFAA197003B8A62 /* Yantramanav-Regular.ttf */; };
+		CD9FA4701BFB71A4003B8A62 /* Yantramanav-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9FA4681BFAA197003B8A62 /* Yantramanav-Thin.ttf */; };
 		CDBE230E1BF92DFB00291F56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBE230D1BF92DFB00291F56 /* AppDelegate.swift */; };
 		CDBE23131BF92DFB00291F56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23111BF92DFB00291F56 /* Main.storyboard */; };
 		CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23141BF92DFB00291F56 /* Assets.xcassets */; };
@@ -43,6 +50,7 @@
 		CD9FA4661BFAA197003B8A62 /* Yantramanav-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Yantramanav-Medium.ttf"; sourceTree = "<group>"; };
 		CD9FA4671BFAA197003B8A62 /* Yantramanav-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Yantramanav-Regular.ttf"; sourceTree = "<group>"; };
 		CD9FA4681BFAA197003B8A62 /* Yantramanav-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Yantramanav-Thin.ttf"; sourceTree = "<group>"; };
+		CD9FA4691BFB6BB0003B8A62 /* UIView+Inspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Inspectable.swift"; sourceTree = "<group>"; };
 		CDBE230A1BF92DFB00291F56 /* Stationdose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stationdose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBE230D1BF92DFB00291F56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDBE23121BF92DFB00291F56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				CD9FA4601BFA993C003B8A62 /* UIViewController+Stationdose.swift */,
+				CD9FA4691BFB6BB0003B8A62 /* UIView+Inspectable.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -264,8 +273,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDBE234A1BF930DD00291F56 /* Info.plist in Resources */,
+				CD9FA46B1BFB71A4003B8A62 /* Yantramanav-Black.ttf in Resources */,
+				CD9FA46F1BFB71A4003B8A62 /* Yantramanav-Regular.ttf in Resources */,
+				CD9FA46E1BFB71A4003B8A62 /* Yantramanav-Medium.ttf in Resources */,
+				CD9FA4701BFB71A4003B8A62 /* Yantramanav-Thin.ttf in Resources */,
 				CDBE23181BF92DFB00291F56 /* LaunchScreen.storyboard in Resources */,
 				CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */,
+				CD9FA46C1BFB71A4003B8A62 /* Yantramanav-Bold.ttf in Resources */,
+				CD9FA46D1BFB71A4003B8A62 /* Yantramanav-Light.ttf in Resources */,
 				CDBE23131BF92DFB00291F56 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */,
+				CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */,
 				CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */,
 				CD9FA4611BFA993C003B8A62 /* UIViewController+Stationdose.swift in Sources */,
 				CDBE230E1BF92DFB00291F56 /* AppDelegate.swift in Sources */,
