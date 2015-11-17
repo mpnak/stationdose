@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Yantramanav-Light.ttf">
+            <string>Yantramanav-Light</string>
+            <string>Yantramanav-Light</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fullBackground" translatesAutoresizingMaskIntoConstraints="NO" id="5e9-XS-8mK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="lbW-GL-Hpd">
+                                <rect key="frame" x="108" y="110" width="158" height="133"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lbW-GL-Hpd" secondAttribute="height" multiplier="161:136" id="XNQ-Pv-RAF"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfL-Js-rge">
+                                <rect key="frame" x="0.0" y="324" width="375" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="mvQ-0b-Nk0"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stationdose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dso-7D-Tsb">
+                                <rect key="frame" x="0.0" y="268" width="375" height="48"/>
+                                <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="37"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Human-curated, location-dependent radio with playlists you can save" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ost-UN-fMY">
+                                <rect key="frame" x="16" y="347" width="343" height="47"/>
+                                <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="18"/>
+                                <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotifyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="NFC-Ov-mge">
+                                <rect key="frame" x="116" y="559" width="143" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NFC-Ov-mge" secondAttribute="height" multiplier="141:81" id="yyE-2U-Yqi"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstItem="Dso-7D-Tsb" firstAttribute="top" secondItem="lbW-GL-Hpd" secondAttribute="bottom" constant="25" id="7f9-y6-b8e"/>
+                            <constraint firstItem="BfL-Js-rge" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="BpP-oY-ifK"/>
+                            <constraint firstItem="5e9-XS-8mK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Cv6-Ym-VfC"/>
+                            <constraint firstItem="lbW-GL-Hpd" firstAttribute="width" secondItem="5e9-XS-8mK" secondAttribute="width" multiplier="0.42" id="E45-ZP-1tQ"/>
+                            <constraint firstItem="NFC-Ov-mge" firstAttribute="width" secondItem="5e9-XS-8mK" secondAttribute="width" multiplier="0.38" id="MV5-Gr-V8G"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5e9-XS-8mK" secondAttribute="bottom" id="X8m-lL-l0j"/>
+                            <constraint firstItem="ost-UN-fMY" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="Ygo-bB-XyE"/>
+                            <constraint firstAttribute="trailing" secondItem="BfL-Js-rge" secondAttribute="trailing" id="YtS-Xg-2Ib"/>
+                            <constraint firstItem="5e9-XS-8mK" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="akt-pJ-jPA"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="NFC-Ov-mge" secondAttribute="bottom" constant="26" id="bH9-yb-iJ2"/>
+                            <constraint firstAttribute="trailing" secondItem="5e9-XS-8mK" secondAttribute="trailing" id="bNn-N8-TKa"/>
+                            <constraint firstItem="ost-UN-fMY" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="cDk-UT-F9R"/>
+                            <constraint firstItem="Dso-7D-Tsb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="enf-XN-pAK"/>
+                            <constraint firstItem="NFC-Ov-mge" firstAttribute="centerX" secondItem="5e9-XS-8mK" secondAttribute="centerX" id="gVl-eZ-a1g"/>
+                            <constraint firstItem="lbW-GL-Hpd" firstAttribute="centerY" secondItem="5e9-XS-8mK" secondAttribute="centerY" id="k7r-u4-Wre"/>
+                            <constraint firstAttribute="trailing" secondItem="Dso-7D-Tsb" secondAttribute="trailing" id="kbC-s4-zV5"/>
+                            <constraint firstItem="lbW-GL-Hpd" firstAttribute="centerX" secondItem="5e9-XS-8mK" secondAttribute="centerX" id="nnx-nK-2Fo"/>
+                            <constraint firstItem="BfL-Js-rge" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="q6Y-0b-Des"/>
+                            <constraint firstItem="BfL-Js-rge" firstAttribute="top" secondItem="Dso-7D-Tsb" secondAttribute="bottom" constant="8" id="sb9-G4-pce"/>
+                            <constraint firstItem="ost-UN-fMY" firstAttribute="top" secondItem="BfL-Js-rge" secondAttribute="bottom" constant="3" id="zVo-eD-cNA"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="k7r-u4-Wre"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.5" y="374.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="fullBackground" width="375" height="667"/>
+        <image name="logo" width="161" height="136"/>
+        <image name="spotifyLogo" width="143" height="75"/>
+    </resources>
+</document>
