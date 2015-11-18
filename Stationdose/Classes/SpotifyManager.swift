@@ -24,8 +24,6 @@ class SpotifyManager: NSObject {
         return SPTAuth.defaultInstance().session;
     }
     
-    
-    
     private let callback:SPTAuthCallback = {(error: NSError!,session: SPTSession!) in
         
         if let error = error{
@@ -40,9 +38,6 @@ class SpotifyManager: NSObject {
         }
     }
     
-    
-    
-    
     override init() {
         let spotifyAuthenticator = SPTAuth.defaultInstance()
         spotifyAuthenticator.clientID = Constants.Spotify.ClientId
@@ -51,32 +46,29 @@ class SpotifyManager: NSObject {
         spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope,SPTAuthUserReadPrivateScope]
     }
     
-    func handleOpenURL(url: NSURL) ->Bool{
+    func handleOpenURL(url: NSURL) ->Bool {
         if(SPTAuth.defaultInstance().canHandleURL(url)){
             SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: callback)
             return true
-            
+
         }
         return false
     }
     
-    
-    
-    func openLogin(){
+    func openLogin() {
         let spotifyAuthenticator = SPTAuth.defaultInstance()
         UIApplication.sharedApplication().openURL(spotifyAuthenticator.loginURL)
         //UIApplication.sharedApplication().openURL(Constants.Spotify.LoginUrl!)
     }
     
-    func checkPremium(callback:(Bool)->()){
+    func checkPremium(callback:(Bool)->()) {
         SPTUser.requestCurrentUserWithAccessToken(session.accessToken) { (error, user) in
-            callback(user.product == .Premium)
+            callback(user != nil && user?.product == .Premium)
         }
     }
     
-    func renewSession(){
+    func renewSession() {
         SPTAuth.defaultInstance().renewSession(session, callback: callback)
         
     }
-
 }

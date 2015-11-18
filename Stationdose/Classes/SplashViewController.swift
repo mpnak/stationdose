@@ -24,8 +24,6 @@ class SplashViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         moveToNextController()
@@ -33,10 +31,10 @@ class SplashViewController: UIViewController {
     }
     
     func moveToNextController(){
-        if (SpotifyManager.sharedInstance.hasSession){
-            if (SpotifyManager.sharedInstance.hasValidSession){
+        if (SpotifyManager.sharedInstance.hasSession) {
+            if (SpotifyManager.sharedInstance.hasValidSession) {
                 moveToPremiumOrHome()
-            }else{
+            } else {
                 SpotifyManager.sharedInstance.renewSession()
             }
         }else{

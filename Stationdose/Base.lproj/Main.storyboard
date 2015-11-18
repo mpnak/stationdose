@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TLQ-fv-9An">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TLQ-fv-9An">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -34,39 +34,46 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Zis-dX-uzJ">
                                 <rect key="frame" x="108" y="110" width="158" height="133"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Zis-dX-uzJ" secondAttribute="height" multiplier="161:136" id="QTp-CT-huM"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpn-hw-NLz">
                                 <rect key="frame" x="0.0" y="324" width="375" height="20"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="kGu-Pi-HoB"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotifyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="o85-PH-mQD">
-                                <rect key="frame" x="116" y="560" width="143" height="80"/>
+                                <rect key="frame" x="116" y="565" width="143" height="75"/>
+                                <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="o85-PH-mQD" secondAttribute="height" multiplier="145:81" id="u3J-0l-enX"/>
+                                    <constraint firstAttribute="width" secondItem="o85-PH-mQD" secondAttribute="height" multiplier="286:150" id="u3J-0l-enX"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoName" translatesAutoresizingMaskIntoConstraints="NO" id="TpR-cu-YYe">
                                 <rect key="frame" x="97" y="278" width="180" height="28"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TpR-cu-YYe" secondAttribute="height" multiplier="45:7" id="EOE-Xb-fVc"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slogan" translatesAutoresizingMaskIntoConstraints="NO" id="MaZ-hK-t1C">
-                                <rect key="frame" x="30" y="347" width="315" height="46"/>
+                                <rect key="frame" x="30" y="347" width="315" height="45.5"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MaZ-hK-t1C" secondAttribute="height" multiplier="317:46" id="mfF-Ok-ruy"/>
                                 </constraints>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="sOd-Aj-ifF">
-                                <rect key="frame" x="177" y="446" width="20" height="20"/>
+                                <rect key="frame" x="177" y="445.5" width="20" height="20"/>
+                                <animations/>
                             </activityIndicatorView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="o85-PH-mQD" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.38" id="1Wx-hd-sLu"/>
@@ -98,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQJ-tC-BEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-589.5" y="312.5"/>
+            <point key="canvasLocation" x="-472.5" y="312.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -116,13 +123,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wKA-2l-tXf">
-                                        <rect key="frame" x="145" y="96" width="86" height="73"/>
+                                        <rect key="frame" x="145" y="95.5" width="86" height="73"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wKA-2l-tXf" secondAttribute="height" multiplier="161:136" id="BGu-Dk-dQK"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihv-2m-RBj">
                                         <rect key="frame" x="62" y="306" width="251" height="56"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="dFv-ds-KCE"/>
                                         </constraints>
@@ -140,28 +149,37 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="loginWithSpotify:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C5V-KK-gqq"/>
+                                            <action selector="loginWithSpotify:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bof-VG-89O"/>
+                                            <action selector="loginWithSpotifyTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Mdp-ck-pUy"/>
+                                            <action selector="loginWithSpotifyTouchDragEnter:" destination="BYZ-38-t0r" eventType="touchDragEnter" id="ifP-C5-JO5"/>
+                                            <action selector="loginWithSpotifyTouchDragExit:" destination="BYZ-38-t0r" eventType="touchDragExit" id="8sD-Ce-GFU"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF5-hd-Ads">
-                                        <rect key="frame" x="0.0" y="183" width="375" height="34"/>
+                                        <rect key="frame" x="0.0" y="182.5" width="375" height="34"/>
+                                        <animations/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotifyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="GDU-BE-pr5">
-                                        <rect key="frame" x="116" y="560" width="143" height="80"/>
+                                        <rect key="frame" x="116" y="565" width="143" height="75"/>
+                                        <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="GDU-BE-pr5" secondAttribute="height" multiplier="145:81" id="cHm-IA-vEe"/>
+                                            <constraint firstAttribute="width" secondItem="GDU-BE-pr5" secondAttribute="height" multiplier="286:150" id="cHm-IA-vEe"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stationdose uses Spotify for music playback. Please sign in to your account to start." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-OS-Kfv">
-                                        <rect key="frame" x="8" y="230" width="359" height="42"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-OS-Kfv">
+                                        <rect key="frame" x="8" y="229.5" width="359" height="41.5"/>
+                                        <animations/>
+                                        <string key="text">Stationdose uses Spotify for music playback.
+Please sign in to your account to start.</string>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <animations/>
                                 <constraints>
                                     <constraint firstItem="wKA-2l-tXf" firstAttribute="width" secondItem="Rkz-k8-hfr" secondAttribute="width" multiplier="0.23" id="11q-qg-CF8"/>
                                     <constraint firstItem="VF5-hd-Ads" firstAttribute="top" secondItem="wKA-2l-tXf" secondAttribute="bottom" constant="14" id="Gm5-d5-Srb"/>
@@ -181,6 +199,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Rkz-k8-hfr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DnF-is-1Sa"/>
@@ -196,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189" y="313"/>
+            <point key="canvasLocation" x="158.5" y="312.5"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="r5o-a0-yhM">
@@ -209,13 +228,14 @@
                     <view key="view" contentMode="scaleToFill" id="oeH-Qm-5Im">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="c2C-3j-vdH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rF-Ik-wgn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="1134"/>
+            <point key="canvasLocation" x="920.5" y="1201.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yqW-vA-oSg">
@@ -225,6 +245,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MyZ-Eh-k48">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -252,12 +273,14 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hju-j6-oZW">
                                         <rect key="frame" x="144" y="121" width="86" height="73"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hju-j6-oZW" secondAttribute="height" multiplier="161:136" id="djM-03-Nwg"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZB-5e-fQh">
-                                        <rect key="frame" x="62" y="350" width="251" height="56"/>
+                                        <rect key="frame" x="76.5" y="350" width="222" height="56"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="pMq-un-jRt"/>
                                         </constraints>
@@ -273,27 +296,32 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, you must be a Spotify Premium suscriber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeY-kN-N8I">
-                                        <rect key="frame" x="0.0" y="208" width="375" height="68"/>
+                                        <rect key="frame" x="0.0" y="208" width="375" height="67.5"/>
+                                        <animations/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="spotifyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="czK-i2-ikF">
-                                        <rect key="frame" x="117" y="561" width="143" height="80"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotifyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="czK-i2-ikF">
+                                        <rect key="frame" x="116" y="565" width="143" height="75"/>
+                                        <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="czK-i2-ikF" secondAttribute="height" multiplier="145:81" id="xtc-Vu-io7"/>
+                                            <constraint firstAttribute="width" secondItem="czK-i2-ikF" secondAttribute="height" multiplier="286:150" id="xtc-Vu-io7"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spotify requires you to be a Premium subscriber to use Spotify-powered apps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1P3-jf-GvO">
-                                        <rect key="frame" x="8" y="288" width="359" height="42"/>
+                                        <rect key="frame" x="8" y="288" width="359" height="41.5"/>
+                                        <animations/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="C1c-pk-A8w">
                                         <rect key="frame" x="178" y="430" width="20" height="20"/>
+                                        <animations/>
                                     </activityIndicatorView>
                                 </subviews>
+                                <animations/>
                                 <constraints>
                                     <constraint firstItem="KZB-5e-fQh" firstAttribute="width" secondItem="c1r-oQ-Fqq" secondAttribute="width" multiplier="0.67" id="7Gr-wA-Vzd"/>
                                     <constraint firstItem="czK-i2-ikF" firstAttribute="centerX" secondItem="c1r-oQ-Fqq" secondAttribute="centerX" id="8sM-W9-oWA"/>
@@ -313,8 +341,14 @@
                                     <constraint firstItem="XeY-kN-N8I" firstAttribute="top" secondItem="hju-j6-oZW" secondAttribute="bottom" constant="14" id="lhU-1G-ybe"/>
                                     <constraint firstItem="C1c-pk-A8w" firstAttribute="top" secondItem="KZB-5e-fQh" secondAttribute="bottom" constant="24" id="rEm-Pe-gWY"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7Gr-wA-Vzd"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="c1r-oQ-Fqq" secondAttribute="trailing" id="0np-A6-4Ed"/>
@@ -348,6 +382,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNO-PD-P42">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <animations/>
                                 <items>
                                     <navigationItem title="Request Spotify Premium" id="abv-F5-FIC">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="0uW-4R-6KP">
@@ -361,9 +396,11 @@
                             </navigationBar>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5d-Es-1aL">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <animations/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Z5d-Es-1aL" firstAttribute="top" secondItem="sNO-PD-P42" secondAttribute="bottom" id="DTD-3C-nO2"/>
@@ -379,11 +416,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="webView" destination="Z5d-Es-1aL" id="2Lv-Va-GPo"/>
+                        <segue destination="4mP-Aw-GMw" kind="presentation" identifier="RequestPremiumToHomeSegue" id="rRp-fM-fvN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kaw-Vr-tfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-472.5" y="1972.5"/>
+            <point key="canvasLocation" x="-472.5" y="2038.5"/>
         </scene>
     </scenes>
     <resources>
@@ -394,6 +432,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2NR-pA-uPA"/>
-        <segue reference="N0U-zU-k6a"/>
+        <segue reference="Gip-Xw-DHz"/>
     </inferredMetricsTieBreakers>
 </document>

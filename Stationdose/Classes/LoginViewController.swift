@@ -22,17 +22,29 @@ class LoginViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    
     @IBAction func loginWithSpotify(sender: UIButton) {
         SpotifyManager.sharedInstance.openLogin()
+        sender.borderColor = UIColor.customButtonBorderColor()
+    }
+    
+    @IBAction func loginWithSpotifyTouchDragExit(sender: UIButton) {
+        sender.borderColor = UIColor.customButtonBorderColor()
+    }
+    
+    @IBAction func loginWithSpotifyTouchDragEnter(sender: UIButton) {
+        sender.borderColor = UIColor.customButtonBorderTapColor()
+    }
+    
+    @IBAction func loginWithSpotifyTouchDown(sender: UIButton) {
+        sender.borderColor = UIColor.customButtonBorderTapColor()
     }
     
     func onSessionValid(notification:NSNotification){
         
         SpotifyManager.sharedInstance.checkPremium { isPremium in
-            if isPremium{
+            if isPremium {
                 self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
-            }else{
+            } else {
                 self.performSegueWithIdentifier(Constants.Segues.LoginToRequestPremiumSegue, sender: self)
             }
         }

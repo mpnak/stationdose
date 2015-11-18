@@ -30,7 +30,8 @@
 		CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23141BF92DFB00291F56 /* Assets.xcassets */; };
 		CDBE23181BF92DFB00291F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23161BF92DFB00291F56 /* LaunchScreen.storyboard */; };
 		CDBE234A1BF930DD00291F56 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23491BF930DD00291F56 /* Info.plist */; };
-		DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E06A1BF2138C0B19B5B149 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E06A1BF2138C0B19B5B149 /* Pods.framework */; };
+		F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		CDBE23171BF92DFB00291F56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDBE23491BF930DD00291F56 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2888AAF3DA1417321CC8AC8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			children = (
 				CD9FA4601BFA993C003B8A62 /* UIViewController+Stationdose.swift */,
 				CD9FA4691BFB6BB0003B8A62 /* UIView+Inspectable.swift */,
+				F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */,
 				CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */,
 				CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */,
+				F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */,
 				CD9FA4611BFA993C003B8A62 /* UIViewController+Stationdose.swift in Sources */,
 				CD9FA4721BFB9FD3003B8A62 /* RequestPremiumViewController.swift in Sources */,
 				CDBE230E1BF92DFB00291F56 /* AppDelegate.swift in Sources */,
@@ -401,6 +405,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -445,6 +450,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

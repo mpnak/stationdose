@@ -13,7 +13,7 @@ class RequestPremiumViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var timer:NSTimer?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addFullBackground()
@@ -21,7 +21,7 @@ class RequestPremiumViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "checkPremium:", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "checkPremium:", userInfo: nil, repeats: true)
         timer?.fire()
     }
     
@@ -34,7 +34,7 @@ class RequestPremiumViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func checkPremium(timer:NSTimer){
+    func checkPremium(timer:NSTimer) {
         SpotifyManager.sharedInstance.checkPremium { isPremium in
             if isPremium{
                 self.activityIndicator.stopAnimating()
