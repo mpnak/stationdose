@@ -35,7 +35,8 @@ class SplashViewController: UIViewController {
             if (SpotifyManager.sharedInstance.hasValidSession) {
                 moveToPremiumOrHome()
             } else {
-                SpotifyManager.sharedInstance.renewSession()
+                //SpotifyManager.sharedInstance.renewSession()
+                moveToLogin()
             }
         }else{
             moveToLogin()

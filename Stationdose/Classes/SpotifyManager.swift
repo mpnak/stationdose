@@ -1,4 +1,4 @@
-//
+ //
 //  SpotifyManager.swift
 //  Stationdose
 //
@@ -26,13 +26,13 @@ class SpotifyManager: NSObject {
     
     private let callback:SPTAuthCallback = {(error: NSError!,session: SPTSession!) in
         
-        if let error = error{
+        if let theError = error{
             let errorNotification = NSNotification(name: Constants.Notifications.sessionErrorNotification,
-                object: error)
+                object: theError)
             NSNotificationCenter.defaultCenter().postNotification(errorNotification)
         }else{
             let validSessionNotification = NSNotification(name: Constants.Notifications.sessionValidNotification,
-                object: error)
+                object: session)
             NSNotificationCenter.defaultCenter().postNotification(validSessionNotification)
             
         }
@@ -63,7 +63,7 @@ class SpotifyManager: NSObject {
     
     func checkPremium(callback:(Bool)->()) {
         SPTUser.requestCurrentUserWithAccessToken(session.accessToken) { (error, user) in
-            callback(user != nil && user?.product == .Premium)
+            callback(user?.product == .Premium)
         }
     }
     
