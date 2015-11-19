@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    func addFullBackground(){
+    func addFullBackground() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "fullBackground")!)
     }
     
@@ -22,6 +22,32 @@ extension UIViewController {
         
         self.presentViewController(alertController, animated: true, completion: nil)
         
+    }
+    
+    func showCustomBack() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .Plain, target: self, action: "back")
+    }
+    
+    func back () {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    var showUserProfileButton: Bool? {
+        get {
+            return (self.navigationItem.rightBarButtonItem != nil)
+        }
+        
+        set {
+            if let newValue = newValue {
+                if newValue {
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile_icon"), style: .Plain, target: self, action: "oppenUserProfileAction")
+                }
+            }
+        }
+    }
+    
+    func oppenUserProfileAction() {
+        print("oppenUserProfileAction")
     }
 
 }

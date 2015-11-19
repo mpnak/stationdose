@@ -8,20 +8,44 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: BaseViewController, UIScrollViewDelegate {
+    
+    @IBOutlet weak var featuresStationsPageControl: UIPageControl!
+    @IBOutlet weak var stationsSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var myStationsEmptyView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addFullBackground()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        navigationController?.showLogo = true;
+        showUserProfileButton = true;
     }
     
-
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let pageWidth = scrollView.frame.size.width
+        let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth)+1)
+        featuresStationsPageControl.currentPage = page
+    }
+    
+    @IBAction func stationsSegmentedControlValueChanged(sender: UISegmentedControl) {
+        var myStationsEmptyViewVisible = false
+        
+        switch stationsSegmentedControl.selectedSegmentIndex {
+        case 0:
+            myStationsEmptyViewVisible = true
+        case 1:
+            myStationsEmptyViewVisible = false
+        default: break
+        }
+        
+        UIView.animateWithDuration(0.1) { () -> Void in
+            self.myStationsEmptyView.alpha = myStationsEmptyViewVisible ? 1 : 0
+        }
+    }
+    
+    @IBAction func addStations(sender: AnyObject) {
+        stationsSegmentedControl.selectedSegmentIndex = 1;
+        stationsSegmentedControlValueChanged(stationsSegmentedControl)
+    }
+    
 }

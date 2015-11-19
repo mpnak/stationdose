@@ -60,7 +60,7 @@ class SplashViewController: UIViewController {
     }
     
     func moveToRequestPremium(){
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             self.performSegueWithIdentifier(Constants.Segues.SplashToRequestPremiumSegue, sender: self)
         }
@@ -68,7 +68,7 @@ class SplashViewController: UIViewController {
     }
     
     func moveToHome(){
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             self.performSegueWithIdentifier(Constants.Segues.SplashToHomeSegue, sender: self)
         }
@@ -76,7 +76,7 @@ class SplashViewController: UIViewController {
     }
     
     func moveToLogin(){
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             self.performSegueWithIdentifier(Constants.Segues.SplashToLoginSegue, sender: self)
         }

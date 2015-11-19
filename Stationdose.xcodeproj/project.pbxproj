@@ -32,6 +32,8 @@
 		CDBE234A1BF930DD00291F56 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23491BF930DD00291F56 /* Info.plist */; };
 		DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E06A1BF2138C0B19B5B149 /* Pods.framework */; };
 		F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */; };
+		F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */; };
+		F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394771BFE453100A2C970 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		CDBE23491BF930DD00291F56 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2888AAF3DA1417321CC8AC8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
+		F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Stationdose.swift"; sourceTree = "<group>"; };
+		F1A394771BFE453100A2C970 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +193,7 @@
 				CD9FA4601BFA993C003B8A62 /* UIViewController+Stationdose.swift */,
 				CD9FA4691BFB6BB0003B8A62 /* UIView+Inspectable.swift */,
 				F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */,
+				F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				CD9FA4481BF9327F003B8A62 /* LoginViewController.swift */,
+				F1A394771BFE453100A2C970 /* BaseViewController.swift */,
 				CD9FA44A1BF93323003B8A62 /* HomeViewController.swift */,
 				CD9FA45C1BFA8483003B8A62 /* SplashViewController.swift */,
 				CD9FA4711BFB9FD3003B8A62 /* RequestPremiumViewController.swift */,
@@ -349,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */,
 				CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */,
+				F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */,
 				CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */,
 				CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */,
 				F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */,
