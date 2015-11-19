@@ -10,6 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addFullBackground()
@@ -24,6 +26,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginWithSpotify(sender: UIButton) {
         SpotifyManager.sharedInstance.openLogin()
+        self.activityIndicator.startAnimating()
         sender.borderColor = UIColor.customButtonBorderColor()
     }
     
@@ -42,6 +45,7 @@ class LoginViewController: UIViewController {
     func onSessionValid(notification:NSNotification){
         
         SpotifyManager.sharedInstance.checkPremium { isPremium in
+            self.activityIndicator.stopAnimating()
             if isPremium {
                 self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
             } else {
@@ -54,7 +58,7 @@ class LoginViewController: UIViewController {
     
     func onSessionError(notification:NSNotification){
         
-        showErrorMessage("There was a problem while trying to login to Spotify. Please rety in a few minutes.")
+        showErrorMessage("There was a problem while trying to login to Spotify. Please retry in a few minutes.")
         
     }
     
