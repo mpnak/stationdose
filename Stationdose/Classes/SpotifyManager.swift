@@ -44,6 +44,8 @@ class SpotifyManager: NSObject {
         spotifyAuthenticator.redirectURL = NSURL(string: Constants.Spotify.RedirectUrl)
         spotifyAuthenticator.sessionUserDefaultsKey = "SpotifySession"
         spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope,SPTAuthUserReadPrivateScope]
+        spotifyAuthenticator.tokenRefreshURL = NSURL(string:Constants.Spotify.RefreshUrl)
+        spotifyAuthenticator.tokenSwapURL = NSURL(string:Constants.Spotify.SwapUrl)
     }
     
     func handleOpenURL(url: NSURL) ->Bool {

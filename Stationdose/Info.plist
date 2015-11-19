@@ -27,7 +27,7 @@
 			<string>com.stationdose.spotify-auth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>stationdose-app-login</string>
+				<string>stationdose-login</string>
 			</array>
 		</dict>
 	</array>
