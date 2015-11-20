@@ -34,6 +34,8 @@
 		F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */; };
 		F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */; };
 		F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394771BFE453100A2C970 /* BaseViewController.swift */; };
+		F1F91C681BFEC8A6000E0BB7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F91C661BFEC8A6000E0BB7 /* Fabric.framework */; };
+		F1F91C691BFEC8A6000E0BB7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F91C671BFEC8A6000E0BB7 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Stationdose.swift"; sourceTree = "<group>"; };
 		F1A394771BFE453100A2C970 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F1F91C661BFEC8A6000E0BB7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		F1F91C671BFEC8A6000E0BB7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +80,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9FA4551BF93C7F003B8A62 /* SystemConfiguration.framework in Frameworks */,
+				F1F91C681BFEC8A6000E0BB7 /* Fabric.framework in Frameworks */,
 				CD9FA4531BF93C79003B8A62 /* AVFoundation.framework in Frameworks */,
 				DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */,
+				F1F91C691BFEC8A6000E0BB7 /* Crashlytics.framework in Frameworks */,
 				CD9FA4571BF93D79003B8A62 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +145,8 @@
 		CDBE23011BF92DFB00291F56 = {
 			isa = PBXGroup;
 			children = (
+				F1F91C661BFEC8A6000E0BB7 /* Fabric.framework */,
+				F1F91C671BFEC8A6000E0BB7 /* Crashlytics.framework */,
 				CDBE230C1BF92DFB00291F56 /* Stationdose */,
 				CDBE230B1BF92DFB00291F56 /* Products */,
 				4C040825A14314C251AEA97D /* Pods */,
@@ -239,6 +247,7 @@
 				CDBE23081BF92DFB00291F56 /* Resources */,
 				46B937BBBE17511F1DFB5A0A /* Embed Pods Frameworks */,
 				C366A8E778F2FB368E390F72 /* Copy Pods Resources */,
+				F1F91C651BFEC82F000E0BB7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -347,6 +356,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F1F91C651BFEC82F000E0BB7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -494,7 +516,7 @@
 					"\"Alamofire\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stationdose.Stationdose;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stationdose.stationdose;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stationdose/Classes/Stationdose-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -519,7 +541,7 @@
 					"\"Alamofire\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stationdose.Stationdose;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stationdose.stationdose;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stationdose/Classes/Stationdose-Bridging-Header.h";
 			};
