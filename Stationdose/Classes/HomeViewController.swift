@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class HomeViewController: BaseViewController, UIScrollViewDelegate {
     
@@ -14,11 +15,20 @@ class HomeViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var stationsSegmentedControl: UISegmentedControl!
     @IBOutlet weak var myStationsEmptyView: UIView!
     
+    private var location:CLLocation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.showLogo = true;
         showUserProfileButton = true;
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        LocationManager.sharedInstance.getCurrentLocation(self) { (location, error) -> () in
+            self.location = location
+        }
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
