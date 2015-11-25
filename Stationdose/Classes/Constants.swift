@@ -33,4 +33,8 @@ struct Constants {
         static let RequestPremiumToHomeSegue = "RequestPremiumToHomeSegue"
         static let RequestPremiumToRequestPremiumWebSegue = "RequestPremiumToRequestPremiumWebSegue"
     }
+    
+    struct SognSort{
+        static let baseDevelopmentUrl = "https://polar-dawn-6054.herokuapp.com/api/"
+    }
 }
