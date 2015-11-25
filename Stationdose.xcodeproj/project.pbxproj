@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */; };
 		CD6BD2CD1C062AFB006D812B /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CC1C062AFB006D812B /* Station.swift */; };
+		CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CF1C0651A6006D812B /* LocationManager.swift */; };
 		CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA4481BF9327F003B8A62 /* LoginViewController.swift */; };
 		CD9FA44B1BF93323003B8A62 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA44A1BF93323003B8A62 /* HomeViewController.swift */; };
 		CD9FA4511BF93876003B8A62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA4501BF93876003B8A62 /* Constants.swift */; };
@@ -47,6 +48,7 @@
 		3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSortApiManager.swift; sourceTree = "<group>"; };
 		CD6BD2CC1C062AFB006D812B /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		CD6BD2CF1C0651A6006D812B /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CD9FA4481BF9327F003B8A62 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CD9FA44A1BF93323003B8A62 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD9FA4501BF93876003B8A62 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				CD9FA45E1BFA873F003B8A62 /* SpotifyManager.swift */,
 				CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */,
+				CD6BD2CF1C0651A6006D812B /* LocationManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				CD6BD2CD1C062AFB006D812B /* Station.swift in Sources */,
 				CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */,
 				F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */,
+				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,
 				CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */,
 				CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */,
 				F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */,

@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
 
 class HomeViewController: BaseViewController {
     
-    var myStations: [Station]
-    var stationsList: [Station]
+    var myStations: NSArray
+    var stationsList: NSArray
+    var currentLocation:CLLocation?
     
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
     @IBOutlet weak var stationsSegmentedControl: UISegmentedControl!
@@ -57,9 +59,11 @@ class HomeViewController: BaseViewController {
         myStationsTableView.alpha = 0
     }
     
-    func reloadData() {
-        stationsListTableView.reloadData()
-        myStationsTableView.reloadData()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        LocationManager.sharedInstance.getCurrentLocation(self) { (location, error) -> () in
+            currentLocation = location;
+        }
     }
     
     @IBAction func addStations(sender: AnyObject) {
