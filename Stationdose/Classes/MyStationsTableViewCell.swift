@@ -9,6 +9,10 @@
 import UIKit
 
 class MyStationsTableViewCell: UITableViewCell {
-    @IBOutlet weak var label: UILabel!
-
+    
+    var station: Station!
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var shortDescriptionLabel: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
 }

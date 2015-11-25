@@ -10,5 +10,13 @@ import UIKit
 
 class StationsListTableViewCell: UITableViewCell {
     
+    var station: Station!
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var savedImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var shortDescriptionLabel: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var removeButton: UIButton!
 
 }

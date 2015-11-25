@@ -568,6 +568,12 @@ Please sign in to your account to start.</string>
                                                         </tableViewCellContentView>
                                                         <animations/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <outlet property="coverImageView" destination="peV-4n-uwh" id="RuW-ul-8BC"/>
+                                                            <outlet property="nameLabel" destination="XzH-dK-imf" id="IXl-Je-XlV"/>
+                                                            <outlet property="nextButton" destination="W1q-w2-Lzr" id="sVS-2y-gT2"/>
+                                                            <outlet property="shortDescriptionLabel" destination="eq5-x2-J0M" id="B4X-WO-dQT"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <connections>
@@ -638,20 +644,37 @@ Please sign in to your account to start.</string>
                                                                         <constraint firstAttribute="width" constant="35" id="tWy-f9-R0t"/>
                                                                     </constraints>
                                                                     <state key="normal" image="btn-add-station"/>
+                                                                    <connections>
+                                                                        <action selector="saveStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="Utq-hy-x4g"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMc-b8-blk">
+                                                                    <rect key="frame" x="298" y="19" width="35" height="35"/>
+                                                                    <animations/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="35" id="bcw-jW-Oza"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="btn-remove-station"/>
+                                                                    <connections>
+                                                                        <action selector="removeStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="ekQ-op-M35"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <animations/>
                                                             <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="CFK-2u-QkV" firstAttribute="trailing" secondItem="8zY-Fv-NRm" secondAttribute="trailing" id="07x-VO-LeG"/>
+                                                                <constraint firstItem="BMc-b8-blk" firstAttribute="width" secondItem="BMc-b8-blk" secondAttribute="height" multiplier="1:1" id="92t-wH-tzq"/>
                                                                 <constraint firstItem="4bv-yQ-eFh" firstAttribute="leading" secondItem="8zY-Fv-NRm" secondAttribute="trailing" constant="16" id="AsD-BW-1fH"/>
                                                                 <constraint firstItem="CFK-2u-QkV" firstAttribute="bottom" secondItem="8zY-Fv-NRm" secondAttribute="bottom" id="Eb0-JH-NKL"/>
                                                                 <constraint firstItem="P2a-oj-yLP" firstAttribute="top" secondItem="4bv-yQ-eFh" secondAttribute="bottom" constant="1" id="MEX-G7-BqU"/>
                                                                 <constraint firstItem="8zY-Fv-NRm" firstAttribute="top" secondItem="jbN-VT-F7y" secondAttribute="top" id="UDq-E0-VEc"/>
                                                                 <constraint firstItem="Wip-1v-1NC" firstAttribute="width" secondItem="Wip-1v-1NC" secondAttribute="height" multiplier="1:1" id="YSy-TG-Fqc"/>
+                                                                <constraint firstItem="BMc-b8-blk" firstAttribute="centerX" secondItem="Wip-1v-1NC" secondAttribute="centerX" id="Zf4-rW-BAe"/>
                                                                 <constraint firstItem="Wip-1v-1NC" firstAttribute="centerY" secondItem="kpi-uh-qGq" secondAttribute="centerY" id="bN1-JJ-mWw"/>
                                                                 <constraint firstItem="4bv-yQ-eFh" firstAttribute="top" secondItem="jbN-VT-F7y" secondAttribute="top" id="brL-xa-T6Q"/>
                                                                 <constraint firstItem="P2a-oj-yLP" firstAttribute="leading" secondItem="CFK-2u-QkV" secondAttribute="trailing" constant="16" id="bx3-5d-LFe"/>
+                                                                <constraint firstItem="BMc-b8-blk" firstAttribute="centerY" secondItem="Wip-1v-1NC" secondAttribute="centerY" id="iur-Vj-0Vd"/>
                                                                 <constraint firstItem="Wip-1v-1NC" firstAttribute="leading" secondItem="P2a-oj-yLP" secondAttribute="trailing" constant="9" id="lhS-o0-pxM"/>
                                                                 <constraint firstAttribute="trailing" secondItem="kpi-uh-qGq" secondAttribute="trailing" constant="6" id="loo-we-bZH"/>
                                                                 <constraint firstItem="kpi-uh-qGq" firstAttribute="leading" secondItem="Wip-1v-1NC" secondAttribute="trailing" constant="1" id="q2o-J2-EuM"/>
@@ -661,6 +684,15 @@ Please sign in to your account to start.</string>
                                                         </tableViewCellContentView>
                                                         <animations/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <outlet property="coverImageView" destination="8zY-Fv-NRm" id="eFs-2x-yWe"/>
+                                                            <outlet property="nameLabel" destination="4bv-yQ-eFh" id="ipp-cH-Tx7"/>
+                                                            <outlet property="nextButton" destination="kpi-uh-qGq" id="XdM-JF-PN5"/>
+                                                            <outlet property="removeButton" destination="BMc-b8-blk" id="Jbv-rI-xns"/>
+                                                            <outlet property="saveButton" destination="Wip-1v-1NC" id="SwY-bI-kQi"/>
+                                                            <outlet property="savedImageView" destination="CFK-2u-QkV" id="5vJ-JU-5bR"/>
+                                                            <outlet property="shortDescriptionLabel" destination="P2a-oj-yLP" id="y3f-QL-BUf"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <connections>
@@ -974,6 +1006,7 @@ Please sign in to your account to start.</string>
     </scenes>
     <resources>
         <image name="btn-add-station" width="35" height="35"/>
+        <image name="btn-remove-station" width="35" height="35"/>
         <image name="btn-stations-next" width="35" height="35"/>
         <image name="btn_show_feature_station" width="9" height="13"/>
         <image name="featured_station_marker" width="25" height="25"/>

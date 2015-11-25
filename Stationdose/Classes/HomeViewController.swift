@@ -10,8 +10,8 @@ import UIKit
 
 class HomeViewController: BaseViewController {
     
-    var myStations: NSArray
-    var stationsList: NSArray
+    var myStations: [Station]
+    var stationsList: [Station]
     
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
     @IBOutlet weak var stationsSegmentedControl: UISegmentedControl!
@@ -20,19 +20,46 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var stationsListTableView: UITableView!
     
     required init?(coder aDecoder: NSCoder) {
-        stationsList = ["stationsList 0","stationsList 1","stationsList 2","stationsList 3","stationsList 4","stationsList 5","stationsList 6","stationsList 7"]
-        myStations = ["myStations 0","myStations 1","myStations 2","myStations 3","myStations 4","myStations 5","myStations 6","myStations 7"]
+        stationsList = []
+        myStations = []
+        
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        SongSortApiManager.sharedInstance.getAllStations { (serverStationsList, error) -> Void in
+            if let serverStationsList = serverStationsList {
+                self.stationsList = serverStationsList
+                self.reloadData()
+            } else {
+                print("Error: ", error)
+            }
+        }
+        
+        
+        
+        //TODO: fetch my stations from server
+//        SongSortApiManager.sharedInstance.getAllStations { (serverStationsList, error) -> Void in
+//            if let serverStationsList = serverStationsList {
+//                self.myStations = serverStationsList
+//                self.reloadData()
+//            } else {
+//                print("Error: ", error)
+//            }
+//        }
+        
         navigationController?.showLogo = true
         showUserProfileButton = true
         stationsSegmentedControl.selectedSegmentIndex = 1
-        stationsListTableView.alpha = 0
+        stationsListTableView.alpha = 1
         myStationsTableView.alpha = 0
+    }
+    
+    func reloadData() {
+        stationsListTableView.reloadData()
+        myStationsTableView.reloadData()
     }
     
     @IBAction func addStations(sender: AnyObject) {
@@ -47,25 +74,17 @@ class HomeViewController: BaseViewController {
             sender.selectedSegmentIndex = sender.selectedSegmentIndex == 0 ? 1 : 0
             return
         }
-        
         stationsSegmentedControlValueChangedEnabled = false
         
-//        var myStationsEmptyViewVisible = false
-//        
-//        if stationsSegmentedControl.selectedSegmentIndex == 0 && myStations.count > 0 {
-//            myStationsEmptyViewVisible = true
-//        }
-//        
-//        let myStationsEmptyViewAlpha:CGFloat = myStationsEmptyViewVisible ? 1 : 0
-//        
-//        if self.myStationsEmptyView.alpha != myStationsEmptyViewAlpha {
-//            
-//            UIView.animateWithDuration(0.1, animations: { () -> Void in
-//                self.myStationsEmptyView.alpha = myStationsEmptyViewAlpha
-//            })
-//        }
         
         let moveToLeft = stationsListTableView.alpha == 0
+        
+        
+        if myStations.count == 0 {
+            UIView.animateWithDuration(0.1, delay: moveToLeft ? 0.0 : 0.1, options: .CurveEaseInOut, animations: { () -> Void in
+                self.myStationsEmptyView.alpha = moveToLeft ? 0 : 1
+            }, completion: nil)
+        }
         
         animateStationsTableTransition(moveToLeft, completion:{ () -> Void in
             self.stationsListTableView.alpha = moveToLeft ? 1 : 0
@@ -152,19 +171,75 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == myStationsTableView {
-            let datasource = myStations
+            let station = myStations[indexPath.row]
             let cell:MyStationsTableViewCell = tableView.dequeueReusableCellWithIdentifier("MyStationsTableViewCellIdentifier") as! MyStationsTableViewCell
-//            cell.label.text = datasource[indexPath.row] as? String
+            
+            cell.station = station
+            cell.nameLabel.text = station.name
+            cell.shortDescriptionLabel.text = station.shortDescription
             
             cell.backgroundColor = UIColor.clearColor()
             return cell
+            
         } else {
-            let datasource = stationsList
+            let station = stationsList[indexPath.row]
             let cell:StationsListTableViewCell = tableView.dequeueReusableCellWithIdentifier("StationsListTableViewCellIdentifier") as! StationsListTableViewCell
-//            cell.label.text = datasource[indexPath.row] as? String
+            
+            cell.station = station
+            cell.nameLabel.text = station.name
+            cell.shortDescriptionLabel.text = station.shortDescription
+            
+            cell.savedImageView.alpha = 0
+            cell.saveButton.alpha = 1
+            cell.removeButton.alpha = 0
+            for myStation in myStations {
+                if myStation.stationId == station.stationId {
+                    cell.savedImageView.alpha = 1
+                    cell.saveButton.alpha = 0
+                    cell.removeButton.alpha = 1
+                    break
+                }
+            }
             
             cell.backgroundColor = UIColor.clearColor()
             return cell
         }
+    }
+    
+    
+    @IBAction func saveStation(sender: UIButton) {
+        sender.enabled = false
+        if let cell = tableViewCellForSubview(sender) as? StationsListTableViewCell {
+            if let station = cell.station {
+                myStations.append(station)
+                self.reloadData()
+            }
+        }
+        sender.enabled = true
+    }
+    
+    @IBAction func removeStation(sender: UIButton) {
+        sender.enabled = false
+        if let cell = tableViewCellForSubview(sender) as? StationsListTableViewCell {
+            if let station = cell.station {
+                
+                myStations = myStations.filter() { $0.stationId != station.stationId }
+                
+                self.reloadData()
+            }
+        }
+        sender.enabled = true
+    }
+    
+    func tableViewCellForSubview(subview: UIView) -> UITableViewCell? {
+        if let cell = subview as? UITableViewCell {
+            return cell
+        }
+        if let superview = subview.superview {
+            if let result = tableViewCellForSubview(superview) {
+                return result
+            }
+        }
+        return nil
     }
 }
