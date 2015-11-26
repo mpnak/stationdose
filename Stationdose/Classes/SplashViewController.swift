@@ -8,12 +8,18 @@
 
 import UIKit
 
+
 class SplashViewController: UIViewController {
+    
+    private var transitionManager: TransitionManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addFullBackground()
+        
+        transitionManager = TransitionManager(transition: .Fade)
+        transitioningDelegate = transitionManager
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionValid:", name: Constants.Notifications.sessionValidNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionError:", name: Constants.Notifications.sessionErrorNotification, object: nil)
@@ -84,6 +90,10 @@ class SplashViewController: UIViewController {
     
     func onSessionError(notification:NSNotification){
         showErrorMessage("There was a problem while trying to login to Spotify. Please rety in a few minutes.")
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        segue.destinationViewController.transitioningDelegate = transitionManager
     }
 
 }
