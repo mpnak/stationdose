@@ -46,7 +46,7 @@
                                 <animations/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Zis-dX-uzJ">
-                                <rect key="frame" x="108" y="110" width="158" height="133"/>
+                                <rect key="frame" x="108" y="140" width="158" height="133"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Zis-dX-uzJ" secondAttribute="height" multiplier="161:136" id="QTp-CT-huM"/>
@@ -68,21 +68,14 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoName" translatesAutoresizingMaskIntoConstraints="NO" id="TpR-cu-YYe">
-                                <rect key="frame" x="97" y="278" width="180" height="28"/>
+                                <rect key="frame" x="97" y="296" width="180" height="28"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TpR-cu-YYe" secondAttribute="height" multiplier="45:7" id="EOE-Xb-fVc"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slogan" translatesAutoresizingMaskIntoConstraints="NO" id="MaZ-hK-t1C">
-                                <rect key="frame" x="30" y="347" width="315" height="41"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="MaZ-hK-t1C" secondAttribute="height" multiplier="309:40" id="mfF-Ok-ruy"/>
-                                </constraints>
-                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="sOd-Aj-ifF">
-                                <rect key="frame" x="177" y="441" width="20" height="20"/>
+                                <rect key="frame" x="177" y="423" width="20" height="20"/>
                                 <animations/>
                             </activityIndicatorView>
                         </subviews>
@@ -90,25 +83,22 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="o85-PH-mQD" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.38" id="1Wx-hd-sLu"/>
-                            <constraint firstItem="MaZ-hK-t1C" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.84" id="4lQ-0h-892"/>
                             <constraint firstItem="TpR-cu-YYe" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="6k2-dp-jsN"/>
-                            <constraint firstItem="TpR-cu-YYe" firstAttribute="top" secondItem="Zis-dX-uzJ" secondAttribute="bottom" constant="35" id="9rl-kr-iJd"/>
+                            <constraint firstItem="TpR-cu-YYe" firstAttribute="top" secondItem="Zis-dX-uzJ" secondAttribute="bottom" constant="23" id="9rl-kr-iJd"/>
                             <constraint firstItem="sOd-Aj-ifF" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="ATg-T3-J8t"/>
-                            <constraint firstItem="Dpn-hw-NLz" firstAttribute="top" secondItem="TpR-cu-YYe" secondAttribute="bottom" constant="18" id="DYR-1w-sPe"/>
+                            <constraint firstItem="Dpn-hw-NLz" firstAttribute="top" secondItem="TpR-cu-YYe" secondAttribute="bottom" id="DYR-1w-sPe"/>
+                            <constraint firstItem="sOd-Aj-ifF" firstAttribute="top" secondItem="TpR-cu-YYe" secondAttribute="bottom" constant="99" id="GAs-sP-eUW"/>
                             <constraint firstItem="CIB-XW-LMd" firstAttribute="top" secondItem="KaV-Bg-Kmx" secondAttribute="top" id="H1O-28-Xwe"/>
                             <constraint firstItem="Zis-dX-uzJ" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="Jjb-qE-6wR"/>
-                            <constraint firstItem="sOd-Aj-ifF" firstAttribute="top" secondItem="MaZ-hK-t1C" secondAttribute="bottom" constant="53" id="KWU-xa-bMI"/>
                             <constraint firstItem="Zis-dX-uzJ" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.42" id="MJB-6u-Kss"/>
                             <constraint firstItem="wWn-Hi-gDH" firstAttribute="top" secondItem="o85-PH-mQD" secondAttribute="bottom" constant="27" id="NJk-qq-i4z"/>
                             <constraint firstAttribute="trailing" secondItem="CIB-XW-LMd" secondAttribute="trailing" id="Q9k-hg-ZLC"/>
                             <constraint firstItem="o85-PH-mQD" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="SZq-nX-QcV"/>
                             <constraint firstItem="wWn-Hi-gDH" firstAttribute="top" secondItem="CIB-XW-LMd" secondAttribute="bottom" id="Ur2-gg-B2l"/>
-                            <constraint firstItem="MaZ-hK-t1C" firstAttribute="top" secondItem="Dpn-hw-NLz" secondAttribute="bottom" constant="3" id="ccp-yP-TPc"/>
                             <constraint firstItem="CIB-XW-LMd" firstAttribute="leading" secondItem="KaV-Bg-Kmx" secondAttribute="leading" id="cwH-0y-I0p"/>
                             <constraint firstItem="TpR-cu-YYe" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.48" id="cwa-i1-9Av"/>
                             <constraint firstAttribute="trailing" secondItem="Dpn-hw-NLz" secondAttribute="trailing" id="gCe-H2-h6f"/>
                             <constraint firstItem="Dpn-hw-NLz" firstAttribute="leading" secondItem="KaV-Bg-Kmx" secondAttribute="leading" id="iDc-a4-iaB"/>
-                            <constraint firstItem="MaZ-hK-t1C" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="q2s-81-amz"/>
                             <constraint firstItem="Dpn-hw-NLz" firstAttribute="centerY" secondItem="KaV-Bg-Kmx" secondAttribute="centerY" id="wt1-s3-Red"/>
                         </constraints>
                     </view>
@@ -1016,12 +1006,11 @@ Please sign in to your account to start.</string>
         <image name="placeholder_sponsored" width="375" height="110"/>
         <image name="placeholer_featured_stations" width="375" height="160"/>
         <image name="saved-station" width="28" height="28"/>
-        <image name="slogan" width="309" height="40"/>
         <image name="spotifyLogo" width="143" height="75"/>
         <image name="stations-list-placeholder" width="73" height="73"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="etf-Up-yf7"/>
-        <segue reference="Fl5-av-fhj"/>
+        <segue reference="Gip-Xw-DHz"/>
+        <segue reference="2NR-pA-uPA"/>
     </inferredMetricsTieBreakers>
 </document>

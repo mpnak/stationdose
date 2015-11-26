@@ -24,7 +24,7 @@
                                 <animations/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="lbW-GL-Hpd">
-                                <rect key="frame" x="108" y="110" width="158" height="133"/>
+                                <rect key="frame" x="108" y="140" width="158" height="133"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lbW-GL-Hpd" secondAttribute="height" multiplier="161:136" id="XNQ-Pv-RAF"/>
@@ -46,23 +46,15 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoName" translatesAutoresizingMaskIntoConstraints="NO" id="oyu-z3-Ykz">
-                                <rect key="frame" x="97" y="278" width="180" height="28"/>
+                                <rect key="frame" x="97" y="296" width="180" height="28"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oyu-z3-Ykz" secondAttribute="height" multiplier="45:7" id="sgk-Gw-Kqf"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slogan" translatesAutoresizingMaskIntoConstraints="NO" id="Ee3-Wy-k1w">
-                                <rect key="frame" x="30" y="347" width="315" height="41"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Ee3-Wy-k1w" secondAttribute="height" multiplier="309:40" id="3aH-PK-qdf"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <animations/>
                         <constraints>
-                            <constraint firstItem="Ee3-Wy-k1w" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.84" id="5QY-Mh-nOb"/>
                             <constraint firstItem="NFC-Ov-mge" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8FS-ha-nYG"/>
                             <constraint firstItem="lbW-GL-Hpd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8g7-kZ-HRe"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5e9-XS-8mK" secondAttribute="bottom" id="Axi-JY-2uH"/>
@@ -72,16 +64,14 @@
                             <constraint firstItem="lbW-GL-Hpd" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.42" id="Ll7-jj-S91"/>
                             <constraint firstItem="NFC-Ov-mge" firstAttribute="width" secondItem="5e9-XS-8mK" secondAttribute="width" multiplier="0.38" constant="1" id="MV5-Gr-V8G"/>
                             <constraint firstItem="oyu-z3-Ykz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="O4C-6b-UtV"/>
-                            <constraint firstItem="Ee3-Wy-k1w" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ShR-tf-IcI"/>
-                            <constraint firstItem="BfL-Js-rge" firstAttribute="top" secondItem="oyu-z3-Ykz" secondAttribute="bottom" constant="18" id="TLs-wx-bZ8"/>
+                            <constraint firstItem="BfL-Js-rge" firstAttribute="top" secondItem="oyu-z3-Ykz" secondAttribute="bottom" id="TLs-wx-bZ8"/>
                             <constraint firstItem="NFC-Ov-mge" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.38" id="Vbz-v5-lOG"/>
                             <constraint firstItem="oyu-z3-Ykz" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YDB-Sk-iP7"/>
                             <constraint firstAttribute="trailing" secondItem="BfL-Js-rge" secondAttribute="trailing" id="YtS-Xg-2Ib"/>
                             <constraint firstItem="5e9-XS-8mK" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="akt-pJ-jPA"/>
                             <constraint firstAttribute="trailing" secondItem="5e9-XS-8mK" secondAttribute="trailing" id="bNn-N8-TKa"/>
                             <constraint firstItem="oyu-z3-Ykz" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.48" id="bQ1-88-hM5"/>
-                            <constraint firstItem="oyu-z3-Ykz" firstAttribute="top" secondItem="lbW-GL-Hpd" secondAttribute="bottom" constant="35" id="bp6-9j-nfq"/>
-                            <constraint firstItem="Ee3-Wy-k1w" firstAttribute="top" secondItem="BfL-Js-rge" secondAttribute="bottom" constant="3" id="d1U-Te-Ds5"/>
+                            <constraint firstItem="oyu-z3-Ykz" firstAttribute="top" secondItem="lbW-GL-Hpd" secondAttribute="bottom" constant="23" id="bp6-9j-nfq"/>
                             <constraint firstItem="NFC-Ov-mge" firstAttribute="centerX" secondItem="5e9-XS-8mK" secondAttribute="centerX" constant="1" id="gVl-eZ-a1g"/>
                             <constraint firstItem="lbW-GL-Hpd" firstAttribute="centerY" secondItem="5e9-XS-8mK" secondAttribute="centerY" id="k7r-u4-Wre"/>
                             <constraint firstItem="lbW-GL-Hpd" firstAttribute="centerX" secondItem="5e9-XS-8mK" secondAttribute="centerX" id="nnx-nK-2Fo"/>
@@ -108,7 +98,6 @@
         <image name="fullBackground" width="375" height="667"/>
         <image name="logo" width="161" height="136"/>
         <image name="logoName" width="181" height="28"/>
-        <image name="slogan" width="309" height="40"/>
         <image name="spotifyLogo" width="143" height="75"/>
     </resources>
 </document>
