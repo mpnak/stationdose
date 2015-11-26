@@ -11,8 +11,8 @@ import CoreLocation
 
 class HomeViewController: BaseViewController {
     
-    var myStations: NSArray
-    var stationsList: NSArray
+    var myStations: [Playlist]
+    var stationsList: [Station]
     var currentLocation:CLLocation?
     
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
@@ -31,26 +31,30 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SongSortApiManager.sharedInstance.getAllStations { (serverStationsList, error) -> Void in
-            if let serverStationsList = serverStationsList {
-                self.stationsList = serverStationsList
+        SongSortApiManager.sharedInstance.getStationsList { (serversStationsList, error) -> Void in
+            if let serversStationsList = serversStationsList {
+                self.stationsList = serversStationsList
                 self.reloadData()
             } else {
                 print("Error: ", error)
             }
         }
         
-        
-        
-        //TODO: fetch my stations from server
-//        SongSortApiManager.sharedInstance.getAllStations { (serverStationsList, error) -> Void in
-//            if let serverStationsList = serverStationsList {
-//                self.myStations = serverStationsList
-//                self.reloadData()
-//            } else {
-//                print("Error: ", error)
-//            }
-//        }
+        SongSortApiManager.sharedInstance.getPlaylists { (myPlaylists:[Playlist]?, error) -> Void in
+            if let myPlaylists = myPlaylists {
+//                var serversMyStations:[Station] = []
+//                for myPlaylist in myPlaylists {
+//                    if let station = myPlaylist.station {
+//                        serversMyStations.append(station)
+//                    }
+//                }
+                
+                self.myStations = myPlaylists
+                self.reloadData()
+            } else {
+                print("Error: ", error)
+            }
+        }
         
         navigationController?.showLogo = true
         showUserProfileButton = true
@@ -62,8 +66,13 @@ class HomeViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         LocationManager.sharedInstance.getCurrentLocation(self) { (location, error) -> () in
-            currentLocation = location;
+            self.currentLocation = location;
         }
+    }
+    
+    func reloadData() {
+        stationsListTableView.reloadData()
+        myStationsTableView.reloadData()
     }
     
     @IBAction func addStations(sender: AnyObject) {
@@ -169,18 +178,21 @@ extension HomeViewController: UIScrollViewDelegate {
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let datasource = tableView == myStationsTableView ? myStations : stationsList
-        return datasource.count
+        if tableView == myStationsTableView {
+            return myStations.count
+        } else {
+            return stationsList.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == myStationsTableView {
-            let station = myStations[indexPath.row]
+            let station = myStations[indexPath.row].station
             let cell:MyStationsTableViewCell = tableView.dequeueReusableCellWithIdentifier("MyStationsTableViewCellIdentifier") as! MyStationsTableViewCell
             
             cell.station = station
-            cell.nameLabel.text = station.name
-            cell.shortDescriptionLabel.text = station.shortDescription
+            cell.nameLabel.text = station!.name
+            cell.shortDescriptionLabel.text = station!.shortDescription
             
             cell.backgroundColor = UIColor.clearColor()
             return cell
@@ -197,7 +209,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.saveButton.alpha = 1
             cell.removeButton.alpha = 0
             for myStation in myStations {
-                if myStation.stationId == station.stationId {
+                if myStation.id == station.id {
                     cell.savedImageView.alpha = 1
                     cell.saveButton.alpha = 0
                     cell.removeButton.alpha = 1
@@ -215,7 +227,7 @@ extension HomeViewController: UITableViewDataSource {
         sender.enabled = false
         if let cell = tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
-                myStations.append(station)
+//                myStations.append(station)
                 self.reloadData()
             }
         }
@@ -227,7 +239,7 @@ extension HomeViewController: UITableViewDataSource {
         if let cell = tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
                 
-                myStations = myStations.filter() { $0.stationId != station.stationId }
+                myStations = myStations.filter() { $0.id != station.id }
                 
                 self.reloadData()
             }

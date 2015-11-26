@@ -13,41 +13,47 @@ import AlamofireObjectMapper
 class SongSortApiManager {
     
     static let sharedInstance = SongSortApiManager()
-    var manager:Manager
+    var manager: Manager
     var baseURL: String
     
-    let stationsEndPoint = "stations"
+    struct ApiMethods{
+        static let stationsList = "stations"
+        static let playlists = "users/1/playlists"
+        static let playlistsDelete = "playlists/%@"
+    }
     
-    init(){
-        
-        
+    init() {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.timeoutIntervalForRequest = 10 // seconds
         
         self.manager = Manager(configuration: configuration)
         self.baseURL = Constants.SognSort.baseDevelopmentUrl
-        
-        
     }
     
-    typealias stationsResponse = ([Station]?,NSError?) -> Void
-    
-    func getAllStations(onCompletion:stationsResponse){
-        manager.request(.GET, baseURL+stationsEndPoint).responseArray("stations") { (response: Response<[Station], NSError>) in
-            
+    func getStationsList(onCompletion:([Station]?,NSError?) -> Void) {
+        manager.request(.GET, baseURL+ApiMethods.stationsList).responseArray("stations") { (response: Response<[Station], NSError>) in
             onCompletion(response.result.value,response.result.error)
-            
         }
-        
     }
-    /*
-    func getMyStations(onCompletion:stationsResponse){
-        manager.request(.GET, baseURL+stationsEndPoint).responseArray("stations") { (response: Response<[Station], NSError>) in
-            
+    
+    func getPlaylists(onCompletion:([Playlist]?,NSError?) -> Void) {
+        manager.request(.GET, baseURL+ApiMethods.playlists).responseArray("playlists") { (response: Response<[Playlist], NSError>) in
             onCompletion(response.result.value,response.result.error)
-            
-            
         }
+    }
+    
+    func savePlaylist(stationId:Int, onCompletion:([Playlist]?,NSError?) -> Void) {
         
-    }*/
+        let data = ["playlist": ["user_id": 1, "station_id": stationId]]
+        
+        manager.request(.POST, baseURL+ApiMethods.playlists, parameters:data).responseArray("playlists") { (response: Response<[Playlist], NSError>) in
+            onCompletion(response.result.value,response.result.error)
+        }
+    }
+    
+    func removePlaylist(playlistId:Int, onCompletion:([Playlist]?,NSError?) -> Void) {
+        manager.request(.DELETE, baseURL+String(format: ApiMethods.playlistsDelete, playlistId)).responseArray("playlists") { (response: Response<[Playlist], NSError>) in
+            onCompletion(response.result.value,response.result.error)
+        }
+    }
 }

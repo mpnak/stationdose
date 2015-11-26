@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class Station: Mappable {
-    var stationId:Int?
+    var id:Int?
     var name:String?
     var shortDescription:String?
     
@@ -19,7 +19,7 @@ class Station: Mappable {
     }
     
     func mapping(map: Map) {
-        stationId           <- map["id"]
+        id                  <- map["id"]
         name                <- map["name"]
         shortDescription    <- map["short_description"]
     }
