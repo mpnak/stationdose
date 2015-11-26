@@ -78,6 +78,14 @@
                                 <rect key="frame" x="177" y="423" width="20" height="20"/>
                                 <animations/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xxc-GD-lOE">
+                                <rect key="frame" x="175" y="420" width="25" height="25"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="43d-7W-1Og"/>
+                                    <constraint firstAttribute="height" constant="25" id="Mes-GR-gcQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,8 +95,10 @@
                             <constraint firstItem="TpR-cu-YYe" firstAttribute="top" secondItem="Zis-dX-uzJ" secondAttribute="bottom" constant="23" id="9rl-kr-iJd"/>
                             <constraint firstItem="sOd-Aj-ifF" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="ATg-T3-J8t"/>
                             <constraint firstItem="Dpn-hw-NLz" firstAttribute="top" secondItem="TpR-cu-YYe" secondAttribute="bottom" id="DYR-1w-sPe"/>
+                            <constraint firstItem="Xxc-GD-lOE" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="Flj-MQ-sbz"/>
                             <constraint firstItem="sOd-Aj-ifF" firstAttribute="top" secondItem="TpR-cu-YYe" secondAttribute="bottom" constant="99" id="GAs-sP-eUW"/>
                             <constraint firstItem="CIB-XW-LMd" firstAttribute="top" secondItem="KaV-Bg-Kmx" secondAttribute="top" id="H1O-28-Xwe"/>
+                            <constraint firstItem="Xxc-GD-lOE" firstAttribute="top" secondItem="TpR-cu-YYe" secondAttribute="bottom" constant="96" id="JLd-uf-9Mq"/>
                             <constraint firstItem="Zis-dX-uzJ" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="Jjb-qE-6wR"/>
                             <constraint firstItem="Zis-dX-uzJ" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.42" id="MJB-6u-Kss"/>
                             <constraint firstItem="wWn-Hi-gDH" firstAttribute="top" secondItem="o85-PH-mQD" secondAttribute="bottom" constant="27" id="NJk-qq-i4z"/>
@@ -105,6 +115,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Xxc-GD-lOE" id="cbG-7E-TI9"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="SplashToLoginSegue" id="l4Z-Ym-l6q"/>
                         <segue destination="4mP-Aw-GMw" kind="presentation" identifier="SplashToHomeSegue" id="Gip-Xw-DHz"/>
                         <segue destination="Tod-Qa-F7D" kind="presentation" identifier="SplashToRequestPremiumSegue" id="2NR-pA-uPA"/>

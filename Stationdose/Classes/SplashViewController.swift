@@ -7,14 +7,25 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 
 class SplashViewController: UIViewController {
     
+    @IBOutlet weak var activityIndicator: UIView!
     private var transitionManager: TransitionManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.setNeedsLayout()
+        activityIndicator.layoutIfNeeded()
+        
+        let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame,
+            type: .LineScalePulseOutRapid)
+        //self.view.addSubview(activityIndicatorView)
+        //activityIndicatorView.startAnimation()
+        //activityIndicatorView.alpha = 0.8
         
         addFullBackground()
         
