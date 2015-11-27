@@ -10,6 +10,8 @@
 		CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */; };
 		CD6BD2CD1C062AFB006D812B /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CC1C062AFB006D812B /* Station.swift */; };
 		CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CF1C0651A6006D812B /* LocationManager.swift */; };
+		CD8666E21C078904007F4F0A /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8666E11C078904007F4F0A /* TransitionManager.swift */; };
+		CD8666E61C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8666E51C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift */; };
 		CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA4481BF9327F003B8A62 /* LoginViewController.swift */; };
 		CD9FA44B1BF93323003B8A62 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA44A1BF93323003B8A62 /* HomeViewController.swift */; };
 		CD9FA4511BF93876003B8A62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA4501BF93876003B8A62 /* Constants.swift */; };
@@ -33,6 +35,7 @@
 		CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23141BF92DFB00291F56 /* Assets.xcassets */; };
 		CDBE23181BF92DFB00291F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23161BF92DFB00291F56 /* LaunchScreen.storyboard */; };
 		CDBE234A1BF930DD00291F56 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23491BF930DD00291F56 /* Info.plist */; };
+		CDEFD01B1C0782EF00957580 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEFD01A1C0782EF00957580 /* TransitionAnimations.swift */; };
 		DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E06A1BF2138C0B19B5B149 /* Pods.framework */; };
 		F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */; };
 		F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */; };
@@ -54,6 +57,8 @@
 		CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSortApiManager.swift; sourceTree = "<group>"; };
 		CD6BD2CC1C062AFB006D812B /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		CD6BD2CF1C0651A6006D812B /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CD8666E11C078904007F4F0A /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		CD8666E51C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedStationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD9FA4481BF9327F003B8A62 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CD9FA44A1BF93323003B8A62 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD9FA4501BF93876003B8A62 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -79,6 +84,7 @@
 		CDBE23141BF92DFB00291F56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDBE23171BF92DFB00291F56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDBE23491BF930DD00291F56 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDEFD01A1C0782EF00957580 /* TransitionAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionAnimations.swift; sourceTree = "<group>"; };
 		D2888AAF3DA1417321CC8AC8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Stationdose.swift"; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 		CDBE23421BF92E9100291F56 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CDEFD0191C07828200957580 /* Transitions */,
 				CD9FA44D1BF93837003B8A62 /* Constants */,
 				CDBE23471BF92EAE00291F56 /* Controllers */,
 				CDBE23461BF92EA800291F56 /* Views */,
@@ -245,6 +252,7 @@
 				F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */,
 				F1F91C6C1BFF9B44000E0BB7 /* StationsListTableViewCell.swift */,
 				F1B4CB7A1C07B5A7007DB048 /* AlertView */,
+				CD8666E51C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -270,6 +278,15 @@
 				F1B4CB781C07B58F007DB048 /* InternalAlertView.swift */,
 			);
 			name = AlertView;
+			sourceTree = "<group>";
+		};
+		CDEFD0191C07828200957580 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				CD8666E11C078904007F4F0A /* TransitionManager.swift */,
+				CDEFD01A1C0782EF00957580 /* TransitionAnimations.swift */,
+			);
+			name = Transitions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,7 +325,7 @@
 				TargetAttributes = {
 					CDBE23091BF92DFB00291F56 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 9DBVBC4284;
+						DevelopmentTeam = 68UAR7Q9NP;
 					};
 				};
 			};
@@ -424,10 +441,13 @@
 				F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */,
 				F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */,
 				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,
+				CD8666E61C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift in Sources */,
 				CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */,
 				CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */,
 				F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */,
 				CD9FA4611BFA993C003B8A62 /* UIViewController+Stationdose.swift in Sources */,
+				CD8666E21C078904007F4F0A /* TransitionManager.swift in Sources */,
+				CDEFD01B1C0782EF00957580 /* TransitionAnimations.swift in Sources */,
 				CD9FA4721BFB9FD3003B8A62 /* RequestPremiumViewController.swift in Sources */,
 				F1B4CB731C0748ED007DB048 /* Track.swift in Sources */,
 				F1F91C6B1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift in Sources */,
