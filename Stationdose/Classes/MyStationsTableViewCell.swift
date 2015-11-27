@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-class MyStationsTableViewCell: UITableViewCell {
+class MyStationsTableViewCell: MGSwipeTableCell {
     
     var station: Station!
     @IBOutlet weak var coverImageView: UIImageView!

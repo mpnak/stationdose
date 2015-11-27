@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MGSwipeTableCell
 
 class HomeViewController: BaseViewController {
     
@@ -34,6 +35,8 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        stationsSegmentedControl.enabled = false
         
         SongSortApiManager.sharedInstance.getStationsList { (serversStationsList, error) -> Void in
             self.stationsListFeched = true
@@ -70,8 +73,27 @@ class HomeViewController: BaseViewController {
     }
     
     func reloadData() {
+        
+        let showMyStations = stationsSegmentedControl.selectedSegmentIndex == 0
+        
+        if showMyStations {
+            self.stationsListTableView.alpha = 0
+            if myStations.count == 0 {
+                self.myStationsEmptyView.alpha = 1
+                self.myStationsTableView.alpha = 0
+            } else {
+                self.myStationsEmptyView.alpha = 0
+                self.myStationsTableView.alpha = 1
+            }
+        } else {
+            self.myStationsEmptyView.alpha = 0
+            self.myStationsTableView.alpha = 0
+            self.stationsListTableView.alpha = 1
+        }
+        
         if stationsListFeched && myStationsFeched {
             stationsListTableView.reloadData()
+            stationsSegmentedControl.enabled = true
         }
         if myStationsFeched {
             myStationsTableView.reloadData()
@@ -221,6 +243,17 @@ extension HomeViewController: UITableViewDataSource {
             cell.shortDescriptionLabel.text = station!.shortDescription
             
             cell.backgroundColor = UIColor.clearColor()
+            
+            let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-station"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
+                self.removeStation(station!) { () -> Void in
+                    cell.hideSwipeAnimated(true)
+                }
+                return false
+            })
+//            deleteButton.buttonWidth = 53
+            cell.rightButtons = [deleteButton]
+            cell.rightSwipeSettings.transition = .Drag
+            
             return cell
             
         } else {
@@ -269,26 +302,32 @@ extension HomeViewController: UITableViewDataSource {
     
     @IBAction func removeStation(sender: UIButton) {
         sender.enabled = false
-        AlertView(title: "Remove Station?", message: "Are tou sure you want to remove this station from your favorites", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
-            if accept {
-                if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
-                    if let station = cell.station {
-                        
-                        let playlistsToDelete = self.myStations.filter() { $0.station!.id == station.id }
-                        
-                        for playlistToDelete in playlistsToDelete {
-                            SongSortApiManager.sharedInstance.removePlaylist(playlistToDelete.id!)
-                        }
-                        
-                        self.myStations = self.myStations.filter() { $0.station!.id != station.id }
-                        
-                        self.reloadData()
-                    }
+        
+        if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
+            if let station = cell.station {
+                removeStation(station) { () -> Void in
+                    sender.enabled = true
                 }
-                sender.enabled = true
-
             } else {
                 sender.enabled = true
+            }
+        }
+    }
+    
+    func removeStation(station: Station, callback: () -> Void) {
+        AlertView(title: "Remove Station?", message: "Are tou sure you want to remove this station from your favorites", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
+            if accept {
+                let playlistsToDelete = self.myStations.filter() { $0.station!.id == station.id }
+                
+                for playlistToDelete in playlistsToDelete {
+                    SongSortApiManager.sharedInstance.removePlaylist(playlistToDelete.id!)
+                }
+                self.myStations = self.myStations.filter() { $0.station!.id != station.id }
+                self.reloadData()
+                callback()
+                
+            } else {
+                callback()
             }
         }).show()
     }
