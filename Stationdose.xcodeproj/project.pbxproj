@@ -39,6 +39,9 @@
 		F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394771BFE453100A2C970 /* BaseViewController.swift */; };
 		F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB701C0748ED007DB048 /* Playlist.swift */; };
 		F1B4CB731C0748ED007DB048 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB711C0748ED007DB048 /* Track.swift */; };
+		F1B4CB751C079E64007DB048 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB741C079E64007DB048 /* AlertView.swift */; };
+		F1B4CB771C07B51D007DB048 /* InternalAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B4CB761C07B51D007DB048 /* InternalAlertView.xib */; };
+		F1B4CB791C07B58F007DB048 /* InternalAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB781C07B58F007DB048 /* InternalAlertView.swift */; };
 		F1F91C681BFEC8A6000E0BB7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F91C661BFEC8A6000E0BB7 /* Fabric.framework */; };
 		F1F91C691BFEC8A6000E0BB7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F91C671BFEC8A6000E0BB7 /* Crashlytics.framework */; };
 		F1F91C6B1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */; };
@@ -82,6 +85,9 @@
 		F1A394771BFE453100A2C970 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F1B4CB701C0748ED007DB048 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		F1B4CB711C0748ED007DB048 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		F1B4CB741C079E64007DB048 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		F1B4CB761C07B51D007DB048 /* InternalAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalAlertView.xib; sourceTree = "<group>"; };
+		F1B4CB781C07B58F007DB048 /* InternalAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalAlertView.swift; sourceTree = "<group>"; };
 		F1F91C661BFEC8A6000E0BB7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		F1F91C671BFEC8A6000E0BB7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsTableViewCell.swift; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 			children = (
 				F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */,
 				F1F91C6C1BFF9B44000E0BB7 /* StationsListTableViewCell.swift */,
+				F1B4CB7A1C07B5A7007DB048 /* AlertView */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -253,6 +260,16 @@
 				CD9FA4731BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F1B4CB7A1C07B5A7007DB048 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				F1B4CB741C079E64007DB048 /* AlertView.swift */,
+				F1B4CB761C07B51D007DB048 /* InternalAlertView.xib */,
+				F1B4CB781C07B58F007DB048 /* InternalAlertView.swift */,
+			);
+			name = AlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +345,7 @@
 				CD9FA46C1BFB71A4003B8A62 /* Yantramanav-Bold.ttf in Resources */,
 				CD9FA46D1BFB71A4003B8A62 /* Yantramanav-Light.ttf in Resources */,
 				CDBE23131BF92DFB00291F56 /* Main.storyboard in Resources */,
+				F1B4CB771C07B51D007DB048 /* InternalAlertView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +419,7 @@
 			files = (
 				F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */,
 				CD6BD2CD1C062AFB006D812B /* Station.swift in Sources */,
+				F1B4CB751C079E64007DB048 /* AlertView.swift in Sources */,
 				CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */,
 				F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */,
 				F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */,
@@ -418,6 +437,7 @@
 				CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */,
 				CD9FA45D1BFA8483003B8A62 /* SplashViewController.swift in Sources */,
 				F1F91C6D1BFF9B44000E0BB7 /* StationsListTableViewCell.swift in Sources */,
+				F1B4CB791C07B58F007DB048 /* InternalAlertView.swift in Sources */,
 				CD9FA4741BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

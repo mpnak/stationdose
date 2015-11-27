@@ -13,6 +13,8 @@ class HomeViewController: BaseViewController {
     
     var myStations: [Playlist]
     var stationsList: [Station]
+    var myStationsFeched: Bool
+    var stationsListFeched: Bool
     var currentLocation:CLLocation?
     
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
@@ -24,6 +26,8 @@ class HomeViewController: BaseViewController {
     required init?(coder aDecoder: NSCoder) {
         stationsList = []
         myStations = []
+        myStationsFeched = false
+        stationsListFeched = false
         
         super.init(coder: aDecoder)
     }
@@ -32,6 +36,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         
         SongSortApiManager.sharedInstance.getStationsList { (serversStationsList, error) -> Void in
+            self.stationsListFeched = true
             if let serversStationsList = serversStationsList {
                 self.stationsList = serversStationsList
                 self.reloadData()
@@ -41,14 +46,8 @@ class HomeViewController: BaseViewController {
         }
         
         SongSortApiManager.sharedInstance.getPlaylists { (myPlaylists:[Playlist]?, error) -> Void in
+            self.myStationsFeched = true
             if let myPlaylists = myPlaylists {
-//                var serversMyStations:[Station] = []
-//                for myPlaylist in myPlaylists {
-//                    if let station = myPlaylist.station {
-//                        serversMyStations.append(station)
-//                    }
-//                }
-                
                 self.myStations = myPlaylists
                 self.reloadData()
             } else {
@@ -71,8 +70,12 @@ class HomeViewController: BaseViewController {
     }
     
     func reloadData() {
-        stationsListTableView.reloadData()
-        myStationsTableView.reloadData()
+        if stationsListFeched && myStationsFeched {
+            stationsListTableView.reloadData()
+        }
+        if myStationsFeched {
+            myStationsTableView.reloadData()
+        }
     }
     
     @IBAction func addStations(sender: AnyObject) {
@@ -208,8 +211,8 @@ extension HomeViewController: UITableViewDataSource {
             cell.savedImageView.alpha = 0
             cell.saveButton.alpha = 1
             cell.removeButton.alpha = 0
-            for myStation in myStations {
-                if myStation.id == station.id {
+            for playlist in myStations {
+                if playlist.station!.id == station.id {
                     cell.savedImageView.alpha = 1
                     cell.saveButton.alpha = 0
                     cell.removeButton.alpha = 1
@@ -227,24 +230,44 @@ extension HomeViewController: UITableViewDataSource {
         sender.enabled = false
         if let cell = tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
-//                myStations.append(station)
-                self.reloadData()
+                SongSortApiManager.sharedInstance.savePlaylist(station.id!, onCompletion: { (playlist, error) -> Void in
+                    if let newPlaylist = playlist {
+                        self.myStations.append(newPlaylist)
+                        self.reloadData()
+                    }
+                    
+                    sender.enabled = true
+                })
+            } else {
+                sender.enabled = true
             }
         }
-        sender.enabled = true
     }
     
     @IBAction func removeStation(sender: UIButton) {
         sender.enabled = false
-        if let cell = tableViewCellForSubview(sender) as? StationsListTableViewCell {
-            if let station = cell.station {
-                
-                myStations = myStations.filter() { $0.id != station.id }
-                
-                self.reloadData()
+        AlertView(title: "Remove Station?", message: "Are tou sure you want to remove this station from your favorites", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
+            if accept {
+                if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
+                    if let station = cell.station {
+                        
+                        let playlistsToDelete = self.myStations.filter() { $0.station!.id == station.id }
+                        
+                        for playlistToDelete in playlistsToDelete {
+                            SongSortApiManager.sharedInstance.removePlaylist(playlistToDelete.id!)
+                        }
+                        
+                        self.myStations = self.myStations.filter() { $0.station!.id != station.id }
+                        
+                        self.reloadData()
+                    }
+                }
+                sender.enabled = true
+
+            } else {
+                sender.enabled = true
             }
-        }
-        sender.enabled = true
+        }).show()
     }
     
     func tableViewCellForSubview(subview: UIView) -> UITableViewCell? {

@@ -19,7 +19,7 @@ class SongSortApiManager {
     struct ApiMethods{
         static let stationsList = "stations"
         static let playlists = "users/1/playlists"
-        static let playlistsDelete = "playlists/%@"
+        static let playlistsDelete = "playlists/%i"
     }
     
     init() {
@@ -38,22 +38,18 @@ class SongSortApiManager {
     
     func getPlaylists(onCompletion:([Playlist]?,NSError?) -> Void) {
         manager.request(.GET, baseURL+ApiMethods.playlists).responseArray("playlists") { (response: Response<[Playlist], NSError>) in
-            onCompletion(response.result.value,response.result.error)
+            onCompletion(response.result.value, response.result.error)
         }
     }
     
-    func savePlaylist(stationId:Int, onCompletion:([Playlist]?,NSError?) -> Void) {
-        
+    func savePlaylist(stationId:Int, onCompletion:(Playlist?,NSError?) -> Void) {
         let data = ["playlist": ["user_id": 1, "station_id": stationId]]
-        
-        manager.request(.POST, baseURL+ApiMethods.playlists, parameters:data).responseArray("playlists") { (response: Response<[Playlist], NSError>) in
-            onCompletion(response.result.value,response.result.error)
+        manager.request(.POST, baseURL+ApiMethods.playlists, parameters:data).responseObject("playlist") { (response: Response<Playlist, NSError>) -> Void in
+            onCompletion(response.result.value, response.result.error)
         }
     }
     
-    func removePlaylist(playlistId:Int, onCompletion:([Playlist]?,NSError?) -> Void) {
-        manager.request(.DELETE, baseURL+String(format: ApiMethods.playlistsDelete, playlistId)).responseArray("playlists") { (response: Response<[Playlist], NSError>) in
-            onCompletion(response.result.value,response.result.error)
-        }
+    func removePlaylist(playlistId:Int) {
+        manager.request(.DELETE, baseURL+String(format: ApiMethods.playlistsDelete, playlistId))
     }
 }
