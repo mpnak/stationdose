@@ -20,6 +20,10 @@ class SongSortApiManager {
         static let stationsList = "stations"
         static let playlists = "users/1/playlists"
         static let playlistsDelete = "playlists/%i"
+        static let playTrack = "playlists/%i/tracks/%i/play"
+        static let skipTrack = "playlists/%i/tracks/%i/skipped"
+        static let favoriteTrack = "playlists/%i/tracks/%i/favorited"
+        static let banTrack = "playlists/%i/tracks/%i/banned"
     }
     
     init() {
@@ -51,5 +55,21 @@ class SongSortApiManager {
     
     func removePlaylist(playlistId:Int) {
         manager.request(.DELETE, baseURL+String(format: ApiMethods.playlistsDelete, playlistId))
+    }
+    
+    func playTrack(playlistId:Int,trackId:Int) {
+        manager.request(.POST, baseURL+String(format: ApiMethods.playTrack, playlistId,trackId))
+    }
+    
+    func skipTrack(playlistId:Int,trackId:Int) {
+        manager.request(.POST, baseURL+String(format: ApiMethods.skipTrack, playlistId,trackId))
+    }
+    
+    func favoriteTrack(playlistId:Int,trackId:Int) {
+        manager.request(.POST, baseURL+String(format: ApiMethods.favoriteTrack, playlistId,trackId))
+    }
+    
+    func banTrack(playlistId:Int,trackId:Int) {
+        manager.request(.POST, baseURL+String(format: ApiMethods.banTrack, playlistId,trackId))
     }
 }
