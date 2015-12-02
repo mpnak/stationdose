@@ -16,8 +16,6 @@ class RequestPremiumWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.webView.loadRequest(NSURLRequest(URL: Constants.Spotify.GoPremiumUrl!))
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {

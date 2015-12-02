@@ -14,9 +14,8 @@ class HomeViewController: BaseViewController {
     
     var myStations: [Playlist]
     var stationsList: [Station]
-    var myStationsFeched: Bool
-    var stationsListFeched: Bool
-    var currentLocation:CLLocation?
+    var currentLocation: CLLocation?
+    var selectedPlaylist: Playlist?
     
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
     @IBOutlet weak var stationsSegmentedControl: UISegmentedControl!
@@ -25,42 +24,25 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var stationsListTableView: UITableView!
     
     required init?(coder aDecoder: NSCoder) {
-        stationsList = []
-        myStations = []
-        myStationsFeched = false
-        stationsListFeched = false
+        stationsList = ModelManager.sharedInstance.stations
+        myStations = ModelManager.sharedInstance.playlists
         
         super.init(coder: aDecoder)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadPlylists", name: ModelManagerNotificationKey.PlaylistsDidChange.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadStations", name: ModelManagerNotificationKey.StationsDidChange.rawValue, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stationsSegmentedControl.enabled = false
-        
-        SongSortApiManager.sharedInstance.getStationsList { (serversStationsList, error) -> Void in
-            self.stationsListFeched = true
-            if let serversStationsList = serversStationsList {
-                self.stationsList = serversStationsList
-                self.reloadData()
-            } else {
-                print("Error: ", error)
-            }
-        }
-        
-        SongSortApiManager.sharedInstance.getPlaylists { (myPlaylists:[Playlist]?, error) -> Void in
-            self.myStationsFeched = true
-            if let myPlaylists = myPlaylists {
-                self.myStations = myPlaylists
-                self.reloadData()
-            } else {
-                print("Error: ", error)
-            }
-        }
-        
         navigationController?.showLogo = true
         showUserProfileButton = true
-        stationsSegmentedControl.selectedSegmentIndex = 1
+        stationsSegmentedControl.selectedSegmentIndex = myStations.count > 0 ? 0 : 1
         stationsListTableView.alpha = 1
         myStationsTableView.alpha = 0
     }
@@ -70,6 +52,22 @@ class HomeViewController: BaseViewController {
         LocationManager.sharedInstance.getCurrentLocation(self) { (location, error) -> () in
             self.currentLocation = location;
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
+            destinationViewController.playlist = selectedPlaylist
+        }
+    }
+    
+    func reloadPlylists() {
+        self.myStations = ModelManager.sharedInstance.playlists
+        self.myStationsTableView.reloadData()
+    }
+    
+    func reloadStations() {
+        self.stationsList = ModelManager.sharedInstance.stations
+        self.stationsListTableView.reloadData()
     }
     
     func reloadData() {
@@ -91,13 +89,8 @@ class HomeViewController: BaseViewController {
             self.stationsListTableView.alpha = 1
         }
         
-        if stationsListFeched && myStationsFeched {
-            stationsListTableView.reloadData()
-            stationsSegmentedControl.enabled = true
-        }
-        if myStationsFeched {
-            myStationsTableView.reloadData()
-        }
+        stationsListTableView.reloadData()
+        myStationsTableView.reloadData()
     }
     
     @IBAction func addStations(sender: AnyObject) {
@@ -245,12 +238,15 @@ extension HomeViewController: UITableViewDataSource {
             cell.backgroundColor = UIColor.clearColor()
             
             let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-station"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
-                self.removeStation(station!) { () -> Void in
-                    cell.hideSwipeAnimated(true)
+                self.removeStation(station!) { (removed) -> Void in
+                    if removed {
+                        self.reloadData()
+                    } else {
+                        cell.hideSwipeAnimated(true)
+                    }
                 }
                 return false
             })
-//            deleteButton.buttonWidth = 53
             cell.rightButtons = [deleteButton]
             cell.rightSwipeSettings.transition = .Drag
             
@@ -267,31 +263,69 @@ extension HomeViewController: UITableViewDataSource {
             cell.savedImageView.alpha = 0
             cell.saveButton.alpha = 1
             cell.removeButton.alpha = 0
+            cell.nextButton.alpha = 0
             for playlist in myStations {
                 if playlist.station!.id == station.id {
                     cell.savedImageView.alpha = 1
                     cell.saveButton.alpha = 0
                     cell.removeButton.alpha = 1
+                    cell.nextButton.alpha = 1
                     break
                 }
             }
             
             cell.backgroundColor = UIColor.clearColor()
+            
+            cell.removedMessageView.alpha = 0
+            cell.addedMessageView.alpha = 0
+            
             return cell
         }
     }
     
+    @IBAction func showStation(sender: UIButton) {
+        selectedPlaylist = nil
+        if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
+            if let station = cell.station {
+                for playlist in myStations {
+                    if playlist.station?.id == station.id {
+                        selectedPlaylist = playlist
+                    }
+                }
+            }
+        } else if let cell = self.tableViewCellForSubview(sender) as? MyStationsTableViewCell {
+            if let station = cell.station {
+                for playlist in myStations {
+                    if playlist.station?.id == station.id {
+                        selectedPlaylist = playlist
+                    }
+                }
+            }
+        }
+        if selectedPlaylist != nil {
+            performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+        }
+        
+    }
     
     @IBAction func saveStation(sender: UIButton) {
         sender.enabled = false
         if let cell = tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
-                SongSortApiManager.sharedInstance.savePlaylist(station.id!, onCompletion: { (playlist, error) -> Void in
-                    if let newPlaylist = playlist {
-                        self.myStations.append(newPlaylist)
-                        self.reloadData()
-                    }
-                    
+                
+                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                    cell.addedMessageView.alpha = 1
+                    }, completion: { (_) -> Void in
+                        UIView.animateWithDuration(0.1, delay: 1.5, options: .CurveEaseInOut, animations: { () -> Void in
+                            cell.addedMessageView.alpha = 0
+                            }, completion:nil)
+                })
+                
+                cell.saveButton.alpha = 0
+                cell.removeButton.alpha = 1
+                cell.savedImageView.alpha = 1
+                
+                ModelManager.sharedInstance.savePlaylist(station.id!, onCompletion: { (success) -> Void in
                     sender.enabled = true
                 })
             } else {
@@ -305,8 +339,23 @@ extension HomeViewController: UITableViewDataSource {
         
         if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
-                removeStation(station) { () -> Void in
+                removeStation(station) { (removed) -> Void in
                     sender.enabled = true
+                    if removed {
+                        cell.saveButton.alpha = 1
+                        cell.removeButton.alpha = 0
+                        cell.savedImageView.alpha = 0
+                        
+                        UIView.animateWithDuration(0.1, animations: { () -> Void in
+                                cell.removedMessageView.alpha = 1
+                            }, completion: { (_) -> Void in
+                                UIView.animateWithDuration(0.1, delay: 1.5, options: .CurveEaseInOut, animations: { () -> Void in
+                                        cell.removedMessageView.alpha = 0
+                                    }, completion:nil)
+                        })
+                        
+                        self.myStationsTableView.reloadData()
+                    }
                 }
             } else {
                 sender.enabled = true
@@ -314,7 +363,7 @@ extension HomeViewController: UITableViewDataSource {
         }
     }
     
-    func removeStation(station: Station, callback: () -> Void) {
+    func removeStation(station: Station, callback: (removed:Bool) -> Void) {
         AlertView(title: "Remove Station?", message: "Are tou sure you want to remove this station from your favorites", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
             if accept {
                 let playlistsToDelete = self.myStations.filter() { $0.station!.id == station.id }
@@ -323,11 +372,10 @@ extension HomeViewController: UITableViewDataSource {
                     SongSortApiManager.sharedInstance.removePlaylist(playlistToDelete.id!)
                 }
                 self.myStations = self.myStations.filter() { $0.station!.id != station.id }
-                self.reloadData()
-                callback()
                 
+                callback(removed:true)
             } else {
-                callback()
+                callback(removed:false)
             }
         }).show()
     }
@@ -343,4 +391,8 @@ extension HomeViewController: UITableViewDataSource {
         }
         return nil
     }
+}
+
+extension HomeViewController: UITableViewDelegate {
+
 }

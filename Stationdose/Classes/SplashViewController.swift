@@ -21,8 +21,7 @@ class SplashViewController: UIViewController {
         activityIndicator.setNeedsLayout()
         activityIndicator.layoutIfNeeded()
         
-        let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame,
-            type: .LineScalePulseOutRapid)
+//        let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScalePulseOutRapid)
         //self.view.addSubview(activityIndicatorView)
         //activityIndicatorView.startAnimation()
         //activityIndicatorView.alpha = 0.8

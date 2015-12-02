@@ -26,7 +26,7 @@ extension UINavigationController {
                 }
                 if newValue {
                     let logoView = UIImageView(frame: CGRect(x: self.view.frame.size.width/2-18, y: 44/2+5, width: 35, height: 29))
-                    logoView.image = UIImage(named: "logo_min")
+                    logoView.image = UIImage(named: "logo-min")
                     self.view.addSubview(logoView)
                     objc_setAssociatedObject(self, &AssociatedKeys.LogoView, logoView as UIImageView?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 }

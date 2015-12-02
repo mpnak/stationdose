@@ -30,9 +30,9 @@ class SongSortApiManager {
         self.baseURL = Constants.SognSort.baseDevelopmentUrl
     }
     
-    func getStationsList(onCompletion:([Station]?,NSError?) -> Void) {
+    func getStations(onCompletion:([Station]?,NSError?) -> Void) {
         manager.request(.GET, baseURL+ApiMethods.stationsList).responseArray("stations") { (response: Response<[Station], NSError>) in
-            onCompletion(response.result.value,response.result.error)
+            onCompletion(response.result.value, response.result.error)
         }
     }
     
