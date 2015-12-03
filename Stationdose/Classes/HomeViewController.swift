@@ -47,6 +47,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        featuresStationsPageControl.numberOfPages = featuredStations.count
         reloadSponsoredStations()
         
         navigationController?.showLogo = true
@@ -222,13 +223,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3;
+        return featuredStations.count;
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell:FeaturedStationsCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("FeaturedStationsCollectionViewCellIdentifier", forIndexPath: indexPath) as! FeaturedStationsCollectionViewCell
-        //cell.titleLabel.text = "Title"
-        //cell.subtitleLabel.text = "Subtitle"
+        let station = featuredStations[indexPath.row]
+        cell.titleLabel.text = station.name
+        cell.subtitleLabel.text = station.shortDescription
+        if let featuredUrl = station.art{
+            let URL = NSURL(string: featuredUrl)!
+            
+            cell.backgroundImage.af_setImageWithURL(URL)
+        }
+        
         return cell;
     }
     
