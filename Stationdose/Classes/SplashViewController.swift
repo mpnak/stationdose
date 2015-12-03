@@ -76,26 +76,20 @@ class SplashViewController: UIViewController {
     }
     
     func moveToRequestPremium(){
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.performSegueWithIdentifier(Constants.Segues.SplashToRequestPremiumSegue, sender: self)
-        }
+        self.performSegueWithIdentifier(Constants.Segues.SplashToRequestPremiumSegue, sender: self)
         
     }
     
     func moveToHome(){
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        
+        ModelManager.sharedInstance.initialCache { () -> Void in
             self.performSegueWithIdentifier(Constants.Segues.SplashToHomeSegue, sender: self)
         }
         
     }
     
     func moveToLogin(){
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.performSegueWithIdentifier(Constants.Segues.SplashToLoginSegue, sender: self)
-        }
+        self.performSegueWithIdentifier(Constants.Segues.SplashToLoginSegue, sender: self)
     }
     
     func onSessionError(notification:NSNotification){

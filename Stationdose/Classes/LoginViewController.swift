@@ -46,10 +46,15 @@ class LoginViewController: UIViewController {
     func onSessionValid(notification:NSNotification){
         
         SpotifyManager.sharedInstance.checkPremium { isPremium in
-            self.activityIndicator.stopAnimating()
+            
             if isPremium {
-                self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
+                ModelManager.sharedInstance.initialCache { () -> Void in
+                    self.activityIndicator.stopAnimating()
+                    self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
+                }
+                
             } else {
+                self.activityIndicator.stopAnimating()
                 self.performSegueWithIdentifier(Constants.Segues.LoginToRequestPremiumSegue, sender: self)
             }
         }

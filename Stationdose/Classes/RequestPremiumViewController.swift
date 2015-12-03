@@ -37,9 +37,11 @@ class RequestPremiumViewController: UIViewController {
     func checkPremium(timer:NSTimer) {
         SpotifyManager.sharedInstance.checkPremium { isPremium in
             if isPremium{
-                self.activityIndicator.stopAnimating()
-                timer.invalidate()
-                self.performSegueWithIdentifier(Constants.Segues.RequestPremiumToHomeSegue, sender: self)
+                ModelManager.sharedInstance.initialCache { () -> Void in
+                    self.activityIndicator.stopAnimating()
+                    timer.invalidate()
+                    self.performSegueWithIdentifier(Constants.Segues.RequestPremiumToHomeSegue, sender: self)
+                }
             }
         }
     }
