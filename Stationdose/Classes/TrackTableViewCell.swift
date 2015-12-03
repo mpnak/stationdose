@@ -9,9 +9,9 @@
 import UIKit
 import MGSwipeTableCell
 
-class TrackTableViewCell: MGSwipeTableCell {
+class TrackTableViewCell: PlayableTableViewCell {
     
-    @IBOutlet weak var coverImageView: UIImageView!
+    var track: Track!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var likedImageView: UIImageView!

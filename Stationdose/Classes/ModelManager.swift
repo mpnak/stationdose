@@ -9,9 +9,10 @@
 import UIKit
 
 enum ModelManagerNotificationKey: String {
-    case StationsDidChange
+    case StationsDidReloadFromServer
+    case PlaylistsDidReloadFromServer
     case PlaylistsDidChange
-    case SomeDataDidChange
+    case AllDataDidReloadFromServer
 }
 
 class ModelManager: NSObject {
@@ -41,7 +42,7 @@ class ModelManager: NSObject {
         
         let stepCompletion = { () -> Void in
             if --self.reloadDataPendingStepsCounter == 0 {
-                self.postEvent(.SomeDataDidChange)
+                self.postEvent(.AllDataDidReloadFromServer)
                 onCompletion()
             }
         }
@@ -62,7 +63,7 @@ class ModelManager: NSObject {
         SongSortApiManager.sharedInstance.getPlaylists { (playlists, error) -> Void in
             if let playlists = playlists {
                 self.playlists = playlists
-                self.postEvent(.PlaylistsDidChange)
+                self.postEvent(.PlaylistsDidReloadFromServer)
             }
             onCompletion()
         }
@@ -72,28 +73,44 @@ class ModelManager: NSObject {
         SongSortApiManager.sharedInstance.getStations { (stations, error) -> Void in
             if let stations = stations {
                 self.stations = stations
-                self.postEvent(.StationsDidChange)
+                self.postEvent(.StationsDidReloadFromServer)
             }
             onCompletion()
         }
     }
     
-    func savePlaylist(stationId:Int, onCompletion:(success:Bool) -> Void) {
-        SongSortApiManager.sharedInstance.savePlaylist(stationId) { (playlist, error) -> Void in
+    func savePlaylist(station: Station, onCompletion:(saved:Bool) -> Void) {
+        SongSortApiManager.sharedInstance.savePlaylist(station.id!) { (playlist, error) -> Void in
             if let playlist = playlist {
                 self.playlists.append(playlist)
+                
+                onCompletion(saved: true)
                 self.postEvent(.PlaylistsDidChange)
-                onCompletion(success: true)
             } else {
-                onCompletion(success: false)
+                onCompletion(saved: false)
             }
         }
     }
     
+    func removePlaylist(station: Station, callback: (removed:Bool) -> Void) {
+        AlertView(title: "Remove Station?", message: "Are you sure you want to remove this station from your favorites", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
+            if accept {
+                let playlistsToDelete = self.playlists.filter() { $0.station!.id == station.id }
+                
+                for playlistToDelete in playlistsToDelete {
+                    SongSortApiManager.sharedInstance.removePlaylist(playlistToDelete.id!)
+                }
+                self.playlists = self.playlists.filter() { $0.station!.id != station.id }
+                
+                callback(removed:true)
+                self.postEvent(.PlaylistsDidChange)
+            } else {
+                callback(removed:false)
+            }
+        }).show()
+    }
+    
     private func postEvent (notificationKey: ModelManagerNotificationKey) {
         NSNotificationCenter.defaultCenter().postNotificationName(notificationKey.rawValue, object: nil)
-        if notificationKey != .SomeDataDidChange {
-            postEvent(.SomeDataDidChange)
-        }
     }
 }

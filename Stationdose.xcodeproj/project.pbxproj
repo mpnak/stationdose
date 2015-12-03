@@ -40,6 +40,9 @@
 		F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */; };
 		F10FB1771C0E3005000C90C1 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10FB1761C0E3005000C90C1 /* TrackTableViewCell.swift */; };
 		F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */; };
+		F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */; };
+		F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */; };
+		F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15593021C110447009CE684 /* FeaturedStationViewController.swift */; };
 		F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */; };
 		F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394771BFE453100A2C970 /* BaseViewController.swift */; };
 		F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB701C0748ED007DB048 /* Playlist.swift */; };
@@ -92,6 +95,9 @@
 		F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		F10FB1761C0E3005000C90C1 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
+		F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayableTableViewCell.swift; sourceTree = "<group>"; };
+		F15593021C110447009CE684 /* FeaturedStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedStationViewController.swift; sourceTree = "<group>"; };
 		F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Stationdose.swift"; sourceTree = "<group>"; };
 		F1A394771BFE453100A2C970 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F1B4CB701C0748ED007DB048 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -256,6 +262,8 @@
 		CDBE23461BF92EA800291F56 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */,
+				F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */,
 				F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */,
 				F1F91C6C1BFF9B44000E0BB7 /* StationsListTableViewCell.swift */,
 				F10FB1761C0E3005000C90C1 /* TrackTableViewCell.swift */,
@@ -275,6 +283,7 @@
 				CD9FA4711BFB9FD3003B8A62 /* RequestPremiumViewController.swift */,
 				CD9FA4731BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift */,
 				F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */,
+				F15593021C110447009CE684 /* FeaturedStationViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -447,8 +456,11 @@
 				CD6BD2CD1C062AFB006D812B /* Station.swift in Sources */,
 				F1B4CB751C079E64007DB048 /* AlertView.swift in Sources */,
 				CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */,
+				F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */,
 				F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */,
+				F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */,
 				F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */,
+				F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */,
 				F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */,
 				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,
 				CD8666E61C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift in Sources */,

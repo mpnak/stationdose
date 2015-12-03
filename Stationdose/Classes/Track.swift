@@ -16,6 +16,7 @@ class Track: Mappable {
     var title:String?
     var artist:String?
     var undergroundness:String?
+    var liked:Bool?
     
     required init?(_ map: Map) {
         
