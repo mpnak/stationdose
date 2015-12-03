@@ -9,11 +9,16 @@
 import UIKit
 import CoreLocation
 import MGSwipeTableCell
+import AlamofireImage
 
 class HomeViewController: BaseViewController {
     
+    @IBOutlet weak var sponsoredImageView: UIImageView!
+    
     var myStations: [Playlist]
     var stationsList: [Station]
+    var featuredStations: [Station]
+    var sponsoredStations: [Station]
     var currentLocation: CLLocation?
     var selectedPlaylist: Playlist?
     var selectedStation: Station?
@@ -27,6 +32,8 @@ class HomeViewController: BaseViewController {
     required init?(coder aDecoder: NSCoder) {
         stationsList = ModelManager.sharedInstance.stations
         myStations = ModelManager.sharedInstance.playlists
+        featuredStations = ModelManager.sharedInstance.featuredStations
+        sponsoredStations = ModelManager.sharedInstance.sponsoredStations
         
         super.init(coder: aDecoder)
         
@@ -42,6 +49,8 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reloadSponsoredStations()
         
         navigationController?.showLogo = true
         showUserProfileButton = true
@@ -74,9 +83,22 @@ class HomeViewController: BaseViewController {
         }
     }
     
-    func reloadPlaylists() {
-        myStations = ModelManager.sharedInstance.playlists
-        myStationsTableView.reloadData()
+    func  reloadSponsoredStations(){
+        
+        let sponsoredStation = sponsoredStations.first
+        
+        if let sponsoredUrl = sponsoredStation?.art{
+            let URL = NSURL(string: sponsoredUrl)!
+            
+            sponsoredImageView.af_setImageWithURL(URL)
+        }
+        
+
+    }
+    
+    func reloadPlylists() {
+        self.myStations = ModelManager.sharedInstance.playlists
+        self.myStationsTableView.reloadData()
     }
     
     func reloadStations() {

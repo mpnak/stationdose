@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupAppearance()
         
-        ModelManager.sharedInstance.initialCache { () -> Void in }
+        
         
         return true
     }
