@@ -96,9 +96,9 @@ class HomeViewController: BaseViewController {
 
     }
     
-    func reloadPlylists() {
-        self.myStations = ModelManager.sharedInstance.playlists
-        self.myStationsTableView.reloadData()
+    func reloadPlaylists() {
+        myStations = ModelManager.sharedInstance.playlists
+        myStationsTableView.reloadData()
     }
     
     func reloadStations() {

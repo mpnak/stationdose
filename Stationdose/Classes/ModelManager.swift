@@ -117,7 +117,7 @@ class ModelManager: NSObject {
                 self.stations = stations
                 self.featuredStations = stations.filter{ $0.type == "featured" }
                 self.sponsoredStations = stations.filter{ $0.type == "sponsored" }
-                self.postEvent(.StationsDidChange)
+                self.postEvent(.StationsDidReloadFromServer)
             }
             self.requestStationsFeaturedSponsoredImages(onCompletion);
             //onCompletion()
