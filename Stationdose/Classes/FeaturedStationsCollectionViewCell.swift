@@ -13,4 +13,6 @@ class FeaturedStationsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
+    var station: Station?
+    
 }

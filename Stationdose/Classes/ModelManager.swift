@@ -45,19 +45,26 @@ class ModelManager: NSObject {
         let requestImage = { (station:Station)->NSURLRequest? in
             if let artUrl = station.art{
                 return  NSURLRequest(URL: NSURL(string: artUrl)!)
-
-            }else{
+                
+            } else {
+                return nil;
+            }
+        }
+        
+        let requestImage2 = { (station:Station)->NSURLRequest? in
+            if let url = station.url{
+                return  NSURLRequest(URL: NSURL(string: url)!)
+                
+            } else {
                 return nil;
             }
         }
         
         let combinedFeaturedAndSponsored = sponsoredStations + featuredStations
         
-        let requests = combinedFeaturedAndSponsored.flatMap(requestImage)
+        let requests = combinedFeaturedAndSponsored.flatMap(requestImage) + combinedFeaturedAndSponsored.flatMap(requestImage2)
         
         let group = dispatch_group_create()
-        
-
         
         requests.forEach {
             

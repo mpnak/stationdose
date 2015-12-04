@@ -16,6 +16,7 @@ class PlaylistViewController: BaseViewController {
     var tracks:[Track]!
     
     @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var bannerImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var updatedAtLabel: UILabel!
@@ -28,12 +29,22 @@ class PlaylistViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLabel.text = station?.name
-        shortDescriptionLabel.text = station?.shortDescription
+        nameLabel?.text = station?.name
+        shortDescriptionLabel?.text = station?.shortDescription
         
-        saveButton.alpha = playlist == nil ? 1 : 0
-        removeButton.alpha = playlist == nil ? 0 : 1
-        savedImageView.alpha = playlist == nil ? 0 : 1
+        if let featuredUrl = station?.url {
+            let URL = NSURL(string: featuredUrl)!
+            bannerImageView?.af_setImageWithURL(URL)
+        }
+        
+        if let featuredUrl = station?.art {
+            let URL = NSURL(string: featuredUrl)!
+            coverImageView?.af_setImageWithURL(URL)
+        }
+        
+        saveButton?.alpha = playlist == nil ? 1 : 0
+        removeButton?.alpha = playlist == nil ? 0 : 1
+        savedImageView?.alpha = playlist == nil ? 0 : 1
         
         if let playlist = playlist {
             tracks = playlist.tracks

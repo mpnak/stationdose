@@ -13,9 +13,13 @@ class BaseTableViewCell: MGSwipeTableCell {
 
     var mySelectedBackgroundView: UIView
     
+    var setSelectedAction: (selected: Bool) -> ()
+    
     required init?(coder aDecoder: NSCoder) {
         
         mySelectedBackgroundView = UIView()
+        
+        setSelectedAction = {_ in }
         
         super.init(coder: aDecoder)
         
@@ -36,6 +40,8 @@ class BaseTableViewCell: MGSwipeTableCell {
         } else {
             mySelectedBackgroundView.alpha = selected ? 1 : 0
         }
+        
+        setSelectedAction(selected: selected)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

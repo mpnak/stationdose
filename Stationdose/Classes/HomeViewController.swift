@@ -90,16 +90,14 @@ class HomeViewController: BaseViewController {
         
         if let sponsoredUrl = sponsoredStation?.art{
             let URL = NSURL(string: sponsoredUrl)!
-            
             sponsoredImageView.af_setImageWithURL(URL)
         }
-        
-
     }
     
     func reloadPlaylists() {
         myStations = ModelManager.sharedInstance.playlists
         myStationsTableView.reloadData()
+        stationsListTableView.reloadData()
     }
     
     func reloadStations() {
@@ -131,6 +129,23 @@ class HomeViewController: BaseViewController {
         
         stationsListTableView.reloadData()
         myStationsTableView.reloadData()
+    }
+    
+    @IBAction func showSponsoredStationAction(sender: AnyObject) {
+        selectedStation = sponsoredStations.first
+        self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
+    }
+    
+    @IBAction func showFeaturedStationAction(sender: UIButton) {
+        
+        if let cell = self.collectionViewCellForSubview(sender) {
+            if let cell = cell as? FeaturedStationsCollectionViewCell {
+                if let station = cell.station {
+                    selectedStation = station
+                    self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
+                }
+            }
+        }
     }
     
     @IBAction func addStations(sender: AnyObject) {
@@ -174,6 +189,7 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    var animateStationsTableCounter: Int?
     func animateStationsTableTransition(moveToLeft: Bool, completion: () -> Void) {
         
         let rightTable = stationsListTableView
@@ -181,6 +197,8 @@ class HomeViewController: BaseViewController {
         
         let leftInitialTranslation = moveToLeft ? CGFloat(0.0) : -leftTable.frame.size.width
         let leftTargetTranslation = moveToLeft ? -leftTable.frame.size.width : CGFloat(0.0)
+        
+        animateStationsTableCounter = 2
         
         animateTableCells(leftTable, currentTranslation: leftInitialTranslation, translationTarget: leftTargetTranslation) { () -> Void in
             if leftTargetTranslation != 0 {
@@ -190,7 +208,10 @@ class HomeViewController: BaseViewController {
                     cell.layer.transform = CATransform3DIdentity
                 }
             }
-            completion()
+            if --self.animateStationsTableCounter! == 0 {
+                completion()
+            }
+            
         }
         
         let currentTranslation2 = moveToLeft ? leftTable.frame.size.width : CGFloat(0.0)
@@ -204,7 +225,9 @@ class HomeViewController: BaseViewController {
                     cell.layer.transform = CATransform3DIdentity
                 }
             }
-            completion()
+            if --self.animateStationsTableCounter! == 0 {
+                completion()
+            }
         }
     }
     
@@ -255,11 +278,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell:FeaturedStationsCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("FeaturedStationsCollectionViewCellIdentifier", forIndexPath: indexPath) as! FeaturedStationsCollectionViewCell
-        let station = featuredStations[indexPath.row]
-        cell.titleLabel.text = station.name
-        cell.subtitleLabel.text = station.shortDescription
-        if let featuredUrl = station.art{
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FeaturedStationsCollectionViewCellIdentifier", forIndexPath: indexPath) as! FeaturedStationsCollectionViewCell
+        cell.station = featuredStations[indexPath.row]
+        cell.titleLabel.text = cell.station!.name
+        cell.subtitleLabel.text = cell.station!.shortDescription
+        if let featuredUrl = cell.station!.art {
             let URL = NSURL(string: featuredUrl)!
             
             cell.backgroundImage.af_setImageWithURL(URL)
@@ -271,6 +294,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(collectionView : UICollectionView,layout collectionViewLayout:UICollectionViewLayout,sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize
     {
         return CGSizeMake(collectionView.frame.width, collectionView.frame.height)
+    }
+    
+    func collectionViewCellForSubview(subview: UIView) -> UICollectionViewCell? {
+        if let cell = subview as? UICollectionViewCell {
+            return cell
+        }
+        if let superview = subview.superview {
+            if let result = collectionViewCellForSubview(superview) {
+                return result
+            }
+        }
+        return nil
     }
 }
 
@@ -299,6 +334,7 @@ extension HomeViewController: UITableViewDataSource {
                 ModelManager.sharedInstance.removePlaylist(station!) { (removed) -> Void in
                     if removed {
                         self.reloadPlaylists()
+                        
                     } else {
                         cell.hideSwipeAnimated(true)
                     }
@@ -308,6 +344,12 @@ extension HomeViewController: UITableViewDataSource {
             deleteButton.setPadding(0)
             cell.rightButtons = [deleteButton]
             cell.rightSwipeSettings.transition = .Drag
+            
+            cell.setSelectedAction = { (selected: Bool) -> Void in 
+                if selected {
+                    self.showStation(cell)
+                }
+            }
             
             return cell
             
@@ -336,11 +378,17 @@ extension HomeViewController: UITableViewDataSource {
             cell.removedMessageView.alpha = 0
             cell.addedMessageView.alpha = 0
             
+            cell.setSelectedAction = { (selected: Bool) -> Void in 
+                if selected {
+                    self.showStation(cell)
+                }
+            }
+            
             return cell
         }
     }
     
-    @IBAction func showStation(sender: UIButton) {
+    @IBAction func showStation(sender: UIView) {
         selectedPlaylist = nil
         selectedStation = nil
         if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
@@ -436,8 +484,4 @@ extension HomeViewController: UITableViewDataSource {
         }
         return nil
     }
-}
-
-extension HomeViewController: UITableViewDelegate {
-
 }

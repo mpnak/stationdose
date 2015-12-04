@@ -15,6 +15,7 @@ class Station: Mappable {
     var shortDescription:String?
     var type:String?
     var art:String?
+    var url:String?
     
     required init?(_ map: Map) {
         
@@ -26,6 +27,7 @@ class Station: Mappable {
         shortDescription    <- map["short_description"]
         type                <- map["station_type"]
         art                 <- map["station_art"]
+        url                 <- map["url"]
     }
 
 }
