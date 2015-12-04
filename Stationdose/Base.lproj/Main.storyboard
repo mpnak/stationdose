@@ -834,6 +834,7 @@ Please sign in to your account to start.</string>
                                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstItem="RKR-eR-mPd" firstAttribute="centerY" secondItem="jQK-mb-Dwg" secondAttribute="centerY" constant="15" id="01v-0m-j6i"/>
+                                                                    <constraint firstAttribute="height" constant="232.5" id="4B5-bU-bUh"/>
                                                                     <constraint firstItem="RKR-eR-mPd" firstAttribute="centerX" secondItem="jQK-mb-Dwg" secondAttribute="centerX" id="LJ0-Lz-WMD"/>
                                                                     <constraint firstItem="5KO-Vl-oj5" firstAttribute="centerX" secondItem="jQK-mb-Dwg" secondAttribute="centerX" id="P33-Cg-d7q"/>
                                                                     <constraint firstItem="5KO-Vl-oj5" firstAttribute="centerY" secondItem="jQK-mb-Dwg" secondAttribute="centerY" constant="-15" id="SIa-9I-eGl"/>
@@ -857,6 +858,11 @@ Please sign in to your account to start.</string>
                                                             <constraint firstAttribute="trailing" secondItem="ha2-ai-2FK" secondAttribute="trailing" id="qwM-zn-AaS"/>
                                                             <constraint firstAttribute="trailing" secondItem="x2O-rK-0py" secondAttribute="trailing" id="sKg-gb-3L5"/>
                                                         </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="kig-w6-QSc"/>
+                                                            </mask>
+                                                        </variation>
                                                     </view>
                                                 </subviews>
                                                 <animations/>

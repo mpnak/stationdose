@@ -209,7 +209,12 @@ class HomeViewController: BaseViewController {
         let leftInitialTranslation = moveToLeft ? CGFloat(0.0) : -leftTable.frame.size.width
         let leftTargetTranslation = moveToLeft ? -leftTable.frame.size.width : CGFloat(0.0)
         
-        animateStationsTableCounter = 2
+        animateStationsTableCounter = (leftTable.visibleCells.count>0 ? 1 : 0) + (rightTable.visibleCells.count>0 ? 1 : 0)
+        
+        if animateStationsTableCounter == 0 {
+            completion()
+            return
+        }
         
         animateTableCells(leftTable, currentTranslation: leftInitialTranslation, translationTarget: leftTargetTranslation) { () -> Void in
             if leftTargetTranslation != 0 {
