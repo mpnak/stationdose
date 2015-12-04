@@ -13,8 +13,6 @@ import AlamofireImage
 
 class HomeViewController: BaseViewController {
     
-    @IBOutlet weak var sponsoredImageView: UIImageView!
-    
     var myStations: [Playlist]
     var stationsList: [Station]
     var featuredStations: [Station]
@@ -23,6 +21,8 @@ class HomeViewController: BaseViewController {
     var selectedPlaylist: Playlist?
     var selectedStation: Station?
     
+    @IBOutlet weak var sponsoredImageView: UIImageView!
+    @IBOutlet weak var tablesViewContaignerHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
     @IBOutlet weak var stationsSegmentedControl: UISegmentedControl!
     @IBOutlet weak var myStationsEmptyView: UIView!
@@ -98,11 +98,21 @@ class HomeViewController: BaseViewController {
         myStations = ModelManager.sharedInstance.playlists
         myStationsTableView.reloadData()
         stationsListTableView.reloadData()
+        reloadTablesViewContaignerHeight()
     }
     
     func reloadStations() {
         stationsList = ModelManager.sharedInstance.stations
         stationsListTableView.reloadData()
+        reloadTablesViewContaignerHeight()
+    }
+    
+    func reloadTablesViewContaignerHeight() {
+        let stationsListTableViewHeight = CGFloat(stationsList.count) * stationsListTableView.rowHeight
+        let myStationsTableViewHeight = CGFloat(myStations.count) * myStationsTableView.rowHeight
+        let myStationsEmptyViewHeight = myStationsEmptyView.frame.size.height
+        
+        tablesViewContaignerHeightLayoutConstraint.constant = max(max(stationsListTableViewHeight, myStationsTableViewHeight), myStationsEmptyViewHeight)
     }
     
     func reloadData() {
@@ -129,6 +139,7 @@ class HomeViewController: BaseViewController {
         
         stationsListTableView.reloadData()
         myStationsTableView.reloadData()
+        reloadTablesViewContaignerHeight()
     }
     
     @IBAction func showSponsoredStationAction(sender: AnyObject) {
@@ -348,6 +359,9 @@ extension HomeViewController: UITableViewDataSource {
             cell.setSelectedAction = { (selected: Bool) -> Void in 
                 if selected {
                     self.showStation(cell)
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                        cell.setSelected(false, animated: true)
+                    }
                 }
             }
             
@@ -381,6 +395,9 @@ extension HomeViewController: UITableViewDataSource {
             cell.setSelectedAction = { (selected: Bool) -> Void in 
                 if selected {
                     self.showStation(cell)
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                        cell.setSelected(false, animated: true)
+                    }
                 }
             }
             
