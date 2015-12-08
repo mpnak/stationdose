@@ -20,7 +20,9 @@ class HomeViewController: BaseViewController {
     var currentLocation: CLLocation?
     var selectedPlaylist: Playlist?
     var selectedStation: Station?
+    var featuredStationsTimer: NSTimer?
     
+    @IBOutlet weak var featuredStationsCollectionView: UICollectionView!
     @IBOutlet weak var sponsoredImageView: UIImageView!
     @IBOutlet weak var tablesViewContaignerHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
@@ -32,7 +34,9 @@ class HomeViewController: BaseViewController {
     required init?(coder aDecoder: NSCoder) {
         stationsList = ModelManager.sharedInstance.stations
         myStations = ModelManager.sharedInstance.playlists
-        featuredStations = ModelManager.sharedInstance.featuredStations
+//        featuredStations = ModelManager.sharedInstance.featuredStations
+        featuredStations = Array(count: 5, repeatedValue: ModelManager.sharedInstance.featuredStations.first!)
+        
         sponsoredStations = ModelManager.sharedInstance.sponsoredStations
         
         super.init(coder: aDecoder)
@@ -60,6 +64,8 @@ class HomeViewController: BaseViewController {
         myStationsTableView.alpha = 0
         
         reloadData()
+        
+        featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "featuredStationsTimerStep", userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -84,7 +90,20 @@ class HomeViewController: BaseViewController {
         }
     }
     
-    func  reloadSponsoredStations(){
+    func featuredStationsTimerStep() {
+        print("featuredStationsTimerStep")
+        
+        let indexPath = featuredStationsCollectionView.indexPathForItemAtPoint(CGPoint(x: featuredStationsCollectionView.contentOffset.x + 1, y: 1))
+        var nextIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+        if indexPath?.row < featuredStations.count - 1 {
+            nextIndexPath = NSIndexPath(forRow: (indexPath?.row)! + 1, inSection: 0)
+        } else {
+            featuredStationsTimer?.invalidate()
+        }
+        featuredStationsCollectionView.scrollToItemAtIndexPath(nextIndexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+    }
+    
+    func reloadSponsoredStations(){
         
         let sponsoredStation = sponsoredStations.first
         
@@ -277,6 +296,9 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.dragging {
+            featuredStationsTimer?.invalidate()
+        }
         let pageWidth = scrollView.frame.size.width
         let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth)+1)
         featuresStationsPageControl.currentPage = page

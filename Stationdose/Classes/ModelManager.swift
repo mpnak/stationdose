@@ -145,7 +145,7 @@ class ModelManager: NSObject {
     }
     
     func removePlaylist(station: Station, callback: (removed:Bool) -> Void) {
-        AlertView(title: "Remove Station?", message: "Are you sure you want to remove this station from your favorites", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
+        AlertView(title: "Remove Station?", message: "Are you sure you want to remove this station from your favorites?", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
             if accept {
                 let playlistsToDelete = self.playlists.filter() { $0.station!.id == station.id }
                 
