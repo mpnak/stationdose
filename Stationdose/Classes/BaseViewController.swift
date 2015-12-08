@@ -16,11 +16,10 @@ class BaseViewController: UIViewController {
         if let navigationController = navigationController {
             if navigationController.viewControllers.count > 1 {
                 showCustomBack()
-                
-                //TODO: remove this line
-                showUserProfileButton = true;
             }
         }
+        
+        navigationItem.titleView = UIImageView(image: UIImage(named: "logo-min"))
     }
     
 }

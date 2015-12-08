@@ -43,7 +43,6 @@
 		F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */; };
 		F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */; };
 		F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15593021C110447009CE684 /* FeaturedStationViewController.swift */; };
-		F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */; };
 		F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394771BFE453100A2C970 /* BaseViewController.swift */; };
 		F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB701C0748ED007DB048 /* Playlist.swift */; };
 		F1B4CB731C0748ED007DB048 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB711C0748ED007DB048 /* Track.swift */; };
@@ -98,7 +97,6 @@
 		F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayableTableViewCell.swift; sourceTree = "<group>"; };
 		F15593021C110447009CE684 /* FeaturedStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedStationViewController.swift; sourceTree = "<group>"; };
-		F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Stationdose.swift"; sourceTree = "<group>"; };
 		F1A394771BFE453100A2C970 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F1B4CB701C0748ED007DB048 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		F1B4CB711C0748ED007DB048 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 				CD9FA4601BFA993C003B8A62 /* UIViewController+Stationdose.swift */,
 				CD9FA4691BFB6BB0003B8A62 /* UIView+Inspectable.swift */,
 				F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */,
-				F1A394751BFD33A700A2C970 /* UINavigationController+Stationdose.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -459,7 +456,6 @@
 				F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */,
 				F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */,
 				F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */,
-				F1A394761BFD33A700A2C970 /* UINavigationController+Stationdose.swift in Sources */,
 				F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */,
 				F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */,
 				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,

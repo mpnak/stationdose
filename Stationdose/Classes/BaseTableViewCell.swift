@@ -13,13 +13,17 @@ class BaseTableViewCell: MGSwipeTableCell {
 
     var mySelectedBackgroundView: UIView
     
-    var setSelectedAction: (selected: Bool) -> ()
+    var touchDownAction: () -> ()
+    var touchUpInsideAction: () -> ()
+    var touchUpOutsideAction: () -> ()
     
     required init?(coder aDecoder: NSCoder) {
         
         mySelectedBackgroundView = UIView()
         
-        setSelectedAction = {_ in }
+        touchDownAction = {_ in }
+        touchUpInsideAction = {_ in }
+        touchUpOutsideAction = {_ in }
         
         super.init(coder: aDecoder)
         
@@ -40,19 +44,20 @@ class BaseTableViewCell: MGSwipeTableCell {
         } else {
             mySelectedBackgroundView.alpha = selected ? 1 : 0
         }
-        
-        setSelectedAction(selected: selected)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.setSelected(true, animated: true)
+        touchDownAction()
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.setSelected(false, animated: true)
+        touchUpInsideAction()
     }
     
     override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         self.setSelected(false, animated: true)
+        touchUpOutsideAction()
     }
 }

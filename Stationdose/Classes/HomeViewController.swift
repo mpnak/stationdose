@@ -54,10 +54,11 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showUserProfileButton = true;
+        
         featuresStationsPageControl.numberOfPages = featuredStations.count
         reloadSponsoredStations()
         
-        navigationController?.showLogo = true
         showUserProfileButton = true
         stationsSegmentedControl.selectedSegmentIndex = myStations.count > 0 ? 0 : 1
         stationsListTableView.alpha = 1
@@ -91,8 +92,6 @@ class HomeViewController: BaseViewController {
     }
     
     func featuredStationsTimerStep() {
-        print("featuredStationsTimerStep")
-        
         let indexPath = featuredStationsCollectionView.indexPathForItemAtPoint(CGPoint(x: featuredStationsCollectionView.contentOffset.x + 1, y: 1))
         var nextIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         if indexPath?.row < featuredStations.count - 1 {
@@ -383,13 +382,12 @@ extension HomeViewController: UITableViewDataSource {
             cell.rightButtons = [deleteButton]
             cell.rightSwipeSettings.transition = .Drag
             
-            cell.setSelectedAction = { (selected: Bool) -> Void in 
-                if selected {
-                    self.showStation(cell)
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                        cell.setSelected(false, animated: true)
-                    }
+            cell.touchUpInsideAction = {
+                self.showStation(cell)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                    cell.setSelected(false, animated: true)
                 }
+                
             }
             
             return cell
@@ -419,12 +417,10 @@ extension HomeViewController: UITableViewDataSource {
             cell.removedMessageView.alpha = 0
             cell.addedMessageView.alpha = 0
             
-            cell.setSelectedAction = { (selected: Bool) -> Void in 
-                if selected {
-                    self.showStation(cell)
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                        cell.setSelected(false, animated: true)
-                    }
+            cell.touchUpInsideAction = {
+                self.showStation(cell)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                    cell.setSelected(false, animated: true)
                 }
             }
             
