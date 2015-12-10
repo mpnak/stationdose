@@ -13,12 +13,12 @@ import AlamofireImage
 
 class HomeViewController: BaseViewController {
     
-    var myStations: [Playlist]
+    var myStations: [SavedStation]
     var stationsList: [Station]
     var featuredStations: [Station]
     var sponsoredStations: [Station]
     var currentLocation: CLLocation?
-    var selectedPlaylist: Playlist?
+    var selectedSavedStation: SavedStation?
     var selectedStation: Station?
     var featuredStationsTimer: NSTimer?
     
@@ -33,15 +33,19 @@ class HomeViewController: BaseViewController {
     
     required init?(coder aDecoder: NSCoder) {
         stationsList = ModelManager.sharedInstance.stations
-        myStations = ModelManager.sharedInstance.playlists
+        featuredStations = []
+        myStations = ModelManager.sharedInstance.savedStations
 //        featuredStations = ModelManager.sharedInstance.featuredStations
-        featuredStations = Array(count: 5, repeatedValue: ModelManager.sharedInstance.featuredStations.first!)
+        if(ModelManager.sharedInstance.featuredStations.count>0){
+            featuredStations = Array(count: 5, repeatedValue: ModelManager.sharedInstance.featuredStations.first!)
+        }
+
         
         sponsoredStations = ModelManager.sharedInstance.sponsoredStations
         
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadPlaylists", name: ModelManagerNotificationKey.PlaylistsDidReloadFromServer.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadPlaylists", name: ModelManagerNotificationKey.SavedStationsDidReloadFromServer.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadStations", name: ModelManagerNotificationKey.StationsDidReloadFromServer.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadPlaylists", name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadStations", name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
@@ -66,7 +70,7 @@ class HomeViewController: BaseViewController {
         
         reloadData()
         
-        featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "featuredStationsTimerStep", userInfo: nil, repeats: true)
+        //featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "featuredStationsTimerStep", userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -75,18 +79,18 @@ class HomeViewController: BaseViewController {
             self.currentLocation = location;
         }
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.PlaylistsDidChange.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.SavedStationsDidChange.rawValue, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadData", name: ModelManagerNotificationKey.PlaylistsDidChange.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadData", name: ModelManagerNotificationKey.SavedStationsDidChange.rawValue, object: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
-            destinationViewController.playlist = selectedPlaylist
+            destinationViewController.savedStation = selectedSavedStation
             destinationViewController.station = selectedStation
         }
     }
@@ -113,7 +117,7 @@ class HomeViewController: BaseViewController {
     }
     
     func reloadPlaylists() {
-        myStations = ModelManager.sharedInstance.playlists
+        myStations = ModelManager.sharedInstance.savedStations
         myStationsTableView.reloadData()
         stationsListTableView.reloadData()
         reloadTablesViewContaignerHeight()
@@ -135,7 +139,7 @@ class HomeViewController: BaseViewController {
     
     func reloadData() {
         
-        myStations = ModelManager.sharedInstance.playlists
+        myStations = ModelManager.sharedInstance.savedStations
         stationsList = ModelManager.sharedInstance.stations
         
         let showMyStations = stationsSegmentedControl.selectedSegmentIndex == 0
@@ -358,17 +362,19 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == myStationsTableView {
-            let station = myStations[indexPath.row].station
+            let savedStation = myStations[indexPath.row]
+            let station = savedStation.station
             let cell:MyStationsTableViewCell = tableView.dequeueReusableCellWithIdentifier("MyStationsTableViewCellIdentifier") as! MyStationsTableViewCell
             
             cell.station = station
+            cell.savedStation = savedStation
             cell.nameLabel.text = station!.name
             cell.shortDescriptionLabel.text = station!.shortDescription
             
             cell.backgroundColor = UIColor.clearColor()
             
             let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-station"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
-                ModelManager.sharedInstance.removePlaylist(station!) { (removed) -> Void in
+                ModelManager.sharedInstance.removeSavedStation(savedStation) { (removed) -> Void in
                     if removed {
                         self.reloadPlaylists()
                         
@@ -429,29 +435,19 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     @IBAction func showStation(sender: UIView) {
-        selectedPlaylist = nil
+        selectedSavedStation = nil
         selectedStation = nil
         if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
                 selectedStation = station
-                for playlist in myStations {
-                    if playlist.station?.id == station.id {
-                        selectedPlaylist = playlist
-                    }
-                }
             }
         } else if let cell = self.tableViewCellForSubview(sender) as? MyStationsTableViewCell {
-            if let station = cell.station {
-                selectedStation = station
-                for playlist in myStations {
-                    if playlist.station?.id == station.id {
-                        selectedPlaylist = playlist
-                    }
-                }
+            if let station = cell.savedStation {
+                selectedSavedStation = station
             }
         }
         
-        if selectedStation != nil {
+        if selectedStation != nil || selectedSavedStation != nil {
             performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
         }
         
@@ -474,7 +470,7 @@ extension HomeViewController: UITableViewDataSource {
                 cell.removeButton.alpha = 1
                 cell.savedImageView.alpha = 1
                 
-                ModelManager.sharedInstance.savePlaylist(station, onCompletion: { (success) -> Void in
+                ModelManager.sharedInstance.saveStation(station, onCompletion: { (success) -> Void in
                     sender.enabled = true
                     self.reloadPlaylists()
                 })
@@ -489,7 +485,10 @@ extension HomeViewController: UITableViewDataSource {
         
         if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
-                ModelManager.sharedInstance.removePlaylist(station) { (removed) -> Void in
+                
+                let savedStationsToRemove = myStations.filter { $0.station?.id == station.id}
+                
+                ModelManager.sharedInstance.removeSavedStation(savedStationsToRemove.first!) { (removed) -> Void in
                     sender.enabled = true
                     if removed {
                         cell.saveButton.alpha = 1

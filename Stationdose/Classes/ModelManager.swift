@@ -11,8 +11,8 @@ import AlamofireImage
 
 enum ModelManagerNotificationKey: String {
     case StationsDidReloadFromServer
-    case PlaylistsDidReloadFromServer
-    case PlaylistsDidChange
+    case SavedStationsDidReloadFromServer
+    case SavedStationsDidChange
     case AllDataDidReloadFromServer
 }
 
@@ -20,14 +20,14 @@ class ModelManager: NSObject {
     
     static let sharedInstance = ModelManager()
     
-    var playlists: [Playlist]
+    var savedStations: [SavedStation]
     var stations: [Station]
     var sponsoredStations: [Station]
     var featuredStations: [Station]
     let imageDownloader = ImageDownloader.defaultInstance
     
     override init() {
-        playlists = []
+        savedStations = []
         stations = []
         featuredStations = [];
         sponsoredStations = [];
@@ -98,7 +98,7 @@ class ModelManager: NSObject {
         
         let reloadClosures = [
             {self.reloadStations(stepCompletion)},
-            {self.reloadPlaylists(stepCompletion)} /* add here any other closure needed to reload all the data*/
+            {self.reloadSavedStations(stepCompletion)} /* add here any other closure needed to reload all the data*/
         ]
         
         reloadDataPendingStepsCounter = reloadClosures.count
@@ -108,11 +108,11 @@ class ModelManager: NSObject {
         }
     }
     
-    func reloadPlaylists(onCompletion:() -> Void) {
-        SongSortApiManager.sharedInstance.getPlaylists { (playlists, error) -> Void in
-            if let playlists = playlists {
-                self.playlists = playlists
-                self.postEvent(.PlaylistsDidReloadFromServer)
+    func reloadSavedStations(onCompletion:() -> Void) {
+        SongSortApiManager.sharedInstance.getSavedStations { (savedStations, error) -> Void in
+            if let savedStations = savedStations {
+                self.savedStations = savedStations
+                self.postEvent(.SavedStationsDidReloadFromServer)
             }
             onCompletion()
         }
@@ -131,31 +131,28 @@ class ModelManager: NSObject {
         }
     }
     
-    func savePlaylist(station: Station, onCompletion:(saved:Bool) -> Void) {
-        SongSortApiManager.sharedInstance.savePlaylist(station.id!) { (playlist, error) -> Void in
-            if let playlist = playlist {
-                self.playlists.append(playlist)
+    func saveStation(station: Station, onCompletion:(saved:Bool) -> Void) {
+        SongSortApiManager.sharedInstance.saveStation(station.id!) { (savedStation, error) -> Void in
+            if let savedStation = savedStation {
+                self.savedStations.append(savedStation)
                 
                 onCompletion(saved: true)
-                self.postEvent(.PlaylistsDidChange)
+                self.postEvent(.SavedStationsDidChange)
             } else {
                 onCompletion(saved: false)
             }
         }
     }
     
-    func removePlaylist(station: Station, callback: (removed:Bool) -> Void) {
+    func removeSavedStation(stationToDelete: SavedStation, callback: (removed:Bool) -> Void) {
         AlertView(title: "Remove Station?", message: "Are you sure you want to remove this station from your favorites?", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
             if accept {
-                let playlistsToDelete = self.playlists.filter() { $0.station!.id == station.id }
-                
-                for playlistToDelete in playlistsToDelete {
-                    SongSortApiManager.sharedInstance.removePlaylist(playlistToDelete.id!)
-                }
-                self.playlists = self.playlists.filter() { $0.station!.id != station.id }
+
+                SongSortApiManager.sharedInstance.removeSavedStation(stationToDelete.id!)
+                self.savedStations = self.savedStations.filter() { $0.id != stationToDelete.id }
                 
                 callback(removed:true)
-                self.postEvent(.PlaylistsDidChange)
+                self.postEvent(.SavedStationsDidChange)
             } else {
                 callback(removed:false)
             }

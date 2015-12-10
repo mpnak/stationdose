@@ -16,6 +16,7 @@ class Station: Mappable {
     var type:String?
     var art:String?
     var url:String?
+    var tracks:[Track]?
     
     required init?(_ map: Map) {
         

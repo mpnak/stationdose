@@ -11,7 +11,7 @@ import MGSwipeTableCell
 
 class PlaylistViewController: BaseViewController {
     
-    var playlist:Playlist?
+    var savedStation:SavedStation?
     var station:Station?
     var tracks:[Track]!
     
@@ -44,19 +44,32 @@ class PlaylistViewController: BaseViewController {
             coverImageView?.af_setImageWithURL(URL)
         }
         
-        saveButton?.alpha = playlist == nil ? 1 : 0
-        removeButton?.alpha = playlist == nil ? 0 : 1
-        savedImageView?.alpha = playlist == nil ? 0 : 1
+        saveButton?.alpha = savedStation == nil ? 1 : 0
+        removeButton?.alpha = savedStation == nil ? 0 : 1
+        savedImageView?.alpha = savedStation == nil ? 0 : 1
         
-        if let playlist = playlist {
-            tracks = playlist.tracks
+        if let savedStation = savedStation {
+            tracks = []
+            if let theTracks = savedStation.tracks{
+                tracks = theTracks
+            }else{
+                SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                    if let tracks = tracks {
+                        self.tracks = tracks
+                        self.tracksTableView.reloadData()
+                        
+                        //TODO: stop animation
+                        
+                    }
+                })
+            }
         } else {
             
             tracks = []
             
             //TODO: loading animation
             
-            SongSortApiManager.sharedInstance.getStationTracks((station?.id)!, onCompletion: { (tracks, error) -> Void in
+            SongSortApiManager.sharedInstance.generateStationTracks((station?.id)!, onCompletion: { (tracks, error) -> Void in
                 if let tracks = tracks {
                     self.tracks = tracks
                     self.tracksTableView.reloadData()
@@ -71,7 +84,7 @@ class PlaylistViewController: BaseViewController {
     @IBAction func removeStation(sender: UIButton) {
         sender.enabled = false
         
-        ModelManager.sharedInstance.removePlaylist(station!) { (removed) -> Void in
+        ModelManager.sharedInstance.removeSavedStation(savedStation!) { (removed) -> Void in
             sender.enabled = true
             if removed {
                 self.saveButton.alpha = 1
@@ -84,7 +97,7 @@ class PlaylistViewController: BaseViewController {
     @IBAction func saveStation(sender: UIButton) {
         sender.enabled = false
         
-        ModelManager.sharedInstance.savePlaylist(station!) { (saved) -> Void in
+        ModelManager.sharedInstance.saveStation(station!) { (saved) -> Void in
             sender.enabled = true
             if saved {
                 self.saveButton.alpha = 0
@@ -114,11 +127,11 @@ extension PlaylistViewController: UITableViewDataSource {
             cell.likedImageView.alpha = 0
         }
         
-        if playlist != nil {
+        if savedStation != nil {
             
             let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-track"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
                 if let cell = cell as? TrackTableViewCell {
-                    SongSortApiManager.sharedInstance.banTrack(self.playlist!.id!, trackId: cell.track.id!)
+                    SongSortApiManager.sharedInstance.banTrack(self.savedStation!.id!, trackId: cell.track.id!)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tracksTableView.beginUpdates()
                         self.tracksTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Middle)
@@ -138,7 +151,7 @@ extension PlaylistViewController: UITableViewDataSource {
                     
                     if let cell = cell as? TrackTableViewCell {
                         if cell.track.liked == nil || !cell.track.liked! {
-                            SongSortApiManager.sharedInstance.banTrack(self.playlist!.id!, trackId: cell.track.id!)
+                            SongSortApiManager.sharedInstance.banTrack(self.savedStation!.id!, trackId: cell.track.id!)
                             cell.likedImageView.alpha = 1
                             cell.track.liked = true
                             cell.leftButtons = nil
