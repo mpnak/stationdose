@@ -53,6 +53,7 @@ class PlaylistViewController: BaseViewController {
             if let theTracks = savedStation.tracks{
                 tracks = theTracks
             }else{
+                // TODO Loading animation
                 SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
                     if let tracks = tracks {
                         self.tracks = tracks
