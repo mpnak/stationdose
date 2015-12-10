@@ -108,6 +108,12 @@ extension PlaylistViewController: UITableViewDataSource {
         cell.titleLabel.text = cell.track?.title
         cell.subtitleLabel.text = cell.track?.artist
         
+        cell.touchUpInsideAction = {
+            PlaybackManager.sharedInstance.discardCurrentQueue()
+            PlaybackManager.sharedInstance.addTrack(cell.track!)
+            PlaybackManager.sharedInstance.play()
+        }
+        
         if let liked = cell.track.liked {
             cell.likedImageView.alpha = liked ? 1 : 0
         } else {

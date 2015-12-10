@@ -43,6 +43,9 @@
 		F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */; };
 		F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */; };
 		F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15593021C110447009CE684 /* FeaturedStationViewController.swift */; };
+		F17157441C1774BC008378C3 /* PlaybackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17157431C1774BC008378C3 /* PlaybackManager.swift */; };
+		F18E15381C1871D40020AA17 /* PlaybackControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E15371C1871D40020AA17 /* PlaybackControlView.swift */; };
+		F18E153A1C18747C0020AA17 /* PlaybackControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F18E15391C18747C0020AA17 /* PlaybackControlView.xib */; };
 		F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394771BFE453100A2C970 /* BaseViewController.swift */; };
 		F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB701C0748ED007DB048 /* Playlist.swift */; };
 		F1B4CB731C0748ED007DB048 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB711C0748ED007DB048 /* Track.swift */; };
@@ -97,6 +100,9 @@
 		F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayableTableViewCell.swift; sourceTree = "<group>"; };
 		F15593021C110447009CE684 /* FeaturedStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedStationViewController.swift; sourceTree = "<group>"; };
+		F17157431C1774BC008378C3 /* PlaybackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackManager.swift; sourceTree = "<group>"; };
+		F18E15371C1871D40020AA17 /* PlaybackControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackControlView.swift; sourceTree = "<group>"; };
+		F18E15391C18747C0020AA17 /* PlaybackControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaybackControlView.xib; sourceTree = "<group>"; };
 		F1A394771BFE453100A2C970 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F1B4CB701C0748ED007DB048 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		F1B4CB711C0748ED007DB048 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -205,6 +211,7 @@
 				CDBE23421BF92E9100291F56 /* Classes */,
 				CDBE230D1BF92DFB00291F56 /* AppDelegate.swift */,
 				CDBE23111BF92DFB00291F56 /* Main.storyboard */,
+				F18E15391C18747C0020AA17 /* PlaybackControlView.xib */,
 				CDBE23141BF92DFB00291F56 /* Assets.xcassets */,
 				CDBE23161BF92DFB00291F56 /* LaunchScreen.storyboard */,
 			);
@@ -252,6 +259,7 @@
 				CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */,
 				CD6BD2CF1C0651A6006D812B /* LocationManager.swift */,
 				F1CC91911C0F530800E3C090 /* ModelManager.swift */,
+				F17157431C1774BC008378C3 /* PlaybackManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -259,13 +267,14 @@
 		CDBE23461BF92EA800291F56 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F1B4CB7A1C07B5A7007DB048 /* AlertView */,
 				F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */,
 				F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */,
 				F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */,
 				F1F91C6C1BFF9B44000E0BB7 /* StationsListTableViewCell.swift */,
 				F10FB1761C0E3005000C90C1 /* TrackTableViewCell.swift */,
-				F1B4CB7A1C07B5A7007DB048 /* AlertView */,
 				CD8666E51C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift */,
+				F18E15371C1871D40020AA17 /* PlaybackControlView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -374,6 +383,7 @@
 				CD9FA4701BFB71A4003B8A62 /* Yantramanav-Thin.ttf in Resources */,
 				CDBE23181BF92DFB00291F56 /* LaunchScreen.storyboard in Resources */,
 				CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */,
+				F18E153A1C18747C0020AA17 /* PlaybackControlView.xib in Resources */,
 				CD9FA46C1BFB71A4003B8A62 /* Yantramanav-Bold.ttf in Resources */,
 				CD9FA46D1BFB71A4003B8A62 /* Yantramanav-Light.ttf in Resources */,
 				CDBE23131BF92DFB00291F56 /* Main.storyboard in Resources */,
@@ -454,6 +464,7 @@
 				F1B4CB751C079E64007DB048 /* AlertView.swift in Sources */,
 				CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */,
 				F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */,
+				F17157441C1774BC008378C3 /* PlaybackManager.swift in Sources */,
 				F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */,
 				F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */,
 				F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */,
@@ -471,6 +482,7 @@
 				F1CC91921C0F530800E3C090 /* ModelManager.swift in Sources */,
 				F1F91C6B1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift in Sources */,
 				CDBE230E1BF92DFB00291F56 /* AppDelegate.swift in Sources */,
+				F18E15381C1871D40020AA17 /* PlaybackControlView.swift in Sources */,
 				CD9FA44B1BF93323003B8A62 /* HomeViewController.swift in Sources */,
 				CD9FA4511BF93876003B8A62 /* Constants.swift in Sources */,
 				CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */,

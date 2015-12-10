@@ -21,5 +21,4 @@ class BaseViewController: UIViewController {
         
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo-min"))
     }
-    
 }
