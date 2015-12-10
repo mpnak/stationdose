@@ -7,16 +7,23 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class RequestPremiumViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var radioActivityIndicator:NVActivityIndicatorView!
     
     private var timer:NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addFullBackground()
+        activityIndicator.setNeedsLayout()
+        activityIndicator.layoutIfNeeded()
+        activityIndicator.hidden = true
+        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSpotifyGreenColor())
+        self.view.addSubview(radioActivityIndicator)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,7 +45,8 @@ class RequestPremiumViewController: UIViewController {
         SpotifyManager.sharedInstance.checkPremium { isPremium in
             if isPremium{
                 ModelManager.sharedInstance.initialCache { () -> Void in
-                    self.activityIndicator.stopAnimating()
+                    //self.activityIndicator.stopAnimating()
+                    self.radioActivityIndicator.stopAnimation()
                     timer.invalidate()
                     self.performSegueWithIdentifier(Constants.Segues.RequestPremiumToHomeSegue, sender: self)
                 }
@@ -48,7 +56,8 @@ class RequestPremiumViewController: UIViewController {
     
 
     @IBAction func signUpPremium(sender: AnyObject) {
-        activityIndicator.startAnimating()
+        //activityIndicator.startAnimating()
+        radioActivityIndicator.stopAnimation()
         performSegueWithIdentifier(Constants.Segues.RequestPremiumToRequestPremiumWebSegue, sender: self)
     }
 

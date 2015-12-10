@@ -63,4 +63,11 @@ extension UIColor {
     class func customButtonBorderTapColor()->UIColor {
         return UIColor(hexString:"#0B923B")
     }
+    
+    class func customSpotifyGreenColor()->UIColor {
+        return UIColor(hexString:"#25D34E")
+    }
+    
+    
+    
 }

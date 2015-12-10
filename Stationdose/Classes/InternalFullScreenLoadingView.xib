@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Yantramanav-Light.ttf">
+            <string>Yantramanav-Light</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,10 +23,20 @@
                             <rect key="frame" x="177" y="324" width="20" height="20"/>
                             <animations/>
                         </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Just a moment, we’re building your playlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qi7-af-z9r">
+                            <rect key="frame" x="10" y="372" width="355" height="19"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                            <color key="textColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.78000000000000003" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="qi7-af-z9r" firstAttribute="leading" secondItem="YYR-qp-O42" secondAttribute="leading" constant="10" id="15A-F0-nNj"/>
+                        <constraint firstItem="qi7-af-z9r" firstAttribute="top" secondItem="nLk-z9-Tba" secondAttribute="bottom" constant="28" id="52p-O3-zlo"/>
+                        <constraint firstAttribute="trailing" secondItem="qi7-af-z9r" secondAttribute="trailing" constant="10" id="HN8-1d-Gjv"/>
                         <constraint firstItem="nLk-z9-Tba" firstAttribute="centerX" secondItem="YYR-qp-O42" secondAttribute="centerX" id="gLp-5T-bwk"/>
                         <constraint firstItem="nLk-z9-Tba" firstAttribute="centerY" secondItem="YYR-qp-O42" secondAttribute="centerY" id="ozr-sL-Et3"/>
                     </constraints>
@@ -37,6 +52,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <connections>
+                <outlet property="activityIndicatoer" destination="nLk-z9-Tba" id="Pd4-hs-9GZ"/>
+            </connections>
         </view>
     </objects>
 </document>
