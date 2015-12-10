@@ -47,7 +47,7 @@
 		F18E15381C1871D40020AA17 /* PlaybackControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18E15371C1871D40020AA17 /* PlaybackControlView.swift */; };
 		F18E153A1C18747C0020AA17 /* PlaybackControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F18E15391C18747C0020AA17 /* PlaybackControlView.xib */; };
 		F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A394771BFE453100A2C970 /* BaseViewController.swift */; };
-		F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB701C0748ED007DB048 /* Playlist.swift */; };
+		F1B4CB721C0748ED007DB048 /* SavedSation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB701C0748ED007DB048 /* SavedSation.swift */; };
 		F1B4CB731C0748ED007DB048 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB711C0748ED007DB048 /* Track.swift */; };
 		F1B4CB751C079E64007DB048 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4CB741C079E64007DB048 /* AlertView.swift */; };
 		F1B4CB771C07B51D007DB048 /* InternalAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1B4CB761C07B51D007DB048 /* InternalAlertView.xib */; };
@@ -104,7 +104,7 @@
 		F18E15371C1871D40020AA17 /* PlaybackControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackControlView.swift; sourceTree = "<group>"; };
 		F18E15391C18747C0020AA17 /* PlaybackControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaybackControlView.xib; sourceTree = "<group>"; };
 		F1A394771BFE453100A2C970 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		F1B4CB701C0748ED007DB048 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		F1B4CB701C0748ED007DB048 /* SavedSation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedSation.swift; sourceTree = "<group>"; };
 		F1B4CB711C0748ED007DB048 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		F1B4CB741C079E64007DB048 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		F1B4CB761C07B51D007DB048 /* InternalAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalAlertView.xib; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 		CDBE23431BF92E9700291F56 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F1B4CB701C0748ED007DB048 /* Playlist.swift */,
+				F1B4CB701C0748ED007DB048 /* SavedSation.swift */,
 				CD6BD2CC1C062AFB006D812B /* Station.swift */,
 				F1B4CB711C0748ED007DB048 /* Track.swift */,
 			);
@@ -468,7 +468,7 @@
 				F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */,
 				F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */,
 				F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */,
-				F1B4CB721C0748ED007DB048 /* Playlist.swift in Sources */,
+				F1B4CB721C0748ED007DB048 /* SavedSation.swift in Sources */,
 				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,
 				CD8666E61C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift in Sources */,
 				CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */,

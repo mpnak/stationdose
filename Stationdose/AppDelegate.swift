@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import netfox
 
 
 @UIApplicationMain
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         setupAppearance()
+        NFX.sharedInstance().start()
         
         
         

@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import AlamofireObjectMapper
+import netfox
 
 class SongSortApiManager {
     
@@ -18,18 +19,20 @@ class SongSortApiManager {
     
     struct ApiMethods{
         static let stationsList = "stations"
-        static let playlists = "users/1/playlists"
-        static let playlistsDelete = "playlists/%i"
+        static let savedStations = "users/%i/saved_stations"
+        static let savedStation = "saved_stations/%i"
         static let stationTraks = "stations/%i/tracks"
-        static let playTrack = "playlists/%i/tracks/%i/play"
-        static let skipTrack = "playlists/%i/tracks/%i/skipped"
-        static let favoriteTrack = "playlists/%i/tracks/%i/favorited"
-        static let banTrack = "playlists/%i/tracks/%i/banned"
+        static let savedStationTraks = "saved_stations/%i/tracks"
+        static let playTrack = "tracks/%i/play"
+        static let skipTrack = "tracks/%i/skipped"
+        static let favoriteTrack = "tracks/%i/favorited"
+        static let banTrack = "tracks/%i/banned"
     }
     
     init() {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.timeoutIntervalForRequest = 10 // seconds
+        configuration.protocolClasses?.insert(NFXProtocol.self, atIndex: 0)
         
         self.manager = Manager(configuration: configuration)
         self.baseURL = Constants.SognSort.baseDevelopmentUrl
@@ -41,21 +44,40 @@ class SongSortApiManager {
         }
     }
     
-    func getPlaylists(onCompletion:([Playlist]?,NSError?) -> Void) {
-        manager.request(.GET, baseURL+ApiMethods.playlists).responseArray("playlists") { (response: Response<[Playlist], NSError>) in
+    func getSavedStations(onCompletion:([SavedStation]?,NSError?) -> Void) {
+        manager.request(.GET, String(format:baseURL+ApiMethods.savedStations,1)).responseArray("saved_stations") { (response: Response<[SavedStation], NSError>) in
             onCompletion(response.result.value, response.result.error)
         }
     }
     
-    func savePlaylist(stationId:Int, onCompletion:(Playlist?,NSError?) -> Void) {
-        let data = ["playlist": ["user_id": 1, "station_id": stationId]]
-        manager.request(.POST, baseURL+ApiMethods.playlists, parameters:data).responseObject("playlist") { (response: Response<Playlist, NSError>) -> Void in
+    func saveStation(stationId:Int, onCompletion:(SavedStation?,NSError?) -> Void) {
+        let data = ["saved_station": ["user_id": 1, "station_id": stationId]]
+        manager.request(.POST, String(format:baseURL+ApiMethods.savedStations,1), parameters:data).responseObject("saved_station") { (response: Response<SavedStation, NSError>) -> Void in
             onCompletion(response.result.value, response.result.error)
         }
     }
     
-    func removePlaylist(playlistId:Int) {
-        manager.request(.DELETE, baseURL+String(format: ApiMethods.playlistsDelete, playlistId))
+    func removeSavedStation(savedStationId:Int) {
+        manager.request(.DELETE, baseURL+String(format: ApiMethods.savedStation, savedStationId))
+    }
+    
+    func generateSavedStationTracks(savedStationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
+        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+            onCompletion(response.result.value, response.result.error)
+        }
+    }
+    
+    func generateStationTracks(stationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
+        manager.request(.POST, baseURL+String(format: ApiMethods.stationTraks, stationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+            onCompletion(response.result.value, response.result.error)
+        }
+    }
+    
+    
+    func getSavedStationTracks(stationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
+        manager.request(.GET, baseURL+String(format: ApiMethods.savedStationTraks, stationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+            onCompletion(response.result.value, response.result.error)
+        }
     }
     
     func getStationTracks(stationId:Int, onCompletion:([Track]?,NSError?) -> Void) {

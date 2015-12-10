@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Playlist: Mappable {
+class SavedStation: Mappable {
     var id:Int?
     var undergroundness:Int?
     var useWeather:Bool?
@@ -29,6 +29,5 @@ class Playlist: Mappable {
         useTimeofday        <- map["use_timeofday"]
         autoupdate          <- map["autoupdate"]
         station             <- map["station"]
-        tracks              <- map["tracks"]
     }
 }
