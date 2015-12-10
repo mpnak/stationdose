@@ -92,7 +92,11 @@ class HomeViewController: BaseViewController {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
             destinationViewController.savedStation = selectedSavedStation
             destinationViewController.station = selectedStation
+            
+            
+            
         }
+    
     }
     
     func featuredStationsTimerStep() {
@@ -448,7 +452,37 @@ extension HomeViewController: UITableViewDataSource {
         }
         
         if selectedStation != nil || selectedSavedStation != nil {
-            performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+            let fullscreenView = FullScreenLoadingView()
+            
+                
+                if let savedStation = self.selectedSavedStation where savedStation.tracks == nil {
+                    fullscreenView.show()
+                    SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                        if let tracks = tracks {
+                            savedStation.tracks = tracks
+                            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+                            
+                            fullscreenView.hide()
+                            
+                        }
+                    })
+                }
+                else if let station = self.selectedStation where station.tracks == nil{
+                    fullscreenView.show()
+                    
+                    SongSortApiManager.sharedInstance.generateStationTracks((station.id)!, onCompletion: { (tracks, error) -> Void in
+                        if let tracks = tracks {
+                            station.tracks = tracks
+                            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+                            fullscreenView.hide()
+                            
+                            
+                        }
+                    })
+                }else{
+                  self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)  
+            }
+            
         }
         
     }

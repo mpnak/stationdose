@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */; };
+		CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */; };
+		CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */; };
 		CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */; };
 		CD6BD2CD1C062AFB006D812B /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CC1C062AFB006D812B /* Station.swift */; };
 		CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CF1C0651A6006D812B /* LocationManager.swift */; };
@@ -59,6 +62,9 @@
 /* Begin PBXFileReference section */
 		24E06A1BF2138C0B19B5B149 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalFullScreenLoadingView.xib; sourceTree = "<group>"; };
+		CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenLoadingView.swift; sourceTree = "<group>"; };
+		CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalFullScreenLoadingView.swift; sourceTree = "<group>"; };
 		CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSortApiManager.swift; sourceTree = "<group>"; };
 		CD6BD2CC1C062AFB006D812B /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		CD6BD2CF1C0651A6006D812B /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -145,6 +151,16 @@
 				3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD520F5B1C1924F5009062F3 /* FullScreenLoading */ = {
+			isa = PBXGroup;
+			children = (
+				CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */,
+				CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */,
+				CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */,
+			);
+			name = FullScreenLoading;
 			sourceTree = "<group>";
 		};
 		CD9FA44C1BF9333E003B8A62 /* Supporting Files */ = {
@@ -259,6 +275,7 @@
 		CDBE23461BF92EA800291F56 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD520F5B1C1924F5009062F3 /* FullScreenLoading */,
 				F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */,
 				F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */,
 				F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */,
@@ -371,6 +388,7 @@
 				CD9FA46B1BFB71A4003B8A62 /* Yantramanav-Black.ttf in Resources */,
 				CD9FA46F1BFB71A4003B8A62 /* Yantramanav-Regular.ttf in Resources */,
 				CD9FA46E1BFB71A4003B8A62 /* Yantramanav-Medium.ttf in Resources */,
+				CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */,
 				CD9FA4701BFB71A4003B8A62 /* Yantramanav-Thin.ttf in Resources */,
 				CDBE23181BF92DFB00291F56 /* LaunchScreen.storyboard in Resources */,
 				CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */,
@@ -458,6 +476,7 @@
 				F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */,
 				F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */,
 				F1B4CB721C0748ED007DB048 /* SavedSation.swift in Sources */,
+				CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */,
 				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,
 				CD8666E61C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift in Sources */,
 				CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */,
@@ -479,6 +498,7 @@
 				F1F91C6D1BFF9B44000E0BB7 /* StationsListTableViewCell.swift in Sources */,
 				F1B4CB791C07B58F007DB048 /* InternalAlertView.swift in Sources */,
 				CD9FA4741BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift in Sources */,
+				CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
