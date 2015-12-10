@@ -27,6 +27,7 @@ class SongSortApiManager {
         static let skipTrack = "tracks/%i/skipped"
         static let favoriteTrack = "tracks/%i/favorited"
         static let banTrack = "tracks/%i/banned"
+        static let renewSession = "spotify/sessions"
     }
     
     init() {
@@ -38,6 +39,8 @@ class SongSortApiManager {
         self.baseURL = Constants.SognSort.baseDevelopmentUrl
     }
     
+
+    
     func getStations(onCompletion:([Station]?,NSError?) -> Void) {
         manager.request(.GET, baseURL+ApiMethods.stationsList).responseArray("stations") { (response: Response<[Station], NSError>) in
             onCompletion(response.result.value, response.result.error)
@@ -45,14 +48,25 @@ class SongSortApiManager {
     }
     
     func getSavedStations(onCompletion:([SavedStation]?,NSError?) -> Void) {
-        manager.request(.GET, String(format:baseURL+ApiMethods.savedStations,1)).responseArray("saved_stations") { (response: Response<[SavedStation], NSError>) in
+        guard let user = ModelManager.sharedInstance.user
+            else{
+                onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+                return
+        }
+        manager.request(.GET, String(format:baseURL+ApiMethods.savedStations,user.id!)).responseArray("saved_stations") { (response: Response<[SavedStation], NSError>) in
             onCompletion(response.result.value, response.result.error)
         }
     }
     
+    
     func saveStation(stationId:Int, onCompletion:(SavedStation?,NSError?) -> Void) {
-        let data = ["saved_station": ["user_id": 1, "station_id": stationId]]
-        manager.request(.POST, String(format:baseURL+ApiMethods.savedStations,1), parameters:data).responseObject("saved_station") { (response: Response<SavedStation, NSError>) -> Void in
+        guard let user = ModelManager.sharedInstance.user
+        else{
+            onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+            return
+        }
+        let data = ["saved_station": ["user_id": user.id!, "station_id": stationId]]
+        manager.request(.POST, String(format:baseURL+ApiMethods.savedStations,user.id!), parameters:data).responseObject("saved_station") { (response: Response<SavedStation, NSError>) -> Void in
             onCompletion(response.result.value, response.result.error)
         }
     }
@@ -100,5 +114,16 @@ class SongSortApiManager {
     
     func banTrack(playlistId:Int,trackId:Int) {
         manager.request(.POST, baseURL+String(format: ApiMethods.banTrack, playlistId,trackId))
+    }
+    
+    func renewSession(spotifyToken:String,onCompletion:(User?,NSError?) -> Void){
+        let data = ["access_token": spotifyToken]
+        manager.request(.POST, baseURL+ApiMethods.renewSession, parameters:data).responseObject("user") { (response: Response<User, NSError>) -> Void in
+            if let token = response.result.value?.accessToken{
+                self.manager.session.configuration.HTTPAdditionalHeaders = ["AUTHORIZATION": token]
+            }
+            onCompletion(response.result.value, response.result.error)
+            
+        }
     }
 }

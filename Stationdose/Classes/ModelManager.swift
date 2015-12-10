@@ -24,6 +24,7 @@ class ModelManager: NSObject {
     var stations: [Station]
     var sponsoredStations: [Station]
     var featuredStations: [Station]
+    var user:User?
     let imageDownloader = ImageDownloader.defaultInstance
     
     override init() {
@@ -37,6 +38,14 @@ class ModelManager: NSObject {
     
     func initialCache(onCompletion:() -> Void) {
         self.reloadData(onCompletion)
+        
+    }
+    
+    func reloadCache(onCompletion:() -> Void) {
+        if let _ = user{
+            self.reloadData(onCompletion)
+        }
+
         
     }
     

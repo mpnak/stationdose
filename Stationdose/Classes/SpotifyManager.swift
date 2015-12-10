@@ -31,9 +31,23 @@ class SpotifyManager: NSObject {
                 object: theError)
             NSNotificationCenter.defaultCenter().postNotification(errorNotification)
         }else{
-            let validSessionNotification = NSNotification(name: Constants.Notifications.sessionValidNotification,
-                object: session)
-            NSNotificationCenter.defaultCenter().postNotification(validSessionNotification)
+
+            SongSortApiManager.sharedInstance.renewSession(session.accessToken, onCompletion: { (user, error) -> Void in
+                if let user = user where error == nil{
+                    
+                    ModelManager.sharedInstance.reloadCache({ () -> Void in
+                    })
+                    
+                    ModelManager.sharedInstance.user = user
+                    let validSessionNotification = NSNotification(name: Constants.Notifications.sessionValidNotification,
+                        object: session)
+                    NSNotificationCenter.defaultCenter().postNotification(validSessionNotification)
+                }else{
+                    let errorNotification = NSNotification(name: Constants.Notifications.sessionErrorNotification,
+                        object: error)
+                    NSNotificationCenter.defaultCenter().postNotification(errorNotification)
+                }
+            })
             
         }
     }

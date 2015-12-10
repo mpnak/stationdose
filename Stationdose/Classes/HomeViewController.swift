@@ -480,7 +480,7 @@ extension HomeViewController: UITableViewDataSource {
                         }
                     })
                 }else{
-                  self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)  
+                  self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
             }
             
         }

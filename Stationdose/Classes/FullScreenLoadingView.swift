@@ -17,9 +17,7 @@ class FullScreenLoadingView: NSObject {
         
         internalView = InternalFullScreenLoadingView.instanceFromNib()
         blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
-        
-        //let vibrancyEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
-        //blurEffectView = UIVisualEffectView(effect: vibrancyEffect)
+    
     }
     
     
