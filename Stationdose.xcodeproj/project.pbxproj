@@ -10,6 +10,7 @@
 		CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */; };
 		CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */; };
 		CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */; };
+		CD520F6B1C19F7C4009062F3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F6A1C19F7C4009062F3 /* User.swift */; };
 		CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */; };
 		CD6BD2CD1C062AFB006D812B /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CC1C062AFB006D812B /* Station.swift */; };
 		CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BD2CF1C0651A6006D812B /* LocationManager.swift */; };
@@ -68,6 +69,7 @@
 		CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalFullScreenLoadingView.xib; sourceTree = "<group>"; };
 		CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenLoadingView.swift; sourceTree = "<group>"; };
 		CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalFullScreenLoadingView.swift; sourceTree = "<group>"; };
+		CD520F6A1C19F7C4009062F3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CD6BD2CA1C06249F006D812B /* SongSortApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSortApiManager.swift; sourceTree = "<group>"; };
 		CD6BD2CC1C062AFB006D812B /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		CD6BD2CF1C0651A6006D812B /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				F1B4CB701C0748ED007DB048 /* SavedSation.swift */,
 				CD6BD2CC1C062AFB006D812B /* Station.swift */,
 				F1B4CB711C0748ED007DB048 /* Track.swift */,
+				CD520F6A1C19F7C4009062F3 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				F1B4CB791C07B58F007DB048 /* InternalAlertView.swift in Sources */,
 				CD9FA4741BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift in Sources */,
 				CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */,
+				CD520F6B1C19F7C4009062F3 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,23 @@ class SpotifyManager: NSObject {
     
     static let sharedInstance = SpotifyManager()
     
+    override init() {
+        let spotifyAuthenticator = SPTAuth.defaultInstance()
+        
+        super.init()
+        
+        spotifyAuthenticator.clientID = Constants.Spotify.ClientId
+        spotifyAuthenticator.redirectURL = NSURL(string: Constants.Spotify.RedirectUrl)
+        spotifyAuthenticator.sessionUserDefaultsKey = "SpotifySession"
+        spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope,SPTAuthUserReadPrivateScope]
+        spotifyAuthenticator.tokenRefreshURL = NSURL(string:Constants.Spotify.RefreshUrl)
+        spotifyAuthenticator.tokenSwapURL = NSURL(string:Constants.Spotify.SwapUrl)
+        
+        if spotifyAuthenticator.session.isValid() {
+            self.player = SPTAudioStreamingController(clientId: spotifyAuthenticator.clientID)
+        }
+    }
+    
     var hasSession:Bool{
         return SPTAuth.defaultInstance().session != nil
     }
@@ -32,24 +49,33 @@ class SpotifyManager: NSObject {
             let errorNotification = NSNotification(name: Constants.Notifications.sessionErrorNotification,
                 object: error)
             NSNotificationCenter.defaultCenter().postNotification(errorNotification)
+            
             SpotifyManager.sharedInstance.player = nil
-        } else {
-            let validSessionNotification = NSNotification(name: Constants.Notifications.sessionValidNotification,
-                object: session)
-            NSNotificationCenter.defaultCenter().postNotification(validSessionNotification)
+            
+        }else{
+
+            SongSortApiManager.sharedInstance.renewSession(session.accessToken, onCompletion: { (user, error) -> Void in
+                if let user = user where error == nil{
+                    
+                    ModelManager.sharedInstance.reloadCache({ () -> Void in
+                    })
+                    
+                    ModelManager.sharedInstance.user = user
+                    let validSessionNotification = NSNotification(name: Constants.Notifications.sessionValidNotification,
+                        object: session)
+                    NSNotificationCenter.defaultCenter().postNotification(validSessionNotification)
+                }else{
+                    let errorNotification = NSNotification(name: Constants.Notifications.sessionErrorNotification,
+                        object: error)
+                    NSNotificationCenter.defaultCenter().postNotification(errorNotification)
+                }
+            })
+            
             SpotifyManager.sharedInstance.player = SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
         }
     }
     
-    override init() {
-        let spotifyAuthenticator = SPTAuth.defaultInstance()
-        spotifyAuthenticator.clientID = Constants.Spotify.ClientId
-        spotifyAuthenticator.redirectURL = NSURL(string: Constants.Spotify.RedirectUrl)
-        spotifyAuthenticator.sessionUserDefaultsKey = "SpotifySession"
-        spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope,SPTAuthUserReadPrivateScope]
-        spotifyAuthenticator.tokenRefreshURL = NSURL(string:Constants.Spotify.RefreshUrl)
-        spotifyAuthenticator.tokenSwapURL = NSURL(string:Constants.Spotify.SwapUrl)
-    }
+
     
     func handleOpenURL(url: NSURL) ->Bool {
         if(SPTAuth.defaultInstance().canHandleURL(url)){

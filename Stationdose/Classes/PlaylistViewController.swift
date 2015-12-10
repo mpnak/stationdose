@@ -123,10 +123,18 @@ extension PlaylistViewController: UITableViewDataSource {
         cell.subtitleLabel.text = cell.track?.artist
         
         cell.touchUpInsideAction = {
-            PlaybackManager.sharedInstance.discardCurrentQueue()
-            PlaybackManager.sharedInstance.addTracks([cell.track!], callback: { (error) -> () in
-                
-            })
+            var tracks = [Track]()
+            var addTacks = false
+            for track in self.tracks {
+                if track.id == cell.track.id {
+                    addTacks = true
+                }
+                if addTacks {
+                    tracks.append(track)
+                }
+            }
+            
+            PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
         }
         
         if let liked = cell.track.liked {

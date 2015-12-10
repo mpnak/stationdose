@@ -55,6 +55,7 @@ class SplashViewController: UIViewController {
                 //moveToLogin()
             }
         }else{
+            NSNotificationCenter.defaultCenter().removeObserver(self)
             moveToLogin()
         }
     }
