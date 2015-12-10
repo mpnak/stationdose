@@ -24,7 +24,7 @@ class SpotifyManager: NSObject {
         spotifyAuthenticator.tokenRefreshURL = NSURL(string:Constants.Spotify.RefreshUrl)
         spotifyAuthenticator.tokenSwapURL = NSURL(string:Constants.Spotify.SwapUrl)
         
-        if spotifyAuthenticator.session.isValid() {
+        if let session = spotifyAuthenticator.session where session.isValid() {
             self.player = SPTAudioStreamingController(clientId: spotifyAuthenticator.clientID)
         }
     }

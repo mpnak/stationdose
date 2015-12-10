@@ -45,7 +45,6 @@ class RequestPremiumViewController: UIViewController {
         SpotifyManager.sharedInstance.checkPremium { isPremium in
             if isPremium{
                 ModelManager.sharedInstance.initialCache { () -> Void in
-                    //self.activityIndicator.stopAnimating()
                     self.radioActivityIndicator.stopAnimation()
                     timer.invalidate()
                     self.performSegueWithIdentifier(Constants.Segues.RequestPremiumToHomeSegue, sender: self)
