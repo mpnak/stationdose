@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var radioActivityIndicator:NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addFullBackground()
+        activityIndicator.setNeedsLayout()
+        activityIndicator.layoutIfNeeded()
+        activityIndicator.hidden = true
+        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSpotifyGreenColor())
+        self.view.addSubview(radioActivityIndicator)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionValid:", name: Constants.Notifications.sessionValidNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionError:", name: Constants.Notifications.sessionErrorNotification, object: nil)
         
@@ -27,7 +34,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginWithSpotify(sender: UIButton) {
         SpotifyManager.sharedInstance.openLogin()
-        self.activityIndicator.startAnimating()
+        //self.activityIndicator.startAnimating()
+        radioActivityIndicator.startAnimation()
         sender.borderColor = UIColor.customButtonBorderColor()
     }
     
@@ -49,12 +57,14 @@ class LoginViewController: UIViewController {
             
             if isPremium {
                 ModelManager.sharedInstance.initialCache { () -> Void in
-                    self.activityIndicator.stopAnimating()
+                    //self.activityIndicator.stopAnimating()
+                    self.radioActivityIndicator.stopAnimation()
                     self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
                 }
                 
             } else {
-                self.activityIndicator.stopAnimating()
+                //self.activityIndicator.stopAnimating()
+                self.radioActivityIndicator.stopAnimation()
                 self.performSegueWithIdentifier(Constants.Segues.LoginToRequestPremiumSegue, sender: self)
             }
         }

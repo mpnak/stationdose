@@ -12,7 +12,8 @@ import NVActivityIndicatorView
 
 class SplashViewController: UIViewController {
     
-    @IBOutlet weak var activityIndicator: UIView!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private var transitionManager: TransitionManager!
     
     override func viewDidLoad() {
@@ -21,10 +22,10 @@ class SplashViewController: UIViewController {
         activityIndicator.setNeedsLayout()
         activityIndicator.layoutIfNeeded()
         
-//        let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScalePulseOutRapid)
-        //self.view.addSubview(activityIndicatorView)
-        //activityIndicatorView.startAnimation()
-        //activityIndicatorView.alpha = 0.8
+        let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSpotifyGreenColor())
+        self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimation()
+        activityIndicatorView.alpha = 0.8
         
         addFullBackground()
         
@@ -49,7 +50,8 @@ class SplashViewController: UIViewController {
     func moveToNextController(){
         if (SpotifyManager.sharedInstance.hasSession) {
             if (SpotifyManager.sharedInstance.hasValidSession) {
-                moveToPremiumOrHome()
+                //moveToPremiumOrHome()
+                SpotifyManager.sharedInstance.renewSession()
             } else {
                 SpotifyManager.sharedInstance.renewSession()
                 //moveToLogin()

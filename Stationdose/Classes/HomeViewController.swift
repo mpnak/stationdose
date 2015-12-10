@@ -170,7 +170,20 @@ class HomeViewController: BaseViewController {
     
     @IBAction func showSponsoredStationAction(sender: AnyObject) {
         selectedStation = sponsoredStations.first
-        self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
+        let fullscreenView = FullScreenLoadingView()
+
+        fullscreenView.show()
+        
+        SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
+            if let tracks = tracks {
+                self.selectedStation!.tracks = tracks
+                self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
+                fullscreenView.hide()
+                
+                
+            }
+        })
+        
     }
     
     @IBAction func showFeaturedStationAction(sender: UIButton) {
@@ -179,7 +192,18 @@ class HomeViewController: BaseViewController {
             if let cell = cell as? FeaturedStationsCollectionViewCell {
                 if let station = cell.station {
                     selectedStation = station
-                    self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
+                    let fullscreenView = FullScreenLoadingView()
+                    fullscreenView.show()
+                    
+                    SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
+                        if let tracks = tracks {
+                            self.selectedStation!.tracks = tracks
+                            self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
+                            fullscreenView.hide()
+                            
+                            
+                        }
+                    })
                 }
             }
         }
@@ -413,8 +437,8 @@ extension HomeViewController: UITableViewDataSource {
             cell.savedImageView.alpha = 0
             cell.saveButton.alpha = 1
             cell.removeButton.alpha = 0
-            for playlist in myStations {
-                if playlist.station!.id == station.id {
+            for savedStation in myStations {
+                if savedStation.station!.id == station.id {
                     cell.savedImageView.alpha = 1
                     cell.saveButton.alpha = 0
                     cell.removeButton.alpha = 1
@@ -467,7 +491,7 @@ extension HomeViewController: UITableViewDataSource {
                         }
                     })
                 }
-                else if let station = self.selectedStation where station.tracks == nil{
+                else if let station = self.selectedStation{
                     fullscreenView.show()
                     
                     SongSortApiManager.sharedInstance.generateStationTracks((station.id)!, onCompletion: { (tracks, error) -> Void in

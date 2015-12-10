@@ -34,7 +34,7 @@ class PlaylistViewController: BaseViewController {
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription
         
-        if let featuredUrl = station?.url {
+        if let featuredUrl = station?.art {
             let URL = NSURL(string: featuredUrl)!
             bannerImageView?.af_setImageWithURL(URL)
         }
@@ -53,32 +53,20 @@ class PlaylistViewController: BaseViewController {
             if let theTracks = savedStation.tracks{
                 tracks = theTracks
             }else{
-                // TODO Loading animation
                 SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
                     if let tracks = tracks {
                         self.tracks = tracks
                         self.tracksTableView.reloadData()
-                        
-                        //TODO: stop animation
                         
                     }
                 })
             }
         } else {
             
-            tracks = []
-            
-            //TODO: loading animation
-            
-            SongSortApiManager.sharedInstance.generateStationTracks((station?.id)!, onCompletion: { (tracks, error) -> Void in
-                if let tracks = tracks {
-                    self.tracks = tracks
-                    self.tracksTableView.reloadData()
-                    
-                    //TODO: stop animation
-                    
-                }
-            })
+            if let theTracks = station!.tracks{
+                tracks = theTracks
+                self.tracksTableView.reloadData()
+            }
         }
     }
     
