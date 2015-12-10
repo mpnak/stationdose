@@ -24,7 +24,7 @@ class SpotifyManager: NSObject {
         return SPTAuth.defaultInstance().session;
     }
     
-    var audioStreamingController:SPTAudioStreamingController?
+    var player:SPTAudioStreamingController?
     
     private let callback:SPTAuthCallback = {(error: NSError!,session: SPTSession!) in
         
@@ -32,12 +32,12 @@ class SpotifyManager: NSObject {
             let errorNotification = NSNotification(name: Constants.Notifications.sessionErrorNotification,
                 object: error)
             NSNotificationCenter.defaultCenter().postNotification(errorNotification)
-            SpotifyManager.sharedInstance.audioStreamingController = nil
+            SpotifyManager.sharedInstance.player = nil
         } else {
             let validSessionNotification = NSNotification(name: Constants.Notifications.sessionValidNotification,
                 object: session)
             NSNotificationCenter.defaultCenter().postNotification(validSessionNotification)
-            SpotifyManager.sharedInstance.audioStreamingController = SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
+            SpotifyManager.sharedInstance.player = SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
         }
     }
     

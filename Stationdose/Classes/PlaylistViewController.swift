@@ -123,8 +123,9 @@ extension PlaylistViewController: UITableViewDataSource {
         
         cell.touchUpInsideAction = {
             PlaybackManager.sharedInstance.discardCurrentQueue()
-            PlaybackManager.sharedInstance.addTrack(cell.track!)
-            PlaybackManager.sharedInstance.play()
+            PlaybackManager.sharedInstance.addTracks([cell.track!], callback: { (error) -> () in
+                
+            })
         }
         
         if let liked = cell.track.liked {
