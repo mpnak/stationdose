@@ -25,7 +25,6 @@ class SplashViewController: UIViewController {
         let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSpotifyGreenColor())
         self.view.addSubview(activityIndicatorView)
         activityIndicatorView.startAnimation()
-        activityIndicatorView.alpha = 0.8
         
         addFullBackground()
         
