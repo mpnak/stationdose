@@ -33,6 +33,13 @@ class AlertView: NSObject {
         blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
     }
     
+    
+    class func genericErrorAlert()->AlertView{
+        return AlertView(title: "Error", message: "Sorry, we seem to be having technical difficulties.", acceptButtonTitle: "Go Back", cancelButtonTitle: nil, callback: { (accept) -> Void in
+            
+        })
+    }
+    
     func show() {
         
         if AlertView.retainedSelfs.indexOf(self) != nil {

@@ -96,7 +96,7 @@ class SplashViewController: UIViewController {
     }
     
     func onSessionError(notification:NSNotification){
-        showErrorMessage("There was a problem while trying to login to Spotify. Please rety in a few minutes.")
+        showGenericErrorMessage()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
