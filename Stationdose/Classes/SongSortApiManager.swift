@@ -40,8 +40,6 @@ class SongSortApiManager {
         self.baseURL = Constants.SognSort.baseDevelopmentUrl
     }
     
-
-    
     func getStations(onCompletion:([Station]?,NSError?) -> Void) {
         manager.request(.GET, baseURL+ApiMethods.stationsList).responseArray("stations") { (response: Response<[Station], NSError>) in
             self.showGenericErrorIfNeeded(response.result.error)
@@ -61,7 +59,6 @@ class SongSortApiManager {
             onCompletion(response.result.value, response.result.error)
         }
     }
-    
     
     func saveStation(stationId:Int, onCompletion:(SavedStation?,NSError?) -> Void) {
         guard let user = ModelManager.sharedInstance.user

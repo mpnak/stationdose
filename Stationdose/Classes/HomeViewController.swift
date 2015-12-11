@@ -55,7 +55,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showUserProfileButton = true;
+        showUserProfileButton = true
         
         featuresStationsPageControl.numberOfPages = featuredStations.count
         reloadSponsoredStations()
@@ -73,7 +73,7 @@ class HomeViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         LocationManager.sharedInstance.getCurrentLocation(self) { (location, error) -> () in
-            self.currentLocation = location;
+            self.currentLocation = location
         }
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.SavedStationsDidChange.rawValue, object: nil)
@@ -170,8 +170,7 @@ class HomeViewController: BaseViewController {
     @IBAction func showSponsoredStationAction(sender: AnyObject) {
         selectedStation = sponsoredStations.first
         let fullscreenView = FullScreenLoadingView()
-        
-        fullscreenView.show()
+        fullscreenView.show(0.5)
         
         SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
             if let tracks = tracks {
@@ -190,8 +189,7 @@ class HomeViewController: BaseViewController {
                 if let station = cell.station {
                     selectedStation = station
                     let fullscreenView = FullScreenLoadingView()
-                    fullscreenView.show()
-                    
+                    fullscreenView.show(0.5)
                     SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
                         if let tracks = tracks {
                             self.selectedStation!.tracks = tracks
@@ -207,7 +205,7 @@ class HomeViewController: BaseViewController {
     }
     
     @IBAction func addStations(sender: AnyObject) {
-        stationsSegmentedControl.selectedSegmentIndex = 1;
+        stationsSegmentedControl.selectedSegmentIndex = 1
         stationsSegmentedControlValueChanged(stationsSegmentedControl)
     }
     
@@ -336,11 +334,11 @@ extension HomeViewController: UIScrollViewDelegate {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1;
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return featuredStations.count;
+        return featuredStations.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -354,7 +352,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.backgroundImage.af_setImageWithURL(URL)
         }
         
-        return cell;
+        return cell
     }
     
     func collectionView(collectionView : UICollectionView,layout collectionViewLayout:UICollectionViewLayout,sizeForItemAtIndexPath indexPath:NSIndexPath) -> CGSize
@@ -520,7 +518,7 @@ extension HomeViewController: UITableViewDataSource {
         let fullscreenView = FullScreenLoadingView()
         
         fullscreenView.setMessage("Just a moment, we’re building your playlist")
-        fullscreenView.show()
+        fullscreenView.show(0.5)
         SongSortApiManager.sharedInstance.getSavedStationTracks((selectedSavedStation!.id)!, onCompletion: { (tracks, error) -> Void in
             if let tracks = tracks where tracks.count>0 {
                 self.selectedSavedStation!.tracks = tracks
@@ -550,7 +548,7 @@ extension HomeViewController: UITableViewDataSource {
     
     func moveToStationPlaylist(){
         let fullscreenView = FullScreenLoadingView()
-        fullscreenView.show()
+        fullscreenView.show(0.5)
         
         SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
             if let tracks = tracks {

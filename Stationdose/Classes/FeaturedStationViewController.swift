@@ -19,7 +19,7 @@ class FeaturedStationViewController: PlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showUserProfileButton = true;
+        showUserProfileButton = true
         
         if station?.type == "featured" {
             descriptionLabel.text = station?.shortDescription

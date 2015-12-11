@@ -12,10 +12,21 @@ class FullScreenLoadingView: NSObject {
     
     private var internalView :InternalFullScreenLoadingView
     private var blurEffectView :UIVisualEffectView
+    private var hidden:Bool
     
     required override init () {
         internalView = InternalFullScreenLoadingView.instanceFromNib()
         blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
+        hidden = false
+        super.init()
+    }
+    
+    func show(delay:Double) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            if !self.hidden {
+                self.show()
+            }
+        }
     }
     
     func show() {
@@ -52,6 +63,7 @@ class FullScreenLoadingView: NSObject {
     }
     
     func hide() {
+        hidden = true
         UIApplication.sharedApplication().keyWindow!.windowLevel = UIWindowLevelNormal
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             self.internalView.alpha = 0

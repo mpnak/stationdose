@@ -53,26 +53,27 @@ class PlaybackManager: NSObject {
     
     func playTracks(tracks:[Track], callback:(error:NSError?)->()) {
         
-        cleanPlaybackControlView()
-        print("-----")
+        if tracks.count == 0 {
+            return
+        }
+        
+        if let track = tracks.first {
+            if track.id != currentTrack?.id {
+                cleanPlaybackControlView()
+            }
+        }
+        
         var urls = [NSURL]()
         for track in tracks {
             let urlString = String(format: "spotify:track:%@", arguments: [track.spotifyId!])
             urls.append(NSURL(string: urlString)!)
             tracksMap[urlString] = track
-            
-            print("track ", track.title)
         }
-        print("-----")
         
         
-        player.setIsPlaying(false, callback: { (error) -> Void in 
-            
-        })
+        player.setIsPlaying(false, callback: { (error) -> Void in })
         
-        self.player.stop({ (error) -> Void in
-            
-        })
+        self.player.stop({ (error) -> Void in })
         
         self.player.playURIs(urls, withOptions: nil) { (error) -> Void in
             if let error = error {

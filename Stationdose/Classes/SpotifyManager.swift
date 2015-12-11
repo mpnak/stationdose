@@ -38,7 +38,7 @@ class SpotifyManager: NSObject {
     }
     
     var session:SPTSession!{
-        return SPTAuth.defaultInstance().session;
+        return SPTAuth.defaultInstance().session
     }
     
     var player:SPTAudioStreamingController?
@@ -75,8 +75,6 @@ class SpotifyManager: NSObject {
         }
     }
     
-
-    
     func handleOpenURL(url: NSURL) ->Bool {
         if(SPTAuth.defaultInstance().canHandleURL(url)){
             SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: callback)
@@ -89,7 +87,6 @@ class SpotifyManager: NSObject {
     func openLogin() {
         let spotifyAuthenticator = SPTAuth.defaultInstance()
         UIApplication.sharedApplication().openURL(spotifyAuthenticator.loginURL)
-        //UIApplication.sharedApplication().openURL(Constants.Spotify.LoginUrl!)
     }
     
     func checkPremium(callback:(Bool)->()) {

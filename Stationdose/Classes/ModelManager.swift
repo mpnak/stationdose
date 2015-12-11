@@ -30,8 +30,8 @@ class ModelManager: NSObject {
     override init() {
         savedStations = []
         stations = []
-        featuredStations = [];
-        sponsoredStations = [];
+        featuredStations = []
+        sponsoredStations = []
         
         super.init()
     }
@@ -56,7 +56,7 @@ class ModelManager: NSObject {
                 return  NSURLRequest(URL: NSURL(string: artUrl)!)
                 
             } else {
-                return nil;
+                return nil
             }
         }
         
@@ -65,7 +65,7 @@ class ModelManager: NSObject {
                 return  NSURLRequest(URL: NSURL(string: url)!)
                 
             } else {
-                return nil;
+                return nil
             }
         }
         
@@ -135,8 +135,7 @@ class ModelManager: NSObject {
                 self.sponsoredStations = stations.filter{ $0.type == "sponsored" }
                 self.postEvent(.StationsDidReloadFromServer)
             }
-            self.requestStationsFeaturedSponsoredImages(onCompletion);
-            //onCompletion()
+            self.requestStationsFeaturedSponsoredImages(onCompletion)
         }
     }
     
