@@ -53,7 +53,6 @@ class PlaybackManager: NSObject {
     
     func playTracks(tracks:[Track], callback:(error:NSError?)->()) {
         
-//        self.pause()
         cleanPlaybackControlView()
         print("-----")
         var urls = [NSURL]()
@@ -66,22 +65,21 @@ class PlaybackManager: NSObject {
         }
         print("-----")
         
-//        if currentTrack == nil {
+        
+        player.setIsPlaying(false, callback: { (error) -> Void in 
+            
+        })
+        
+        self.player.stop({ (error) -> Void in
+            
+        })
+        
         self.player.playURIs(urls, withOptions: nil) { (error) -> Void in
             if let error = error {
                 print("error ", error)
             }
             callback(error: error)
-            self.play()
         }
-//        } else {
-//            self.player.replaceURIs(urls, withCurrentTrack: 0, callback: { (error) -> Void in
-//                if let error = error {
-//                    print("error ", error)
-//                }
-//                callback(error: error)
-//            })
-//        }
         
         self.player.playURIs(urls, withOptions: nil) { (error) -> Void in
             if let error = error {
@@ -158,5 +156,9 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
                 NSNotificationCenter.defaultCenter().postNotificationName("playbackCurrentTrackDidChange", object: nil)
             }
         }
+    }
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
+        AlertView.genericErrorAlert().show()
     }
 }
