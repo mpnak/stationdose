@@ -268,7 +268,7 @@ Please sign in to your account to start.</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                                         <animations/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qar-6M-lHy">
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qar-6M-lHy">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                                         <animations/>
                                                         <connections>
@@ -356,7 +356,7 @@ Please sign in to your account to start.</string>
                                                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hot tracks Mr. Legend is listening to" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4e-98-N2h">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hot tracks Mr. Legend is listening to" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4e-98-N2h">
                                                                                                     <rect key="frame" x="10" y="30" width="187.5" height="16"/>
                                                                                                     <animations/>
                                                                                                     <constraints>
@@ -383,6 +383,7 @@ Please sign in to your account to start.</string>
                                                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="53" id="Svy-P2-sAh"/>
+                                                                                                <constraint firstItem="Peo-ac-41p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h4e-98-N2h" secondAttribute="trailing" id="cNh-4A-J3k"/>
                                                                                                 <constraint firstItem="Peo-ac-41p" firstAttribute="centerY" secondItem="TxW-hr-67t" secondAttribute="centerY" id="hbf-sM-rNW"/>
                                                                                                 <constraint firstItem="oVy-W8-g85" firstAttribute="top" secondItem="TxW-hr-67t" secondAttribute="top" constant="7" id="kmg-Fd-Kgi"/>
                                                                                                 <constraint firstAttribute="bottom" secondItem="h4e-98-N2h" secondAttribute="bottom" constant="7" id="lH9-RN-IN0"/>
@@ -573,6 +574,7 @@ Please sign in to your account to start.</string>
                                                                             <constraints>
                                                                                 <constraint firstItem="eq5-x2-J0M" firstAttribute="leading" secondItem="peV-4n-uwh" secondAttribute="trailing" constant="16" id="1Rn-XK-I5Z"/>
                                                                                 <constraint firstItem="eq5-x2-J0M" firstAttribute="top" secondItem="XzH-dK-imf" secondAttribute="bottom" constant="1" id="NtY-oK-EAB"/>
+                                                                                <constraint firstItem="W1q-w2-Lzr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eq5-x2-J0M" secondAttribute="trailing" id="ZMF-Ch-C50"/>
                                                                                 <constraint firstItem="XzH-dK-imf" firstAttribute="leading" secondItem="peV-4n-uwh" secondAttribute="trailing" constant="16" id="hT1-o3-kov"/>
                                                                                 <constraint firstItem="W1q-w2-Lzr" firstAttribute="centerY" secondItem="peV-4n-uwh" secondAttribute="centerY" id="ndI-64-08I"/>
                                                                                 <constraint firstItem="peV-4n-uwh" firstAttribute="leading" secondItem="Kig-dW-rlb" secondAttribute="leading" id="p3d-Yh-WjO"/>
@@ -585,9 +587,9 @@ Please sign in to your account to start.</string>
                                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <connections>
                                                                             <outlet property="coverImageView" destination="peV-4n-uwh" id="RuW-ul-8BC"/>
-                                                                            <outlet property="nameLabel" destination="XzH-dK-imf" id="IXl-Je-XlV"/>
                                                                             <outlet property="nextButton" destination="W1q-w2-Lzr" id="sVS-2y-gT2"/>
                                                                             <outlet property="shortDescriptionLabel" destination="eq5-x2-J0M" id="B4X-WO-dQT"/>
+                                                                            <outlet property="titleLabel" destination="XzH-dK-imf" id="IXl-Je-XlV"/>
                                                                         </connections>
                                                                     </tableViewCell>
                                                                 </prototypes>
@@ -774,13 +776,13 @@ Please sign in to your account to start.</string>
                                                                             <outlet property="addedMessageView" destination="tTK-K9-UOy" id="4eE-eI-dA2"/>
                                                                             <outlet property="coverImageView" destination="8zY-Fv-NRm" id="eFs-2x-yWe"/>
                                                                             <outlet property="mySelectedBackgroundView" destination="JTe-Jh-GwP" id="vky-cj-YIB"/>
-                                                                            <outlet property="nameLabel" destination="4bv-yQ-eFh" id="ipp-cH-Tx7"/>
                                                                             <outlet property="nextButton" destination="kpi-uh-qGq" id="XdM-JF-PN5"/>
                                                                             <outlet property="removeButton" destination="BMc-b8-blk" id="Jbv-rI-xns"/>
                                                                             <outlet property="removedMessageView" destination="YIm-n2-lij" id="oGD-Xx-BZ8"/>
                                                                             <outlet property="saveButton" destination="Wip-1v-1NC" id="SwY-bI-kQi"/>
                                                                             <outlet property="savedImageView" destination="CFK-2u-QkV" id="5vJ-JU-5bR"/>
                                                                             <outlet property="shortDescriptionLabel" destination="P2a-oj-yLP" id="y3f-QL-BUf"/>
+                                                                            <outlet property="titleLabel" destination="4bv-yQ-eFh" id="ipp-cH-Tx7"/>
                                                                         </connections>
                                                                     </tableViewCell>
                                                                 </prototypes>

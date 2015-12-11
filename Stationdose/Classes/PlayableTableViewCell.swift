@@ -12,10 +12,10 @@ class PlayableTableViewCell: BaseTableViewCell {
     
     
     @IBOutlet weak var coverImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     func setPlaying(selected: Bool) {
-        nameLabel.textColor = selected ? UIColor.customSectionDividersColor() : UIColor.whiteColor()
+        titleLabel?.textColor = selected ? UIColor.customSectionDividersColor() : UIColor.whiteColor()
     }
     
 }

@@ -130,7 +130,7 @@ class ModelManager: NSObject {
     func reloadStations(onCompletion:() -> Void) {
         SongSortApiManager.sharedInstance.getStations { (stations, error) -> Void in
             if let stations = stations {
-                self.stations = stations
+                self.stations = stations.filter{ $0.type == "standard" }
                 self.featuredStations = stations.filter{ $0.type == "featured" }
                 self.sponsoredStations = stations.filter{ $0.type == "sponsored" }
                 self.postEvent(.StationsDidReloadFromServer)

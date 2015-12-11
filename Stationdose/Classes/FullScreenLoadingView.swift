@@ -14,19 +14,12 @@ class FullScreenLoadingView: NSObject {
     private var blurEffectView :UIVisualEffectView
     
     required override init () {
-        
         internalView = InternalFullScreenLoadingView.instanceFromNib()
         blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
-    
     }
     
-    
     func show() {
-        
-        
         let window = UIApplication.sharedApplication().keyWindow!
-        
-
         
         window.windowLevel = UIWindowLevelStatusBar + 1
         

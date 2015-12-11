@@ -31,6 +31,5 @@ class FeaturedStationViewController: PlaylistViewController {
             featuredTitleView.alpha = 0
             sponsoredTitleView.alpha = 1
         }
-        
     }
 }
