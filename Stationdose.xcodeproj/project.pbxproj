@@ -370,6 +370,11 @@
 					CDBE23091BF92DFB00291F56 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 9DBVBC4284;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
