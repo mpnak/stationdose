@@ -63,7 +63,7 @@ class PlaylistViewController: BaseViewController {
             }
         } else {
             
-            if let theTracks = station!.tracks{
+            if let theTracks = station?.tracks{
                 tracks = theTracks
                 self.tracksTableView.reloadData()
             }

@@ -88,7 +88,11 @@ class HomeViewController: BaseViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
             destinationViewController.savedStation = selectedSavedStation
-            destinationViewController.station = selectedSavedStation?.station
+            if let station = selectedSavedStation?.station{
+                destinationViewController.station = station
+            }else{
+                destinationViewController.station = selectedStation
+            }
             
         }
         
