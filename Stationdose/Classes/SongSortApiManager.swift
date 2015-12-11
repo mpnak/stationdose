@@ -26,6 +26,7 @@ class SongSortApiManager {
         static let playTrack = "tracks/%i/play"
         static let skipTrack = "tracks/%i/skipped"
         static let favoriteTrack = "tracks/%i/favorited"
+        static let unfavoriteTrack = "tracks/%i/unfavorited"
         static let banTrack = "tracks/%i/banned"
         static let renewSession = "spotify/sessions"
     }
@@ -76,7 +77,13 @@ class SongSortApiManager {
     }
     
     func generateSavedStationTracks(savedStationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
-        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+        guard let user = ModelManager.sharedInstance.user
+            else{
+                onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+                return
+        }
+        let data = ["user_id": user.id!]
+        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStationId),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
             onCompletion(response.result.value, response.result.error)
         }
     }
@@ -89,7 +96,13 @@ class SongSortApiManager {
     
     
     func getSavedStationTracks(stationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
-        manager.request(.GET, baseURL+String(format: ApiMethods.savedStationTraks, stationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+        guard let user = ModelManager.sharedInstance.user
+            else{
+                onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+                return
+        }
+        let data = ["user_id": user.id!]
+        manager.request(.GET, baseURL+String(format: ApiMethods.savedStationTraks, stationId),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
             onCompletion(response.result.value, response.result.error)
         }
     }
@@ -101,19 +114,39 @@ class SongSortApiManager {
     }
     
     func playTrack(playlistId:Int,trackId:Int) {
-        manager.request(.POST, baseURL+String(format: ApiMethods.playTrack, playlistId,trackId))
+        manager.request(.POST, baseURL+String(format: ApiMethods.playTrack,trackId))
     }
     
     func skipTrack(playlistId:Int,trackId:Int) {
-        manager.request(.POST, baseURL+String(format: ApiMethods.skipTrack, playlistId,trackId))
+        manager.request(.POST, baseURL+String(format: ApiMethods.skipTrack,trackId))
     }
     
-    func favoriteTrack(playlistId:Int,trackId:Int) {
-        manager.request(.POST, baseURL+String(format: ApiMethods.favoriteTrack, playlistId,trackId))
+    func unfavoriteTrack(stationId:Int,savedStationId:Int,trackId:Int) {
+        guard let user = ModelManager.sharedInstance.user
+            else{
+                return
+        }
+        let data = ["user_id": user.id!,"station_id":stationId,"saved_station_id":savedStationId]
+        manager.request(.POST, baseURL+String(format: ApiMethods.unfavoriteTrack,trackId),parameters:data)
     }
     
-    func banTrack(playlistId:Int,trackId:Int) {
-        manager.request(.POST, baseURL+String(format: ApiMethods.banTrack, playlistId,trackId))
+    func favoriteTrack(stationId:Int,savedStationId:Int,trackId:Int) {
+        guard let user = ModelManager.sharedInstance.user
+            else{
+                return
+        }
+        let data = ["user_id": user.id!,"station_id":stationId,"saved_station_id":savedStationId]
+        manager.request(.POST, baseURL+String(format: ApiMethods.favoriteTrack,trackId),parameters:data)
+    }
+    
+    
+    func banTrack(stationId:Int,savedStationId:Int,trackId:Int) {
+        guard let user = ModelManager.sharedInstance.user
+            else{
+                return
+        }
+        let data = ["user_id": user.id!,"station_id":stationId,"saved_station_id":savedStationId]
+        manager.request(.POST, baseURL+String(format: ApiMethods.banTrack,trackId),parameters:data)
     }
     
     func renewSession(spotifyToken:String,onCompletion:(User?,NSError?) -> Void){

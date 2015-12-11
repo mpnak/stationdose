@@ -37,6 +37,7 @@ class HomeViewController: BaseViewController {
         myStations = ModelManager.sharedInstance.savedStations
         featuredStations = ModelManager.sharedInstance.featuredStations
         
+        
         sponsoredStations = ModelManager.sharedInstance.sponsoredStations
         
         super.init(coder: aDecoder)
@@ -90,6 +91,7 @@ class HomeViewController: BaseViewController {
             destinationViewController.station = selectedStation
             
         }
+        
     }
     
     func featuredStationsTimerStep() {
@@ -164,6 +166,7 @@ class HomeViewController: BaseViewController {
     @IBAction func showSponsoredStationAction(sender: AnyObject) {
         selectedStation = sponsoredStations.first
         let fullscreenView = FullScreenLoadingView()
+        
         fullscreenView.show()
         
         SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
@@ -220,7 +223,7 @@ class HomeViewController: BaseViewController {
         if myStations.count == 0 {
             UIView.animateWithDuration(0.1, delay: moveToLeft ? 0.0 : 0.1, options: .CurveEaseInOut, animations: { () -> Void in
                 self.myStationsEmptyView.alpha = moveToLeft ? 0 : 1
-            }, completion: nil)
+                }, completion: nil)
         }
         
         closeTableViewSwipeButtons(myStationsTableView, animated:true)
@@ -482,39 +485,78 @@ extension HomeViewController: UITableViewDataSource {
         }
         
         if selectedStation != nil || selectedSavedStation != nil {
-            let fullscreenView = FullScreenLoadingView()
-            
+            if let savedStation = self.selectedSavedStation where savedStation.tracks == nil {
+                moveToSavedStationPlaylist()
+            }
+            else if let station = self.selectedStation{
                 
-                if let savedStation = self.selectedSavedStation where savedStation.tracks == nil {
-                    fullscreenView.show()
-                    SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
-                        if let tracks = tracks {
-                            savedStation.tracks = tracks
-                            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                            
-                            fullscreenView.hide()
-                            
-                        }
-                    })
+                for savedStation in myStations {
+                    if savedStation.station!.id == station.id {
+                        self.selectedSavedStation = savedStation
+                        
+                        break
+                    }
                 }
-                else if let station = self.selectedStation{
-                    fullscreenView.show()
-                    
-                    SongSortApiManager.sharedInstance.generateStationTracks((station.id)!, onCompletion: { (tracks, error) -> Void in
-                        if let tracks = tracks {
-                            station.tracks = tracks
-                            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                            fullscreenView.hide()
-                            
-                            
-                        }
-                    })
+                if let savedStation = self.selectedSavedStation where savedStation.tracks == nil {
+                    moveToSavedStationPlaylist()
+                }else if let _ = self.selectedSavedStation{
+                    self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
                 }else{
-                  self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+                    moveToStationPlaylist()
+                }
+            }else{
+                self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
             }
             
         }
         
+    }
+    
+    func moveToSavedStationPlaylist(){
+        let fullscreenView = FullScreenLoadingView()
+        
+        fullscreenView.setMessage("Just a moment, we’re building your playlist")
+        fullscreenView.show()
+        SongSortApiManager.sharedInstance.getSavedStationTracks((selectedSavedStation!.id)!, onCompletion: { (tracks, error) -> Void in
+            if let tracks = tracks where tracks.count>0 {
+                self.selectedSavedStation!.tracks = tracks
+                self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+                
+                fullscreenView.hide()
+                
+            }else{
+                fullscreenView.setMessage("Just a moment, we’re building your playlist")
+                SongSortApiManager.sharedInstance.generateSavedStationTracks((self.selectedSavedStation!.id)!, onCompletion: { (tracks, error) -> Void in
+                    if let tracks = tracks {
+                        self.selectedSavedStation!.tracks = tracks
+                        self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+                        
+                        fullscreenView.hide()
+                        
+                    }
+                })
+                
+            }
+        })
+        
+        
+
+        
+    }
+    
+    func moveToStationPlaylist(){
+        let fullscreenView = FullScreenLoadingView()
+        fullscreenView.show()
+        
+        SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
+            if let tracks = tracks {
+                self.selectedStation!.tracks = tracks
+                self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+                fullscreenView.hide()
+                
+                
+            }
+        })
     }
     
     @IBAction func saveStation(sender: UIButton) {
@@ -560,10 +602,10 @@ extension HomeViewController: UITableViewDataSource {
                         cell.savedImageView.alpha = 0
                         
                         UIView.animateWithDuration(0.1, animations: { () -> Void in
-                                cell.removedMessageView.alpha = 1
+                            cell.removedMessageView.alpha = 1
                             }, completion: { (_) -> Void in
                                 UIView.animateWithDuration(0.1, delay: 1.5, options: .CurveEaseInOut, animations: { () -> Void in
-                                        cell.removedMessageView.alpha = 0
+                                    cell.removedMessageView.alpha = 0
                                     }, completion:nil)
                         })
                         

@@ -34,6 +34,10 @@ class FullScreenLoadingView: NSObject {
         }
     }
     
+    func setMessage(message:String){
+        internalView.messageLabel.text = message
+    }
+    
     private func setupBlur() {
         
         internalView.layoutIfNeeded()

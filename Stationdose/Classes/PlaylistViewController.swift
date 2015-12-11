@@ -103,6 +103,49 @@ extension PlaylistViewController: UITableViewDataSource {
         return tracks.count
     }
     
+    func like()->MGSwipeButton{
+        return MGSwipeButton(title: nil, icon: UIImage(named: "btn-like-track"), backgroundColor: UIColor.customToggleOnColor(), callback: { (cell) -> Bool in
+            
+            if let cell = cell as? TrackTableViewCell {
+                if cell.track.liked == nil || !cell.track.liked! {
+                    SongSortApiManager.sharedInstance.favoriteTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
+                    cell.likedImageView.alpha = 1
+                    cell.track.liked = true
+                    cell.leftButtons = [self.unlike()]
+                    self.tracksTableView.beginUpdates()
+                    let indexPath = self.tracksTableView.indexPathForCell(cell)
+                    self.tracksTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+                    self.tracksTableView.endUpdates()
+
+
+                    
+                }
+            }
+            return true
+        })
+    }
+    
+    func unlike()->MGSwipeButton{
+        return MGSwipeButton(title: nil, icon: UIImage(named: "btn-unlike-track"), backgroundColor: UIColor.customToggleOnColor(), callback: { (cell) -> Bool in
+            
+            if let cell = cell as? TrackTableViewCell {
+                if cell.track.liked! {
+                    SongSortApiManager.sharedInstance.unfavoriteTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
+                    cell.likedImageView.alpha = 0
+                    cell.track.liked = false
+                    cell.leftButtons = [self.like()]
+                    self.tracksTableView.beginUpdates()
+                    let indexPath = self.tracksTableView.indexPathForCell(cell)
+                    self.tracksTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+                    self.tracksTableView.endUpdates()
+                    
+                }
+            }
+            return true
+        });
+        
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TrackTableViewCellIdentifier") as! TrackTableViewCell
         
@@ -139,7 +182,7 @@ extension PlaylistViewController: UITableViewDataSource {
             
             let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-track"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
                 if let cell = cell as? TrackTableViewCell {
-                    SongSortApiManager.sharedInstance.banTrack(self.savedStation!.id!, trackId: cell.track.id!)
+                    SongSortApiManager.sharedInstance.banTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tracksTableView.beginUpdates()
                         self.tracksTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Middle)
@@ -155,20 +198,15 @@ extension PlaylistViewController: UITableViewDataSource {
             cell.rightSwipeSettings.transition = .Drag
             
             if cell.likedImageView.alpha == 0 {
-                let likeButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-like-track"), backgroundColor: UIColor.customToggleOnColor(), callback: { (cell) -> Bool in
-                    
-                    if let cell = cell as? TrackTableViewCell {
-                        if cell.track.liked == nil || !cell.track.liked! {
-                            SongSortApiManager.sharedInstance.banTrack(self.savedStation!.id!, trackId: cell.track.id!)
-                            cell.likedImageView.alpha = 1
-                            cell.track.liked = true
-                            cell.leftButtons = nil
-                        }
-                    }
-                    return true
-                })
+
+                let likeButton = like()
                 likeButton.setPadding(0)
                 cell.leftButtons = [likeButton]
+                cell.leftSwipeSettings.transition = .Drag
+            }else{
+                let unLikeButton = unlike()
+                unLikeButton.setPadding(0)
+                cell.leftButtons = [unLikeButton]
                 cell.leftSwipeSettings.transition = .Drag
             }
             
