@@ -29,6 +29,7 @@ class Track: Mappable {
         title               <- map["title"]
         artist              <- map["artist"]
         undergroundness     <- map["undergroundness"]
+        liked               <- map["favorited"]
     }
 
 }

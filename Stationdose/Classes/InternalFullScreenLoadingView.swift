@@ -13,12 +13,11 @@ class InternalFullScreenLoadingView: UIView {
 
     @IBOutlet weak var activityIndicatoer: UIActivityIndicatorView!
     var radioActivityIndicator:NVActivityIndicatorView!
-
+    @IBOutlet weak var messageLabel: UILabel!
     
     override func awakeFromNib() {
+        
         activityIndicatoer.hidden = true
-        //activityIndicatoer.setNeedsLayout()
-        //activityIndicatoer.layoutIfNeeded()
 
 
     }

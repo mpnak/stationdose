@@ -54,6 +54,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <connections>
                 <outlet property="activityIndicatoer" destination="nLk-z9-Tba" id="Pd4-hs-9GZ"/>
+                <outlet property="messageLabel" destination="qi7-af-z9r" id="ZBC-00-OWu"/>
             </connections>
         </view>
     </objects>
