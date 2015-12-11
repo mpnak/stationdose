@@ -73,6 +73,8 @@
                 <constraint firstAttribute="trailing" secondItem="VCI-ZZ-54C" secondAttribute="trailing" id="Ze7-KZ-zhQ"/>
                 <constraint firstItem="j2q-hQ-dmZ" firstAttribute="top" secondItem="VCI-ZZ-54C" secondAttribute="bottom" id="gsu-Z7-edv"/>
                 <constraint firstItem="VCI-ZZ-54C" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kBm-Tm-vcQ"/>
+                <constraint firstItem="j2q-hQ-dmZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XTH-k6-500" secondAttribute="trailing" id="kjY-UE-aBH"/>
+                <constraint firstItem="j2q-hQ-dmZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ixf-qS-uDT" secondAttribute="trailing" id="njV-VW-sg7"/>
                 <constraint firstAttribute="bottom" secondItem="XTH-k6-500" secondAttribute="bottom" constant="9" id="tyk-VU-kaO"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

@@ -151,6 +151,9 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
             if let track = tracksMap[url as! String] {
                 playbackControlView?.titleLabel.text = track.title
                 playbackControlView?.artistLabel.text = track.artist
+                playbackControlView?.playButton.alpha = 0
+                playbackControlView?.pauseButton.alpha = 1
+                setPlayPauseButtonsEnabled(true)
                 currentTrack = track
                 NSNotificationCenter.defaultCenter().postNotificationName("playbackCurrentTrackDidChange", object: nil)
             }
