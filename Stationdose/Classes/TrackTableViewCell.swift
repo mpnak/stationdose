@@ -12,8 +12,19 @@ import MGSwipeTableCell
 class TrackTableViewCell: PlayableTableViewCell {
     
     var track: Track!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var likedImageView: UIImageView!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "validatePlaying", name: "playbackCurrentTrackDidChange", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func validatePlaying() {
+        self.setPlaying(track.id == PlaybackManager.sharedInstance.currentTrack?.id)
+    }
 }

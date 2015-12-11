@@ -150,6 +150,8 @@ extension PlaylistViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("TrackTableViewCellIdentifier") as! TrackTableViewCell
         
         cell.track = tracks![indexPath.row]
+        cell.validatePlaying()
+        
         cell.titleLabel.text = cell.track?.title
         cell.subtitleLabel.text = cell.track?.artist
         
@@ -164,6 +166,8 @@ extension PlaylistViewController: UITableViewDataSource {
                     tracks.append(track)
                 }
             }
+            
+            print("selected track ", cell.track.title)
             
             PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
         }

@@ -35,10 +35,7 @@ class HomeViewController: BaseViewController {
         stationsList = ModelManager.sharedInstance.stations
         featuredStations = []
         myStations = ModelManager.sharedInstance.savedStations
-        //        featuredStations = ModelManager.sharedInstance.featuredStations
-        if(ModelManager.sharedInstance.featuredStations.count>0){
-            featuredStations = Array(count: 5, repeatedValue: ModelManager.sharedInstance.featuredStations.first!)
-        }
+        featuredStations = ModelManager.sharedInstance.featuredStations
         
         
         sponsoredStations = ModelManager.sharedInstance.sponsoredStations
@@ -70,7 +67,7 @@ class HomeViewController: BaseViewController {
         
         reloadData()
         
-        //featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "featuredStationsTimerStep", userInfo: nil, repeats: true)
+        featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "featuredStationsTimerStep", userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -92,8 +89,6 @@ class HomeViewController: BaseViewController {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
             destinationViewController.savedStation = selectedSavedStation
             destinationViewController.station = selectedStation
-            
-            
             
         }
         
@@ -179,8 +174,6 @@ class HomeViewController: BaseViewController {
                 self.selectedStation!.tracks = tracks
                 self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
                 fullscreenView.hide()
-                
-                
             }
         })
         
@@ -396,8 +389,16 @@ extension HomeViewController: UITableViewDataSource {
             
             cell.station = station
             cell.savedStation = savedStation
-            cell.nameLabel.text = station!.name
+            cell.titleLabel.text = station!.name
             cell.shortDescriptionLabel.text = station!.shortDescription
+            
+            cell.coverImageView.image = nil
+            if let sponsoredUrl = station?.art {
+                let URL = NSURL(string: sponsoredUrl)!
+                cell.coverImageView.af_setImageWithURL(URL)
+            } else {
+                cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
+            }
             
             cell.backgroundColor = UIColor.clearColor()
             
@@ -431,8 +432,16 @@ extension HomeViewController: UITableViewDataSource {
             let cell:StationsListTableViewCell = tableView.dequeueReusableCellWithIdentifier("StationsListTableViewCellIdentifier") as! StationsListTableViewCell
             
             cell.station = station
-            cell.nameLabel.text = station.name
+            cell.titleLabel.text = station.name
             cell.shortDescriptionLabel.text = station.shortDescription
+            
+            cell.coverImageView.image = nil
+            if let sponsoredUrl = station.art {
+                let URL = NSURL(string: sponsoredUrl)!
+                cell.coverImageView.af_setImageWithURL(URL)
+            } else {
+                cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
+            }
             
             cell.savedImageView.alpha = 0
             cell.saveButton.alpha = 1
