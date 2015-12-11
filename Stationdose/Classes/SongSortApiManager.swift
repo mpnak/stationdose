@@ -44,6 +44,7 @@ class SongSortApiManager {
     
     func getStations(onCompletion:([Station]?,NSError?) -> Void) {
         manager.request(.GET, baseURL+ApiMethods.stationsList).responseArray("stations") { (response: Response<[Station], NSError>) in
+            self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
     }
@@ -51,10 +52,12 @@ class SongSortApiManager {
     func getSavedStations(onCompletion:([SavedStation]?,NSError?) -> Void) {
         guard let user = ModelManager.sharedInstance.user
             else{
+                self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
                 onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
                 return
         }
         manager.request(.GET, String(format:baseURL+ApiMethods.savedStations,user.id!)).responseArray("saved_stations") { (response: Response<[SavedStation], NSError>) in
+            self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
     }
@@ -63,11 +66,13 @@ class SongSortApiManager {
     func saveStation(stationId:Int, onCompletion:(SavedStation?,NSError?) -> Void) {
         guard let user = ModelManager.sharedInstance.user
         else{
+            self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
             onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
             return
         }
         let data = ["saved_station": ["user_id": user.id!, "station_id": stationId]]
         manager.request(.POST, String(format:baseURL+ApiMethods.savedStations,user.id!), parameters:data).responseObject("saved_station") { (response: Response<SavedStation, NSError>) -> Void in
+            self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
     }
@@ -79,17 +84,20 @@ class SongSortApiManager {
     func generateSavedStationTracks(savedStationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
         guard let user = ModelManager.sharedInstance.user
             else{
+                self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
                 onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
                 return
         }
         let data = ["user_id": user.id!]
         manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStationId),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
+            self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
     }
     
     func generateStationTracks(stationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
         manager.request(.POST, baseURL+String(format: ApiMethods.stationTraks, stationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+            self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
     }
@@ -98,17 +106,20 @@ class SongSortApiManager {
     func getSavedStationTracks(stationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
         guard let user = ModelManager.sharedInstance.user
             else{
+                self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
                 onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
                 return
         }
         let data = ["user_id": user.id!]
         manager.request(.GET, baseURL+String(format: ApiMethods.savedStationTraks, stationId),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
+            self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
     }
     
     func getStationTracks(stationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
         manager.request(.GET, baseURL+String(format: ApiMethods.stationTraks, stationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+            self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
     }
@@ -155,8 +166,16 @@ class SongSortApiManager {
             if let token = response.result.value?.accessToken{
                 self.manager.session.configuration.HTTPAdditionalHeaders = ["AUTHORIZATION": token]
             }
+            self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
             
         }
+    }
+    
+    func showGenericErrorIfNeeded(error:NSError?){
+        if let _ = error{
+           AlertView.genericErrorAlert().show()
+        }
+
     }
 }

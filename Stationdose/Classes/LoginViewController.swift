@@ -74,7 +74,7 @@ class LoginViewController: UIViewController {
     
     func onSessionError(notification:NSNotification){
         
-        showErrorMessage("There was a problem while trying to login to Spotify. Please retry in a few minutes.")
+        showGenericErrorMessage()
         
     }
     
