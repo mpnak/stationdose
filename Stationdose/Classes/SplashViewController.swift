@@ -22,7 +22,7 @@ class SplashViewController: UIViewController {
         activityIndicator.setNeedsLayout()
         activityIndicator.layoutIfNeeded()
         
-        let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSpotifyGreenColor())
+        let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
         self.view.addSubview(activityIndicatorView)
         activityIndicatorView.startAnimation()
         

@@ -30,7 +30,7 @@ class InternalFullScreenLoadingView: UIView {
         super.layoutSubviews()
         layoutIfNeeded()
 
-        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicatoer.frame, type: .LineScale, color:UIColor.customSpotifyGreenColor())
+        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicatoer.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
         addSubview(radioActivityIndicator)
         radioActivityIndicator.startAnimation()
         

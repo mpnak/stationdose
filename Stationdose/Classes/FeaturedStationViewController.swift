@@ -19,8 +19,6 @@ class FeaturedStationViewController: PlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showUserProfileButton = true
-        
         if station?.type == "featured" {
             descriptionLabel.text = station?.shortDescription
             descriptionViewHeightLayoutConstraint.constant = 300 //Any large number is ok

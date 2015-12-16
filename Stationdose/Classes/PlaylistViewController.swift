@@ -29,7 +29,8 @@ class PlaylistViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showUserProfileButton = true
+        showBrandingTitleView()
+        showUserProfileButton()
         
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription

@@ -55,12 +55,12 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showUserProfileButton = true
+        showBrandingTitleView()
+        showUserProfileButton()
         
         featuresStationsPageControl.numberOfPages = featuredStations.count
         reloadSponsoredStations()
         
-        showUserProfileButton = true
         stationsSegmentedControl.selectedSegmentIndex = myStations.count > 0 ? 0 : 1
         stationsListTableView.alpha = 1
         myStationsTableView.alpha = 0
@@ -176,7 +176,7 @@ class HomeViewController: BaseViewController {
             if let tracks = tracks {
                 self.selectedStation!.tracks = tracks
                 self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
-                fullscreenView.hide()
+                fullscreenView.hide(1.5)
             }
         })
         
@@ -194,9 +194,7 @@ class HomeViewController: BaseViewController {
                         if let tracks = tracks {
                             self.selectedStation!.tracks = tracks
                             self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
-                            fullscreenView.hide()
-                            
-                            
+                            fullscreenView.hide(1.5)
                         }
                     })
                 }
@@ -523,27 +521,19 @@ extension HomeViewController: UITableViewDataSource {
             if let tracks = tracks where tracks.count>0 {
                 self.selectedSavedStation!.tracks = tracks
                 self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                
-                fullscreenView.hide()
-                
-            }else{
+                fullscreenView.hide(1.5)
+            } else {
                 fullscreenView.setMessage("Just a moment, we’re building your playlist")
                 SongSortApiManager.sharedInstance.generateSavedStationTracks((self.selectedSavedStation!.id)!, onCompletion: { (tracks, error) -> Void in
                     if let tracks = tracks {
                         self.selectedSavedStation!.tracks = tracks
                         self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                        
-                        fullscreenView.hide()
-                        
+                        fullscreenView.hide(1.5)
                     }
                 })
                 
             }
         })
-        
-        
-
-        
     }
     
     func moveToStationPlaylist(){
@@ -554,9 +544,7 @@ extension HomeViewController: UITableViewDataSource {
             if let tracks = tracks {
                 self.selectedStation!.tracks = tracks
                 self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                fullscreenView.hide()
-                
-                
+                fullscreenView.hide(1.5)
             }
         })
     }

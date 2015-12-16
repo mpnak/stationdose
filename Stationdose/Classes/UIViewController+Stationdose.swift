@@ -26,22 +26,15 @@ extension UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    var showUserProfileButton: Bool? {
-        get {
-            return (self.navigationItem.rightBarButtonItem != nil)
-        }
-        
-        set {
-            if let newValue = newValue {
-                if newValue {
-                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-icon"), style: .Plain, target: self, action: "oppenUserProfileAction")
-                }
-            }
-        }
+    func showUserProfileButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-icon"), style: .Plain, target: self, action: "oppenUserProfileAction")
+    }
+    
+    func showBrandingTitleView() {
+        navigationItem.titleView = UIImageView(image: UIImage(named: "logo-min"))
     }
     
     func oppenUserProfileAction() {
         print("oppenUserProfileAction")
     }
-
 }

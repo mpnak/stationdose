@@ -18,6 +18,10 @@ class Track: Mappable {
     var undergroundness:String?
     var liked:Bool?
     
+    /*
+    {"favorited": true, "banned": false}
+    */
+    
     required init?(_ map: Map) {
         
     }

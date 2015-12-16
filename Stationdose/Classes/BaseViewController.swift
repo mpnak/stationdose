@@ -36,8 +36,6 @@ class BaseViewController: UIViewController {
                 showCustomBack()
             }
         }
-        
-        navigationItem.titleView = UIImageView(image: UIImage(named: "logo-min"))
     }
     
     override func viewWillLayoutSubviews() {

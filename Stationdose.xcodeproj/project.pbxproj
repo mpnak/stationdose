@@ -44,6 +44,7 @@
 		F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */; };
 		F10FB1771C0E3005000C90C1 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10FB1761C0E3005000C90C1 /* TrackTableViewCell.swift */; };
 		F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */; };
+		F114BFBE1C21EFB20000A3CC /* EditStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */; };
 		F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */; };
 		F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */; };
 		F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15593021C110447009CE684 /* FeaturedStationViewController.swift */; };
@@ -105,6 +106,7 @@
 		F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		F10FB1761C0E3005000C90C1 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
+		F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStationViewController.swift; sourceTree = "<group>"; };
 		F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayableTableViewCell.swift; sourceTree = "<group>"; };
 		F15593021C110447009CE684 /* FeaturedStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedStationViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				CD9FA4731BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift */,
 				F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */,
 				F15593021C110447009CE684 /* FeaturedStationViewController.swift */,
+				F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */,
 				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,
 				CD8666E61C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift in Sources */,
+				F114BFBE1C21EFB20000A3CC /* EditStationViewController.swift in Sources */,
 				CD9FA46A1BFB6BB0003B8A62 /* UIView+Inspectable.swift in Sources */,
 				CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */,
 				F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */,

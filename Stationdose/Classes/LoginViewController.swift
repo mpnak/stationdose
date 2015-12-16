@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
         activityIndicator.setNeedsLayout()
         activityIndicator.layoutIfNeeded()
         activityIndicator.hidden = true
-        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSpotifyGreenColor())
+        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
         self.view.addSubview(radioActivityIndicator)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionValid:", name: Constants.Notifications.sessionValidNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionError:", name: Constants.Notifications.sessionErrorNotification, object: nil)
