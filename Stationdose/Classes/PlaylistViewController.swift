@@ -71,6 +71,14 @@ class PlaylistViewController: BaseViewController {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destinationViewController = segue.destinationViewController as? EditStationViewController {
+            if let savedStation = self.savedStation{
+                destinationViewController.savedStation = savedStation
+            }
+        }
+    }
+    
     @IBAction func removeStation(sender: UIButton) {
         sender.enabled = false
         
