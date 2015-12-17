@@ -49,6 +49,55 @@ class ModelManager: NSObject {
         
     }
     
+    func generateAutomatedSavedStationsTracksAndCache(savedStations:[SavedStation],onCompletion:() -> Void){
+        
+        let group = dispatch_group_create()
+        
+        
+        savedStations.forEach { (savedStation) -> () in
+            dispatch_group_enter(group)
+            SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                savedStation.tracks = tracks;
+                dispatch_group_leave(group)
+            })
+        }
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            onCompletion()
+        }
+    }
+    
+    func reloadNotCachedSavedStationTracksAndCache(savedStation:SavedStation,onCompletion:() -> Void){
+        if(savedStation.tracks == nil){
+            
+            SongSortApiManager.sharedInstance.getSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                savedStation.tracks = tracks;
+                onCompletion()
+            })
+            
+        }
+
+    }
+    
+    
+    func reloadNotCachedStationTracksAndCache(station:Station,onCompletion:() -> Void){
+        if(station){
+            
+            SongSortApiManager.sharedInstance.generateStationTracks((station.id)!, onCompletion: { (tracks, error) -> Void in
+                station.tracks = tracks;
+                onCompletion()
+            })
+            
+        }
+        
+    }
+    
+    func forceGenerateSavedStationTracks(savedStation:SavedStation,onCompletion:() -> Void){
+        SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+            savedStation.tracks = tracks;
+            onCompletion()
+        })
+    }
+    
     func requestStationsFeaturedSponsoredImages(onCompletion:() -> Void){
         
         let requestImage = { (station:Station)->NSURLRequest? in
@@ -123,7 +172,7 @@ class ModelManager: NSObject {
                 self.savedStations = savedStations
                 self.postEvent(.SavedStationsDidReloadFromServer)
             }
-            onCompletion()
+            self.generateAutomatedSavedStationsTracksAndCache(self.savedStations, onCompletion: onCompletion)
         }
     }
     

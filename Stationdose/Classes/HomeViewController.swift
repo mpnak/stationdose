@@ -486,11 +486,12 @@ extension HomeViewController: UITableViewDataSource {
             }
         }
         
-        if selectedStation != nil || selectedSavedStation != nil {
-            if let savedStation = self.selectedSavedStation where savedStation.tracks == nil {
-                moveToSavedStationPlaylist()
-            }
-            else if let station = self.selectedStation{
+        if(selectedSavedStation != nil){
+            
+            moveToSavedStationPlaylist()
+            
+        }else if (selectedStation != nil){
+            if let station = self.selectedStation{
                 
                 for savedStation in myStations {
                     if savedStation.station!.id == station.id {
@@ -499,17 +500,12 @@ extension HomeViewController: UITableViewDataSource {
                         break
                     }
                 }
-                if let savedStation = self.selectedSavedStation where savedStation.tracks == nil {
-                    moveToSavedStationPlaylist()
-                }else if let _ = self.selectedSavedStation{
-                    self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                }else{
-                    moveToStationPlaylist()
-                }
-            }else{
-                self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
             }
-            
+            if(selectedSavedStation != nil){
+                moveToSavedStationPlaylist()
+            }else{
+                moveToStationPlaylist()
+            }
         }
         
     }
@@ -517,48 +513,23 @@ extension HomeViewController: UITableViewDataSource {
     func moveToSavedStationPlaylist(){
         let fullscreenView = FullScreenLoadingView()
         
-        fullscreenView.setMessage("Just a moment, we’re building your playlist")
+        fullscreenView.setMessage("Just a moment, we’re getting your playlist")
         fullscreenView.show(0.5)
-        SongSortApiManager.sharedInstance.getSavedStationTracks((selectedSavedStation!.id)!, onCompletion: { (tracks, error) -> Void in
-            if let tracks = tracks where tracks.count>0 {
-                self.selectedSavedStation!.tracks = tracks
-                self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                
-                fullscreenView.hide()
-                
-            }else{
-                fullscreenView.setMessage("Just a moment, we’re building your playlist")
-                SongSortApiManager.sharedInstance.generateSavedStationTracks((self.selectedSavedStation!.id)!, onCompletion: { (tracks, error) -> Void in
-                    if let tracks = tracks {
-                        self.selectedSavedStation!.tracks = tracks
-                        self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                        
-                        fullscreenView.hide()
-                        
-                    }
-                })
-                
-            }
-        })
-        
-        
-
-        
+        ModelManager.sharedInstance.reloadNotCachedSavedStationTracksAndCache(selectedSavedStation!) { () -> Void in
+            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+            fullscreenView.hide()
+        }
     }
     
     func moveToStationPlaylist(){
         let fullscreenView = FullScreenLoadingView()
+        fullscreenView.setMessage("Just a moment, we’re generating your playlist")
         fullscreenView.show(0.5)
         
-        SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
-            if let tracks = tracks {
-                self.selectedStation!.tracks = tracks
-                self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-                fullscreenView.hide()
-                
-                
-            }
-        })
+        ModelManager.sharedInstance.reloadNotCachedStationTracksAndCache(selectedStation!) { () -> Void in
+            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+            fullscreenView.hide()
+        }
     }
     
     @IBAction func saveStation(sender: UIButton) {
