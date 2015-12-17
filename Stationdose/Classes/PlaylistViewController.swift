@@ -14,6 +14,7 @@ class PlaylistViewController: BaseViewController {
     var savedStation:SavedStation?
     var station:Station?
     var tracks:[Track]!
+    let fullscreenView = FullScreenLoadingView()
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var bannerImageView: UIImageView!
@@ -25,6 +26,7 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var savedImageView: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +71,33 @@ class PlaylistViewController: BaseViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destinationViewController = segue.destinationViewController as? EditStationViewController {
-            if let savedStation = self.savedStation{
-                destinationViewController.savedStation = savedStation
-            }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"showPartialLoadingIfNeeded:", name: ModelManagerNotificationKey.WillStarAutouptadeStationTracksGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"hidePartialLoadingIfNeeded:", name: ModelManagerNotificationKey.DidFinishAutouptadeStationTracksGeneration.rawValue, object: nil)
+        
+
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.WillStarAutouptadeStationTracksGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.DidFinishAutouptadeStationTracksGeneration.rawValue, object: nil)
+    }
+    
+    func showPartialLoadingIfNeeded(notification:NSNotification){
+        if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
+            fullscreenView.setMessage("Just a moment, we’re generating your playlist")
+            fullscreenView.show(0.5)
+        }
+        
+    }
+    
+    func hidePartialLoadingIfNeeded(notification:NSNotification){
+        if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
+            fullscreenView.hide(1.5)
         }
     }
     

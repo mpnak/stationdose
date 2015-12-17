@@ -14,6 +14,8 @@ enum ModelManagerNotificationKey: String {
     case SavedStationsDidReloadFromServer
     case SavedStationsDidChange
     case AllDataDidReloadFromServer
+    case WillStarAutouptadeStationTracksGeneration
+    case DidFinishAutouptadeStationTracksGeneration
 }
 
 class ModelManager: NSObject {
@@ -47,6 +49,63 @@ class ModelManager: NSObject {
         }
 
         
+    }
+    
+    func generateAutomatedSavedStationsTracksAndCache(savedStations:[SavedStation],onCompletion:() -> Void){
+        
+        let group = dispatch_group_create()
+        
+        
+        savedStations.forEach { (savedStation) -> () in
+            
+            if let autoupdate = savedStation.autoupdate where autoupdate == true {
+                dispatch_group_enter(group)
+                postEvent(.WillStarAutouptadeStationTracksGeneration, id: savedStation.id!)
+                SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                    savedStation.tracks = tracks;
+                    self.postEvent(.DidFinishAutouptadeStationTracksGeneration, id: savedStation.id!)
+                    dispatch_group_leave(group)
+                })
+            }
+
+        }
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            onCompletion()
+        }
+    }
+    
+    func reloadNotCachedSavedStationTracksAndCache(savedStation:SavedStation,onCompletion:() -> Void){
+        if(savedStation.tracks == nil){
+            
+            SongSortApiManager.sharedInstance.getSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                savedStation.tracks = tracks;
+                onCompletion()
+            })
+            
+            
+        }else{
+            onCompletion()
+        }
+
+    }
+    
+    
+    func generateStationTracksAndCache(station:Station,onCompletion:() -> Void){
+        if(!station.isPlaying!){
+            SongSortApiManager.sharedInstance.generateStationTracks((station.id)!, onCompletion: { (tracks, error) -> Void in
+                station.tracks = tracks;
+                onCompletion()
+            })
+            
+        }
+        
+    }
+    
+    func forceGenerateSavedStationTracks(savedStation:SavedStation,onCompletion:() -> Void){
+        SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+            savedStation.tracks = tracks;
+            onCompletion()
+        })
     }
     
     func requestStationsFeaturedSponsoredImages(onCompletion:() -> Void){
@@ -114,7 +173,7 @@ class ModelManager: NSObject {
                 self.savedStations = savedStations
                 self.postEvent(.SavedStationsDidReloadFromServer)
             }
-            onCompletion()
+            self.generateAutomatedSavedStationsTracksAndCache(self.savedStations, onCompletion: onCompletion)
         }
     }
     
@@ -160,5 +219,10 @@ class ModelManager: NSObject {
     
     private func postEvent (notificationKey: ModelManagerNotificationKey) {
         NSNotificationCenter.defaultCenter().postNotificationName(notificationKey.rawValue, object: nil)
+    }
+    
+    private func postEvent(notificationKey: ModelManagerNotificationKey, id:Int ) {
+        let myDict = [ "id": id]
+        NSNotificationCenter.defaultCenter().postNotificationName(notificationKey.rawValue, object: myDict)
     }
 }
