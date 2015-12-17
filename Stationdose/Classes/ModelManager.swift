@@ -14,8 +14,8 @@ enum ModelManagerNotificationKey: String {
     case SavedStationsDidReloadFromServer
     case SavedStationsDidChange
     case AllDataDidReloadFromServer
-    case WillStarAutouptadeStationTracksGeneration
-    case DidFinishAutouptadeStationTracksGeneration
+    case WillStartSavedStationTracksReGeneration
+    case DidEndSavedStationTracksReGeneration
 }
 
 class ModelManager: NSObject {
@@ -60,10 +60,10 @@ class ModelManager: NSObject {
             
             if let autoupdate = savedStation.autoupdate where autoupdate == true {
                 dispatch_group_enter(group)
-                postEvent(.WillStarAutouptadeStationTracksGeneration, id: savedStation.id!)
+                postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
                 SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
                     savedStation.tracks = tracks;
-                    self.postEvent(.DidFinishAutouptadeStationTracksGeneration, id: savedStation.id!)
+                    self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
                     dispatch_group_leave(group)
                 })
             }
@@ -102,8 +102,10 @@ class ModelManager: NSObject {
     }
     
     func forceGenerateSavedStationTracks(savedStation:SavedStation,onCompletion:() -> Void){
+        postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
         SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
             savedStation.tracks = tracks;
+            self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
             onCompletion()
         })
     }
@@ -195,6 +197,30 @@ class ModelManager: NSObject {
                 self.postEvent(.StationsDidReloadFromServer)
             }
             self.requestStationsFeaturedSponsoredImages(onCompletion)
+        }
+    }
+    
+    func changeStationIndicator(savedStation: SavedStation,indicator:String, indicatorValue:AnyObject, onCompletion:() -> Void) {
+        
+        postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
+        SongSortApiManager.sharedInstance.changeStationIndicator(savedStation.id!, indicator: indicator, indicatorValue: indicatorValue) { (savedStation, error) -> Void in
+            if let savedStation = savedStation {
+                for (index, toChangeSavedStation) in self.savedStations.enumerate() {
+                    if toChangeSavedStation.id == savedStation.id{
+                        self.savedStations[index] = toChangeSavedStation
+                    }
+                }
+                
+                SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                    savedStation.tracks = tracks;
+                    self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
+                    onCompletion()
+                })
+                
+                onCompletion()
+            } else {
+                onCompletion()
+            }
         }
     }
     

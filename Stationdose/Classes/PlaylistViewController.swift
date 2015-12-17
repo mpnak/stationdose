@@ -76,17 +76,17 @@ class PlaylistViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"showPartialLoadingIfNeeded:", name: ModelManagerNotificationKey.WillStarAutouptadeStationTracksGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"hidePartialLoadingIfNeeded:", name: ModelManagerNotificationKey.DidFinishAutouptadeStationTracksGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"showPartialLoadingIfNeeded:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"hidePartialLoadingIfNeeded:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
         
-
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.WillStarAutouptadeStationTracksGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.DidFinishAutouptadeStationTracksGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
     }
     
     func showPartialLoadingIfNeeded(notification:NSNotification){
@@ -114,6 +114,38 @@ class PlaylistViewController: BaseViewController {
                 self.savedImageView.alpha = 0
             }
         }
+    }
+    @IBAction func forceRefresh(sender: UIButton) {
+        ModelManager.sharedInstance.forceGenerateSavedStationTracks(self.savedStation!){
+            
+        }
+        
+    }
+    
+    @IBAction func toggleWeather(sender: UIButton) {
+        
+        if let weatherIndicator = self.savedStation?.useWeather{
+            ModelManager.sharedInstance.changeStationIndicator(self.savedStation!, indicator: "use_timeofday", indicatorValue: !weatherIndicator){
+                
+            }
+        }else{
+            ModelManager.sharedInstance.changeStationIndicator(self.savedStation!, indicator: "use_timeofday", indicatorValue: true){
+            }
+        }
+        
+    }
+    
+    @IBAction func toggleUseTime(sender: UIButton) {
+        if let timeOfDayIndicator = self.savedStation?.useTimeofday{
+            ModelManager.sharedInstance.changeStationIndicator(self.savedStation!, indicator: "use_timeofday", indicatorValue: !timeOfDayIndicator){
+                
+            }
+        }else{
+            ModelManager.sharedInstance.changeStationIndicator(self.savedStation!, indicator: "use_timeofday", indicatorValue: true){
+            }
+            
+        }
+
     }
     
     @IBAction func saveStation(sender: UIButton) {
@@ -149,8 +181,8 @@ extension PlaylistViewController: UITableViewDataSource {
                     let indexPath = self.tracksTableView.indexPathForCell(cell)
                     self.tracksTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
                     self.tracksTableView.endUpdates()
-
-
+                    
+                    
                     
                 }
             }
@@ -231,7 +263,7 @@ extension PlaylistViewController: UITableViewDataSource {
             cell.rightSwipeSettings.transition = .Drag
             
             if cell.likedImageView.alpha == 0 {
-
+                
                 let likeButton = like()
                 likeButton.setPadding(0)
                 cell.leftButtons = [likeButton]
