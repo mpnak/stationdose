@@ -32,12 +32,18 @@ class PlaybackManager: NSObject {
                 print(error)
             }
         }
-        currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "currentTimeReload", userInfo: nil, repeats: true)
+        currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "currentTimeReload", userInfo: nil, repeats: true)
     }
     
     func currentTimeReload() {
         if player.currentTrackDuration > 0 {
             playbackControlView?.currentTimeProgressView.progress = Float(player.currentPlaybackPosition/player.currentTrackDuration)
+        } else {
+            playbackControlView?.currentTimeProgressView.progress = 0.0
+        }
+        if let superview = playbackControlView?.superview  {
+            playbackControlView?.removeFromSuperview()
+            superview.addSubview(playbackControlView!)
         }
     }
     
@@ -114,6 +120,8 @@ class PlaybackManager: NSObject {
         playbackControlView!.frame = frame
         window.addSubview(playbackControlView!)
         
+        window.addObserver(self, forKeyPath: "subviews", options: .New, context: nil)
+        
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             var frame = self.playbackControlView!.frame
             frame.origin.y -= 50
@@ -121,6 +129,10 @@ class PlaybackManager: NSObject {
             }) { (success) -> Void in
                 BaseViewController.setCustomViewHeight(window.bounds.size.height - 50 /*playback controller height*/ - 64 /*navigation bar height*/)
         }
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        print(keyPath)
     }
     
     private func cleanPlaybackControlView() {
