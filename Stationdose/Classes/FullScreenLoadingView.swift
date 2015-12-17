@@ -23,14 +23,20 @@ class FullScreenLoadingView: NSObject {
     }
     
     func show(delay:Double) {
+        self.hidden = false
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             if !self.hidden {
-                self.show()
+                self.internalShow()
             }
         }
     }
     
     func show() {
+        self.hidden = false
+        internalShow()
+    }
+    
+    private func internalShow() {
         showDate = NSDate()
         
         let window = UIApplication.sharedApplication().keyWindow!
