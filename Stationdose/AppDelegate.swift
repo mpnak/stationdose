@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupAppearance() {
         UINavigationBar.appearance().barTintColor = UIColor.customAppBackgroundColor()
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().tintColor = UIColor.customSecondaryTextButtonColor()
         UINavigationBar.appearance().translucent = false
     }
 

@@ -38,11 +38,9 @@ class PlaylistViewController: BaseViewController {
         if let featuredUrl = station?.art {
             let URL = NSURL(string: featuredUrl)!
             bannerImageView?.af_setImageWithURL(URL)
-        }
-        
-        if let featuredUrl = station?.art {
-            let URL = NSURL(string: featuredUrl)!
-            coverImageView?.af_setImageWithURL(URL)
+            coverImageView?.af_setImageWithURL(URL, placeholderImage: UIImage(named: "station-placeholder"))
+        } else {
+            coverImageView.image = UIImage(named: "station-placeholder")
         }
         
         saveButton?.alpha = savedStation == nil ? 1 : 0
@@ -193,10 +191,24 @@ extension PlaylistViewController: UITableViewDataSource {
                 if let cell = cell as? TrackTableViewCell {
                     SongSortApiManager.sharedInstance.banTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.tracksTableView.beginUpdates()
-                        self.tracksTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Middle)
-                        self.tracks?.removeAtIndex(indexPath.row)
-                        self.tracksTableView.endUpdates()
+                        
+                        if let tracks = self.tracks {
+                            var index: Int?
+                            for var i = 0; i<tracks.count; i++ {
+                                if cell.track?.id == tracks[i].id {
+                                    index = i
+                                    break
+                                }
+                            }
+                            
+                            if let index = index {
+                                self.tracksTableView.beginUpdates()
+                                self.tracksTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Middle)
+                                self.tracks?.removeAtIndex(index)
+                                self.tracksTableView.endUpdates()
+                            }
+                        }
+                        
                     })
                 }
                 
