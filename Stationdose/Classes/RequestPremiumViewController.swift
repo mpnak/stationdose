@@ -22,7 +22,7 @@ class RequestPremiumViewController: UIViewController {
         activityIndicator.setNeedsLayout()
         activityIndicator.layoutIfNeeded()
         activityIndicator.hidden = true
-        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSpotifyGreenColor())
+        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
         self.view.addSubview(radioActivityIndicator)
     }
     

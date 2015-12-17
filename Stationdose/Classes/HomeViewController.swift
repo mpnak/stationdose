@@ -21,6 +21,7 @@ class HomeViewController: BaseViewController {
     var selectedSavedStation: SavedStation?
     var selectedStation: Station?
     var featuredStationsTimer: NSTimer?
+    private let fullscreenView = FullScreenLoadingView()
     
     @IBOutlet weak var featuredStationsCollectionView: UICollectionView!
     @IBOutlet weak var sponsoredImageView: UIImageView!
@@ -55,12 +56,12 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showUserProfileButton = true
+        showBrandingTitleView()
+        showUserProfileButton()
         
         featuresStationsPageControl.numberOfPages = featuredStations.count
         reloadSponsoredStations()
         
-        showUserProfileButton = true
         stationsSegmentedControl.selectedSegmentIndex = myStations.count > 0 ? 0 : 1
         stationsListTableView.alpha = 1
         myStationsTableView.alpha = 0
@@ -176,7 +177,7 @@ class HomeViewController: BaseViewController {
             if let tracks = tracks {
                 self.selectedStation!.tracks = tracks
                 self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
-                fullscreenView.hide()
+                fullscreenView.hide(1.5)
             }
         })
         
@@ -194,9 +195,7 @@ class HomeViewController: BaseViewController {
                         if let tracks = tracks {
                             self.selectedStation!.tracks = tracks
                             self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
-                            fullscreenView.hide()
-                            
-                            
+                            fullscreenView.hide(1.5)
                         }
                     })
                 }
@@ -511,24 +510,22 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func moveToSavedStationPlaylist(){
-        let fullscreenView = FullScreenLoadingView()
         
         fullscreenView.setMessage("Just a moment, we’re getting your playlist")
         fullscreenView.show(0.5)
         ModelManager.sharedInstance.reloadNotCachedSavedStationTracksAndCache(selectedSavedStation!) { () -> Void in
             self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-            fullscreenView.hide()
+            self.fullscreenView.hide(1.5)
         }
     }
     
     func moveToStationPlaylist(){
-        let fullscreenView = FullScreenLoadingView()
         fullscreenView.setMessage("Just a moment, we’re generating your playlist")
         fullscreenView.show(0.5)
         
-        ModelManager.sharedInstance.reloadNotCachedStationTracksAndCache(selectedStation!) { () -> Void in
+        ModelManager.sharedInstance.generateStationTracksAndCache(selectedStation!) { () -> Void in
             self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-            fullscreenView.hide()
+            self.fullscreenView.hide(1.5)
         }
     }
     

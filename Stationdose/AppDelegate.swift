@@ -26,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAppearance()
         NFX.sharedInstance().start()
         
-        
-        
         return true
     }
     

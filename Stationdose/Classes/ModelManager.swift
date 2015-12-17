@@ -14,6 +14,8 @@ enum ModelManagerNotificationKey: String {
     case SavedStationsDidReloadFromServer
     case SavedStationsDidChange
     case AllDataDidReloadFromServer
+    case WillStarAutouptadeStationTracksGeneration
+    case DidFinishAutouptadeStationTracksGeneration
 }
 
 class ModelManager: NSObject {
@@ -55,11 +57,17 @@ class ModelManager: NSObject {
         
         
         savedStations.forEach { (savedStation) -> () in
-            dispatch_group_enter(group)
-            SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
-                savedStation.tracks = tracks;
-                dispatch_group_leave(group)
-            })
+            
+            if let autoupdate = savedStation.autoupdate where autoupdate == true {
+                dispatch_group_enter(group)
+                postEvent(.WillStarAutouptadeStationTracksGeneration, id: savedStation.id!)
+                SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                    savedStation.tracks = tracks;
+                    self.postEvent(.DidFinishAutouptadeStationTracksGeneration, id: savedStation.id!)
+                    dispatch_group_leave(group)
+                })
+            }
+
         }
         dispatch_group_notify(group, dispatch_get_main_queue()) {
             onCompletion()
@@ -74,14 +82,16 @@ class ModelManager: NSObject {
                 onCompletion()
             })
             
+            
+        }else{
+            onCompletion()
         }
 
     }
     
     
-    func reloadNotCachedStationTracksAndCache(station:Station,onCompletion:() -> Void){
-        if(station){
-            
+    func generateStationTracksAndCache(station:Station,onCompletion:() -> Void){
+        if(!station.isPlaying!){
             SongSortApiManager.sharedInstance.generateStationTracks((station.id)!, onCompletion: { (tracks, error) -> Void in
                 station.tracks = tracks;
                 onCompletion()
@@ -218,5 +228,10 @@ class ModelManager: NSObject {
     
     private func postEvent (notificationKey: ModelManagerNotificationKey) {
         NSNotificationCenter.defaultCenter().postNotificationName(notificationKey.rawValue, object: nil)
+    }
+    
+    private func postEvent(notificationKey: ModelManagerNotificationKey, id:Int ) {
+        let myDict = [ "id": id]
+        NSNotificationCenter.defaultCenter().postNotificationName(notificationKey.rawValue, object: myDict)
     }
 }

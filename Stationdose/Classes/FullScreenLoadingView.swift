@@ -13,6 +13,7 @@ class FullScreenLoadingView: NSObject {
     private var internalView :InternalFullScreenLoadingView
     private var blurEffectView :UIVisualEffectView
     private var hidden:Bool
+    private var showDate:NSDate?
     
     required override init () {
         internalView = InternalFullScreenLoadingView.instanceFromNib()
@@ -30,6 +31,8 @@ class FullScreenLoadingView: NSObject {
     }
     
     func show() {
+        showDate = NSDate()
+        
         let window = UIApplication.sharedApplication().keyWindow!
         
         window.windowLevel = UIWindowLevelStatusBar + 1
@@ -62,16 +65,30 @@ class FullScreenLoadingView: NSObject {
         
     }
     
-    func hide() {
-        hidden = true
-        UIApplication.sharedApplication().keyWindow!.windowLevel = UIWindowLevelNormal
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.internalView.alpha = 0
-            }) { (_) -> Void in
-                self.internalView.removeFromSuperview()
-                self.blurEffectView.removeFromSuperview()
+    func hide(minTime:Double) {
+        var elapsedTime = 0.0
+        if let showDate = showDate {
+            elapsedTime = Double(NSDate().timeIntervalSinceDate(showDate))
+        }
+        
+        if elapsedTime>0 && minTime-elapsedTime > 0 {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(minTime-elapsedTime * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                self.hide(minTime)
+            }
+        } else {
+            hidden = true
+            UIApplication.sharedApplication().keyWindow!.windowLevel = UIWindowLevelNormal
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.internalView.alpha = 0
+                }) { (_) -> Void in
+                    self.internalView.removeFromSuperview()
+                    self.blurEffectView.removeFromSuperview()
+            }
         }
     }
-
+    
+    func hide() {
+        hide(0)
+    }
 
 }
