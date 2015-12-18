@@ -191,9 +191,11 @@ class ModelManager: NSObject {
         }
     }
     
-    func updateSavedStationAndRegenerateTracks(savedStation: SavedStation, onCompletion:() -> Void) {
+    func updateSavedStationAndRegenerateTracksIfNeeded(savedStation: SavedStation,regenerateTracks:Bool, onCompletion:() -> Void) {
         
-        postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
+        if(regenerateTracks){
+            postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
+        }
         SongSortApiManager.sharedInstance.updateSavedStation(savedStation) { (newSavedStation, error) -> Void in
             if let newSavedStation = newSavedStation {
                 for (index, toChangeSavedStation) in self.savedStations.enumerate() {
@@ -201,12 +203,16 @@ class ModelManager: NSObject {
                         self.savedStations[index] = toChangeSavedStation
                     }
                 }
-                
-                SongSortApiManager.sharedInstance.generateSavedStationTracks((newSavedStation.id)!, onCompletion: { (tracks, error) -> Void in
-                    savedStation.tracks = tracks;
-                    self.postEvent(.DidEndSavedStationTracksReGeneration, id: newSavedStation.id!)
+                if(regenerateTracks){
+                    SongSortApiManager.sharedInstance.generateSavedStationTracks((newSavedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                        savedStation.tracks = tracks;
+                        self.postEvent(.DidEndSavedStationTracksReGeneration, id: newSavedStation.id!)
+                        onCompletion()
+                    })
+
+                }else{
                     onCompletion()
-                })
+                }
             } else {
                 onCompletion()
             }

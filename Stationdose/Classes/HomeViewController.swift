@@ -392,8 +392,10 @@ extension HomeViewController: UITableViewDataSource {
                     let indexPath = self.myStationsTableView.indexPathForCell(cell)
                     self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
                     self.myStationsTableView.endUpdates()
+                    self.showAlertFirstTimeAndSaveStation(savedStation)
                 }
             }
+            
             return true
         })
     }
@@ -408,6 +410,7 @@ extension HomeViewController: UITableViewDataSource {
                     let indexPath = self.myStationsTableView.indexPathForCell(cell)
                     self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
                     self.myStationsTableView.endUpdates()
+                    self.showAlertFirstTimeAndSaveStation(savedStation)
                 }
             }
             return true
@@ -456,6 +459,9 @@ extension HomeViewController: UITableViewDataSource {
             let timeButton = buildTimeButton(savedStation.useTimeofday != nil ? savedStation.useTimeofday! : false)
             timeButton.setPadding(0)
             let reloadButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-cell-reload"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
+                
+                ModelManager.sharedInstance.forceGenerateSavedStationTracks(savedStation){
+                }
                 
                 return true
             })
