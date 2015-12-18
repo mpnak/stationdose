@@ -11,6 +11,10 @@ import Alamofire
 import AlamofireObjectMapper
 import netfox
 
+enum SongSortApiManagerNotificationKey: String {
+    case SavedStationDidChangeUpdatedAt
+}
+
 class SongSortApiManager {
     
     static let sharedInstance = SongSortApiManager()
@@ -105,7 +109,7 @@ class SongSortApiManager {
         manager.request(.DELETE, baseURL+String(format: ApiMethods.savedStation, savedStationId))
     }
     
-    func generateSavedStationTracks(savedStationId:Int, onCompletion:([Track]?,NSError?) -> Void) {
+    func generateSavedStationTracks(savedStation:SavedStation, onCompletion:([Track]?,NSError?) -> Void) {
         guard let user = ModelManager.sharedInstance.user
             else{
                 self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
@@ -113,9 +117,11 @@ class SongSortApiManager {
                 return
         }
         let data = ["user_id": user.id!]
-        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStationId),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
+        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStation.id!),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
+            savedStation.updatedAt = NSDate()
+            NSNotificationCenter.defaultCenter().postNotificationName(SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: savedStation)
         }
     }
     

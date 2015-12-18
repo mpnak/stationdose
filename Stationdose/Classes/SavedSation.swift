@@ -17,6 +17,7 @@ class SavedStation: Mappable {
     var autoupdate:Bool?
     var station:Station?
     var tracks:[Track]?
+    var updatedAt:NSDate?
     
     required init?(_ map: Map) {
         
@@ -29,6 +30,7 @@ class SavedStation: Mappable {
         useTimeofday        <- map["use_timeofday"]
         autoupdate          <- map["autoupdate"]
         station             <- map["station"]
+        updatedAt           <- (map["updated_at"], ISO8601DateTransform())
     }
     
     func toggleWeather(){
@@ -44,6 +46,34 @@ class SavedStation: Mappable {
             useTimeofday = !time
         }else{
             useTimeofday = true
+        }
+    }
+    
+    func updatedAtString() -> String {
+        
+        if let updatedAt = updatedAt {
+            
+            let components = NSCalendar.currentCalendar().components(.Day, fromDate: updatedAt, toDate: NSDate(), options: .WrapComponents)
+            print(components)
+            
+            var result = "Updated: "
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "ha"
+            result += dateFormatter.stringFromDate(updatedAt).lowercaseString
+            result += ", "
+            
+            if components.day == 0 {
+                result += "today"
+            } else {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "MM-dd"
+                result += dateFormatter.stringFromDate(updatedAt)
+            }
+            return result
+            
+        } else {
+            return ""
         }
     }
 }

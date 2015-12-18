@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class EditStationViewController: BaseViewController {
     
@@ -26,9 +27,12 @@ class EditStationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
             
         nameLabel?.text = savedStation?.station?.name
+        updatedAtLabel.text = savedStation?.updatedAtString()
         
         if let imageUrl = savedStation?.station?.art {
             let url = NSURL(string: imageUrl)!
@@ -66,7 +70,17 @@ class EditStationViewController: BaseViewController {
         }
     }
     
-
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func savedStationDidChangeUpdatedAt(notification:NSNotification) {
+        if let savedStation = notification.object as? SavedStation {
+            if savedStation.id == self.savedStation?.id {
+                updatedAtLabel.text = savedStation.updatedAtString()
+            }
+        }
+    }
     
     @IBAction func weatherInfoAction(sender: AnyObject) {
         AlertView(title: "Local weather", message: "Stationdose looks at your local weather conditions and adjusts your station accordingly. Rainy? Probably be a bit more mellow. Sunny? Expect your station to have a bit more bounce in its step.", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
@@ -116,21 +130,14 @@ class EditStationViewController: BaseViewController {
             (accept) -> Void in
             
             if(accept){
-                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: true){
-                    
+                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: true) {
                     self.navigationController?.popViewControllerAnimated(true)
-                    
                 }
-                
-            }else{
-                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: false){
-                    
+            } else {
+                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: false) {
                     self.navigationController?.popViewControllerAnimated(true)
-                    
                 }
-                
             }
-            
         }.show()
 
     }

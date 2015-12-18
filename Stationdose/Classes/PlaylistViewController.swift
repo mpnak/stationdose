@@ -44,12 +44,15 @@ class PlaylistViewController: BaseViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeModifiers:", name: ModelManagerNotificationKey.SavedStationDidChangeModifiers.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
         
         showBrandingTitleView()
         showUserProfileButton()
         
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription
+        updatedAtLabel.text = savedStation?.updatedAtString()
         if let url = station?.url {
             urlLabel?.text = url.stringByReplacingOccurrencesOfString("http://", withString: "").stringByReplacingOccurrencesOfString("https://", withString: "")
         }
@@ -77,7 +80,7 @@ class PlaylistViewController: BaseViewController {
             if let theTracks = savedStation.tracks{
                 tracks = theTracks
             }else{
-                SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                SongSortApiManager.sharedInstance.generateSavedStationTracks(savedStation, onCompletion: { (tracks, error) -> Void in
                     if let tracks = tracks {
                         self.tracks = tracks
                         self.tracksTableView.reloadData()
@@ -96,6 +99,27 @@ class PlaylistViewController: BaseViewController {
         self.view.layoutIfNeeded()
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func savedStationDidChangeModifiers(notification:NSNotification) {
+        if let savedStation = notification.object as? SavedStation {
+            if savedStation.id == self.savedStation?.id {
+                updateWeatherIcon(savedStation)
+                updateTimeIcon(savedStation)
+            }
+        }
+    }
+    
+    func savedStationDidChangeUpdatedAt(notification:NSNotification) {
+        if let savedStation = notification.object as? SavedStation {
+            if savedStation.id == self.savedStation?.id {
+                updatedAtLabel.text = savedStation.updatedAtString()
+            }
+        }
+    }
+    
     func updateWeatherIcon(savedStation:SavedStation){
         if let useWeather = savedStation.useWeather where useWeather{
             weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
@@ -112,15 +136,10 @@ class PlaylistViewController: BaseViewController {
         }
     }
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
-    
     func willStartSavedStationTracksReGeneration(notification:NSNotification){
         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
             fullscreenView.setMessage("Just a moment, we’re generating your playlist")
-            fullscreenView.show(0)
+            fullscreenView.show()
         }
         
     }

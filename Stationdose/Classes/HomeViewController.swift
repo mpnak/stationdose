@@ -47,6 +47,7 @@ class HomeViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadStations", name: ModelManagerNotificationKey.StationsDidReloadFromServer.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadPlaylists", name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadStations", name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeModifiers:", name: ModelManagerNotificationKey.SavedStationDidChangeModifiers.rawValue, object: nil)
     }
     
     deinit {
@@ -97,6 +98,10 @@ class HomeViewController: BaseViewController {
         }
         selectedSavedStation = nil
         selectedStation = nil
+    }
+    
+    func savedStationDidChangeModifiers(notification:NSNotification) {
+        myStationsTableView.reloadData()
     }
     
     func featuredStationsTimerStep() {
