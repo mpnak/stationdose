@@ -116,8 +116,14 @@ class SongSortApiManager {
                 onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
                 return
         }
-        let data = ["user_id": user.id!]
-        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStation.id!),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
+        
+        
+        
+        var data:Dictionary<String,AnyObject> = ["user_id": user.id!]
+        if let location = LocationManager.sharedInstance.currentLocation{
+            data["ll"] = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        }
+        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStationId),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
             savedStation.updatedAt = NSDate()

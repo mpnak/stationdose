@@ -12,7 +12,7 @@ import CoreLocation
 class LocationManager:NSObject,CLLocationManagerDelegate {
     private var locationManager : CLLocationManager?
     
-    private var currentLocation:CLLocation?
+    var currentLocation:CLLocation?
     
     static let sharedInstance = LocationManager()
     
@@ -56,10 +56,12 @@ class LocationManager:NSObject,CLLocationManagerDelegate {
     
     
     private func foundLocation(location: CLLocation?, error: NSError?) {
-        locationManager?.stopUpdatingLocation()
+        //locationManager?.stopUpdatingLocation()
+        self.currentLocation = location
         didFindLocation?(location: location, error: error)
-        locationManager?.delegate = nil
-        locationManager = nil
+        didFindLocation = nil
+        //locationManager?.delegate = nil
+        //locationManager = nil
     }
     
     //location authorization status changed
@@ -103,10 +105,13 @@ class LocationManager:NSObject,CLLocationManagerDelegate {
     
     func getCurrentLocation(showErrorController:UIViewController, completion: CurrentLocationComplete) {
         didFindLocation = completion
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager?.distanceFilter = 5000
+        if locationManager == nil{
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager?.distanceFilter = 5000
+        }
+
         self.requestAuthorization(showErrorController)
     }
     
