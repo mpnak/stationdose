@@ -34,6 +34,9 @@ class PlaylistViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
+        
         showBrandingTitleView()
         showUserProfileButton()
         
@@ -96,21 +99,10 @@ class PlaylistViewController: BaseViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
-        
-        
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
-    }
+
     
     func willStartSavedStationTracksReGeneration(notification:NSNotification){
         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
@@ -156,6 +148,7 @@ class PlaylistViewController: BaseViewController {
         
     }
     
+    
     @IBAction func toggleWeather(sender: UIButton) {
         
         
@@ -166,8 +159,8 @@ class PlaylistViewController: BaseViewController {
             
             savedStation.toggleWeather()
             updateWeatherIcon(savedStation)
-            ModelManager.sharedInstance.updateSavedStationAndRegenerateTracks(savedStation){
-            }
+            showAlertFirstTimeAndSaveStation(savedStation)
+
         }
 
         
@@ -182,8 +175,7 @@ class PlaylistViewController: BaseViewController {
             savedStation.toggleTime()
 
             updateTimeIcon(savedStation)
-            ModelManager.sharedInstance.updateSavedStationAndRegenerateTracks(savedStation){
-            }
+            showAlertFirstTimeAndSaveStation(savedStation)
         }
 
     }
@@ -198,6 +190,12 @@ class PlaylistViewController: BaseViewController {
                 self.removeButton.alpha = 1
                 self.savedImageView.alpha = 1
             }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destinationViewController = segue.destinationViewController as? EditStationViewController {
+            destinationViewController.savedStation = savedStation
         }
     }
 }

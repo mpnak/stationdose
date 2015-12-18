@@ -21,6 +21,8 @@ class EditStationViewController: BaseViewController {
     @IBOutlet weak var familiaritySlider: UISlider!
     @IBOutlet weak var autoUpdateSwitch: UISwitch!
     
+    private let fullscreenView = FullScreenLoadingView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,10 +45,10 @@ class EditStationViewController: BaseViewController {
                 savedStation.undergroundness = 2
             }
             if savedStation.useWeather == nil {
-                savedStation.useWeather = true
+                savedStation.useWeather = false
             }
             if savedStation.useTimeofday == nil {
-                savedStation.useTimeofday = true
+                savedStation.useTimeofday = false
             }
             if savedStation.autoupdate == nil {
                 savedStation.autoupdate = false
@@ -63,6 +65,8 @@ class EditStationViewController: BaseViewController {
             
         }
     }
+    
+
     
     @IBAction func weatherInfoAction(sender: AnyObject) {
         AlertView(title: "Local weather", message: "Stationdose looks at your local weather conditions and adjusts your station accordingly. Rainy? Probably be a bit more mellow. Sunny? Expect your station to have a bit more bounce in its step.", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
@@ -86,12 +90,15 @@ class EditStationViewController: BaseViewController {
     
     @IBAction func autoUpdateSwitchValueChange(sender: UISwitch) {
         savedStation?.autoupdate = sender.on
+
     }
     
     @IBAction func familiarityTouchUpInside(sender: UISlider) {
         sender.setValue(familiaritySliderRoundValue(sender.value), animated: true)
         savedStation?.undergroundness = Int(sender.value * 4);
+        
     }
+    
     
     @IBAction func familiarityTouchUpOutside(sender: UISlider) {
         print("familiarityTouchUpOutside")
@@ -103,7 +110,29 @@ class EditStationViewController: BaseViewController {
     
     @IBAction func doneAction(sender: AnyObject) {
 //        self.dismissViewControllerAnimated(true) { () -> Void in }
-        self.navigationController?.popViewControllerAnimated(true)
+        
+        
+        AlertView(title: "Update Playlist Now?", message: "You’ve made changes to your station, do you want to update the playlist now?", acceptButtonTitle: "Update Now", cancelButtonTitle: "Update Later") {
+            (accept) -> Void in
+            
+            if(accept){
+                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: true){
+                    
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                }
+                
+            }else{
+                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: false){
+                    
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                }
+                
+            }
+            
+        }.show()
+
     }
     
     func familiarityTapRecognized(tap:UITapGestureRecognizer) {
