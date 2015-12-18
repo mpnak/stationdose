@@ -17,11 +17,14 @@ class PlaybackManager: NSObject {
     private var tracksMap:[String: Track]
     private let player:SPTAudioStreamingController
     private var currentTimeReloadTimer: NSTimer?
+    private var nextQueue:[Track]?
+    private var deletedTacksUrls:[String]
     
     private var playbackControlView:PlaybackControlView?
     
     override init() {
         tracksMap = [String: Track]()
+        deletedTacksUrls = [String]()
         player = SpotifyManager.sharedInstance.player!
         
         super.init()
@@ -57,13 +60,26 @@ class PlaybackManager: NSObject {
         player.setIsPlaying(false, callback: { (error) -> Void in })
     }
     
-    var firstRun = false
+    func removeTrack(track:Track) {
+        if let currentTrack = currentTrack {
+            if currentTrack.id == track.id {
+                player.skipNext({ (error) -> Void in })
+            }
+        }
+        
+        let url = urlForTrack(track)
+        deletedTacksUrls.append(url)
+        tracksMap.removeValueForKey(url)
+    }
     
     func playTracks(tracks:[Track], callback:(error:NSError?)->()) {
         
         if tracks.count == 0 {
             return
         }
+        
+        deletedTacksUrls = [String]()
+        nextQueue = nil
         
         if let track = tracks.first {
             if track.id != currentTrack?.id {
@@ -73,17 +89,16 @@ class PlaybackManager: NSObject {
         
         var urls = [NSURL]()
         for track in tracks {
-            let urlString = String(format: "spotify:track:%@", arguments: [track.spotifyId!])
+            let urlString = urlForTrack(track)
             urls.append(NSURL(string: urlString)!)
             tracksMap[urlString] = track
         }
         
         
         player.setIsPlaying(false, callback: { (error) -> Void in })
+        player.stop({ (error) -> Void in })
         
-        self.player.stop({ (error) -> Void in })
-        
-        self.player.playURIs(urls, withOptions: nil) { (error) -> Void in
+        player.playURIs(urls, withOptions: nil) { (error) -> Void in
             if let error = error {
                 print("error ", error)
             }
@@ -91,6 +106,10 @@ class PlaybackManager: NSObject {
         }
         
         showPlaybackControlView()
+    }
+    
+    func replaceQueue(tracks:[Track]) {
+        nextQueue = tracks
     }
     
     private func setupPlaybackControlView() {
@@ -142,16 +161,31 @@ class PlaybackManager: NSObject {
         playbackControlView?.playButton.enabled = enabled
         playbackControlView?.pauseButton.enabled = enabled
     }
+    
+    private func urlForTrack(track:Track) -> String {
+        return String(format: "spotify:track:%@", arguments: [track.spotifyId!])
+    }
 }
 
 extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
-        print("didStopPlayingTrack")
+        if let nextQueue = nextQueue {
+            self.nextQueue = nil
+            playTracks(nextQueue, callback: { (error) -> () in })
+        }
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: NSURL!) {
-        print("didStartPlayingTrack")
+        for url in deletedTacksUrls {
+            if url == trackUri.absoluteString {
+//                player.setIsPlaying(false, callback: { (error) -> Void in })
+//                player.stop({ (error) -> Void in })
+                player.skipNext({ (_) -> Void in })
+//                player.setIsPlaying(true, callback: { (error) -> Void in })
+                break
+            }
+        }
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
