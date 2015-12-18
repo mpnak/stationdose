@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 
 class Station: Mappable {
+    
     var id:Int?
     var name:String?
     var shortDescription:String?
@@ -20,7 +21,11 @@ class Station: Mappable {
     var isPlaying:Bool?
     
     required init?(_ map: Map) {
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setIsPlayingFalse", name: "noOneIsPlayingNotifiactionKey", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func mapping(map: Map) {
@@ -30,6 +35,14 @@ class Station: Mappable {
         type                <- map["station_type"]
         art                 <- map["station_art"]
         url                 <- map["url"]
+    }
+    
+    static func noOneIsPlaying() {
+        NSNotificationCenter.defaultCenter().postNotificationName("noOneIsPlayingNotifiactionKey", object: nil)
+    }
+    
+    private func setIsPlayingFalse() {
+        isPlaying = false
     }
 
 }

@@ -2053,6 +2053,9 @@ Please sign in to your account to start.</string>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-i0-ZmU">
                                                 <rect key="frame" x="0.0" y="0.0" width="332" height="43"/>
+                                                <connections>
+                                                    <action selector="openStationUrl:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="WoY-1c-3kY"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
@@ -2222,6 +2225,7 @@ Please sign in to your account to start.</string>
                         <outlet property="sponsoredTitleView" destination="VDf-mD-lnB" id="QsC-PV-q2E"/>
                         <outlet property="stationDetailsLabel" destination="1fA-n0-9z7" id="BTZ-2z-t7S"/>
                         <outlet property="tracksTableView" destination="gi4-rs-Nfr" id="H5U-2A-bzs"/>
+                        <outlet property="urlLabel" destination="n1s-Zt-Cja" id="wNo-gb-VZQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDs-BJ-NKv" userLabel="First Responder" sceneMemberID="firstResponder"/>

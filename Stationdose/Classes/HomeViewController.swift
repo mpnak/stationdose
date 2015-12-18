@@ -91,12 +91,12 @@ class HomeViewController: BaseViewController {
             destinationViewController.savedStation = selectedSavedStation
             if let station = selectedSavedStation?.station{
                 destinationViewController.station = station
-            }else{
+            } else {
                 destinationViewController.station = selectedStation
             }
-            
         }
-        
+        selectedSavedStation = nil
+        selectedStation = nil
     }
     
     func featuredStationsTimerStep() {
@@ -382,6 +382,38 @@ extension HomeViewController: UITableViewDataSource {
         }
     }
     
+    func buildWeatherButton(on:Bool)->MGSwipeButton{
+        return MGSwipeButton(title: nil, icon: UIImage(named: on ? "btn-cell-weather" : "btn-cell-weather-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
+            if let cell = cell as? MyStationsTableViewCell {
+                if let savedStation = cell.savedStation {
+                    savedStation.useWeather = !on
+                    cell.leftButtons = [self.buildWeatherButton(!on), cell.leftButtons[1], cell.leftButtons[2]]
+                    self.myStationsTableView.beginUpdates()
+                    let indexPath = self.myStationsTableView.indexPathForCell(cell)
+                    self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+                    self.myStationsTableView.endUpdates()
+                }
+            }
+            return true
+        })
+    }
+    
+    func buildTimeButton(on:Bool)->MGSwipeButton{
+        return MGSwipeButton(title: nil, icon: UIImage(named: on ? "btn-cell-time" : "btn-cell-time-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
+            if let cell = cell as? MyStationsTableViewCell {
+                if let savedStation = cell.savedStation {
+                    savedStation.useTimeofday = !on
+                    cell.leftButtons = [cell.leftButtons[0], self.buildTimeButton(!on), cell.leftButtons[2]]
+                    self.myStationsTableView.beginUpdates()
+                    let indexPath = self.myStationsTableView.indexPathForCell(cell)
+                    self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+                    self.myStationsTableView.endUpdates()
+                }
+            }
+            return true
+        })
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == myStationsTableView {
             let savedStation = myStations[indexPath.row]
@@ -418,12 +450,24 @@ extension HomeViewController: UITableViewDataSource {
             cell.rightButtons = [deleteButton]
             cell.rightSwipeSettings.transition = .Drag
             
+            
+            let weatherButton = buildWeatherButton(savedStation.useWeather != nil ? savedStation.useWeather! : false)
+            weatherButton.setPadding(0)
+            let timeButton = buildTimeButton(savedStation.useTimeofday != nil ? savedStation.useTimeofday! : false)
+            timeButton.setPadding(0)
+            let reloadButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-cell-reload"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
+                
+                return true
+            })
+            reloadButton.setPadding(0)
+            cell.leftButtons = [weatherButton, timeButton, reloadButton]
+            cell.leftSwipeSettings.transition = .Drag
+            
             cell.touchUpInsideAction = {
                 self.showStation(cell)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
                     cell.setSelected(false, animated: true)
                 }
-                
             }
             
             return cell

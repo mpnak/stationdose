@@ -57,6 +57,8 @@ class PlaybackManager: NSObject {
         player.setIsPlaying(false, callback: { (error) -> Void in })
     }
     
+    var firstRun = false
+    
     func playTracks(tracks:[Track], callback:(error:NSError?)->()) {
         
         if tracks.count == 0 {
@@ -80,13 +82,6 @@ class PlaybackManager: NSObject {
         player.setIsPlaying(false, callback: { (error) -> Void in })
         
         self.player.stop({ (error) -> Void in })
-        
-        self.player.playURIs(urls, withOptions: nil) { (error) -> Void in
-            if let error = error {
-                print("error ", error)
-            }
-            callback(error: error)
-        }
         
         self.player.playURIs(urls, withOptions: nil) { (error) -> Void in
             if let error = error {
@@ -150,6 +145,14 @@ class PlaybackManager: NSObject {
 }
 
 extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
+        print("didStopPlayingTrack")
+    }
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: NSURL!) {
+        print("didStartPlayingTrack")
+    }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
         playbackControlView?.playButton.alpha = isPlaying ? 0 : 1

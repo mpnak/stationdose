@@ -21,6 +21,7 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var updatedAtLabel: UILabel!
+    @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var tracksTableView: UITableView!
     
     @IBOutlet weak var saveButton: UIButton!
@@ -36,6 +37,9 @@ class PlaylistViewController: BaseViewController {
         
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription
+        if let url = station?.url {
+            urlLabel?.text = url.stringByReplacingOccurrencesOfString("http://", withString: "").stringByReplacingOccurrencesOfString("https://", withString: "")
+        }
         
         if let featuredUrl = station?.art {
             let URL = NSURL(string: featuredUrl)!
@@ -98,6 +102,14 @@ class PlaylistViewController: BaseViewController {
     func hidePartialLoadingIfNeeded(notification:NSNotification){
         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
             fullscreenView.hide(1.5)
+        }
+    }
+    
+    @IBAction func openStationUrl(sender: UIButton) {
+        if let urlString = station?.url {
+            if let url = NSURL(string: urlString) {
+                UIApplication.sharedApplication().openURL(url)
+            }
         }
     }
     
@@ -198,9 +210,9 @@ extension PlaylistViewController: UITableViewDataSource {
                 }
             }
             
-            print("selected track ", cell.track.title)
-            
             PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
+            
+            self.station?.isPlaying = true
         }
         
         if let liked = cell.track.liked {
