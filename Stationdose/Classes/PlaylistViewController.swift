@@ -31,6 +31,14 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var weatherButton: UIButton!
     @IBOutlet weak var timeButton: UIButton!
     
+    @IBOutlet weak var rightButtonsLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftButtonsLayoutConstraint: NSLayoutConstraint!
+    
+    let rightButtonsLayoutConstraintConstantForStation:CGFloat = -95.0
+    let rightButtonsLayoutConstraintConstantForSavedStation:CGFloat = 7.0
+    let leftButtonsLayoutConstraintConstantForStation:CGFloat = -38.0
+    let leftButtonsLayoutConstraintConstantForSavedStation:CGFloat = 5.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +66,9 @@ class PlaylistViewController: BaseViewController {
         removeButton?.alpha = savedStation == nil ? 0 : 1
         savedImageView?.alpha = savedStation == nil ? 0 : 1
         
+        rightButtonsLayoutConstraint?.constant = savedStation == nil ? rightButtonsLayoutConstraintConstantForStation : rightButtonsLayoutConstraintConstantForSavedStation
+        leftButtonsLayoutConstraint?.constant = savedStation == nil ? leftButtonsLayoutConstraintConstantForStation : leftButtonsLayoutConstraintConstantForSavedStation
+        
         if let savedStation = savedStation {
             updateWeatherIcon(savedStation)
             updateTimeIcon(savedStation)
@@ -73,6 +84,8 @@ class PlaylistViewController: BaseViewController {
                 self.tracksTableView.reloadData()
             }
         }
+        
+        self.view.layoutIfNeeded()
     }
     
     func updateWeatherIcon(savedStation:SavedStation){
@@ -128,9 +141,18 @@ class PlaylistViewController: BaseViewController {
         ModelManager.sharedInstance.removeSavedStation(savedStation!) { (removed) -> Void in
             sender.enabled = true
             if removed {
+                self.savedStation = nil
+                
                 self.saveButton.alpha = 1
                 self.removeButton.alpha = 0
                 self.savedImageView.alpha = 0
+                
+                self.rightButtonsLayoutConstraint?.constant = self.rightButtonsLayoutConstraintConstantForStation
+                self.leftButtonsLayoutConstraint?.constant = self.leftButtonsLayoutConstraintConstantForStation
+                
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                    self.view.layoutIfNeeded()
+                })
             }
         }
     }
@@ -175,12 +197,21 @@ class PlaylistViewController: BaseViewController {
     @IBAction func saveStation(sender: UIButton) {
         sender.enabled = false
         
-        ModelManager.sharedInstance.saveStation(station!) { (saved) -> Void in
+        ModelManager.sharedInstance.saveStation(station!) { (saved, savedStation) -> Void in
             sender.enabled = true
             if saved {
+                self.savedStation = savedStation
+                
                 self.saveButton.alpha = 0
                 self.removeButton.alpha = 1
                 self.savedImageView.alpha = 1
+                
+                self.rightButtonsLayoutConstraint?.constant = self.rightButtonsLayoutConstraintConstantForSavedStation
+                self.leftButtonsLayoutConstraint?.constant = self.leftButtonsLayoutConstraintConstantForSavedStation
+                
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                    self.view.layoutIfNeeded()
+                })
             }
         }
     }
@@ -295,6 +326,8 @@ extension PlaylistViewController: UITableViewDataSource {
                                 self.tracks?.removeAtIndex(index)
                                 self.tracksTableView.endUpdates()
                             }
+                            
+                            PlaybackManager.sharedInstance.removeTrack(cell.track)
                         }
                         
                     })

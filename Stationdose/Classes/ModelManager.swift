@@ -91,7 +91,7 @@ class ModelManager: NSObject {
     
     
     func generateStationTracksAndCache(station:Station,onCompletion:() -> Void){
-        if(!station.isPlaying!){
+        if(station.isPlaying == nil || !station.isPlaying!){
             SongSortApiManager.sharedInstance.generateStationTracks((station.id)!, onCompletion: { (tracks, error) -> Void in
                 station.tracks = tracks;
                 onCompletion()
@@ -219,15 +219,15 @@ class ModelManager: NSObject {
         }
     }
     
-    func saveStation(station: Station, onCompletion:(saved:Bool) -> Void) {
+    func saveStation(station: Station, onCompletion:(saved:Bool, savedStation:SavedStation?) -> Void) {
         SongSortApiManager.sharedInstance.saveStation(station.id!) { (savedStation, error) -> Void in
             if let savedStation = savedStation {
                 self.savedStations.append(savedStation)
                 
-                onCompletion(saved: true)
+                onCompletion(saved: true, savedStation:savedStation)
                 self.postEvent(.SavedStationsDidChange)
             } else {
-                onCompletion(saved: false)
+                onCompletion(saved: false, savedStation: nil)
             }
         }
     }

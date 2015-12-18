@@ -404,6 +404,7 @@ Please sign in to your account to start.</string>
                                                                                         </view>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANU-jO-wjY">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                                                                                            <animations/>
                                                                                             <connections>
                                                                                                 <action selector="showFeaturedStationAction:" destination="ISF-u2-Npe" eventType="touchUpInside" id="Hq0-3y-kE0"/>
                                                                                             </connections>
@@ -1000,12 +1001,8 @@ Please sign in to your account to start.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-9X-4C8">
-<<<<<<< HEAD
-                                                        <rect key="frame" x="162" y="-4.5" width="35" height="35"/>
-                                                        <animations/>
-=======
                                                         <rect key="frame" x="151.5" y="-4.5" width="35" height="35"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
+                                                        <animations/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="n59-fI-fXY"/>
                                                             <constraint firstAttribute="width" constant="35" id="qix-ed-W72"/>
@@ -1016,12 +1013,8 @@ Please sign in to your account to start.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrE-33-vXA">
-<<<<<<< HEAD
-                                                        <rect key="frame" x="162" y="-4.5" width="35" height="35"/>
-                                                        <animations/>
-=======
                                                         <rect key="frame" x="151.5" y="-4.5" width="35" height="35"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
+                                                        <animations/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="3xN-sx-MKD"/>
                                                             <constraint firstAttribute="height" constant="35" id="aqi-mr-MpU"/>
@@ -1081,7 +1074,7 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                                 <state key="normal" image="btn-weather"/>
                                                 <connections>
-                                                    <action selector="toggleWeather:" destination="ExW-W1-YQY" eventType="touchUpInside" id="ZAO-bI-0bf"/>
+                                                    <action selector="toggleWeather:" destination="ExW-W1-YQY" eventType="touchUpInside" id="aF7-yO-g36"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-Tq-3sm">
@@ -1092,16 +1085,12 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                                 <state key="normal" image="btn-time"/>
                                                 <connections>
-                                                    <action selector="toggleUseTime:" destination="ExW-W1-YQY" eventType="touchUpInside" id="PvJ-Wl-qos"/>
+                                                    <action selector="toggleUseTime:" destination="ExW-W1-YQY" eventType="touchUpInside" id="4D9-OC-30b"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNB-3M-LYK">
-<<<<<<< HEAD
-                                                <rect key="frame" x="325" y="0.0" width="43" height="43"/>
-                                                <animations/>
-=======
                                                 <rect key="frame" x="327" y="0.0" width="43" height="43"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
+                                                <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="YNB-3M-LYK" secondAttribute="height" multiplier="1:1" id="OHc-WL-v9I"/>
                                                 </constraints>
@@ -1111,30 +1100,22 @@ Please sign in to your account to start.</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTz-za-ELG">
-<<<<<<< HEAD
-                                                <rect key="frame" x="282" y="0.0" width="43" height="43"/>
-                                                <animations/>
-=======
                                                 <rect key="frame" x="284" y="0.0" width="43" height="43"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
+                                                <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="vTz-za-ELG" secondAttribute="height" multiplier="1:1" id="t2E-1p-lew"/>
                                                 </constraints>
                                                 <state key="normal" image="btn-share"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hd2-QE-u1v">
-<<<<<<< HEAD
-                                                <rect key="frame" x="239" y="0.0" width="43" height="43"/>
-                                                <animations/>
-=======
                                                 <rect key="frame" x="241" y="0.0" width="43" height="43"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
+                                                <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="hd2-QE-u1v" secondAttribute="height" multiplier="1:1" id="xLL-3Y-cdP"/>
                                                 </constraints>
                                                 <state key="normal" image="btn-refresh"/>
                                                 <connections>
-                                                    <action selector="forceRefresh:" destination="ExW-W1-YQY" eventType="touchUpInside" id="6Ak-Bj-71D"/>
+                                                    <action selector="forceRefresh:" destination="ExW-W1-YQY" eventType="touchUpInside" id="79M-g2-gMP"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1287,8 +1268,10 @@ Please sign in to your account to start.</string>
                         <outlet property="saveButton" destination="CrE-33-vXA" id="dLc-b0-H6u"/>
                         <outlet property="savedImageView" destination="6GT-pO-Hwi" id="kdH-y6-KIx"/>
                         <outlet property="shortDescriptionLabel" destination="aAa-H9-Gdi" id="MfD-8R-n2a"/>
+                        <outlet property="timeButton" destination="OYq-Tq-3sm" id="v9Q-0f-dSj"/>
                         <outlet property="tracksTableView" destination="MZw-7r-iZt" id="r4R-GZ-aOY"/>
                         <outlet property="updatedAtLabel" destination="qE1-kr-vSc" id="JA0-ii-9jI"/>
+                        <outlet property="weatherButton" destination="Q7E-rX-uI3" id="jMB-Rd-ABu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9p-w3-Jd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2214,12 +2197,8 @@ Please sign in to your account to start.</string>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6F-FT-wDg">
                                                 <rect key="frame" x="332" y="0.0" width="43" height="43"/>
-<<<<<<< HEAD
                                                 <animations/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-=======
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="S6F-FT-wDg" secondAttribute="height" multiplier="1:1" id="gU5-Oi-4bU"/>
                                                 </constraints>
@@ -2243,15 +2222,17 @@ Please sign in to your account to start.</string>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-i0-ZmU">
                                                 <rect key="frame" x="0.0" y="0.0" width="332" height="43"/>
+<<<<<<< HEAD
+                                                <connections>
+                                                    <action selector="openStationUrl:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="WoY-1c-3kY"/>
+                                                </connections>
+=======
                                                 <animations/>
+>>>>>>> origin/master
                                             </button>
                                         </subviews>
-<<<<<<< HEAD
                                         <animations/>
-                                        <color key="backgroundColor" red="0.1764705882352941" green="0.60784313725490191" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
-=======
                                         <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
                                         <constraints>
                                             <constraint firstItem="Ub3-i0-ZmU" firstAttribute="top" secondItem="VDf-mD-lnB" secondAttribute="top" id="3pI-Kt-nXj"/>
                                             <constraint firstAttribute="bottom" secondItem="S6F-FT-wDg" secondAttribute="bottom" id="NOW-Ae-M7i"/>
@@ -2285,24 +2266,16 @@ Please sign in to your account to start.</string>
                                 <rect key="frame" x="0.0" y="183" width="375" height="79"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-n0-9z7">
-<<<<<<< HEAD
-                                        <rect key="frame" x="14" y="12" width="347" height="67"/>
-                                        <animations/>
-=======
                                         <rect key="frame" x="14" y="-8" width="316" height="73"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
+                                        <animations/>
                                         <string key="text">John Legend is just that, a legend. Check out his station for some of the artsits that influenced him as well as some of the tracks he’s listening to. In his lounge of course.  </string>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
                                         <color key="textColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="highlightedColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                     </label>
                                 </subviews>
-<<<<<<< HEAD
                                 <animations/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-=======
                                 <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
                                 <constraints>
                                     <constraint firstItem="1fA-n0-9z7" firstAttribute="leading" secondItem="nze-LZ-Rd8" secondAttribute="leading" constant="14" id="Axr-IR-zKQ"/>
                                     <constraint firstAttribute="trailing" secondItem="1fA-n0-9z7" secondAttribute="trailing" constant="45" id="Eqb-Az-Skd"/>
@@ -2312,12 +2285,8 @@ Please sign in to your account to start.</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gi4-rs-Nfr">
-<<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="272" width="375" height="331"/>
-                                <animations/>
-=======
                                 <rect key="frame" x="0.0" y="277" width="375" height="326"/>
->>>>>>> c62f9e74a5f6087d27d2805e12e595781be37652
+                                <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackTableViewCellIdentifier" id="T4U-Rp-nD7" customClass="TrackTableViewCell" customModule="Stationdose" customModuleProvider="target">
@@ -2441,6 +2410,7 @@ Please sign in to your account to start.</string>
                         <outlet property="sponsoredTitleView" destination="VDf-mD-lnB" id="QsC-PV-q2E"/>
                         <outlet property="stationDetailsLabel" destination="1fA-n0-9z7" id="BTZ-2z-t7S"/>
                         <outlet property="tracksTableView" destination="gi4-rs-Nfr" id="H5U-2A-bzs"/>
+                        <outlet property="urlLabel" destination="n1s-Zt-Cja" id="wNo-gb-VZQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDs-BJ-NKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
