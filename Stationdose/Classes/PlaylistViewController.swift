@@ -65,14 +65,6 @@ class PlaylistViewController: BaseViewController {
             tracks = []
             if let theTracks = savedStation.tracks{
                 tracks = theTracks
-            }else{
-                SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
-                    if let tracks = tracks {
-                        self.tracks = tracks
-                        self.tracksTableView.reloadData()
-                        
-                    }
-                })
             }
         } else {
             
