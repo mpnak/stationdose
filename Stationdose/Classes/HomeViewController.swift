@@ -396,7 +396,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.coverImageView.image = nil
             if let sponsoredUrl = station?.art {
                 let URL = NSURL(string: sponsoredUrl)!
-                cell.coverImageView.af_setImageWithURL(URL)
+                cell.coverImageView.af_setImageWithURL(URL, placeholderImage: UIImage(named: "stations-list-placeholder"))
             } else {
                 cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
             }
@@ -439,7 +439,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.coverImageView.image = nil
             if let sponsoredUrl = station.art {
                 let URL = NSURL(string: sponsoredUrl)!
-                cell.coverImageView.af_setImageWithURL(URL)
+                cell.coverImageView.af_setImageWithURL(URL, placeholderImage: UIImage(named: "stations-list-placeholder"))
             } else {
                 cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
             }

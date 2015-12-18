@@ -30,4 +30,20 @@ class SavedStation: Mappable {
         autoupdate          <- map["autoupdate"]
         station             <- map["station"]
     }
+    
+    func toggleWeather(){
+        if let weather =  useWeather{
+            useWeather = !weather
+        }else{
+            useWeather = true
+        }
+    }
+    
+    func toggleTime(){
+        if let time =  useTimeofday{
+            useTimeofday = !time
+        }else{
+            useTimeofday = true
+        }
+    }
 }

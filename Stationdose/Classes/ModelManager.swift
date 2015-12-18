@@ -121,18 +121,9 @@ class ModelManager: NSObject {
             }
         }
         
-        let requestImage2 = { (station:Station)->NSURLRequest? in
-            if let url = station.url{
-                return  NSURLRequest(URL: NSURL(string: url)!)
-                
-            } else {
-                return nil
-            }
-        }
-        
         let combinedFeaturedAndSponsored = sponsoredStations + featuredStations
         
-        let requests = combinedFeaturedAndSponsored.flatMap(requestImage) + combinedFeaturedAndSponsored.flatMap(requestImage2)
+        let requests = combinedFeaturedAndSponsored.flatMap(requestImage)
         
         let group = dispatch_group_create()
         
@@ -200,24 +191,22 @@ class ModelManager: NSObject {
         }
     }
     
-    func changeStationIndicator(savedStation: SavedStation,indicator:String, indicatorValue:AnyObject, onCompletion:() -> Void) {
+    func updateSavedStationAndRegenerateTracks(savedStation: SavedStation, onCompletion:() -> Void) {
         
         postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
-        SongSortApiManager.sharedInstance.changeStationIndicator(savedStation.id!, indicator: indicator, indicatorValue: indicatorValue) { (savedStation, error) -> Void in
-            if let savedStation = savedStation {
+        SongSortApiManager.sharedInstance.updateSavedStation(savedStation) { (newSavedStation, error) -> Void in
+            if let newSavedStation = newSavedStation {
                 for (index, toChangeSavedStation) in self.savedStations.enumerate() {
                     if toChangeSavedStation.id == savedStation.id{
                         self.savedStations[index] = toChangeSavedStation
                     }
                 }
                 
-                SongSortApiManager.sharedInstance.generateSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
+                SongSortApiManager.sharedInstance.generateSavedStationTracks((newSavedStation.id)!, onCompletion: { (tracks, error) -> Void in
                     savedStation.tracks = tracks;
-                    self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
+                    self.postEvent(.DidEndSavedStationTracksReGeneration, id: newSavedStation.id!)
                     onCompletion()
                 })
-                
-                onCompletion()
             } else {
                 onCompletion()
             }

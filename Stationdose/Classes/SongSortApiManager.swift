@@ -74,15 +74,28 @@ class SongSortApiManager {
         }
     }
     
-    func changeStationIndicator(savedStationId:Int,indicator:String,indicatorValue:AnyObject,onCompletion:(SavedStation?,NSError?) -> Void) {
+    func updateSavedStation(savedStation:SavedStation,onCompletion:(SavedStation?,NSError?) -> Void) {
         guard let _ = ModelManager.sharedInstance.user
             else{
                 self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
                 onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
                 return
         }
-        let data = ["saved_station": [indicator:indicatorValue]]
-        manager.request(.PUT, String(format:baseURL+ApiMethods.savedStation,savedStationId), parameters:data).responseObject("saved_station") { (response: Response<SavedStation, NSError>) -> Void in
+        var indicators = [String:AnyObject]()
+        if let undergroundness = savedStation.undergroundness{
+            indicators["undergroundness"] = undergroundness
+        }
+        if let useWeather = savedStation.useWeather{
+            indicators["use_weather"] = useWeather
+        }
+        if let useTime = savedStation.useTimeofday{
+            indicators["use_timeofday"] = useTime
+        }
+        if let autoupdate = savedStation.useTimeofday{
+            indicators["autoupdate"] = autoupdate
+        }
+        let data = ["saved_station": indicators]
+        manager.request(.PUT, String(format:baseURL+ApiMethods.savedStation,savedStation.id!), parameters:data).responseObject("saved_station") { (response: Response<SavedStation, NSError>) -> Void in
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }

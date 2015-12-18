@@ -30,15 +30,38 @@ class EditStationViewController: BaseViewController {
         
         if let imageUrl = savedStation?.station?.art {
             let url = NSURL(string: imageUrl)!
-            coverImageView?.af_setImageWithURL(url)
+            coverImageView?.af_setImageWithURL(url, placeholderImage: UIImage(named: "station-placeholder"))
+        } else {
+            coverImageView.image = UIImage(named: "station-placeholder")
         }
         
         setupFamiliaritySlider()
         
-        familiaritySlider.value = Float((savedStation?.undergroundness)!)/4.0
-        weatherSwitch.on = (savedStation?.useWeather)!
-        timeSwitch.on = (savedStation?.useTimeofday)!
-        autoUpdateSwitch.on = (savedStation?.autoupdate)!
+        if let savedStation = savedStation {
+            
+            if savedStation.undergroundness == nil {
+                savedStation.undergroundness = 2
+            }
+            if savedStation.useWeather == nil {
+                savedStation.useWeather = true
+            }
+            if savedStation.useTimeofday == nil {
+                savedStation.useTimeofday = true
+            }
+            if savedStation.autoupdate == nil {
+                savedStation.autoupdate = false
+            }
+            
+            familiaritySlider.value = Float((savedStation.undergroundness)!)/4.0
+            weatherSwitch.on = (savedStation.useWeather)!
+            timeSwitch.on = (savedStation.useTimeofday)!
+            autoUpdateSwitch.on = (savedStation.autoupdate)!
+            
+        } else {
+            
+            print("Error: savedStation missing")
+            
+        }
     }
     
     @IBAction func weatherInfoAction(sender: AnyObject) {

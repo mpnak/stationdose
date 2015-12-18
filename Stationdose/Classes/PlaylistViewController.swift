@@ -27,6 +27,8 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var savedImageView: UIImageView!
     
+    @IBOutlet weak var weatherButton: UIButton!
+    @IBOutlet weak var timeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +42,9 @@ class PlaylistViewController: BaseViewController {
         if let featuredUrl = station?.art {
             let URL = NSURL(string: featuredUrl)!
             bannerImageView?.af_setImageWithURL(URL)
-        }
-        
-        if let featuredUrl = station?.art {
-            let URL = NSURL(string: featuredUrl)!
-            coverImageView?.af_setImageWithURL(URL)
+            coverImageView?.af_setImageWithURL(URL, placeholderImage: UIImage(named: "station-placeholder"))
+        } else {
+            coverImageView.image = UIImage(named: "station-placeholder")
         }
         
         saveButton?.alpha = savedStation == nil ? 1 : 0
@@ -52,6 +52,9 @@ class PlaylistViewController: BaseViewController {
         savedImageView?.alpha = savedStation == nil ? 0 : 1
         
         if let savedStation = savedStation {
+            updateWeatherIcon(savedStation)
+            updateTimeIcon(savedStation)
+
             tracks = []
             if let theTracks = savedStation.tracks{
                 tracks = theTracks
@@ -73,11 +76,27 @@ class PlaylistViewController: BaseViewController {
         }
     }
     
+    func updateWeatherIcon(savedStation:SavedStation){
+        if let useWeather = savedStation.useWeather where useWeather{
+            weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
+        }else{
+            weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
+        }
+    }
+    
+    func updateTimeIcon(savedStation:SavedStation){
+        if let useTime = savedStation.useTimeofday where useTime{
+            timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
+        }else{
+            timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"showPartialLoadingIfNeeded:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"hidePartialLoadingIfNeeded:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
         
         
     }
@@ -89,16 +108,20 @@ class PlaylistViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
     }
     
-    func showPartialLoadingIfNeeded(notification:NSNotification){
+    func willStartSavedStationTracksReGeneration(notification:NSNotification){
         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
             fullscreenView.setMessage("Just a moment, we’re generating your playlist")
-            fullscreenView.show(0.5)
+            fullscreenView.show(0)
         }
         
     }
     
-    func hidePartialLoadingIfNeeded(notification:NSNotification){
+    func didEndSavedStationTracksReGeneration(notification:NSNotification){
         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
+            
+            self.tracks = self.savedStation!.tracks
+            self.tracksTableView.reloadData()
+            
             fullscreenView.hide(1.5)
         }
     }
@@ -117,33 +140,38 @@ class PlaylistViewController: BaseViewController {
     }
     @IBAction func forceRefresh(sender: UIButton) {
         ModelManager.sharedInstance.forceGenerateSavedStationTracks(self.savedStation!){
-            
         }
         
     }
     
     @IBAction func toggleWeather(sender: UIButton) {
         
-        if let weatherIndicator = self.savedStation?.useWeather{
-            ModelManager.sharedInstance.changeStationIndicator(self.savedStation!, indicator: "use_timeofday", indicatorValue: !weatherIndicator){
-                
-            }
-        }else{
-            ModelManager.sharedInstance.changeStationIndicator(self.savedStation!, indicator: "use_timeofday", indicatorValue: true){
+        
+        
+        if let savedStation = self.savedStation{
+            
+
+            
+            savedStation.toggleWeather()
+            updateWeatherIcon(savedStation)
+            ModelManager.sharedInstance.updateSavedStationAndRegenerateTracks(savedStation){
             }
         }
+
         
     }
     
     @IBAction func toggleUseTime(sender: UIButton) {
-        if let timeOfDayIndicator = self.savedStation?.useTimeofday{
-            ModelManager.sharedInstance.changeStationIndicator(self.savedStation!, indicator: "use_timeofday", indicatorValue: !timeOfDayIndicator){
-                
-            }
-        }else{
-            ModelManager.sharedInstance.changeStationIndicator(self.savedStation!, indicator: "use_timeofday", indicatorValue: true){
-            }
+        
+        
+        
+        if let savedStation = savedStation{
             
+            savedStation.toggleTime()
+
+            updateTimeIcon(savedStation)
+            ModelManager.sharedInstance.updateSavedStationAndRegenerateTracks(savedStation){
+            }
         }
 
     }
@@ -249,10 +277,24 @@ extension PlaylistViewController: UITableViewDataSource {
                 if let cell = cell as? TrackTableViewCell {
                     SongSortApiManager.sharedInstance.banTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.tracksTableView.beginUpdates()
-                        self.tracksTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Middle)
-                        self.tracks?.removeAtIndex(indexPath.row)
-                        self.tracksTableView.endUpdates()
+                        
+                        if let tracks = self.tracks {
+                            var index: Int?
+                            for var i = 0; i<tracks.count; i++ {
+                                if cell.track?.id == tracks[i].id {
+                                    index = i
+                                    break
+                                }
+                            }
+                            
+                            if let index = index {
+                                self.tracksTableView.beginUpdates()
+                                self.tracksTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Middle)
+                                self.tracks?.removeAtIndex(index)
+                                self.tracksTableView.endUpdates()
+                            }
+                        }
+                        
                     })
                 }
                 
