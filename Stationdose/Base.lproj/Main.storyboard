@@ -1082,13 +1082,19 @@ Please sign in to your account to start.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="track-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="bdu-B8-trg">
-                                                    <rect key="frame" x="0.0" y="5" width="43" height="43"/>
+                                                    <rect key="frame" x="0.0" y="5" width="0.0" height="43"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" id="HRQ-Xa-rL1"/>
                                                         <constraint firstAttribute="width" secondItem="bdu-B8-trg" secondAttribute="height" multiplier="1:1" id="d9u-8f-jxE"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="d9u-8f-jxE"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9t-Ta-Y29">
-                                                    <rect key="frame" x="53" y="9" width="110" height="21"/>
+                                                    <rect key="frame" x="15" y="9" width="110" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="NHm-re-UBn"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="XvR-ks-huG"/>
@@ -1103,7 +1109,7 @@ Please sign in to your account to start.</string>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2h-Bz-QtK">
-                                                    <rect key="frame" x="53" y="29" width="322" height="15"/>
+                                                    <rect key="frame" x="15" y="29" width="360" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="aOP-Ig-ggz"/>
                                                         <constraint firstAttribute="height" constant="15" id="lkx-GR-ecf"/>
@@ -1118,7 +1124,7 @@ Please sign in to your account to start.</string>
                                                     </variation>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-liked" translatesAutoresizingMaskIntoConstraints="NO" id="TNk-p5-led">
-                                                    <rect key="frame" x="181" y="14" width="13" height="11"/>
+                                                    <rect key="frame" x="143" y="14" width="13" height="11"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="TNk-p5-led" secondAttribute="height" multiplier="13:11" id="DLq-5d-EQq"/>
                                                         <constraint firstAttribute="width" constant="13" id="UDZ-47-Xu5"/>
@@ -1131,12 +1137,12 @@ Please sign in to your account to start.</string>
                                                 <constraint firstItem="bdu-B8-trg" firstAttribute="leading" secondItem="cmN-OB-qUb" secondAttribute="leading" id="VPB-fh-52y"/>
                                                 <constraint firstItem="l9t-Ta-Y29" firstAttribute="top" secondItem="cmN-OB-qUb" secondAttribute="top" constant="9" id="XdA-X4-9wa"/>
                                                 <constraint firstItem="TNk-p5-led" firstAttribute="leading" secondItem="l9t-Ta-Y29" secondAttribute="trailing" constant="18" id="h7O-mp-2l0"/>
-                                                <constraint firstItem="l9t-Ta-Y29" firstAttribute="leading" secondItem="bdu-B8-trg" secondAttribute="trailing" constant="10" id="hQ5-N5-37K"/>
+                                                <constraint firstItem="l9t-Ta-Y29" firstAttribute="leading" secondItem="bdu-B8-trg" secondAttribute="trailing" constant="15" id="hQ5-N5-37K"/>
                                                 <constraint firstItem="TNk-p5-led" firstAttribute="centerY" secondItem="l9t-Ta-Y29" secondAttribute="centerY" id="jkJ-L6-5yM"/>
                                                 <constraint firstAttribute="bottom" secondItem="U2h-Bz-QtK" secondAttribute="bottom" constant="9" id="kgL-UY-b9b"/>
                                                 <constraint firstAttribute="trailing" secondItem="l9t-Ta-Y29" secondAttribute="trailing" id="kwa-Q0-ltd"/>
                                                 <constraint firstAttribute="trailing" secondItem="U2h-Bz-QtK" secondAttribute="trailing" id="kzP-42-20o"/>
-                                                <constraint firstItem="U2h-Bz-QtK" firstAttribute="leading" secondItem="bdu-B8-trg" secondAttribute="trailing" constant="10" id="xLO-mr-Yu3"/>
+                                                <constraint firstItem="U2h-Bz-QtK" firstAttribute="leading" secondItem="bdu-B8-trg" secondAttribute="trailing" constant="15" id="xLO-mr-Yu3"/>
                                                 <constraint firstItem="bdu-B8-trg" firstAttribute="top" secondItem="cmN-OB-qUb" secondAttribute="top" constant="5" id="yct-UX-YaU"/>
                                                 <constraint firstAttribute="bottom" secondItem="bdu-B8-trg" secondAttribute="bottom" constant="5" id="zd8-ac-2o6"/>
                                             </constraints>

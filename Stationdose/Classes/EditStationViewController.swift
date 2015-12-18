@@ -32,7 +32,7 @@ class EditStationViewController: BaseViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
             
         nameLabel?.text = savedStation?.station?.name
-        updatedAtLabel.text = savedStation?.updatedAtString()
+        updatedAtLabel?.text = savedStation?.updatedAtString()
         
         if let imageUrl = savedStation?.station?.art {
             let url = NSURL(string: imageUrl)!
@@ -77,7 +77,7 @@ class EditStationViewController: BaseViewController {
     func savedStationDidChangeUpdatedAt(notification:NSNotification) {
         if let savedStation = notification.object as? SavedStation {
             if savedStation.id == self.savedStation?.id {
-                updatedAtLabel.text = savedStation.updatedAtString()
+                updatedAtLabel?.text = savedStation.updatedAtString()
             }
         }
     }

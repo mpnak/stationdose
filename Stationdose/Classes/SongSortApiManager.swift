@@ -123,7 +123,7 @@ class SongSortApiManager {
         if let location = LocationManager.sharedInstance.currentLocation{
             data["ll"] = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         }
-        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStationId),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
+        manager.request(.POST, baseURL+String(format: ApiMethods.savedStationTraks, savedStation.id!),parameters:data).responseArray("tracks") { (response: Response<[Track], NSError>) in
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
             savedStation.updatedAt = NSDate()

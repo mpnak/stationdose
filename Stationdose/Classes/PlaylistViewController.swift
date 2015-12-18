@@ -52,7 +52,7 @@ class PlaylistViewController: BaseViewController {
         
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription
-        updatedAtLabel.text = savedStation?.updatedAtString()
+        updatedAtLabel?.text = savedStation?.updatedAtString()
         if let url = station?.url {
             urlLabel?.text = url.stringByReplacingOccurrencesOfString("http://", withString: "").stringByReplacingOccurrencesOfString("https://", withString: "")
         }
@@ -107,7 +107,7 @@ class PlaylistViewController: BaseViewController {
     func savedStationDidChangeUpdatedAt(notification:NSNotification) {
         if let savedStation = notification.object as? SavedStation {
             if savedStation.id == self.savedStation?.id {
-                updatedAtLabel.text = savedStation.updatedAtString()
+                updatedAtLabel?.text = savedStation.updatedAtString()
             }
         }
     }
