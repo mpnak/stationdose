@@ -130,6 +130,7 @@ class PlaylistViewController: BaseViewController {
     
     func willStartSavedStationTracksReGeneration(notification:NSNotification){
         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
+            
             fullscreenView.setMessage("Just a moment, we’re generating your playlist")
             fullscreenView.show()
         }
@@ -176,41 +177,27 @@ class PlaylistViewController: BaseViewController {
         }
     }
     @IBAction func forceRefresh(sender: UIButton) {
-        ModelManager.sharedInstance.forceGenerateSavedStationTracks(self.savedStation!){
+        if let savedStation = self.savedStation {
+            ModelManager.sharedInstance.forceGenerateSavedStationTracks(savedStation) { }
+        } else if let station = self.station {
+            ModelManager.sharedInstance.generateStationTracksAndCache(station) { }
         }
-        
     }
     
-    
     @IBAction func toggleWeather(sender: UIButton) {
-        
-        
-        
-        if let savedStation = self.savedStation{
-            
-
-            
+        if let savedStation = self.savedStation {
             savedStation.toggleWeather()
             updateWeatherIcon(savedStation)
             showAlertFirstTimeAndSaveStation(savedStation)
-
         }
-
-        
     }
     
     @IBAction func toggleUseTime(sender: UIButton) {
-        
-        
-        
-        if let savedStation = savedStation{
-            
+        if let savedStation = savedStation {
             savedStation.toggleTime()
-
             updateTimeIcon(savedStation)
             showAlertFirstTimeAndSaveStation(savedStation)
         }
-
     }
     
     @IBAction func saveStation(sender: UIButton) {
@@ -375,6 +362,8 @@ extension PlaylistViewController: UITableViewDataSource {
             cell.rightButtons = nil
             cell.leftButtons = nil
         }
+        
+        cell.validatePlaying()
         
         return cell
     }

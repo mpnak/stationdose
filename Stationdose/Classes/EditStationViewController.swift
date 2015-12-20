@@ -23,6 +23,7 @@ class EditStationViewController: BaseViewController {
     @IBOutlet weak var autoUpdateSwitch: UISwitch!
     
     private let fullscreenView = FullScreenLoadingView()
+    private var somethingChanged:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,9 +65,7 @@ class EditStationViewController: BaseViewController {
             autoUpdateSwitch.on = (savedStation.autoupdate)!
             
         } else {
-            
             print("Error: savedStation missing")
-            
         }
     }
     
@@ -96,21 +95,22 @@ class EditStationViewController: BaseViewController {
     
     @IBAction func weatherSwitchValueChange(sender: UISwitch) {
         savedStation?.useWeather = sender.on
+        somethingChanged = true
     }
     
     @IBAction func timeSwitchValueChange(sender: UISwitch) {
         savedStation?.useTimeofday = sender.on
+        somethingChanged = true
     }
     
     @IBAction func autoUpdateSwitchValueChange(sender: UISwitch) {
         savedStation?.autoupdate = sender.on
-
     }
     
     @IBAction func familiarityTouchUpInside(sender: UISlider) {
         sender.setValue(familiaritySliderRoundValue(sender.value), animated: true)
         savedStation?.undergroundness = Int(sender.value * 4);
-        
+        somethingChanged = true
     }
     
     
@@ -124,12 +124,15 @@ class EditStationViewController: BaseViewController {
     
     @IBAction func doneAction(sender: AnyObject) {
 //        self.dismissViewControllerAnimated(true) { () -> Void in }
-        
+        if !somethingChanged {
+            self.navigationController?.popViewControllerAnimated(true)
+            return
+        }
         
         AlertView(title: "Update Playlist Now?", message: "You’ve made changes to your station, do you want to update the playlist now?", acceptButtonTitle: "Update Now", cancelButtonTitle: "Update Later") {
             (accept) -> Void in
             
-            if(accept){
+            if accept {
                 ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: true) {
                     self.navigationController?.popViewControllerAnimated(true)
                 }
@@ -148,6 +151,7 @@ class EditStationViewController: BaseViewController {
                 let point = tap.locationInView(view)
                 familiaritySlider.setValue(familiaritySliderRoundValue(Float(point.x/view.frame.size.width)), animated: true)
                 savedStation?.undergroundness = Int(familiaritySlider.value * 4);
+                somethingChanged = true
             }
         }
     }

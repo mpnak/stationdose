@@ -179,10 +179,7 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: NSURL!) {
         for url in deletedTacksUrls {
             if url == trackUri.absoluteString {
-//                player.setIsPlaying(false, callback: { (error) -> Void in })
-//                player.stop({ (error) -> Void in })
                 player.skipNext({ (_) -> Void in })
-//                player.setIsPlaying(true, callback: { (error) -> Void in })
                 break
             }
         }

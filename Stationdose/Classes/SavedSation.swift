@@ -52,12 +52,9 @@ class SavedStation: Mappable {
     func updatedAtString() -> String {
         
         if let updatedAt = updatedAt {
-            
             let components = NSCalendar.currentCalendar().components(.Day, fromDate: updatedAt, toDate: NSDate(), options: .WrapComponents)
-            print(components)
             
             var result = "Updated: "
-            
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "ha"
             result += dateFormatter.stringFromDate(updatedAt).lowercaseString
@@ -65,15 +62,15 @@ class SavedStation: Mappable {
             
             if components.day == 0 {
                 result += "today"
+            } else if components.day == 1 {
+                result += "yesterday"
             } else {
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "MM-dd"
-                result += dateFormatter.stringFromDate(updatedAt)
+                result += String(format: "%i days ago", components.day)
             }
             return result
             
         } else {
-            return ""
+            return "Updated: ???"
         }
     }
 }

@@ -16,10 +16,7 @@ class InternalFullScreenLoadingView: UIView {
     @IBOutlet weak var messageLabel: UILabel!
     
     override func awakeFromNib() {
-        
         activityIndicatoer.hidden = true
-
-
     }
     
     class func instanceFromNib() -> InternalFullScreenLoadingView {
@@ -29,12 +26,11 @@ class InternalFullScreenLoadingView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
-
-        radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicatoer.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
-        addSubview(radioActivityIndicator)
-        radioActivityIndicator.startAnimation()
         
+        if radioActivityIndicator == nil {
+            radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicatoer.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
+            addSubview(radioActivityIndicator)
+            radioActivityIndicator.startAnimation()
+        }
     }
-
-
 }

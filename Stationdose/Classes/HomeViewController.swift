@@ -48,6 +48,7 @@ class HomeViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadPlaylists", name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadStations", name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeModifiers:", name: ModelManagerNotificationKey.SavedStationDidChangeModifiers.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
     }
     
     deinit {
@@ -101,6 +102,10 @@ class HomeViewController: BaseViewController {
     }
     
     func savedStationDidChangeModifiers(notification:NSNotification) {
+        myStationsTableView.reloadData()
+    }
+    
+    func savedStationDidChangeUpdatedAt(notification:NSNotification) {
         myStationsTableView.reloadData()
     }
     
@@ -431,7 +436,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.station = station
             cell.savedStation = savedStation
             cell.titleLabel.text = station!.name
-            cell.shortDescriptionLabel.text = station!.shortDescription
+            cell.shortDescriptionLabel.text = savedStation.updatedAtString()
             
             cell.coverImageView.image = nil
             if let sponsoredUrl = station?.art {

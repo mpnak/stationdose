@@ -64,7 +64,7 @@ class FullScreenLoadingView: NSObject {
         
         blurEffectView.frame = internalView.bounds
         internalView.superview!.insertSubview(blurEffectView, belowSubview: internalView)
-        self.blurEffectView.alpha = 0.7
+//        self.blurEffectView.alpha = 0.7
         
         
         internalView.layoutIfNeeded()
