@@ -300,6 +300,7 @@ extension PlaylistViewController: UITableViewDataSource {
             }
             
             PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
+            PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
             
             self.station?.isPlaying = true
         }

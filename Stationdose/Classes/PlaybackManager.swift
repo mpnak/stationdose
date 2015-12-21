@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class PlaybackManager: NSObject {
     
     static let sharedInstance = PlaybackManager()
     
+    var currentImage:UIImage?
     var currentTrack:Track?
     
     private var tracksMap:[String: Track]
@@ -36,6 +38,46 @@ class PlaybackManager: NSObject {
             }
         }
         currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "currentTimeReload", userInfo: nil, repeats: true)
+        
+        setupRemoteCommandCenter()
+    }
+    
+    func setupRemoteCommandCenter() {
+        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
+        commandCenter.playCommand.addTarget(self, action: "play")
+        commandCenter.pauseCommand.addTarget(self, action: "pause")
+        commandCenter.togglePlayPauseCommand.addTarget(self, action: "togglePlayPause")
+        commandCenter.nextTrackCommand.addTarget(self, action: "nextTrack")
+        commandCenter.previousTrackCommand.addTarget(self, action: "previousTrack")
+        
+        commandCenter.likeCommand.enabled = false
+        commandCenter.dislikeCommand.enabled = false
+        
+        commandCenter.stopCommand.enabled = false
+        commandCenter.enableLanguageOptionCommand.enabled = false
+        commandCenter.disableLanguageOptionCommand.enabled = false
+        commandCenter.skipForwardCommand.enabled = false
+        commandCenter.skipBackwardCommand.enabled = false
+        commandCenter.ratingCommand.enabled = false
+        commandCenter.bookmarkCommand.enabled = false
+        commandCenter.changePlaybackPositionCommand.enabled = false
+    }
+    
+    func setNowPlayingInfo() {
+        var info = [String : AnyObject]()
+        info[MPMediaItemPropertyPlaybackDuration] = Double(player.currentTrackDuration)
+        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Double(player.currentPlaybackPosition)
+        info[MPNowPlayingInfoPropertyPlaybackRate] = player.isPlaying ? 1.0 : 0.0
+//        info[MPMediaItemPropertyMediaType] = MPMediaType.Music.rawValue
+        
+        info[MPMediaItemPropertyTitle] = currentTrack?.title
+        info[MPMediaItemPropertyArtist] = currentTrack?.artist
+        if let currentImage = currentImage {
+            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: currentImage)
+        }
+//        info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: UIImage(named: "station-placeholder")!)
+        
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = info
     }
     
     func currentTimeReload() {
@@ -58,6 +100,19 @@ class PlaybackManager: NSObject {
     func pause() {
         setPlayPauseButtonsEnabled(false)
         player.setIsPlaying(false, callback: { (error) -> Void in })
+    }
+    
+    func togglePlayPause() {
+        setPlayPauseButtonsEnabled(false)
+        player.setIsPlaying(!player.isPlaying, callback: { (error) -> Void in })
+    }
+    
+    func nextTrack() {
+        player.skipNext({ (error) -> Void in})
+    }
+    
+    func previousTrack() {
+        player.skipPrevious({ (error) -> Void in})
     }
     
     func removeTrack(track:Track) {
@@ -189,6 +244,7 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
         playbackControlView?.playButton.alpha = isPlaying ? 0 : 1
         playbackControlView?.pauseButton.alpha = isPlaying ? 1 : 0
         setPlayPauseButtonsEnabled(true)
+        setNowPlayingInfo()
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
@@ -200,6 +256,7 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
                 playbackControlView?.pauseButton.alpha = 1
                 setPlayPauseButtonsEnabled(true)
                 currentTrack = track
+                setNowPlayingInfo()
                 NSNotificationCenter.defaultCenter().postNotificationName("playbackCurrentTrackDidChange", object: nil)
             }
         }
