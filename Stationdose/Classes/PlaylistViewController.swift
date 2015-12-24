@@ -81,13 +81,11 @@ class PlaylistViewController: BaseViewController {
                 tracks = theTracks
             }
         } else {
-            
             if let theTracks = station?.tracks{
                 tracks = theTracks
                 self.tracksTableView.reloadData()
             }
         }
-        
         self.view.layoutIfNeeded()
     }
     
@@ -115,7 +113,7 @@ class PlaylistViewController: BaseViewController {
     func updateWeatherIcon(savedStation:SavedStation){
         if let useWeather = savedStation.useWeather where useWeather{
             weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
-        }else{
+        } else {
             weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
         }
     }
@@ -123,7 +121,7 @@ class PlaylistViewController: BaseViewController {
     func updateTimeIcon(savedStation:SavedStation){
         if let useTime = savedStation.useTimeofday where useTime{
             timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
-        }else{
+        } else {
             timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
         }
     }
@@ -134,7 +132,6 @@ class PlaylistViewController: BaseViewController {
             fullscreenView.setMessage("Just a moment, we’re generating your playlist")
             fullscreenView.show()
         }
-        
     }
     
     func didEndSavedStationTracksReGeneration(notification:NSNotification){
@@ -176,11 +173,34 @@ class PlaylistViewController: BaseViewController {
             }
         }
     }
+    
     @IBAction func forceRefresh(sender: UIButton) {
         if let savedStation = self.savedStation {
             ModelManager.sharedInstance.forceGenerateSavedStationTracks(savedStation) { }
         } else if let station = self.station {
             ModelManager.sharedInstance.generateStationTracksAndCache(station) { }
+        }
+    }
+    
+    @IBAction func share(sender: AnyObject) {
+        if let station = station {
+            if let text = station.name {
+                let shareView = ShareView(text: text, appUrl:"station/123", presenterViewController: self) { (_) -> Void in }
+                
+                if let urlString = station.url {
+                    if let url = NSURL(string: urlString) {
+                        shareView.shareUrl = url
+                    }
+                }
+                
+                if let image = self.coverImageView?.image {
+                    shareView.shareImage = image
+                }
+                
+                shareView.tracks = tracks
+                
+                shareView.show()
+            }
         }
     }
     
@@ -248,9 +268,6 @@ extension PlaylistViewController: UITableViewDataSource {
                     let indexPath = self.tracksTableView.indexPathForCell(cell)
                     self.tracksTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
                     self.tracksTableView.endUpdates()
-                    
-                    
-                    
                 }
             }
             return true

@@ -20,7 +20,7 @@ class SpotifyManager: NSObject {
         spotifyAuthenticator.clientID = Constants.Spotify.ClientId
         spotifyAuthenticator.redirectURL = NSURL(string: Constants.Spotify.RedirectUrl)
         spotifyAuthenticator.sessionUserDefaultsKey = "SpotifySession"
-        spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope,SPTAuthUserReadPrivateScope]
+        spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope,SPTAuthUserReadPrivateScope,SPTAuthPlaylistModifyPrivateScope]
         spotifyAuthenticator.tokenRefreshURL = NSURL(string:Constants.Spotify.RefreshUrl)
         spotifyAuthenticator.tokenSwapURL = NSURL(string:Constants.Spotify.SwapUrl)
         
@@ -98,5 +98,34 @@ class SpotifyManager: NSObject {
     func renewSession() {
         SPTAuth.defaultInstance().renewSession(session, callback: callback)
         
+    }
+    
+    func createPlaylist(stationName: String, tracks :[Track], callback: (success: Bool) -> Void) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM d, h:mma"
+        dateFormatter.AMSymbol = "am"
+        dateFormatter.PMSymbol = "pm"
+        let playlistName = String(format:"%@ - %@", stationName, dateFormatter.stringFromDate(NSDate()))
+        SPTPlaylistList.createPlaylistWithName(playlistName, publicFlag: false, session: session) { (error, snapshot) -> Void in
+            if let snapshot = snapshot {
+                var tracksUrls = [NSURL]()
+                for track in tracks {
+                    if let url = NSURL(string:track.spotifyUrl()) {
+                        tracksUrls.append(url)
+                    }
+                }
+                SPTTrack.tracksWithURIs(tracksUrls, session: self.session, callback: { (error, tracks) -> Void in
+                    if let tracks = tracks as? [SPTTrack] {
+                        snapshot.addTracksToPlaylist(tracks, withSession: self.session, callback: { (error) -> Void in 
+                            callback(success: error != nil)
+                        })
+                    } else {
+                        callback(success: false)
+                    }
+                })
+            } else {
+                callback(success: false)
+            }
+        }
     }
 }

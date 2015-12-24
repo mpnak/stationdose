@@ -16,6 +16,8 @@ class PlaybackManager: NSObject {
     var currentImage:UIImage?
     var currentTrack:Track?
     
+    var alwaysOnTop: Bool
+    
     private var tracksMap:[String: Track]
     private let player:SPTAudioStreamingController
     private var currentTimeReloadTimer: NSTimer?
@@ -28,6 +30,7 @@ class PlaybackManager: NSObject {
         tracksMap = [String: Track]()
         deletedTacksUrls = [String]()
         player = SpotifyManager.sharedInstance.player!
+        alwaysOnTop = true
         
         super.init()
         
@@ -86,9 +89,11 @@ class PlaybackManager: NSObject {
         } else {
             playbackControlView?.currentTimeProgressView.progress = 0.0
         }
-        if let superview = playbackControlView?.superview  {
-            playbackControlView?.removeFromSuperview()
-            superview.addSubview(playbackControlView!)
+        if alwaysOnTop {
+            if let superview = playbackControlView?.superview  {
+                playbackControlView?.removeFromSuperview()
+                superview.addSubview(playbackControlView!)
+            }
         }
     }
     
@@ -122,7 +127,7 @@ class PlaybackManager: NSObject {
             }
         }
         
-        let url = urlForTrack(track)
+        let url = track.spotifyUrl()
         deletedTacksUrls.append(url)
         tracksMap.removeValueForKey(url)
     }
@@ -144,7 +149,7 @@ class PlaybackManager: NSObject {
         
         var urls = [NSURL]()
         for track in tracks {
-            let urlString = urlForTrack(track)
+            let urlString = track.spotifyUrl()
             urls.append(NSURL(string: urlString)!)
             tracksMap[urlString] = track
         }
@@ -215,10 +220,6 @@ class PlaybackManager: NSObject {
     private func setPlayPauseButtonsEnabled(enabled:Bool) {
         playbackControlView?.playButton.enabled = enabled
         playbackControlView?.pauseButton.enabled = enabled
-    }
-    
-    private func urlForTrack(track:Track) -> String {
-        return String(format: "spotify:track:%@", arguments: [track.spotifyId!])
     }
 }
 

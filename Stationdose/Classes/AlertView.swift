@@ -23,21 +23,21 @@ class AlertView: NSObject {
     static var retainedSelfs :[AlertView] = []
     
     required init (title: String, message: String, acceptButtonTitle: String, cancelButtonTitle: String?, callback: (accept: Bool) -> Void ) {
+        
+        contaignerView = InternalAlertView.instanceFromNib()
+        blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
+        
         self.title = title
         self.message = message
         self.acceptButtonTitle = acceptButtonTitle
         self.cancelButtonTitle = cancelButtonTitle
         self.callback = callback
         
-        contaignerView = InternalAlertView.instanceFromNib()
-        blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
+        super.init()
     }
     
-    
-    class func genericErrorAlert()->AlertView{
-        return AlertView(title: "Error", message: "Sorry, we seem to be having technical difficulties.", acceptButtonTitle: "Go Back", cancelButtonTitle: nil, callback: { (accept) -> Void in
-            
-        })
+    class func genericErrorAlert()->AlertView {
+        return AlertView(title: "Error", message: "Sorry, we seem to be having technical difficulties.", acceptButtonTitle: "Go Back", cancelButtonTitle: nil, callback: { (_) -> Void in })
     }
     
     func show() {

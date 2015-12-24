@@ -1026,6 +1026,9 @@ Please sign in to your account to start.</string>
                                                     <constraint firstAttribute="width" secondItem="vTz-za-ELG" secondAttribute="height" multiplier="1:1" id="t2E-1p-lew"/>
                                                 </constraints>
                                                 <state key="normal" image="btn-share"/>
+                                                <connections>
+                                                    <action selector="share:" destination="ExW-W1-YQY" eventType="touchUpInside" id="09h-Q4-Ev4"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hd2-QE-u1v">
                                                 <rect key="frame" x="241" y="0.0" width="43" height="43"/>

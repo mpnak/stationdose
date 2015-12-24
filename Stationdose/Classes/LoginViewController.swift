@@ -24,8 +24,6 @@ class LoginViewController: UIViewController {
         self.view.addSubview(radioActivityIndicator)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionValid:", name: Constants.Notifications.sessionValidNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionError:", name: Constants.Notifications.sessionErrorNotification, object: nil)
-        
-        
     }
     
     deinit {
@@ -52,42 +50,22 @@ class LoginViewController: UIViewController {
     }
     
     func onSessionValid(notification:NSNotification){
-        
         SpotifyManager.sharedInstance.checkPremium { isPremium in
-            
             if isPremium {
                 ModelManager.sharedInstance.initialCache { () -> Void in
                     //self.activityIndicator.stopAnimating()
                     self.radioActivityIndicator.stopAnimation()
                     self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
                 }
-                
             } else {
                 //self.activityIndicator.stopAnimating()
                 self.radioActivityIndicator.stopAnimation()
                 self.performSegueWithIdentifier(Constants.Segues.LoginToRequestPremiumSegue, sender: self)
             }
         }
-        
     }
-    
     
     func onSessionError(notification:NSNotification){
-        
         showGenericErrorMessage()
-        
     }
-    
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

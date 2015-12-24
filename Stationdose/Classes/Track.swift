@@ -31,5 +31,9 @@ class Track: Mappable {
         undergroundness     <- map["undergroundness"]
         liked               <- map["favorited"]
     }
-
+    
+    func spotifyUrl() -> String {
+        return String(format: "spotify:track:%@", arguments: [spotifyId!])
+    }
+    
 }

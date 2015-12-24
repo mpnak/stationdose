@@ -92,6 +92,8 @@ class ModelManager: NSObject {
                 self.stationDidReloadTracks(station)
                 onCompletion()
             })
+        } else {
+            onCompletion()
         }
     }
     

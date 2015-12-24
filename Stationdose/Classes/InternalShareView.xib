@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Yantramanav-Light.ttf">
+            <string>Yantramanav-Light</string>
+            <string>Yantramanav-Light</string>
+            <string>Yantramanav-Light</string>
+        </mutableArray>
+        <mutableArray key="Yantramanav-Regular.ttf">
+            <string>Yantramanav-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="InternalShareView" customModule="Stationdose" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ewk-3h-v6p">
+                    <rect key="frame" x="25" y="186.5" width="325" height="293"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuQ-AQ-RkC">
+                            <rect key="frame" x="287" y="0.0" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="wuQ-AQ-RkC" secondAttribute="height" id="BNE-v2-qcT"/>
+                                <constraint firstAttribute="width" constant="38" id="JbU-TA-d1d"/>
+                            </constraints>
+                            <state key="normal" image="btn-close-alert"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share and save" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYe-tr-nSb">
+                            <rect key="frame" x="20" y="11" width="259" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="NeY-I9-LIw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcB-tq-rQn">
+                            <rect key="frame" x="20" y="47" width="285" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="qZZ-rX-2va"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                            <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Share station on Facebook" image="btn-share-facebook"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5b-IZ-e3Q">
+                            <rect key="frame" x="20" y="106" width="285" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="nSi-u4-V6G"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                            <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Share station on Twitter" image="btn-share-twitter"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHJ-n9-NXt">
+                            <rect key="frame" x="20" y="165" width="285" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="3d3-NM-eiZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                            <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Email station" image="btn-share-email"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28B-Ev-n53">
+                            <rect key="frame" x="32" y="229" width="261" height="44"/>
+                            <color key="backgroundColor" red="0.39215686274509803" green="0.5607843137254902" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="6bw-Gi-QaB"/>
+                                <constraint firstAttribute="width" constant="261" id="Mh3-zK-3ts"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="btn-share-create-playlist"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="wuQ-AQ-RkC" secondAttribute="trailing" id="27T-q0-x03"/>
+                        <constraint firstItem="rcB-tq-rQn" firstAttribute="top" secondItem="TYe-tr-nSb" secondAttribute="bottom" constant="15" id="4sV-xg-bjx"/>
+                        <constraint firstItem="N5b-IZ-e3Q" firstAttribute="top" secondItem="rcB-tq-rQn" secondAttribute="bottom" constant="15" id="CU6-Uz-kVt"/>
+                        <constraint firstItem="28B-Ev-n53" firstAttribute="leading" secondItem="Ewk-3h-v6p" secondAttribute="leading" constant="40" id="FZe-N0-EHQ"/>
+                        <constraint firstItem="28B-Ev-n53" firstAttribute="centerX" secondItem="Ewk-3h-v6p" secondAttribute="centerX" id="Fc8-py-IjA"/>
+                        <constraint firstItem="wuQ-AQ-RkC" firstAttribute="leading" secondItem="TYe-tr-nSb" secondAttribute="trailing" constant="8" id="H0S-wz-xtL"/>
+                        <constraint firstItem="rcB-tq-rQn" firstAttribute="leading" secondItem="TYe-tr-nSb" secondAttribute="leading" id="H9U-Vk-ybv"/>
+                        <constraint firstItem="28B-Ev-n53" firstAttribute="top" secondItem="iHJ-n9-NXt" secondAttribute="bottom" constant="20" id="Y3g-Cl-1I2"/>
+                        <constraint firstItem="iHJ-n9-NXt" firstAttribute="top" secondItem="N5b-IZ-e3Q" secondAttribute="bottom" constant="15" id="YYz-27-hP2"/>
+                        <constraint firstItem="N5b-IZ-e3Q" firstAttribute="leading" secondItem="rcB-tq-rQn" secondAttribute="trailing" constant="-510" id="Z5G-rP-wM1"/>
+                        <constraint firstAttribute="height" constant="146" id="a3U-Aa-RVH"/>
+                        <constraint firstItem="wuQ-AQ-RkC" firstAttribute="top" secondItem="Ewk-3h-v6p" secondAttribute="top" id="biw-rn-d2G"/>
+                        <constraint firstAttribute="bottom" secondItem="28B-Ev-n53" secondAttribute="bottom" constant="20" id="cLr-nh-3Um"/>
+                        <constraint firstItem="TYe-tr-nSb" firstAttribute="top" secondItem="Ewk-3h-v6p" secondAttribute="top" constant="11" id="fKq-NG-Hqh"/>
+                        <constraint firstItem="N5b-IZ-e3Q" firstAttribute="centerX" secondItem="Ewk-3h-v6p" secondAttribute="centerX" id="iAK-em-yz7"/>
+                        <constraint firstItem="rcB-tq-rQn" firstAttribute="centerX" secondItem="Ewk-3h-v6p" secondAttribute="centerX" id="l5z-R8-wCz"/>
+                        <constraint firstItem="TYe-tr-nSb" firstAttribute="leading" secondItem="Ewk-3h-v6p" secondAttribute="leading" constant="20" id="nMk-1A-Yhq"/>
+                        <constraint firstItem="iHJ-n9-NXt" firstAttribute="centerX" secondItem="Ewk-3h-v6p" secondAttribute="centerX" id="pOY-op-IbJ"/>
+                        <constraint firstItem="iHJ-n9-NXt" firstAttribute="leading" secondItem="Ewk-3h-v6p" secondAttribute="leading" constant="20" id="uml-Ws-9Ft"/>
+                        <constraint firstItem="N5b-IZ-e3Q" firstAttribute="leading" secondItem="Ewk-3h-v6p" secondAttribute="leading" constant="20" id="wtv-3N-cjt"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="a3U-Aa-RVH"/>
+                            <exclude reference="Z5G-rP-wM1"/>
+                            <exclude reference="FZe-N0-EHQ"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ewk-3h-v6p" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Un4-LL-5eU"/>
+                <constraint firstItem="Ewk-3h-v6p" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hwL-nt-AhY"/>
+                <constraint firstItem="Ewk-3h-v6p" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="lEm-o2-xUo"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <connections>
+                <outlet property="closeButton" destination="wuQ-AQ-RkC" id="5Wh-bn-h6O"/>
+                <outlet property="createPlaylistButton" destination="28B-Ev-n53" id="5IC-eG-efa"/>
+                <outlet property="emailButton" destination="iHJ-n9-NXt" id="UXR-UR-iHv"/>
+                <outlet property="facebookButton" destination="rcB-tq-rQn" id="Kdb-cw-VIE"/>
+                <outlet property="twitterButton" destination="N5b-IZ-e3Q" id="fmm-tk-wgK"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn-close-alert" width="38" height="38"/>
+        <image name="btn-share-create-playlist" width="261" height="44"/>
+        <image name="btn-share-email" width="23" height="23"/>
+        <image name="btn-share-facebook" width="23" height="23"/>
+        <image name="btn-share-twitter" width="23" height="23"/>
+    </resources>
+</document>

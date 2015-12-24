@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import netfox
+import Branch
 
 
 @UIApplicationMain
@@ -21,6 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
+        Branch.getInstance().initSessionWithLaunchOptions(launchOptions) { (params, error) -> Void in
+            if let params = params {
+                print("params ", params)
+            }
+        }
+        Branch.getInstance().setDebug()
+        
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         setupAppearance()
@@ -30,17 +38,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        
-        return SpotifyManager.sharedInstance.handleOpenURL(url)
-        
+        Branch.getInstance().handleDeepLink(url)
+        SpotifyManager.sharedInstance.handleOpenURL(url)
+        return true
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return SpotifyManager.sharedInstance.handleOpenURL(url)
+        Branch.getInstance().handleDeepLink(url)
+        SpotifyManager.sharedInstance.handleOpenURL(url)
+        return true
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         return SpotifyManager.sharedInstance.handleOpenURL(url)
+    }
+    
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        // pass the url to the handle deep link call
+        
+        return Branch.getInstance().continueUserActivity(userActivity)
     }
 
     func applicationWillResignActive(application: UIApplication) {

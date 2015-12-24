@@ -130,11 +130,17 @@ class HomeViewController: BaseViewController {
         }
     }
     
-    func reloadPlaylists() {
+    func reloadPlaylists(andStationsList: Bool) {
         myStations = ModelManager.sharedInstance.savedStations
         myStationsTableView.reloadData()
-        stationsListTableView.reloadData()
+        if andStationsList {
+            stationsListTableView.reloadData()
+        }
         reloadTablesViewContaignerHeight()
+    }
+    
+    func reloadPlaylists() {
+        reloadPlaylists(true)
     }
     
     func reloadStations() {
@@ -570,7 +576,6 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func moveToSavedStationPlaylist(){
-        
         fullscreenView.setMessage("Just a moment, we’re getting your playlist")
         fullscreenView.show(0.5)
         ModelManager.sharedInstance.reloadNotCachedSavedStationTracksAndCache(selectedSavedStation!) { () -> Void in
@@ -597,7 +602,7 @@ extension HomeViewController: UITableViewDataSource {
                 UIView.animateWithDuration(0.1, animations: { () -> Void in
                     cell.addedMessageView.alpha = 1
                     }, completion: { (_) -> Void in
-                        UIView.animateWithDuration(0.1, delay: 1.5, options: .CurveEaseInOut, animations: { () -> Void in
+                        UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
                             cell.addedMessageView.alpha = 0
                             }, completion:nil)
                 })
@@ -608,7 +613,7 @@ extension HomeViewController: UITableViewDataSource {
                 
                 ModelManager.sharedInstance.saveStation(station, onCompletion: { (success) -> Void in
                     sender.enabled = true
-                    self.reloadPlaylists()
+                    self.reloadPlaylists(false)
                 })
             } else {
                 sender.enabled = true
@@ -634,12 +639,12 @@ extension HomeViewController: UITableViewDataSource {
                         UIView.animateWithDuration(0.1, animations: { () -> Void in
                             cell.removedMessageView.alpha = 1
                             }, completion: { (_) -> Void in
-                                UIView.animateWithDuration(0.1, delay: 1.5, options: .CurveEaseInOut, animations: { () -> Void in
+                                UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
                                     cell.removedMessageView.alpha = 0
                                     }, completion:nil)
                         })
                         
-                        self.reloadPlaylists()
+                        self.reloadPlaylists(false)
                     }
                 }
             } else {
