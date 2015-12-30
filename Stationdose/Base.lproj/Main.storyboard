@@ -253,7 +253,7 @@ Please sign in to your account to start.</string>
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-Wa-afx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-Wa-afx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDY-KY-Q4s">
@@ -500,7 +500,7 @@ Please sign in to your account to start.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I01-N4-isG">
                                                         <rect key="frame" x="0.0" y="63" width="375" height="232.5"/>
                                                         <subviews>
-                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ha2-ai-2FK">
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ha2-ai-2FK">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="232.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <prototypes>
@@ -574,7 +574,7 @@ Please sign in to your account to start.</string>
                                                                     <outlet property="dataSource" destination="ISF-u2-Npe" id="tzx-1c-JkG"/>
                                                                 </connections>
                                                             </tableView>
-                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x2O-rK-0py">
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x2O-rK-0py">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="232.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <prototypes>
@@ -852,6 +852,9 @@ Please sign in to your account to start.</string>
                                     <constraint firstItem="LDY-KY-Q4s" firstAttribute="top" secondItem="W6P-Wa-afx" secondAttribute="top" id="kSt-u6-JCb"/>
                                     <constraint firstItem="LDY-KY-Q4s" firstAttribute="leading" secondItem="W6P-Wa-afx" secondAttribute="leading" id="pHP-4b-hbi"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="ISF-u2-Npe" id="2kc-oI-smh"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -867,6 +870,7 @@ Please sign in to your account to start.</string>
                     <connections>
                         <outlet property="featuredStationsCollectionView" destination="C09-e5-zHc" id="2MM-qf-482"/>
                         <outlet property="featuresStationsPageControl" destination="kMz-kF-H1R" id="3Pk-8V-LAQ"/>
+                        <outlet property="mainScrollView" destination="W6P-Wa-afx" id="MWr-Fg-tNe"/>
                         <outlet property="myStationsEmptyView" destination="jQK-mb-Dwg" id="dqb-OO-HO3"/>
                         <outlet property="myStationsTableView" destination="ha2-ai-2FK" id="ZSD-eO-sn5"/>
                         <outlet property="sponsoredImageView" destination="cGr-A0-kn3" id="35S-8K-ICK"/>
@@ -2057,6 +2061,9 @@ Please sign in to your account to start.</string>
                                                     <constraint firstAttribute="width" secondItem="S6F-FT-wDg" secondAttribute="height" multiplier="1:1" id="gU5-Oi-4bU"/>
                                                 </constraints>
                                                 <state key="normal" image="btn-share"/>
+                                                <connections>
+                                                    <action selector="share:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="wOY-RJ-Tou"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nike.com/running" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1s-Zt-Cja">
                                                 <rect key="frame" x="14" y="11" width="111.5" height="21"/>
@@ -2140,14 +2147,8 @@ Please sign in to your account to start.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="track-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="zbV-Vy-Ffp">
-                                                    <rect key="frame" x="0.0" y="5" width="43" height="43"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="zbV-Vy-Ffp" secondAttribute="height" multiplier="1:1" id="JGe-Ls-Pqx"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPH-8G-dWi">
-                                                    <rect key="frame" x="53" y="9" width="110" height="21"/>
+                                                    <rect key="frame" x="23" y="9" width="110" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="BD8-RK-YbU"/>
                                                         <constraint firstAttribute="height" constant="21" id="VX0-Fg-bID"/>
@@ -2162,7 +2163,7 @@ Please sign in to your account to start.</string>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quD-x6-5cS">
-                                                    <rect key="frame" x="53" y="29" width="322" height="15"/>
+                                                    <rect key="frame" x="23" y="29" width="352" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="PlS-n9-PHC"/>
                                                         <constraint firstAttribute="height" constant="15" id="UL9-Uw-MhP"/>
@@ -2177,7 +2178,7 @@ Please sign in to your account to start.</string>
                                                     </variation>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-liked" translatesAutoresizingMaskIntoConstraints="NO" id="Hew-20-24b">
-                                                    <rect key="frame" x="181" y="14" width="13" height="11"/>
+                                                    <rect key="frame" x="151" y="14" width="13" height="11"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Hew-20-24b" secondAttribute="height" multiplier="13:11" id="ap6-cp-VwJ"/>
                                                         <constraint firstAttribute="width" constant="13" id="iaz-hC-JEc"/>
@@ -2186,17 +2187,14 @@ Please sign in to your account to start.</string>
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="zbV-Vy-Ffp" secondAttribute="bottom" constant="5" id="0dE-hl-uIf"/>
                                                 <constraint firstItem="Hew-20-24b" firstAttribute="centerY" secondItem="gPH-8G-dWi" secondAttribute="centerY" id="4bI-If-2ML"/>
-                                                <constraint firstItem="quD-x6-5cS" firstAttribute="leading" secondItem="zbV-Vy-Ffp" secondAttribute="trailing" constant="10" id="4jW-UO-2hf"/>
-                                                <constraint firstItem="zbV-Vy-Ffp" firstAttribute="leading" secondItem="efX-te-vKd" secondAttribute="leading" id="Jad-8c-4nz"/>
                                                 <constraint firstAttribute="trailing" secondItem="quD-x6-5cS" secondAttribute="trailing" id="Mcc-Cp-fUu"/>
-                                                <constraint firstItem="gPH-8G-dWi" firstAttribute="leading" secondItem="zbV-Vy-Ffp" secondAttribute="trailing" constant="10" id="NW1-x5-Wou"/>
                                                 <constraint firstAttribute="bottom" secondItem="quD-x6-5cS" secondAttribute="bottom" constant="9" id="Usn-eu-8Bo"/>
                                                 <constraint firstItem="gPH-8G-dWi" firstAttribute="top" secondItem="efX-te-vKd" secondAttribute="top" constant="9" id="bWq-lb-OhC"/>
+                                                <constraint firstItem="quD-x6-5cS" firstAttribute="leading" secondItem="efX-te-vKd" secondAttribute="leadingMargin" constant="15" id="eA9-Lc-7wq"/>
                                                 <constraint firstAttribute="trailing" secondItem="gPH-8G-dWi" secondAttribute="trailing" id="j4r-ec-DrY"/>
+                                                <constraint firstItem="gPH-8G-dWi" firstAttribute="leading" secondItem="efX-te-vKd" secondAttribute="leadingMargin" constant="15" id="lAh-H6-nWp"/>
                                                 <constraint firstItem="Hew-20-24b" firstAttribute="leading" secondItem="gPH-8G-dWi" secondAttribute="trailing" constant="18" id="oDL-h9-gaG"/>
-                                                <constraint firstItem="zbV-Vy-Ffp" firstAttribute="top" secondItem="efX-te-vKd" secondAttribute="top" constant="5" id="zCi-bR-Q2C"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -2205,7 +2203,6 @@ Please sign in to your account to start.</string>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="coverImageView" destination="zbV-Vy-Ffp" id="kDU-xn-LQx"/>
                                             <outlet property="likedImageView" destination="Hew-20-24b" id="UUG-i3-BG3"/>
                                             <outlet property="subtitleLabel" destination="quD-x6-5cS" id="3M4-GI-WhR"/>
                                             <outlet property="titleLabel" destination="gPH-8G-dWi" id="CZk-4P-Onu"/>

@@ -22,7 +22,7 @@
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="nLk-z9-Tba">
                             <rect key="frame" x="177" y="324" width="20" height="20"/>
                         </activityIndicatorView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just a moment, we’re building your playlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qi7-af-z9r">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Just a moment, we’re building your playlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qi7-af-z9r">
                             <rect key="frame" x="10" y="372" width="355" height="21"/>
                             <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
                             <color key="textColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>

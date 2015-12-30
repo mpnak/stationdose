@@ -41,7 +41,6 @@ class PlaybackManager: NSObject {
             }
         }
         currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "currentTimeReload", userInfo: nil, repeats: true)
-        
         setupRemoteCommandCenter()
     }
     

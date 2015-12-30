@@ -87,7 +87,8 @@ class ShareView: NSObject {
             linkProperties.channel = "email"
         }
         
-        linkProperties.addControlParam("$ios_url", withValue: "http://example.com/ios")
+        linkProperties.addControlParam("$deeplink_path", withValue: "test")
+        linkProperties.addControlParam("$always_deeplink", withValue: "true")
         
         branchUniversalObject.getShortUrlWithLinkProperties(linkProperties, andCallback: { (url: String?, error: NSError?) -> Void in
             if let url = url {

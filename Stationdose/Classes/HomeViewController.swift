@@ -23,6 +23,7 @@ class HomeViewController: BaseViewController {
     var featuredStationsTimer: NSTimer?
     private let fullscreenView = FullScreenLoadingView()
     
+    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var featuredStationsCollectionView: UICollectionView!
     @IBOutlet weak var sponsoredImageView: UIImageView!
     @IBOutlet weak var tablesViewContaignerHeightLayoutConstraint: NSLayoutConstraint!
@@ -37,8 +38,6 @@ class HomeViewController: BaseViewController {
         featuredStations = []
         myStations = ModelManager.sharedInstance.savedStations
         featuredStations = ModelManager.sharedInstance.featuredStations
-        
-        
         sponsoredStations = ModelManager.sharedInstance.sponsoredStations
         
         super.init(coder: aDecoder)
@@ -150,11 +149,22 @@ class HomeViewController: BaseViewController {
     }
     
     func reloadTablesViewContaignerHeight() {
-        let stationsListTableViewHeight = CGFloat(stationsList.count) * stationsListTableView.rowHeight
-        let myStationsTableViewHeight = CGFloat(myStations.count) * myStationsTableView.rowHeight
-        let myStationsEmptyViewHeight = myStationsEmptyView.frame.size.height
+        reloadTablesViewContaignerHeight(0, delay: 0)
+    }
+    
+    func reloadTablesViewContaignerHeight(animationDuration: NSTimeInterval, delay: NSTimeInterval) {
         
-        tablesViewContaignerHeightLayoutConstraint.constant = max(max(stationsListTableViewHeight, myStationsTableViewHeight), myStationsEmptyViewHeight)
+        let myStationsEmptyViewHeight = myStationsEmptyView.frame.size.height
+        if stationsSegmentedControl.selectedSegmentIndex == 0 {
+            let myStationsTableViewHeight = CGFloat(myStations.count) * myStationsTableView.rowHeight
+            tablesViewContaignerHeightLayoutConstraint.constant = max(myStationsTableViewHeight, myStationsEmptyViewHeight)
+        } else {
+            let stationsListTableViewHeight = CGFloat(stationsList.count) * stationsListTableView.rowHeight
+            tablesViewContaignerHeightLayoutConstraint.constant = max(stationsListTableViewHeight, myStationsEmptyViewHeight)
+        }
+        UIView.animateWithDuration(animationDuration, delay: delay, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     func reloadData() {
@@ -233,14 +243,12 @@ class HomeViewController: BaseViewController {
         }
         stationsSegmentedControlValueChangedEnabled = false
         
-        
         let moveToLeft = stationsListTableView.alpha == 0
-        
         
         if myStations.count == 0 {
             UIView.animateWithDuration(0.1, delay: moveToLeft ? 0.0 : 0.1, options: .CurveEaseInOut, animations: { () -> Void in
                 self.myStationsEmptyView.alpha = moveToLeft ? 0 : 1
-                }, completion: nil)
+            }, completion: nil)
         }
         
         closeTableViewSwipeButtons(myStationsTableView, animated:true)
@@ -250,6 +258,12 @@ class HomeViewController: BaseViewController {
             self.stationsListTableView.alpha = moveToLeft ? 1 : 0
             self.stationsSegmentedControlValueChangedEnabled = true
         })
+        
+        if moveToLeft {
+            self.reloadTablesViewContaignerHeight()
+        } else {
+            self.reloadTablesViewContaignerHeight(0.5, delay: 0.25)
+        }
     }
     
     func closeTableViewSwipeButtons(tableview: UITableView, animated: Bool) {
@@ -337,12 +351,16 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.dragging {
-            featuredStationsTimer?.invalidate()
+        if scrollView == featuredStationsCollectionView {
+            if scrollView.dragging {
+                featuredStationsTimer?.invalidate()
+            }
+            let pageWidth = scrollView.frame.size.width
+            let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth)+1)
+            featuresStationsPageControl.currentPage = page
+        } else if scrollView == mainScrollView {
+            scrollView.contentOffset.y = max(scrollView.contentOffset.y, 0)
         }
-        let pageWidth = scrollView.frame.size.width
-        let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth)+1)
-        featuresStationsPageControl.currentPage = page
     }
 }
 
@@ -551,12 +569,12 @@ extension HomeViewController: UITableViewDataSource {
             }
         }
         
-        if(selectedSavedStation != nil){
+        if(selectedSavedStation != nil) {
             
             moveToSavedStationPlaylist()
             
-        }else if (selectedStation != nil){
-            if let station = self.selectedStation{
+        } else if (selectedStation != nil) {
+            if let station = self.selectedStation {
                 
                 for savedStation in myStations {
                     if savedStation.station!.id == station.id {
@@ -566,13 +584,12 @@ extension HomeViewController: UITableViewDataSource {
                     }
                 }
             }
-            if(selectedSavedStation != nil){
+            if (selectedSavedStation != nil) {
                 moveToSavedStationPlaylist()
-            }else{
+            } else {
                 moveToStationPlaylist()
             }
         }
-        
     }
     
     func moveToSavedStationPlaylist(){
