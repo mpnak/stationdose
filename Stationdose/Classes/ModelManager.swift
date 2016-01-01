@@ -55,18 +55,18 @@ class ModelManager: NSObject {
         let group = dispatch_group_create()
         
         savedStations.forEach { (savedStation) -> () in
-            
             if let autoupdate = savedStation.autoupdate where autoupdate == true {
                 dispatch_group_enter(group)
                 postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
                 SongSortApiManager.sharedInstance.generateSavedStationTracks(savedStation, onCompletion: { (tracks, error) -> Void in
                     savedStation.tracks = tracks;
+                    savedStation.updatedAt = NSDate()
+                    NSNotificationCenter.defaultCenter().postNotificationName(SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: savedStation)
                     self.savedStationDidReloadTracks(savedStation)
                     self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
                     dispatch_group_leave(group)
                 })
             }
-
         }
         dispatch_group_notify(group, dispatch_get_main_queue()) {
             onCompletion()
@@ -77,7 +77,9 @@ class ModelManager: NSObject {
         if(savedStation.tracks == nil){
             SongSortApiManager.sharedInstance.getSavedStationTracks((savedStation.id)!, onCompletion: { (tracks, error) -> Void in
                 savedStation.tracks = tracks;
+                savedStation.updatedAt = NSDate()
                 self.savedStationDidReloadTracks(savedStation)
+                self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
                 onCompletion()
             })
         } else {
@@ -100,7 +102,9 @@ class ModelManager: NSObject {
     func forceGenerateSavedStationTracks(savedStation:SavedStation,onCompletion:() -> Void){
         postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
         SongSortApiManager.sharedInstance.generateSavedStationTracks(savedStation, onCompletion: { (tracks, error) -> Void in
-            savedStation.tracks = tracks;
+            savedStation.tracks = tracks
+            savedStation.updatedAt = NSDate()
+            NSNotificationCenter.defaultCenter().postNotificationName(SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: savedStation)
             self.savedStationDidReloadTracks(savedStation)
             self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
             onCompletion()
@@ -205,6 +209,7 @@ class ModelManager: NSObject {
                 if(regenerateTracks){
                     SongSortApiManager.sharedInstance.generateSavedStationTracks(newSavedStation, onCompletion: { (tracks, error) -> Void in
                         savedStation.tracks = tracks;
+                        savedStation.updatedAt = NSDate()
                         self.savedStationDidReloadTracks(savedStation)
                         self.postEvent(.DidEndSavedStationTracksReGeneration, id: newSavedStation.id!)
                         onCompletion()
@@ -235,7 +240,6 @@ class ModelManager: NSObject {
     func removeSavedStation(stationToDelete: SavedStation, callback: (removed:Bool) -> Void) {
         AlertView(title: "Remove Station?", message: "Are you sure you want to remove this station from your favorites?", acceptButtonTitle: "Yes", cancelButtonTitle: "Nevermind", callback: { (accept) -> Void in
             if accept {
-
                 SongSortApiManager.sharedInstance.removeSavedStation(stationToDelete.id!)
                 self.savedStations = self.savedStations.filter() { $0.id != stationToDelete.id }
                 

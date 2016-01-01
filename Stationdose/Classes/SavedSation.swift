@@ -17,7 +17,18 @@ class SavedStation: Mappable {
     var autoupdate:Bool?
     var station:Station?
     var tracks:[Track]?
-    var updatedAt:NSDate?
+    var updatedAt:NSDate? {
+        get {
+            print(String(format: "SavedStationUpdatedAtFor_%i", (id != nil) ? id! : 0), " - ", NSUserDefaults.standardUserDefaults().objectForKey(String(format: "SavedStationUpdatedAtFor_%i", (id != nil) ? id! : 0)))
+            return NSUserDefaults.standardUserDefaults().objectForKey(String(format: "SavedStationUpdatedAtFor_%i", (id != nil) ? id! : 0)) as? NSDate
+        }
+        set {
+            if let newValue = newValue {
+                NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: String(format: "SavedStationUpdatedAtFor_%i", (id != nil) ? id! : 0))
+                NSUserDefaults.standardUserDefaults().synchronize()
+            }
+        }
+    }
     
     required init?(_ map: Map) {
         
@@ -70,7 +81,7 @@ class SavedStation: Mappable {
             return result
             
         } else {
-            return "Updated: ???"
+            return ""
         }
     }
 }
