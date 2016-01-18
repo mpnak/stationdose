@@ -28,9 +28,16 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var savedImageView: UIImageView!
     
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var weatherButton: UIButton!
     @IBOutlet weak var timeButton: UIButton!
+   //
+    @IBOutlet weak var rightButtonsLayoutConstraint: NSLayoutConstraint!
     
+    
+    let rightButtonsLayoutConstraintConstantForStation:CGFloat = 2.0
+    let rightButtonsLayoutConstraintConstantForSavedStation:CGFloat = 48.0
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +67,13 @@ class PlaylistViewController: BaseViewController {
         saveButton?.alpha = savedStation == nil ? 1 : 0
         removeButton?.alpha = savedStation == nil ? 0 : 1
         savedImageView?.alpha = savedStation == nil ? 0 : 1
+        if savedStation == nil{
+            
+        }
+        //
+        editButton.hidden = savedStation == nil ? true : false
+        rightButtonsLayoutConstraint?.constant = savedStation == nil ? rightButtonsLayoutConstraintConstantForStation : rightButtonsLayoutConstraintConstantForSavedStation
+        //
         
         if let isPlaying = station?.isPlaying where isPlaying { } else {
             ModelManager.sharedInstance.onNexStationSaveUseWeather = false
