@@ -66,7 +66,10 @@ class SavedStation: Mappable {
             
             var result = "Updated: "
             let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "ha"
+            dateFormatter.dateFormat = "hh:mm a"
+            if dateFormatter.stringFromDate(updatedAt).containsString(":00"){
+                dateFormatter.dateFormat = "ha"
+            }
             result += dateFormatter.stringFromDate(updatedAt).lowercaseString
             result += ", "
             
