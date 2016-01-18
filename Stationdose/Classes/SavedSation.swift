@@ -19,7 +19,6 @@ class SavedStation: Mappable {
     var tracks:[Track]?
     var updatedAt:NSDate? {
         get {
-            print(String(format: "SavedStationUpdatedAtFor_%i", (id != nil) ? id! : 0), " - ", NSUserDefaults.standardUserDefaults().objectForKey(String(format: "SavedStationUpdatedAtFor_%i", (id != nil) ? id! : 0)))
             return NSUserDefaults.standardUserDefaults().objectForKey(String(format: "SavedStationUpdatedAtFor_%i", (id != nil) ? id! : 0)) as? NSDate
         }
         set {

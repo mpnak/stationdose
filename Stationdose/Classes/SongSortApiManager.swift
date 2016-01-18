@@ -110,14 +110,11 @@ class SongSortApiManager {
     }
     
     func generateSavedStationTracks(savedStation:SavedStation, onCompletion:([Track]?,NSError?) -> Void) {
-        guard let user = ModelManager.sharedInstance.user
-            else{
-                self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
-                onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
-                return
+        guard let user = ModelManager.sharedInstance.user else {
+            self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
+            onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+            return
         }
-        
-        
         
         var data:Dictionary<String,AnyObject> = ["user_id": user.id!]
         if let location = LocationManager.sharedInstance.currentLocation{

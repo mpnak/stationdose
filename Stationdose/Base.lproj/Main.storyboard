@@ -1185,10 +1185,8 @@ Please sign in to your account to start.</string>
                     </view>
                     <connections>
                         <outlet property="coverImageView" destination="A06-5I-Nhg" id="tMO-X1-Uo1"/>
-                        <outlet property="leftButtonsLayoutConstraint" destination="2Cp-yv-fxq" id="x08-Ob-ySw"/>
                         <outlet property="nameLabel" destination="b9i-kw-Dqn" id="Xbd-mO-xZl"/>
                         <outlet property="removeButton" destination="6IW-9X-4C8" id="o7U-u8-8og"/>
-                        <outlet property="rightButtonsLayoutConstraint" destination="jJ1-KQ-ccC" id="VQf-1u-wQ8"/>
                         <outlet property="saveButton" destination="CrE-33-vXA" id="dLc-b0-H6u"/>
                         <outlet property="savedImageView" destination="6GT-pO-Hwi" id="kdH-y6-KIx"/>
                         <outlet property="shortDescriptionLabel" destination="aAa-H9-Gdi" id="MfD-8R-n2a"/>

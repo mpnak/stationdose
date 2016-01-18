@@ -30,11 +30,16 @@ class ModelManager: NSObject {
     var user:User?
     let imageDownloader = ImageDownloader.defaultInstance
     
+    var onNexStationSaveUseWeather: Bool
+    var onNexStationSaveUseTime: Bool
+    
     override init() {
         savedStations = []
         stations = []
         featuredStations = []
         sponsoredStations = []
+        onNexStationSaveUseWeather = false
+        onNexStationSaveUseTime = false
         
         super.init()
     }
@@ -214,8 +219,7 @@ class ModelManager: NSObject {
                         self.postEvent(.DidEndSavedStationTracksReGeneration, id: newSavedStation.id!)
                         onCompletion()
                     })
-
-                }else{
+                } else {
                     onCompletion()
                 }
             } else {
@@ -227,10 +231,19 @@ class ModelManager: NSObject {
     func saveStation(station: Station, onCompletion:(saved:Bool, savedStation:SavedStation?) -> Void) {
         SongSortApiManager.sharedInstance.saveStation(station.id!) { (savedStation, error) -> Void in
             if let savedStation = savedStation {
-                self.savedStations.append(savedStation)
-                
-                onCompletion(saved: true, savedStation:savedStation)
-                self.postEvent(.SavedStationsDidChange)
+                if self.onNexStationSaveUseWeather || self.onNexStationSaveUseTime {
+                    savedStation.useWeather = self.onNexStationSaveUseWeather
+                    savedStation.useTimeofday = self.onNexStationSaveUseTime
+                    self.updateSavedStationAndRegenerateTracksIfNeeded(savedStation, regenerateTracks: false) {
+                        self.savedStations.append(savedStation)
+                        onCompletion(saved: true, savedStation:savedStation)
+                        self.postEvent(.SavedStationsDidChange)
+                    }
+                } else {
+                    self.savedStations.append(savedStation)
+                    onCompletion(saved: true, savedStation:savedStation)
+                    self.postEvent(.SavedStationsDidChange)
+                }
             } else {
                 onCompletion(saved: false, savedStation: nil)
             }

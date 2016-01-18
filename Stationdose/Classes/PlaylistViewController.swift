@@ -31,14 +31,6 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var weatherButton: UIButton!
     @IBOutlet weak var timeButton: UIButton!
     
-    @IBOutlet weak var rightButtonsLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var leftButtonsLayoutConstraint: NSLayoutConstraint!
-    
-    let rightButtonsLayoutConstraintConstantForStation:CGFloat = -95.0
-    let rightButtonsLayoutConstraintConstantForSavedStation:CGFloat = 7.0
-    let leftButtonsLayoutConstraintConstantForStation:CGFloat = -38.0
-    let leftButtonsLayoutConstraintConstantForSavedStation:CGFloat = 5.0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,19 +61,21 @@ class PlaylistViewController: BaseViewController {
         removeButton?.alpha = savedStation == nil ? 0 : 1
         savedImageView?.alpha = savedStation == nil ? 0 : 1
         
-        rightButtonsLayoutConstraint?.constant = savedStation == nil ? rightButtonsLayoutConstraintConstantForStation : rightButtonsLayoutConstraintConstantForSavedStation
-        leftButtonsLayoutConstraint?.constant = savedStation == nil ? leftButtonsLayoutConstraintConstantForStation : leftButtonsLayoutConstraintConstantForSavedStation
+        if let isPlaying = station?.isPlaying where isPlaying { } else {
+            ModelManager.sharedInstance.onNexStationSaveUseWeather = false
+            ModelManager.sharedInstance.onNexStationSaveUseTime = false
+        }
+        
+        updateWeatherIcon(savedStation)
+        updateTimeIcon(savedStation)
         
         if let savedStation = savedStation {
-            updateWeatherIcon(savedStation)
-            updateTimeIcon(savedStation)
-
             tracks = []
             if let theTracks = savedStation.tracks{
                 tracks = theTracks
             }
         } else {
-            if let theTracks = station?.tracks{
+            if let theTracks = station?.tracks {
                 tracks = theTracks
                 self.tracksTableView.reloadData()
             }
@@ -110,19 +104,35 @@ class PlaylistViewController: BaseViewController {
         }
     }
     
-    func updateWeatherIcon(savedStation:SavedStation){
-        if let useWeather = savedStation.useWeather where useWeather{
-            weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
-        } else {
-            weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
+    func updateWeatherIcon(savedStation:SavedStation?) {
+        if let savedStation = savedStation {
+            if let useWeather = savedStation.useWeather where useWeather {
+                weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
+            } else {
+                weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
+            }
+        } else if let weatherButton = weatherButton {
+            if ModelManager.sharedInstance.onNexStationSaveUseWeather {
+                weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
+            } else {
+                weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
+            }
         }
     }
     
-    func updateTimeIcon(savedStation:SavedStation){
-        if let useTime = savedStation.useTimeofday where useTime{
-            timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
-        } else {
-            timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
+    func updateTimeIcon(savedStation:SavedStation?) {
+        if let savedStation = savedStation {
+            if let useTime = savedStation.useTimeofday where useTime {
+                timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
+            } else {
+                timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
+            }
+        } else if let timeButton = timeButton {
+            if ModelManager.sharedInstance.onNexStationSaveUseTime {
+                timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
+            } else {
+                timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
+            }
         }
     }
     
@@ -163,13 +173,6 @@ class PlaylistViewController: BaseViewController {
                 self.saveButton.alpha = 1
                 self.removeButton.alpha = 0
                 self.savedImageView.alpha = 0
-                
-                self.rightButtonsLayoutConstraint?.constant = self.rightButtonsLayoutConstraintConstantForStation
-                self.leftButtonsLayoutConstraint?.constant = self.leftButtonsLayoutConstraintConstantForStation
-                
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
-                    self.view.layoutIfNeeded()
-                })
             }
         }
     }
@@ -209,6 +212,9 @@ class PlaylistViewController: BaseViewController {
             savedStation.toggleWeather()
             updateWeatherIcon(savedStation)
             showAlertFirstTimeAndSaveStation(savedStation)
+        } else {
+            ModelManager.sharedInstance.onNexStationSaveUseWeather = !ModelManager.sharedInstance.onNexStationSaveUseWeather
+            updateWeatherIcon(nil)
         }
     }
     
@@ -217,6 +223,9 @@ class PlaylistViewController: BaseViewController {
             savedStation.toggleTime()
             updateTimeIcon(savedStation)
             showAlertFirstTimeAndSaveStation(savedStation)
+        } else {
+            ModelManager.sharedInstance.onNexStationSaveUseTime = !ModelManager.sharedInstance.onNexStationSaveUseTime
+            updateTimeIcon(nil)
         }
     }
     
@@ -231,13 +240,6 @@ class PlaylistViewController: BaseViewController {
                 self.saveButton.alpha = 0
                 self.removeButton.alpha = 1
                 self.savedImageView.alpha = 1
-                
-                self.rightButtonsLayoutConstraint?.constant = self.rightButtonsLayoutConstraintConstantForSavedStation
-                self.leftButtonsLayoutConstraint?.constant = self.leftButtonsLayoutConstraintConstantForSavedStation
-                
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
-                    self.view.layoutIfNeeded()
-                })
             }
         }
     }

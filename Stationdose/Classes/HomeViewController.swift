@@ -435,7 +435,6 @@ extension HomeViewController: UITableViewDataSource {
                     self.showAlertFirstTimeAndSaveStation(savedStation)
                 }
             }
-            
             return true
         })
     }
@@ -469,9 +468,13 @@ extension HomeViewController: UITableViewDataSource {
             cell.shortDescriptionLabel.text = savedStation.updatedAtString()
             
             cell.coverImageView.image = nil
-            if let sponsoredUrl = station?.art {
-                let URL = NSURL(string: sponsoredUrl)!
-                cell.coverImageView.af_setImageWithURL(URL, placeholderImage: UIImage(named: "stations-list-placeholder"))
+            if let sponsoredUrl = station?.art where sponsoredUrl.characters.count > 0 {
+                print("sponsoredUrl " + sponsoredUrl)
+                if let URL = NSURL(string: sponsoredUrl) {
+                    cell.coverImageView.af_setImageWithURL(URL, placeholderImage: UIImage(named: "stations-list-placeholder"))
+                } else {
+                    cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
+                }
             } else {
                 cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
             }
