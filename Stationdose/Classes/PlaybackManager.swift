@@ -168,7 +168,9 @@ class PlaybackManager: NSObject {
     }
     
     func replaceQueue(tracks:[Track]) {
-        nextQueue = tracks
+        if tracks.count > 0 {
+            nextQueue = tracks
+        }
     }
     
     private func setupPlaybackControlView() {
