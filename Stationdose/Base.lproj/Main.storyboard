@@ -33,6 +33,7 @@
             <string>Yantramanav-Light</string>
             <string>Yantramanav-Light</string>
             <string>Yantramanav-Light</string>
+            <string>Yantramanav-Light</string>
         </mutableArray>
         <mutableArray key="Yantramanav-Regular.ttf">
             <string>Yantramanav-Regular</string>
@@ -1054,6 +1055,7 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="bottom" secondItem="OYq-Tq-3sm" secondAttribute="bottom" id="CeG-e0-52Y"/>
                                             <constraint firstAttribute="bottom" secondItem="vTz-za-ELG" secondAttribute="bottom" id="H4r-N0-P4w"/>
                                             <constraint firstItem="hd2-QE-u1v" firstAttribute="top" secondItem="ZQA-Sp-QCj" secondAttribute="top" id="N7x-1I-56k"/>
+                                            <constraint firstAttribute="trailing" secondItem="vTz-za-ELG" secondAttribute="trailing" constant="48" id="PTt-zi-6S1"/>
                                             <constraint firstItem="OYq-Tq-3sm" firstAttribute="leading" secondItem="Q7E-rX-uI3" secondAttribute="trailing" id="QgN-oj-QGX"/>
                                             <constraint firstAttribute="bottom" secondItem="Q7E-rX-uI3" secondAttribute="bottom" id="Rpt-tQ-yLY"/>
                                             <constraint firstAttribute="bottom" secondItem="hd2-QE-u1v" secondAttribute="bottom" id="aQF-Zq-6De"/>
@@ -1185,8 +1187,10 @@ Please sign in to your account to start.</string>
                     </view>
                     <connections>
                         <outlet property="coverImageView" destination="A06-5I-Nhg" id="tMO-X1-Uo1"/>
+                        <outlet property="editButton" destination="YNB-3M-LYK" id="y8X-aT-S6f"/>
                         <outlet property="nameLabel" destination="b9i-kw-Dqn" id="Xbd-mO-xZl"/>
                         <outlet property="removeButton" destination="6IW-9X-4C8" id="o7U-u8-8og"/>
+                        <outlet property="rightButtonsLayoutConstraint" destination="PTt-zi-6S1" id="HGc-09-hB5"/>
                         <outlet property="saveButton" destination="CrE-33-vXA" id="dLc-b0-H6u"/>
                         <outlet property="savedImageView" destination="6GT-pO-Hwi" id="kdH-y6-KIx"/>
                         <outlet property="shortDescriptionLabel" destination="aAa-H9-Gdi" id="MfD-8R-n2a"/>
@@ -1237,20 +1241,37 @@ Please sign in to your account to start.</string>
                                                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efA-WH-xH9">
-                                                        <rect key="frame" x="14" y="28" width="253" height="16"/>
+                                                        <rect key="frame" x="14" y="64" width="253" height="16"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="12"/>
                                                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-hs-IPl">
+                                                        <rect key="frame" x="14" y="28" width="253" height="34"/>
+                                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="13"/>
+                                                        <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="Lpp-hs-IPl" firstAttribute="top" secondItem="fV9-Vb-IgZ" secondAttribute="bottom" constant="2" id="6VA-Lu-Wzb"/>
+                                                    <constraint firstItem="efA-WH-xH9" firstAttribute="top" secondItem="Lpp-hs-IPl" secondAttribute="bottom" constant="2" id="Nm3-hZ-LC5"/>
+                                                    <constraint firstItem="Lpp-hs-IPl" firstAttribute="leading" secondItem="EAC-Xq-gNY" secondAttribute="leading" constant="14" id="QaY-6e-ord"/>
                                                     <constraint firstItem="fV9-Vb-IgZ" firstAttribute="top" secondItem="EAC-Xq-gNY" secondAttribute="top" id="buA-DS-GH9"/>
                                                     <constraint firstAttribute="trailing" secondItem="efA-WH-xH9" secondAttribute="trailing" constant="14" id="cQH-Gl-BbC"/>
+                                                    <constraint firstItem="Lpp-hs-IPl" firstAttribute="top" secondItem="EAC-Xq-gNY" secondAttribute="top" constant="2" id="fPU-gB-L4v"/>
                                                     <constraint firstItem="fV9-Vb-IgZ" firstAttribute="leading" secondItem="EAC-Xq-gNY" secondAttribute="leading" constant="14" id="fVp-dI-Nb2"/>
                                                     <constraint firstItem="efA-WH-xH9" firstAttribute="leading" secondItem="EAC-Xq-gNY" secondAttribute="leading" constant="14" id="r7G-Td-ojU"/>
                                                     <constraint firstItem="efA-WH-xH9" firstAttribute="top" secondItem="fV9-Vb-IgZ" secondAttribute="bottom" constant="2" id="u55-wx-PtT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Lpp-hs-IPl" secondAttribute="trailing" constant="14" id="zGd-qN-AoJ"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="fPU-gB-L4v"/>
+                                                        <exclude reference="u55-wx-PtT"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1797,6 +1818,7 @@ Please sign in to your account to start.</string>
                         <outlet property="coverImageView" destination="Jjn-EO-NHV" id="hkU-2E-nbA"/>
                         <outlet property="familiaritySlider" destination="YRH-QR-Is2" id="kJ0-B0-lQr"/>
                         <outlet property="nameLabel" destination="fV9-Vb-IgZ" id="OcV-a3-G6i"/>
+                        <outlet property="shortDescriptionLabel" destination="Lpp-hs-IPl" id="sLg-02-Lpg"/>
                         <outlet property="timeSwitch" destination="Sf5-8P-EJp" id="opQ-gl-pCb"/>
                         <outlet property="updatedAtLabel" destination="efA-WH-xH9" id="cB2-Oe-okk"/>
                         <outlet property="weatherSwitch" destination="z9r-jQ-AdR" id="4If-vs-gBc"/>
@@ -2146,7 +2168,7 @@ Please sign in to your account to start.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPH-8G-dWi">
-                                                    <rect key="frame" x="23" y="9" width="110" height="21"/>
+                                                    <rect key="frame" x="14" y="9" width="110" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="BD8-RK-YbU"/>
                                                         <constraint firstAttribute="height" constant="21" id="VX0-Fg-bID"/>
@@ -2161,7 +2183,7 @@ Please sign in to your account to start.</string>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quD-x6-5cS">
-                                                    <rect key="frame" x="23" y="29" width="352" height="15"/>
+                                                    <rect key="frame" x="14" y="29" width="361" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="PlS-n9-PHC"/>
                                                         <constraint firstAttribute="height" constant="15" id="UL9-Uw-MhP"/>
@@ -2176,7 +2198,7 @@ Please sign in to your account to start.</string>
                                                     </variation>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-liked" translatesAutoresizingMaskIntoConstraints="NO" id="Hew-20-24b">
-                                                    <rect key="frame" x="151" y="14" width="13" height="11"/>
+                                                    <rect key="frame" x="142" y="14" width="13" height="11"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Hew-20-24b" secondAttribute="height" multiplier="13:11" id="ap6-cp-VwJ"/>
                                                         <constraint firstAttribute="width" constant="13" id="iaz-hC-JEc"/>
@@ -2189,9 +2211,9 @@ Please sign in to your account to start.</string>
                                                 <constraint firstAttribute="trailing" secondItem="quD-x6-5cS" secondAttribute="trailing" id="Mcc-Cp-fUu"/>
                                                 <constraint firstAttribute="bottom" secondItem="quD-x6-5cS" secondAttribute="bottom" constant="9" id="Usn-eu-8Bo"/>
                                                 <constraint firstItem="gPH-8G-dWi" firstAttribute="top" secondItem="efX-te-vKd" secondAttribute="top" constant="9" id="bWq-lb-OhC"/>
-                                                <constraint firstItem="quD-x6-5cS" firstAttribute="leading" secondItem="efX-te-vKd" secondAttribute="leadingMargin" constant="15" id="eA9-Lc-7wq"/>
+                                                <constraint firstItem="quD-x6-5cS" firstAttribute="leading" secondItem="efX-te-vKd" secondAttribute="leading" constant="14" id="eA9-Lc-7wq"/>
                                                 <constraint firstAttribute="trailing" secondItem="gPH-8G-dWi" secondAttribute="trailing" id="j4r-ec-DrY"/>
-                                                <constraint firstItem="gPH-8G-dWi" firstAttribute="leading" secondItem="efX-te-vKd" secondAttribute="leadingMargin" constant="15" id="lAh-H6-nWp"/>
+                                                <constraint firstItem="gPH-8G-dWi" firstAttribute="leading" secondItem="efX-te-vKd" secondAttribute="leading" constant="14" id="lAh-H6-nWp"/>
                                                 <constraint firstItem="Hew-20-24b" firstAttribute="leading" secondItem="gPH-8G-dWi" secondAttribute="trailing" constant="18" id="oDL-h9-gaG"/>
                                             </constraints>
                                             <variation key="default">

@@ -466,7 +466,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.savedStation = savedStation
             cell.titleLabel.text = station!.name
             cell.shortDescriptionLabel.text = savedStation.updatedAtString()
-            
+        
             cell.coverImageView.image = nil
             if let sponsoredUrl = station?.art where sponsoredUrl.characters.count > 0 {
                 print("sponsoredUrl " + sponsoredUrl)

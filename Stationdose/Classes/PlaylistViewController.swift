@@ -28,8 +28,13 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var savedImageView: UIImageView!
     
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var weatherButton: UIButton!
     @IBOutlet weak var timeButton: UIButton!
+    @IBOutlet weak var rightButtonsLayoutConstraint: NSLayoutConstraint!
+    
+    let rightButtonsLayoutConstraintConstantForStation:CGFloat = 2.0
+    let rightButtonsLayoutConstraintConstantForSavedStation:CGFloat = 48.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +46,6 @@ class PlaylistViewController: BaseViewController {
         
         showBrandingTitleView()
         showUserProfileButton()
-        
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription
         updatedAtLabel?.text = savedStation?.updatedAtString()
@@ -55,11 +59,18 @@ class PlaylistViewController: BaseViewController {
             coverImageView?.af_setImageWithURL(URL, placeholderImage: UIImage(named: "station-placeholder"))
         } else {
             coverImageView.image = UIImage(named: "station-placeholder")
+            
+            
         }
         
         saveButton?.alpha = savedStation == nil ? 1 : 0
         removeButton?.alpha = savedStation == nil ? 0 : 1
         savedImageView?.alpha = savedStation == nil ? 0 : 1
+        
+        if editButton !== nil {
+        editButton.hidden = savedStation == nil ? true : false
+        rightButtonsLayoutConstraint?.constant = savedStation == nil ? rightButtonsLayoutConstraintConstantForStation : rightButtonsLayoutConstraintConstantForSavedStation
+        }
         
         if let isPlaying = station?.isPlaying where isPlaying { } else {
             ModelManager.sharedInstance.onNexStationSaveUseWeather = false

@@ -17,6 +17,7 @@ class EditStationViewController: BaseViewController {
     @IBOutlet weak internal var nameLabel: UILabel!
     @IBOutlet weak var updatedAtLabel: UILabel!
     
+    @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var weatherSwitch: UISwitch!
     @IBOutlet weak var timeSwitch: UISwitch!
     @IBOutlet weak var familiaritySlider: UISlider!
@@ -33,6 +34,7 @@ class EditStationViewController: BaseViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
             
         nameLabel?.text = savedStation?.station?.name
+        shortDescriptionLabel?.text = savedStation?.station?.shortDescription
         updatedAtLabel?.text = savedStation?.updatedAtString()
         
         if let imageUrl = savedStation?.station?.art {
