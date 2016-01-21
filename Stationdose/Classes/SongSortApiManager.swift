@@ -39,7 +39,6 @@ class SongSortApiManager {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.timeoutIntervalForRequest = 10 // seconds
         configuration.protocolClasses?.insert(NFXProtocol.self, atIndex: 0)
-        
         self.manager = Manager(configuration: configuration)
         self.baseURL = Constants.SognSort.baseDevelopmentUrl
     }
@@ -59,6 +58,7 @@ class SongSortApiManager {
                 return
         }
         manager.request(.GET, String(format:baseURL+ApiMethods.savedStations,user.id!)).responseArray("saved_stations") { (response: Response<[SavedStation], NSError>) in
+            print(self.baseURL+ApiMethods.savedStations,user.id!)
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }

@@ -95,7 +95,16 @@ class HomeViewController: BaseViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
+            if LocationManager.sharedInstance.isEnabled{
+                selectedSavedStation?.useWeather = selectedSavedStation?.useWeather == nil ? true : selectedSavedStation!.useWeather
+                selectedSavedStation?.useTimeofday = selectedSavedStation?.useTimeofday == nil ? true : selectedSavedStation!.useTimeofday
+            }else{
+                selectedSavedStation?.useWeather = selectedSavedStation?.useWeather == nil ? false : selectedSavedStation!.useWeather
+                selectedSavedStation?.useTimeofday = selectedSavedStation?.useTimeofday == nil ? false : selectedSavedStation!.useTimeofday
+
+            }
             destinationViewController.savedStation = selectedSavedStation
+            
             if let station = selectedSavedStation?.station{
                 destinationViewController.station = station
             } else {
@@ -466,8 +475,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.savedStation = savedStation
             cell.titleLabel.text = station!.name
             cell.shortDescriptionLabel.text = savedStation.updatedAtString()
-        
-            cell.coverImageView.image = nil
+//            cell.coverImageView.image = nil
             if let sponsoredUrl = station?.art where sponsoredUrl.characters.count > 0 {
                 print("sponsoredUrl " + sponsoredUrl)
                 if let URL = NSURL(string: sponsoredUrl) {
@@ -478,9 +486,8 @@ extension HomeViewController: UITableViewDataSource {
             } else {
                 cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
             }
-            
+
             cell.backgroundColor = UIColor.clearColor()
-            
             let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-station"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
                 ModelManager.sharedInstance.removeSavedStation(savedStation) { (removed) -> Void in
                     if removed {
@@ -495,14 +502,12 @@ extension HomeViewController: UITableViewDataSource {
             deleteButton.setPadding(0)
             cell.rightButtons = [deleteButton]
             cell.rightSwipeSettings.transition = .Drag
-            
-            
-            let weatherButton = buildWeatherButton(savedStation.useWeather != nil ? savedStation.useWeather! : false)
+            let location = LocationManager.sharedInstance.isEnabled
+            let weatherButton = buildWeatherButton(savedStation.useWeather != nil ? savedStation.useWeather! : location)
             weatherButton.setPadding(0)
-            let timeButton = buildTimeButton(savedStation.useTimeofday != nil ? savedStation.useTimeofday! : false)
+            let timeButton = buildTimeButton(savedStation.useTimeofday != nil ? savedStation.useTimeofday! : location)
             timeButton.setPadding(0)
             let reloadButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-cell-reload"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
-                
                 ModelManager.sharedInstance.forceGenerateSavedStationTracks(savedStation){
                 }
                 
@@ -511,7 +516,6 @@ extension HomeViewController: UITableViewDataSource {
             reloadButton.setPadding(0)
             cell.leftButtons = [weatherButton, timeButton, reloadButton]
             cell.leftSwipeSettings.transition = .Drag
-            
             cell.touchUpInsideAction = {
                 self.showStation(cell)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
@@ -529,7 +533,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.titleLabel.text = station.name
             cell.shortDescriptionLabel.text = station.shortDescription
             
-            cell.coverImageView.image = nil
+//            cell.coverImageView.image = nil
             if let sponsoredUrl = station.art {
                 let URL = NSURL(string: sponsoredUrl)!
                 cell.coverImageView.af_setImageWithURL(URL, placeholderImage: UIImage(named: "stations-list-placeholder"))

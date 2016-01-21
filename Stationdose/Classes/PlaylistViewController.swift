@@ -23,11 +23,9 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var updatedAtLabel: UILabel!
     @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var tracksTableView: UITableView!
-    
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var savedImageView: UIImageView!
-    
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var weatherButton: UIButton!
     @IBOutlet weak var timeButton: UIButton!
@@ -38,12 +36,10 @@ class PlaylistViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeModifiers:", name: ModelManagerNotificationKey.SavedStationDidChangeModifiers.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
-        
         showBrandingTitleView()
         showUserProfileButton()
         nameLabel?.text = station?.name
@@ -52,31 +48,32 @@ class PlaylistViewController: BaseViewController {
         if let url = station?.url {
             urlLabel?.text = url.stringByReplacingOccurrencesOfString("http://", withString: "").stringByReplacingOccurrencesOfString("https://", withString: "")
         }
-        
         if let featuredUrl = station?.art {
             let URL = NSURL(string: featuredUrl)!
             bannerImageView?.af_setImageWithURL(URL)
             coverImageView?.af_setImageWithURL(URL, placeholderImage: UIImage(named: "station-placeholder"))
         } else {
             coverImageView.image = UIImage(named: "station-placeholder")
-            
-            
         }
         
         saveButton?.alpha = savedStation == nil ? 1 : 0
         removeButton?.alpha = savedStation == nil ? 0 : 1
         savedImageView?.alpha = savedStation == nil ? 0 : 1
-        
         if editButton !== nil {
         editButton.hidden = savedStation == nil ? true : false
         rightButtonsLayoutConstraint?.constant = savedStation == nil ? rightButtonsLayoutConstraintConstantForStation : rightButtonsLayoutConstraintConstantForSavedStation
         }
-        
-        if let isPlaying = station?.isPlaying where isPlaying { } else {
-            ModelManager.sharedInstance.onNexStationSaveUseWeather = false
-            ModelManager.sharedInstance.onNexStationSaveUseTime = false
+
+        let location = LocationManager.sharedInstance.isEnabled
+        if location{
+            ModelManager.sharedInstance.onNexStationSaveUseTime = savedStation !== nil ? true : ModelManager.sharedInstance.onNexStationSaveUseTime
+            ModelManager.sharedInstance.onNexStationSaveUseWeather = savedStation !== nil ? true : ModelManager.sharedInstance.onNexStationSaveUseWeather
         }
-        
+        if let isPlaying = station?.isPlaying where isPlaying { }else{
+            ModelManager.sharedInstance.onNexStationSaveUseWeather = true
+            ModelManager.sharedInstance.onNexStationSaveUseTime = true
+        }
+
         updateWeatherIcon(savedStation)
         updateTimeIcon(savedStation)
         
@@ -175,12 +172,10 @@ class PlaylistViewController: BaseViewController {
     
     @IBAction func removeStation(sender: UIButton) {
         sender.enabled = false
-        
         ModelManager.sharedInstance.removeSavedStation(savedStation!) { (removed) -> Void in
             sender.enabled = true
             if removed {
                 self.savedStation = nil
-                
                 self.saveButton.alpha = 1
                 self.removeButton.alpha = 0
                 self.savedImageView.alpha = 0
@@ -200,19 +195,15 @@ class PlaylistViewController: BaseViewController {
         if let station = station {
             if let text = station.name {
                 let shareView = ShareView(text: text, appUrl:"station/123", presenterViewController: self) { (_) -> Void in }
-                
                 if let urlString = station.url {
                     if let url = NSURL(string: urlString) {
                         shareView.shareUrl = url
                     }
                 }
-                
                 if let image = self.coverImageView?.image {
                     shareView.shareImage = image
                 }
-                
                 shareView.tracks = tracks
-                
                 shareView.show()
             }
         }
@@ -242,12 +233,10 @@ class PlaylistViewController: BaseViewController {
     
     @IBAction func saveStation(sender: UIButton) {
         sender.enabled = false
-        
         ModelManager.sharedInstance.saveStation(station!) { (saved, savedStation) -> Void in
             sender.enabled = true
             if saved {
                 self.savedStation = savedStation
-                
                 self.saveButton.alpha = 0
                 self.removeButton.alpha = 1
                 self.savedImageView.alpha = 1
@@ -310,13 +299,10 @@ extension PlaylistViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TrackTableViewCellIdentifier") as! TrackTableViewCell
-        
         cell.track = tracks![indexPath.row]
         cell.validatePlaying()
-        
         cell.titleLabel.text = cell.track?.title
         cell.subtitleLabel.text = cell.track?.artist
-        
         cell.touchUpInsideAction = {
             var tracks = [Track]()
             var addTacks = false
@@ -331,7 +317,6 @@ extension PlaylistViewController: UITableViewDataSource {
             
             PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
             PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
-            
             self.station?.isPlaying = true
         }
         
@@ -366,7 +351,6 @@ extension PlaylistViewController: UITableViewDataSource {
                             
                             PlaybackManager.sharedInstance.removeTrack(cell.track)
                         }
-                        
                     })
                 }
                 
@@ -395,7 +379,6 @@ extension PlaylistViewController: UITableViewDataSource {
         }
         
         cell.validatePlaying()
-        
         return cell
     }
 }

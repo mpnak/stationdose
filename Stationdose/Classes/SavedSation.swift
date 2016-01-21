@@ -30,6 +30,7 @@ class SavedStation: Mappable {
     }
     
     required init?(_ map: Map) {
+       
         
     }
     

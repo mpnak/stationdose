@@ -255,7 +255,6 @@ class ModelManager: NSObject {
             if accept {
                 SongSortApiManager.sharedInstance.removeSavedStation(stationToDelete.id!)
                 self.savedStations = self.savedStations.filter() { $0.id != stationToDelete.id }
-                
                 callback(removed:true)
                 self.postEvent(.SavedStationsDidChange)
             } else {
