@@ -1321,7 +1321,7 @@ Please sign in to your account to start.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffw-c7-rQp">
                                 <rect key="frame" x="0.0" y="137" width="375" height="60"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn-weather-off" translatesAutoresizingMaskIntoConstraints="NO" id="R3L-V4-ygW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-weather" translatesAutoresizingMaskIntoConstraints="NO" id="R3L-V4-ygW">
                                         <rect key="frame" x="3" y="8" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="43" id="RVd-AC-PPR"/>
@@ -1402,7 +1402,7 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="height" constant="1" id="dRV-Nv-Aty"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn-time-off" translatesAutoresizingMaskIntoConstraints="NO" id="buK-ti-Nod">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-time" translatesAutoresizingMaskIntoConstraints="NO" id="buK-ti-Nod">
                                         <rect key="frame" x="3" y="8" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="43" id="K2R-7Y-vIO"/>
@@ -2305,13 +2305,13 @@ Please sign in to your account to start.</string>
         <image name="btn-show-feature-station" width="9" height="13"/>
         <image name="btn-stations-next" width="35" height="35"/>
         <image name="btn-time" width="28" height="28"/>
-        <image name="btn-time-off" width="43" height="43"/>
         <image name="btn-weather" width="28" height="28"/>
-        <image name="btn-weather-off" width="43" height="43"/>
         <image name="featured-station-marker" width="25" height="25"/>
         <image name="full_background" width="375" height="667"/>
         <image name="ico-settings" width="19" height="20"/>
         <image name="icon-liked" width="13" height="11"/>
+        <image name="icon-time" width="43" height="43"/>
+        <image name="icon-weather" width="43" height="43"/>
         <image name="lbl-sponsored-wattermark" width="69" height="18"/>
         <image name="logo" width="161" height="136"/>
         <image name="logo-name" width="181" height="28"/>

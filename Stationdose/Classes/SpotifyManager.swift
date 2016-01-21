@@ -105,7 +105,7 @@ class SpotifyManager: NSObject {
         dateFormatter.dateFormat = "MMM d, h:mma"
         dateFormatter.AMSymbol = "am"
         dateFormatter.PMSymbol = "pm"
-        let playlistName = String(format:"%@ - %@", stationName, dateFormatter.stringFromDate(NSDate()))
+        let playlistName = String(format:"Stationdose %@ - %@", stationName, dateFormatter.stringFromDate(NSDate()))
         SPTPlaylistList.createPlaylistWithName(playlistName, publicFlag: false, session: session) { (error, snapshot) -> Void in
             if let snapshot = snapshot {
                 var tracksUrls = [NSURL]()
