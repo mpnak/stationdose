@@ -209,6 +209,5 @@ class SongSortApiManager {
         if let _ = error{
            AlertView.genericErrorAlert().show()
         }
-
     }
 }

@@ -278,6 +278,8 @@ class ModelManager: NSObject {
     }
     
     private func savedStationDidReloadTracks(savedStation:SavedStation) {
-        PlaybackManager.sharedInstance.replaceQueue(savedStation.tracks!)
+        if let tracks = savedStation.tracks {
+            PlaybackManager.sharedInstance.replaceQueue(tracks)
+        }
     }
 }
