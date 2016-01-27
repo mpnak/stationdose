@@ -43,7 +43,6 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         moveToNextController()
-        
     }
     
     func moveToNextController(){
@@ -60,10 +59,8 @@ class SplashViewController: UIViewController {
             moveToLogin()
         }
     }
-
     
     func onSessionValid(notification:NSNotification){
-        
         moveToPremiumOrHome()
     }
     
@@ -79,15 +76,12 @@ class SplashViewController: UIViewController {
     
     func moveToRequestPremium(){
         self.performSegueWithIdentifier(Constants.Segues.SplashToRequestPremiumSegue, sender: self)
-        
     }
     
     func moveToHome(){
-        
         ModelManager.sharedInstance.initialCache { () -> Void in
             self.performSegueWithIdentifier(Constants.Segues.SplashToHomeSegue, sender: self)
         }
-        
     }
     
     func moveToLogin(){

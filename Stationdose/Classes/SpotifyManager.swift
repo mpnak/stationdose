@@ -52,7 +52,7 @@ class SpotifyManager: NSObject {
             
             SpotifyManager.sharedInstance.player = nil
             
-        }else{
+        } else {
 
             SongSortApiManager.sharedInstance.renewSession(session.accessToken, onCompletion: { (user, error) -> Void in
                 if let user = user where error == nil{
@@ -64,7 +64,7 @@ class SpotifyManager: NSObject {
                     let validSessionNotification = NSNotification(name: Constants.Notifications.sessionValidNotification,
                         object: session)
                     NSNotificationCenter.defaultCenter().postNotification(validSessionNotification)
-                }else{
+                } else {
                     let errorNotification = NSNotification(name: Constants.Notifications.sessionErrorNotification,
                         object: error)
                     NSNotificationCenter.defaultCenter().postNotification(errorNotification)
@@ -97,7 +97,10 @@ class SpotifyManager: NSObject {
     
     func renewSession() {
         SPTAuth.defaultInstance().renewSession(session, callback: callback)
-        
+    }
+    
+    func logout() {
+        return SPTAuth.defaultInstance().session = nil
     }
     
     func createPlaylist(stationName: String, tracks :[Track], callback: (success: Bool) -> Void) {

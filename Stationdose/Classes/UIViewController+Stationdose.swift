@@ -35,7 +35,15 @@ extension UIViewController {
     }
     
     func oppenUserProfileAction() {
-        print("oppenUserProfileAction")
+        
+        let alert = UIAlertController(title: "", message: "Are you sure you want to sign out?", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (_) -> Void in }))
+        alert.addAction(UIAlertAction(title: "Sign Out", style: .Default, handler: { (_) -> Void in
+            SpotifyManager.sharedInstance.logout()
+            PlaybackManager.sharedInstance.hide()
+            self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in })
+        }))
+        self.presentViewController(alert, animated: true) { () -> Void in }
     }
     
     func showAlertFirstTimeAndSaveStation(savedStation:SavedStation){

@@ -154,10 +154,16 @@ class HomeViewController: BaseViewController {
     }
     
     func reloadPlaylists() {
+        if myStationsTableView == nil {
+            return
+        }
         reloadPlaylists(true)
     }
     
     func reloadStations() {
+        if stationsListTableView == nil {
+            return
+        }
         stationsList = ModelManager.sharedInstance.stations
         stationsListTableView.reloadData()
         reloadTablesViewContaignerHeight()

@@ -153,6 +153,7 @@ class ModelManager: NSObject {
     func reloadData(onCompletion:() -> Void) {
         
         if reloadDataPendingStepsCounter > 0 {
+            onCompletion()
             return
         }
         

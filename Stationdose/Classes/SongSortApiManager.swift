@@ -37,7 +37,7 @@ class SongSortApiManager {
     
     init() {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.timeoutIntervalForRequest = 10 // seconds
+        configuration.timeoutIntervalForRequest = 20 // seconds
         configuration.protocolClasses?.insert(NFXProtocol.self, atIndex: 0)
         self.manager = Manager(configuration: configuration)
         self.baseURL = Constants.SognSort.baseDevelopmentUrl

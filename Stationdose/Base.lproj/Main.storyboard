@@ -2044,6 +2044,9 @@ Please sign in to your account to start.</string>
                                                     <constraint firstAttribute="width" secondItem="xtg-4u-91X" secondAttribute="height" multiplier="1:1" id="Nlx-91-Uf6"/>
                                                 </constraints>
                                                 <state key="normal" image="btn-share"/>
+                                                <connections>
+                                                    <action selector="share:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="LSQ-gL-rze"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjL-4f-yDC">
                                                 <rect key="frame" x="14" y="11" width="110" height="21"/>

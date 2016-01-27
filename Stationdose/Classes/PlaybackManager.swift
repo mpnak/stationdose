@@ -19,7 +19,7 @@ class PlaybackManager: NSObject {
     var alwaysOnTop: Bool
     
     private var tracksMap:[String: Track]
-    private let player:SPTAudioStreamingController
+    private var player:SPTAudioStreamingController
     private var currentTimeReloadTimer: NSTimer?
     private var nextQueue:[Track]?
     private var deletedTacksUrls:[String]
@@ -137,6 +137,16 @@ class PlaybackManager: NSObject {
             return
         }
         
+        if player != SpotifyManager.sharedInstance.player! {
+            player = SpotifyManager.sharedInstance.player!
+            player.playbackDelegate = self
+            player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+        
         deletedTacksUrls = [String]()
         nextQueue = nil
         
@@ -183,6 +193,7 @@ class PlaybackManager: NSObject {
     
     private func showPlaybackControlView() {
         if playbackControlView != nil {
+            show()
             return
         }
         
@@ -197,12 +208,35 @@ class PlaybackManager: NSObject {
         
         window.addObserver(self, forKeyPath: "subviews", options: .New, context: nil)
         
+        show()
+    }
+    
+    func hide() {
+        player.setIsPlaying(false, callback: { (error) -> Void in })
+        player.stop({ (error) -> Void in })
+        nextQueue = nil
+        
+        let window = UIApplication.sharedApplication().keyWindow!
+        let baseViewControllerCustomViewHeight = window.bounds.size.height - 64 /*navigation bar height*/
+        BaseViewController.customViewHeight = baseViewControllerCustomViewHeight
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             var frame = self.playbackControlView!.frame
-            frame.origin.y -= 50
+            frame.origin.y = window.bounds.size.height
             self.playbackControlView!.frame = frame
-            }) { (success) -> Void in
-                BaseViewController.setCustomViewHeight(window.bounds.size.height - 50 /*playback controller height*/ - 64 /*navigation bar height*/)
+        }) { (success) -> Void in }
+    }
+    
+    func show() {
+        let window = UIApplication.sharedApplication().keyWindow!
+        let baseViewControllerCustomViewHeight = window.bounds.size.height - 50 /*playback controller height*/ - 64 /*navigation bar height*/
+        if BaseViewController.customViewHeight != baseViewControllerCustomViewHeight {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                var frame = self.playbackControlView!.frame
+                frame.origin.y = window.bounds.size.height - 50
+                self.playbackControlView!.frame = frame
+                }) { (success) -> Void in
+                    BaseViewController.customViewHeight = baseViewControllerCustomViewHeight
+            }
         }
     }
     

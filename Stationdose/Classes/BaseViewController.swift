@@ -10,11 +10,15 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    static private var customViewHeight:CGFloat?
-    
-    static func setCustomViewHeight(newHeight:CGFloat) {
-        customViewHeight = newHeight
-        NSNotificationCenter.defaultCenter().postNotificationName("BaseViewControllerNewCustomViewHeight", object: nil)
+    static private var _customViewHeight:CGFloat?
+    static var customViewHeight:CGFloat? {
+        set {
+            _customViewHeight = newValue
+            NSNotificationCenter.defaultCenter().postNotificationName("BaseViewControllerNewCustomViewHeight", object: nil)
+        }
+        get {
+            return _customViewHeight
+        }
     }
     
     func setCustomViewHeight() {
