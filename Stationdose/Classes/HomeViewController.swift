@@ -89,7 +89,7 @@ class HomeViewController: BaseViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
+    
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadData", name: ModelManagerNotificationKey.SavedStationsDidChange.rawValue, object: nil)
     }
     
@@ -520,8 +520,8 @@ extension HomeViewController: UITableViewDataSource {
                 return true
             })
             reloadButton.setPadding(0)
-            cell.leftButtons = [weatherButton, timeButton, reloadButton]
-            cell.leftSwipeSettings.transition = .Drag
+            //cell.leftButtons = [weatherButton, timeButton, reloadButton]
+            //cell.leftSwipeSettings.transition = .Drag
             cell.touchUpInsideAction = {
                 self.showStation(cell)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {

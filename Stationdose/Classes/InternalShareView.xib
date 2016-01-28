@@ -84,6 +84,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="iHJ-n9-NXt" secondAttribute="bottom" constant="84" id="0nJ-WH-XVM"/>
                         <constraint firstAttribute="trailing" secondItem="wuQ-AQ-RkC" secondAttribute="trailing" id="27T-q0-x03"/>
                         <constraint firstItem="rcB-tq-rQn" firstAttribute="top" secondItem="TYe-tr-nSb" secondAttribute="bottom" constant="15" id="4sV-xg-bjx"/>
                         <constraint firstItem="N5b-IZ-e3Q" firstAttribute="top" secondItem="rcB-tq-rQn" secondAttribute="bottom" constant="15" id="CU6-Uz-kVt"/>
@@ -124,6 +125,7 @@
             <connections>
                 <outlet property="closeButton" destination="wuQ-AQ-RkC" id="5Wh-bn-h6O"/>
                 <outlet property="createPlaylistButton" destination="28B-Ev-n53" id="5IC-eG-efa"/>
+                <outlet property="emailBtnConstraint" destination="0nJ-WH-XVM" id="UB7-Qw-lmF"/>
                 <outlet property="emailButton" destination="iHJ-n9-NXt" id="UXR-UR-iHv"/>
                 <outlet property="facebookButton" destination="rcB-tq-rQn" id="Kdb-cw-VIE"/>
                 <outlet property="twitterButton" destination="N5b-IZ-e3Q" id="fmm-tk-wgK"/>

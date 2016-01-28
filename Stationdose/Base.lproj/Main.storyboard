@@ -935,7 +935,7 @@ Please sign in to your account to start.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-9X-4C8">
-                                                        <rect key="frame" x="151.5" y="-4.5" width="35" height="35"/>
+                                                        <rect key="frame" x="151" y="-5" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="n59-fI-fXY"/>
                                                             <constraint firstAttribute="width" constant="35" id="qix-ed-W72"/>
@@ -946,7 +946,7 @@ Please sign in to your account to start.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrE-33-vXA">
-                                                        <rect key="frame" x="151.5" y="-4.5" width="35" height="35"/>
+                                                        <rect key="frame" x="151" y="-5" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="3xN-sx-MKD"/>
                                                             <constraint firstAttribute="height" constant="35" id="aqi-mr-MpU"/>
@@ -1185,6 +1185,7 @@ Please sign in to your account to start.</string>
                             <constraint firstItem="HZX-4K-ADa" firstAttribute="leading" secondItem="vIt-SM-EeM" secondAttribute="leading" id="pS7-NU-lU0"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="KLb-TJ-xtu"/>
                     <connections>
                         <outlet property="coverImageView" destination="A06-5I-Nhg" id="tMO-X1-Uo1"/>
                         <outlet property="editButton" destination="YNB-3M-LYK" id="y8X-aT-S6f"/>
@@ -1447,10 +1448,18 @@ Please sign in to your account to start.</string>
                                             <action selector="timeSwitchValueChange:" destination="4J2-0k-C7D" eventType="valueChanged" id="QJA-km-HMs"/>
                                         </connections>
                                     </switch>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNu-lC-Vbk">
+                                        <rect key="frame" x="10" y="59" width="355" height="1"/>
+                                        <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="NYl-pO-WbQ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Sf5-8P-EJp" firstAttribute="centerY" secondItem="y4u-Hj-S2G" secondAttribute="centerY" id="1Yz-Um-NQW"/>
+                                    <constraint firstItem="VNu-lC-Vbk" firstAttribute="leading" secondItem="y4u-Hj-S2G" secondAttribute="leading" constant="10" id="5WN-J7-mkT"/>
                                     <constraint firstItem="FZ9-mc-2T5" firstAttribute="centerX" secondItem="Sf5-8P-EJp" secondAttribute="centerX" id="6gK-Cy-RVU"/>
                                     <constraint firstAttribute="trailing" secondItem="Sf5-8P-EJp" secondAttribute="trailing" constant="14" id="DKh-oq-FUZ"/>
                                     <constraint firstItem="AOk-0B-aF0" firstAttribute="leading" secondItem="M26-gv-Bhd" secondAttribute="trailing" constant="3" id="EMF-BJ-v80"/>
@@ -1467,6 +1476,7 @@ Please sign in to your account to start.</string>
                                     <constraint firstItem="fMJ-Hv-hEE" firstAttribute="leading" secondItem="y4u-Hj-S2G" secondAttribute="leading" constant="10" id="j22-q1-Ptu"/>
                                     <constraint firstItem="AOk-0B-aF0" firstAttribute="centerY" secondItem="M26-gv-Bhd" secondAttribute="centerY" id="mHO-6F-up0"/>
                                     <constraint firstItem="fMJ-Hv-hEE" firstAttribute="top" secondItem="y4u-Hj-S2G" secondAttribute="top" id="mcT-31-pwy"/>
+                                    <constraint firstAttribute="trailing" secondItem="VNu-lC-Vbk" secondAttribute="trailing" constant="10" id="pGk-zT-aZX"/>
                                     <constraint firstItem="AOk-0B-aF0" firstAttribute="baseline" secondItem="M26-gv-Bhd" secondAttribute="baseline" id="sTs-4i-DOt"/>
                                     <constraint firstAttribute="trailing" secondItem="fMJ-Hv-hEE" secondAttribute="trailing" constant="10" id="uSh-DD-Aso"/>
                                 </constraints>
@@ -1566,22 +1576,15 @@ Please sign in to your account to start.</string>
                                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNu-lC-Vbk">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="1"/>
-                                        <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="NYl-pO-WbQ"/>
-                                        </constraints>
-                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn-familiarityh-off" translatesAutoresizingMaskIntoConstraints="NO" id="B9G-IP-ztd">
-                                        <rect key="frame" x="3" y="7" width="43" height="43"/>
+                                        <rect key="frame" x="3" y="6" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="B9G-IP-ztd" secondAttribute="height" multiplier="1:1" id="Bl5-Yp-Z7W"/>
                                             <constraint firstAttribute="width" constant="43" id="I8X-W9-cTw"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nw-iQ-k6m">
-                                        <rect key="frame" x="117" y="7" width="43" height="43"/>
+                                        <rect key="frame" x="117" y="6" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="4nw-iQ-k6m" secondAttribute="height" id="ahK-ew-Tsb"/>
                                             <constraint firstAttribute="width" constant="43" id="mp0-FO-07o"/>
@@ -1592,7 +1595,7 @@ Please sign in to your account to start.</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Familiarity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMr-6D-jfe">
-                                        <rect key="frame" x="46" y="18" width="68.5" height="21"/>
+                                        <rect key="frame" x="46" y="17" width="68.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="yln-8B-2AO"/>
                                         </constraints>
@@ -1612,15 +1615,11 @@ Please sign in to your account to start.</string>
                                     <constraint firstItem="4nw-iQ-k6m" firstAttribute="leading" secondItem="aMr-6D-jfe" secondAttribute="trailing" constant="3" id="AZq-4f-0GZ"/>
                                     <constraint firstItem="nio-ib-MOP" firstAttribute="centerX" secondItem="xsm-8A-vq2" secondAttribute="centerX" id="Asj-uq-FDg"/>
                                     <constraint firstItem="4nw-iQ-k6m" firstAttribute="centerY" secondItem="aMr-6D-jfe" secondAttribute="centerY" id="Auw-xL-qYQ"/>
-                                    <constraint firstItem="B9G-IP-ztd" firstAttribute="top" secondItem="VNu-lC-Vbk" secondAttribute="bottom" constant="6" id="Hir-ek-VMr"/>
                                     <constraint firstItem="aMr-6D-jfe" firstAttribute="centerY" secondItem="B9G-IP-ztd" secondAttribute="centerY" id="JA7-fD-CPX"/>
-                                    <constraint firstItem="VNu-lC-Vbk" firstAttribute="leading" secondItem="xsm-8A-vq2" secondAttribute="leading" constant="10" id="KYU-7h-TN0"/>
                                     <constraint firstItem="h2C-K9-iQP" firstAttribute="centerY" secondItem="lPH-hP-zqf" secondAttribute="centerY" id="N5e-ek-rzK"/>
                                     <constraint firstAttribute="bottom" secondItem="lPH-hP-zqf" secondAttribute="bottom" constant="17" id="Wps-PG-yUR"/>
                                     <constraint firstItem="lPH-hP-zqf" firstAttribute="top" secondItem="nio-ib-MOP" secondAttribute="bottom" id="YQk-Tq-5hL"/>
-                                    <constraint firstItem="VNu-lC-Vbk" firstAttribute="top" secondItem="xsm-8A-vq2" secondAttribute="top" id="efD-hz-f7K"/>
                                     <constraint firstItem="B9G-IP-ztd" firstAttribute="leading" secondItem="xsm-8A-vq2" secondAttribute="leading" constant="3" id="fL7-eg-7dn"/>
-                                    <constraint firstAttribute="trailing" secondItem="VNu-lC-Vbk" secondAttribute="trailing" constant="10" id="fmt-dB-ddj"/>
                                     <constraint firstItem="nio-ib-MOP" firstAttribute="leading" secondItem="xsm-8A-vq2" secondAttribute="leading" constant="26" id="hMr-BR-J6A"/>
                                     <constraint firstItem="aMr-6D-jfe" firstAttribute="leading" secondItem="B9G-IP-ztd" secondAttribute="trailing" id="k41-NM-xH8"/>
                                     <constraint firstAttribute="height" constant="120" id="lOM-vI-Nbc"/>
@@ -1723,11 +1722,13 @@ Please sign in to your account to start.</string>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ffw-c7-rQp" firstAttribute="top" secondItem="29S-sS-XrP" secondAttribute="bottom" id="0Zt-fI-LTm"/>
+                            <constraint firstItem="xsm-8A-vq2" firstAttribute="top" secondItem="VNu-lC-Vbk" secondAttribute="bottom" id="2GB-Bd-UJs"/>
                             <constraint firstItem="29S-sS-XrP" firstAttribute="top" secondItem="rpd-BW-l7Y" secondAttribute="bottom" id="5fB-Wk-kxZ"/>
                             <constraint firstItem="ffw-c7-rQp" firstAttribute="top" secondItem="xsm-8A-vq2" secondAttribute="bottom" id="D5V-JL-fhi"/>
                             <constraint firstItem="ffw-c7-rQp" firstAttribute="leading" secondItem="cpH-1Y-VDR" secondAttribute="leading" id="GgN-pb-6gL"/>
                             <constraint firstAttribute="trailing" secondItem="29S-sS-XrP" secondAttribute="trailing" id="MpT-X5-fbA"/>
                             <constraint firstAttribute="trailing" secondItem="WsC-mZ-yR1" secondAttribute="trailing" id="OuF-pi-D3m"/>
+                            <constraint firstItem="B9G-IP-ztd" firstAttribute="top" secondItem="VNu-lC-Vbk" secondAttribute="bottom" constant="6" id="Rnm-k7-ifM"/>
                             <constraint firstItem="WsC-mZ-yR1" firstAttribute="leading" secondItem="cpH-1Y-VDR" secondAttribute="leading" id="VPM-dE-gKl"/>
                             <constraint firstItem="xsm-8A-vq2" firstAttribute="leading" secondItem="cpH-1Y-VDR" secondAttribute="leading" id="XkR-6I-TQe"/>
                             <constraint firstItem="xsm-8A-vq2" firstAttribute="top" secondItem="29S-sS-XrP" secondAttribute="bottom" constant="120" id="ah5-11-IQb"/>
@@ -1814,8 +1815,10 @@ Please sign in to your account to start.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="autoUpdateOutlet" destination="WsC-mZ-yR1" id="WZ4-wN-HrR"/>
                         <outlet property="autoUpdateSwitch" destination="mix-sg-OEe" id="5Zc-aM-6Br"/>
                         <outlet property="coverImageView" destination="Jjn-EO-NHV" id="hkU-2E-nbA"/>
+                        <outlet property="familiarityOutlet" destination="xsm-8A-vq2" id="ZRB-tk-hMk"/>
                         <outlet property="familiaritySlider" destination="YRH-QR-Is2" id="kJ0-B0-lQr"/>
                         <outlet property="nameLabel" destination="fV9-Vb-IgZ" id="OcV-a3-G6i"/>
                         <outlet property="shortDescriptionLabel" destination="Lpp-hs-IPl" id="sLg-02-Lpg"/>
@@ -2267,6 +2270,7 @@ Please sign in to your account to start.</string>
                         <outlet property="sponsoredTitleView" destination="VDf-mD-lnB" id="QsC-PV-q2E"/>
                         <outlet property="stationDetailsLabel" destination="1fA-n0-9z7" id="BTZ-2z-t7S"/>
                         <outlet property="tracksTableView" destination="gi4-rs-Nfr" id="H5U-2A-bzs"/>
+                        <outlet property="urlButtonOutlet" destination="Ub3-i0-ZmU" id="e7f-6c-YLF"/>
                         <outlet property="urlLabel" destination="n1s-Zt-Cja" id="wNo-gb-VZQ"/>
                     </connections>
                 </viewController>
@@ -2326,8 +2330,8 @@ Please sign in to your account to start.</string>
         <image name="track-placeholder" width="43" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="etf-Up-yf7"/>
-        <segue reference="Fl5-av-fhj"/>
-        <segue reference="1hY-2o-HLT"/>
+        <segue reference="N0U-zU-k6a"/>
+        <segue reference="2NR-pA-uPA"/>
+        <segue reference="cgp-lR-yMf"/>
     </inferredMetricsTieBreakers>
 </document>

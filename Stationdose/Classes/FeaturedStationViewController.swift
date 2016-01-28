@@ -16,6 +16,18 @@ class FeaturedStationViewController: PlaylistViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionViewHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var coverImageViewHeightLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var urlButtonOutlet: UIButton!
+//    @IBAction func urlButton(sender: UIButton) {
+//        if station?.type == "featured"{
+//            
+//        }else{
+//            var url : NSURL
+//            url = (urlLabel.text!.containsString("https://") ? NSURL(string: urlLabel.text!) : NSURL(string: "https://" + urlLabel.text!))!
+//            //url = NSURL(string: "https://" + urlLabel.text!)!
+//            UIApplication.sharedApplication().openURL(url)
+//            
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +43,7 @@ class FeaturedStationViewController: PlaylistViewController {
             coverImageViewHeightLayoutConstraint.constant = 110
             featuredTitleView.alpha = 0
             sponsoredTitleView.alpha = 1
+            //urlButtonOutlet.userInteractionEnabled = true
         }
     }
 }

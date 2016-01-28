@@ -12,11 +12,13 @@ import Foundation
 class EditStationViewController: BaseViewController {
     
     internal var savedStation: SavedStation?
+    var station: Station?
     
     @IBOutlet weak internal var coverImageView: UIImageView!
     @IBOutlet weak internal var nameLabel: UILabel!
     @IBOutlet weak var updatedAtLabel: UILabel!
-    
+    @IBOutlet weak var familiarityOutlet: UIView!
+    @IBOutlet weak var autoUpdateOutlet: UIView!
     @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var weatherSwitch: UISwitch!
     @IBOutlet weak var timeSwitch: UISwitch!
@@ -26,19 +28,22 @@ class EditStationViewController: BaseViewController {
     private let fullscreenView = FullScreenLoadingView()
     private var somethingChanged:Bool = false
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
-            
-        nameLabel?.text = savedStation?.station?.name
-        shortDescriptionLabel?.text = savedStation?.station?.shortDescription
+        familiarityOutlet.hidden = savedStation == nil ? true : false
+        autoUpdateOutlet.hidden = savedStation == nil ? true : false
+        nameLabel?.text = savedStation == nil ? station?.name : savedStation?.station?.name
+        shortDescriptionLabel?.text = savedStation == nil ? station?.shortDescription : savedStation?.station?.shortDescription
         updatedAtLabel?.text = savedStation?.updatedAtString()
         
-        if let imageUrl = savedStation?.station?.art {
+        if let imageUrl = savedStation == nil ? station?.art : savedStation?.station?.art {
             let url = NSURL(string: imageUrl)!
+            print(imageUrl)
             coverImageView?.af_setImageWithURL(url, placeholderImage: UIImage(named: "station-placeholder"))
         } else {
             coverImageView.image = UIImage(named: "station-placeholder")
@@ -67,6 +72,8 @@ class EditStationViewController: BaseViewController {
             autoUpdateSwitch.on = (savedStation.autoupdate)!
             
         } else {
+            weatherSwitch.on = true
+            timeSwitch.on = true
             print("Error: savedStation missing")
         }
     }
@@ -135,18 +142,37 @@ class EditStationViewController: BaseViewController {
             (accept) -> Void in
             
             if accept {
+                if self.savedStation != nil{
                 ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: true) {
                     self.navigationController?.popViewControllerAnimated(true)
                 }
+                }else{
+                    ModelManager.sharedInstance.generateStationTracksAndCache(self.station!){}
+                        self.navigationController?.popViewControllerAnimated(true)
+                }
             } else {
-                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: false) {
-                    self.navigationController?.popViewControllerAnimated(true)
+                if self.savedStation != nil{
+                    ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(self.savedStation!, regenerateTracks: false) {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }
+                } else {
+                     self.navigationController?.popViewControllerAnimated(true)
                 }
             }
         }.show()
 
     }
-    
+
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
+            destinationViewController.savedStation = savedStation
+            destinationViewController.station = station
+        }
+    }
+
+
+
     func familiarityTapRecognized(tap:UITapGestureRecognizer) {
         if tap.state == .Ended {
             if let view = tap.view {

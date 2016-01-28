@@ -31,13 +31,14 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var timeButton: UIButton!
     @IBOutlet weak var rightButtonsLayoutConstraint: NSLayoutConstraint!
     
-    let rightButtonsLayoutConstraintConstantForStation:CGFloat = 2.0
-    let rightButtonsLayoutConstraintConstantForSavedStation:CGFloat = 48.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndStationTracksReGeneration.rawValue, object: nil)
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeModifiers:", name: ModelManagerNotificationKey.SavedStationDidChangeModifiers.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
         showBrandingTitleView()
@@ -59,11 +60,7 @@ class PlaylistViewController: BaseViewController {
         saveButton?.alpha = savedStation == nil ? 1 : 0
         removeButton?.alpha = savedStation == nil ? 0 : 1
         savedImageView?.alpha = savedStation == nil ? 0 : 1
-        if editButton !== nil {
-        editButton.hidden = savedStation == nil ? true : false
-        rightButtonsLayoutConstraint?.constant = savedStation == nil ? rightButtonsLayoutConstraintConstantForStation : rightButtonsLayoutConstraintConstantForSavedStation
-        }
-
+        
         let location = LocationManager.sharedInstance.isEnabled
         if location{
             ModelManager.sharedInstance.onNexStationSaveUseTime = savedStation !== nil ? true : ModelManager.sharedInstance.onNexStationSaveUseTime
@@ -146,25 +143,36 @@ class PlaylistViewController: BaseViewController {
     
     func willStartSavedStationTracksReGeneration(notification:NSNotification){
         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
-            
             fullscreenView.setMessage("Just a moment, we’re generating your playlist")
             fullscreenView.show()
         }
     }
-    
+
+    func willStartStationTracksReGeneration(notification:NSNotification){
+        if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.station?.id == id {
+            fullscreenView.setMessage("Just a moment, we’re generating your playlist")
+            fullscreenView.show()
+        }
+    }
+
+    func didEndStationTracksReGeneration(notification:NSNotification){
+         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.station?.id == id {
+                self.tracks = self.station?.tracks
+                self.tracksTableView.reloadData()
+                fullscreenView.hide(1.5)
+        }
+    }
     func didEndSavedStationTracksReGeneration(notification:NSNotification){
         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
-            
             self.tracks = self.savedStation!.tracks
             self.tracksTableView.reloadData()
-            
             fullscreenView.hide(1.5)
         }
     }
     
     @IBAction func openStationUrl(sender: UIButton) {
-        if let urlString = station?.url {
-            if let url = NSURL(string: urlString) {
+        if let urlString = urlLabel.text {
+            if let url = NSURL(string: "http://" + urlString) {
                 UIApplication.sharedApplication().openURL(url)
             }
         }
@@ -187,7 +195,9 @@ class PlaylistViewController: BaseViewController {
         if let savedStation = self.savedStation {
             ModelManager.sharedInstance.forceGenerateSavedStationTracks(savedStation) { }
         } else if let station = self.station {
-            ModelManager.sharedInstance.generateStationTracksAndCache(station) { }
+            ModelManager.sharedInstance.generateStationTracksAndCache(station) {
+            }
+
         }
     }
     
@@ -247,6 +257,7 @@ class PlaylistViewController: BaseViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? EditStationViewController {
             destinationViewController.savedStation = savedStation
+            destinationViewController.station = station
         }
     }
 }

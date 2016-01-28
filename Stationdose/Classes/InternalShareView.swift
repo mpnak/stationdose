@@ -16,6 +16,7 @@ class InternalShareView: UIView {
     @IBOutlet weak var createPlaylistButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
+    @IBOutlet weak var emailBtnConstraint: NSLayoutConstraint!
     class func instanceFromNib() -> InternalShareView {
         let instance = UINib(nibName: "InternalShareView", bundle: nil).instantiateWithOwner(self, options: nil).first as! InternalShareView
         

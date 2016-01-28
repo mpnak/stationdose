@@ -17,6 +17,9 @@ enum ModelManagerNotificationKey: String {
     case WillStartSavedStationTracksReGeneration
     case DidEndSavedStationTracksReGeneration
     case SavedStationDidChangeModifiers
+    case WillStartStationTracksReGeneration
+    case DidEndStationTracksReGeneration
+    
 }
 
 class ModelManager: NSObject {
@@ -94,15 +97,22 @@ class ModelManager: NSObject {
     
     func generateStationTracksAndCache(station:Station,onCompletion:() -> Void){
         if(station.isPlaying == nil || !station.isPlaying!){
+           postEvent(.WillStartStationTracksReGeneration, id: station.id!)
             SongSortApiManager.sharedInstance.generateStationTracks((station.id)!, onCompletion: { (tracks, error) -> Void in
                 station.tracks = tracks;
+                 NSNotificationCenter.defaultCenter().postNotificationName(ModelManagerNotificationKey.WillStartStationTracksReGeneration.rawValue, object: station)
                 self.stationDidReloadTracks(station)
+                self.postEvent(.DidEndStationTracksReGeneration, id: station.id!)
                 onCompletion()
             })
         } else {
             onCompletion()
         }
     }
+    
+//    func forceGenerateStationTracks(station: Station, onCompletion:() -> Void){
+//        postEvent(.StationsDidReloadFromServer)
+//    }
     
     func forceGenerateSavedStationTracks(savedStation:SavedStation,onCompletion:() -> Void){
         postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
@@ -274,7 +284,10 @@ class ModelManager: NSObject {
     }
     
     private func stationDidReloadTracks(station:Station) {
-        
+        if let tracks = station.tracks {
+            PlaybackManager.sharedInstance.replaceQueue(tracks)
+        }
+
     }
     
     private func savedStationDidReloadTracks(savedStation:SavedStation) {
