@@ -38,7 +38,6 @@ class PlaylistViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartStationTracksReGeneration.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndStationTracksReGeneration.rawValue, object: nil)
-
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeModifiers:", name: ModelManagerNotificationKey.SavedStationDidChangeModifiers.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
         showBrandingTitleView()
@@ -87,7 +86,12 @@ class PlaylistViewController: BaseViewController {
         }
         self.view.layoutIfNeeded()
     }
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        updateWeatherIcon(savedStation)
+        updateTimeIcon(savedStation)
+
+    }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }

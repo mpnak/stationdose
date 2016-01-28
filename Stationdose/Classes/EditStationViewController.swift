@@ -72,8 +72,8 @@ class EditStationViewController: BaseViewController {
             autoUpdateSwitch.on = (savedStation.autoupdate)!
             
         } else {
-            weatherSwitch.on = true
-            timeSwitch.on = true
+            weatherSwitch.on = ModelManager.sharedInstance.onNexStationSaveUseWeather
+            timeSwitch.on = ModelManager.sharedInstance.onNexStationSaveUseTime
             print("Error: savedStation missing")
         }
     }
@@ -104,11 +104,13 @@ class EditStationViewController: BaseViewController {
     
     @IBAction func weatherSwitchValueChange(sender: UISwitch) {
         savedStation?.useWeather = sender.on
+        ModelManager.sharedInstance.onNexStationSaveUseWeather = sender.on
         somethingChanged = true
     }
     
     @IBAction func timeSwitchValueChange(sender: UISwitch) {
         savedStation?.useTimeofday = sender.on
+        ModelManager.sharedInstance.onNexStationSaveUseTime = sender.on
         somethingChanged = true
     }
     
