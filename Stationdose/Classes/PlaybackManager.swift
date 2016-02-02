@@ -187,8 +187,8 @@ class PlaybackManager: NSObject {
         playbackControlView = PlaybackControlView.instanceFromNib()
         playbackControlView?.currentTimeProgressView.progress = 0.0
         cleanPlaybackControlView()
-        playbackControlView?.playButton.addTarget(self, action: "play", forControlEvents: .TouchUpInside)
-        playbackControlView?.pauseButton.addTarget(self, action: "pause", forControlEvents: .TouchUpInside)
+        playbackControlView?.playButton.addTarget(self, action: "play", forControlEvents: .TouchDown)
+        playbackControlView?.pauseButton.addTarget(self, action: "pause", forControlEvents: .TouchDown)
     }
     
     private func showPlaybackControlView() {

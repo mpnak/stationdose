@@ -148,7 +148,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkz-k8-hfr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wKA-2l-tXf">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wKA-2l-tXf">
                                         <rect key="frame" x="145" y="96" width="86" height="73"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wKA-2l-tXf" secondAttribute="height" multiplier="161:136" id="BGu-Dk-dQK"/>
@@ -179,7 +179,7 @@
                                             <action selector="loginWithSpotifyTouchDragExit:" destination="BYZ-38-t0r" eventType="touchDragExit" id="8sD-Ce-GFU"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF5-hd-Ads">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign in to Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF5-hd-Ads">
                                         <rect key="frame" x="0.0" y="183" width="375" height="34"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,7 +191,7 @@
                                             <constraint firstAttribute="width" secondItem="GDU-BE-pr5" secondAttribute="height" multiplier="286:150" id="cHm-IA-vEe"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-OS-Kfv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-OS-Kfv">
                                         <rect key="frame" x="8" y="230" width="359" height="42"/>
                                         <string key="text">Stationdose uses Spotify for music playback.
 Please sign in to your account to start.</string>
@@ -338,7 +338,7 @@ Please sign in to your account to start.</string>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxW-hr-67t">
                                                                                             <rect key="frame" x="0.0" y="111" width="375" height="53"/>
                                                                                             <subviews>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Legend’s Lounge" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVy-W8-g85">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="John Legend’s Lounge" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVy-W8-g85">
                                                                                                     <rect key="frame" x="10" y="7" width="148.5" height="21"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="21" id="YCq-fu-EDh"/>
@@ -347,7 +347,7 @@ Please sign in to your account to start.</string>
                                                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hot tracks Mr. Legend is listening to" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4e-98-N2h">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hot tracks Mr. Legend is listening to" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4e-98-N2h">
                                                                                                     <rect key="frame" x="10" y="30" width="187.5" height="16"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="height" constant="16" id="NQT-zv-UGZ"/>
@@ -451,7 +451,7 @@ Please sign in to your account to start.</string>
                                                                 <rect key="frame" x="329" y="-2" width="39" height="37"/>
                                                                 <color key="pageIndicatorTintColor" red="0.047058823529411764" green="0.5725490196078431" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                                             </pageControl>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured Stations" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYu-Ze-WsC">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Featured Stations" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYu-Ze-WsC">
                                                                 <rect key="frame" x="8" y="0.0" width="102" height="33"/>
                                                                 <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="14"/>
                                                                 <nil key="highlightedColor"/>
@@ -519,7 +519,7 @@ Please sign in to your account to start.</string>
                                                                                         <constraint firstAttribute="width" constant="53" id="add-kU-7xS"/>
                                                                                     </constraints>
                                                                                 </imageView>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-dK-imf">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-dK-imf">
                                                                                     <rect key="frame" x="69" y="13" width="110" height="21"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="21" id="o41-KV-VLx"/>
@@ -528,7 +528,7 @@ Please sign in to your account to start.</string>
                                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: 10:30pm, 6 days ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eq5-x2-J0M">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Updated: 10:30pm, 6 days ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eq5-x2-J0M">
                                                                                     <rect key="frame" x="69" y="35" width="158" height="17"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="51" id="1VJ-fz-sDW"/>
@@ -604,7 +604,7 @@ Please sign in to your account to start.</string>
                                                                                         <constraint firstAttribute="width" constant="28" id="qk5-vy-2o0"/>
                                                                                     </constraints>
                                                                                 </imageView>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bv-yQ-eFh">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bv-yQ-eFh">
                                                                                     <rect key="frame" x="89" y="5" width="110" height="21"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="21" id="xb3-tM-Wuq"/>
@@ -613,7 +613,7 @@ Please sign in to your account to start.</string>
                                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2a-oj-yLP">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2a-oj-yLP">
                                                                                     <rect key="frame" x="89" y="27" width="200" height="51"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="51" id="k7I-23-Fxl"/>
@@ -656,7 +656,7 @@ Please sign in to your account to start.</string>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTK-K9-UOy">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added to My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cM-NG-uY8">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Added to My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cM-NG-uY8">
                                                                                             <rect key="frame" x="116" y="31" width="141.5" height="21"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="21" id="kCr-lK-kN7"/>
@@ -675,7 +675,7 @@ Please sign in to your account to start.</string>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YIm-n2-lij">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Removed from My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lej-H7-7RG">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Removed from My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lej-H7-7RG">
                                                                                             <rect key="frame" x="98" y="31" width="178" height="21"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="21" id="eU2-ec-7Jc"/>
@@ -756,7 +756,7 @@ Please sign in to your account to start.</string>
                                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQK-mb-Dwg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="232.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your experience" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KO-Vl-oj5">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Customize your experience" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KO-Vl-oj5">
                                                                         <rect key="frame" x="80" y="91" width="215.5" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="OUj-DZ-MDM"/>
@@ -765,7 +765,7 @@ Please sign in to your account to start.</string>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKR-eR-mPd">
+                                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKR-eR-mPd">
                                                                         <rect key="frame" x="141" y="116" width="94" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="30" id="5Y4-VV-2tf"/>
@@ -913,7 +913,7 @@ Please sign in to your account to start.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8PJ-RW-fZn">
                                                 <rect key="frame" x="94" y="0.0" width="281" height="94"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9i-kw-Dqn">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9i-kw-Dqn">
                                                         <rect key="frame" x="14" y="0.0" width="134.5" height="26"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="26" id="Hti-Ra-IHf"/>
@@ -922,19 +922,19 @@ Please sign in to your account to start.</string>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAa-H9-Gdi">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAa-H9-Gdi">
                                                         <rect key="frame" x="14" y="28" width="253" height="34"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="13"/>
                                                         <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qE1-kr-vSc">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qE1-kr-vSc">
                                                         <rect key="frame" x="14" y="65" width="253" height="16"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="12"/>
                                                         <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-9X-4C8">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-9X-4C8">
                                                         <rect key="frame" x="151" y="-5" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="n59-fI-fXY"/>
@@ -945,7 +945,7 @@ Please sign in to your account to start.</string>
                                                             <action selector="removeStation:" destination="ExW-W1-YQY" eventType="touchUpInside" id="RZg-y9-tgl"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrE-33-vXA">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrE-33-vXA">
                                                         <rect key="frame" x="151" y="-5" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="3xN-sx-MKD"/>
@@ -1102,7 +1102,7 @@ Please sign in to your account to start.</string>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9t-Ta-Y29">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9t-Ta-Y29">
                                                     <rect key="frame" x="15" y="9" width="110" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="NHm-re-UBn"/>
@@ -1132,7 +1132,7 @@ Please sign in to your account to start.</string>
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-liked" translatesAutoresizingMaskIntoConstraints="NO" id="TNk-p5-led">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-liked" translatesAutoresizingMaskIntoConstraints="NO" id="TNk-p5-led">
                                                     <rect key="frame" x="143" y="14" width="13" height="11"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="TNk-p5-led" secondAttribute="height" multiplier="13:11" id="DLq-5d-EQq"/>
@@ -1232,7 +1232,7 @@ Please sign in to your account to start.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAC-Xq-gNY">
                                                 <rect key="frame" x="94" y="0.0" width="281" height="94"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV9-Vb-IgZ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV9-Vb-IgZ">
                                                         <rect key="frame" x="14" y="0.0" width="134.5" height="26"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="26" id="peq-EG-726"/>
@@ -1241,13 +1241,13 @@ Please sign in to your account to start.</string>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efA-WH-xH9">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efA-WH-xH9">
                                                         <rect key="frame" x="14" y="64" width="253" height="16"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="12"/>
                                                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-hs-IPl">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-hs-IPl">
                                                         <rect key="frame" x="14" y="28" width="253" height="34"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="13"/>
                                                         <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1290,7 +1290,7 @@ Please sign in to your account to start.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UtC-no-Onc">
                                         <rect key="frame" x="0.0" y="94" width="375" height="43"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use the controls below to fine-tune the station. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw5-dl-vez">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Use the controls below to fine-tune the station. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw5-dl-vez">
                                                 <rect key="frame" x="12" y="13" width="264.5" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="zKR-5I-lye"/>
@@ -1329,7 +1329,7 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="width" secondItem="R3L-V4-ygW" secondAttribute="height" multiplier="1:1" id="qFq-ml-pBl"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymc-Sd-983">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymc-Sd-983">
                                         <rect key="frame" x="140" y="8" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ymc-Sd-983" secondAttribute="height" id="fbj-vr-wfn"/>
@@ -1340,7 +1340,7 @@ Please sign in to your account to start.</string>
                                             <action selector="weatherInfoAction:" destination="4J2-0k-C7D" eventType="touchUpInside" id="bBA-UB-bLm"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0e2-Cr-Jlo">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Local weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0e2-Cr-Jlo">
                                         <rect key="frame" x="46" y="19" width="91.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="xoB-Pa-6wI"/>
@@ -1410,7 +1410,7 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="width" secondItem="buK-ti-Nod" secondAttribute="height" multiplier="1:1" id="fxY-vZ-ZJy"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOk-0B-aF0">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOk-0B-aF0">
                                         <rect key="frame" x="126" y="8" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="43" id="0KU-hZ-yT0"/>
@@ -1421,7 +1421,7 @@ Please sign in to your account to start.</string>
                                             <action selector="timeInfoAction:" destination="4J2-0k-C7D" eventType="touchUpInside" id="qvQ-8T-Mpd"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time of day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M26-gv-Bhd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time of day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M26-gv-Bhd">
                                         <rect key="frame" x="46" y="19" width="77" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="mDs-aB-PBp"/>
@@ -1558,7 +1558,7 @@ Please sign in to your account to start.</string>
                                             <constraint firstItem="XCg-yb-Ewk" firstAttribute="leading" secondItem="nio-ib-MOP" secondAttribute="leading" id="pgh-SD-3nB"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mainstream" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-hP-zqf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mainstream" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-hP-zqf">
                                         <rect key="frame" x="11" y="85" width="67" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="qjh-LF-0R1"/>
@@ -1567,7 +1567,7 @@ Please sign in to your account to start.</string>
                                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Underground" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2C-K9-iQP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Underground" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2C-K9-iQP">
                                         <rect key="frame" x="291" y="85" width="73" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="Pja-oh-Fq0"/>
@@ -1583,7 +1583,7 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="width" constant="43" id="I8X-W9-cTw"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nw-iQ-k6m">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nw-iQ-k6m">
                                         <rect key="frame" x="117" y="6" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="4nw-iQ-k6m" secondAttribute="height" id="ahK-ew-Tsb"/>
@@ -1594,7 +1594,7 @@ Please sign in to your account to start.</string>
                                             <action selector="familiarityInfoAction:" destination="4J2-0k-C7D" eventType="touchUpInside" id="Wvi-Th-NC9"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Familiarity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMr-6D-jfe">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Familiarity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMr-6D-jfe">
                                         <rect key="frame" x="46" y="17" width="68.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="yln-8B-2AO"/>
@@ -1649,7 +1649,7 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="width" constant="43" id="Mvx-Ik-YqN"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-update at log-in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJ1-So-59G">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Auto-update at log-in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJ1-So-59G">
                                         <rect key="frame" x="46" y="19" width="136.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="4pC-bX-mm9"/>
@@ -1676,7 +1676,7 @@ Please sign in to your account to start.</string>
                                             <action selector="autoUpdateSwitchValueChange:" destination="4J2-0k-C7D" eventType="valueChanged" id="iT4-AX-rbj"/>
                                         </connections>
                                     </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everytime you open the app it will refresh this station." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21U-o3-XaL">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Everytime you open the app it will refresh this station." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21U-o3-XaL">
                                         <rect key="frame" x="13" y="58" width="299" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="PyW-9T-b5H"/>
@@ -1754,10 +1754,10 @@ Please sign in to your account to start.</string>
                             <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pg-Nj-aM3">
+                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Pg-Nj-aM3">
                                     <rect key="frame" x="26" y="0.0" width="98.5" height="33"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Station" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oba-t2-lmP">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Edit Station" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oba-t2-lmP">
                                             <rect key="frame" x="24" y="0.0" width="74" height="33"/>
                                             <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
                                             <color key="textColor" red="0.55294117647058827" green="0.55294117647058827" blue="0.55294117647058827" alpha="1" colorSpace="calibratedRGB"/>
@@ -1794,7 +1794,7 @@ Please sign in to your account to start.</string>
                                 <rect key="frame" x="276" y="5" width="83" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCJ-Qo-Mmb">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCJ-Qo-Mmb">
                                         <rect key="frame" x="45" y="0.0" width="38" height="33"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
                                         <state key="normal" title="DONE">
@@ -1864,13 +1864,13 @@ Please sign in to your account to start.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1r-oQ-Fqq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hju-j6-oZW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hju-j6-oZW">
                                         <rect key="frame" x="144" y="121" width="86" height="73"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hju-j6-oZW" secondAttribute="height" multiplier="161:136" id="djM-03-Nwg"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZB-5e-fQh">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZB-5e-fQh">
                                         <rect key="frame" x="77" y="350" width="222" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="pMq-un-jRt"/>
@@ -1886,7 +1886,7 @@ Please sign in to your account to start.</string>
                                             <action selector="signUpPremium:" destination="Tod-Qa-F7D" eventType="touchUpInside" id="3Xw-UL-1fX"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, you must be a Spotify Premium suscriber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeY-kN-N8I">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sorry, you must be a Spotify Premium suscriber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeY-kN-N8I">
                                         <rect key="frame" x="0.0" y="208" width="375" height="68"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1898,7 +1898,7 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="width" secondItem="czK-i2-ikF" secondAttribute="height" multiplier="286:150" id="xtc-Vu-io7"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spotify requires you to be a Premium subscriber to use Spotify-powered apps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1P3-jf-GvO">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Spotify requires you to be a Premium subscriber to use Spotify-powered apps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1P3-jf-GvO">
                                         <rect key="frame" x="8" y="288" width="359" height="42"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2051,7 +2051,7 @@ Please sign in to your account to start.</string>
                                                     <action selector="share:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="LSQ-gL-rze"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjL-4f-yDC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjL-4f-yDC">
                                                 <rect key="frame" x="14" y="11" width="110" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="W6F-iS-6E8"/>
@@ -2091,7 +2091,7 @@ Please sign in to your account to start.</string>
                                                     <action selector="share:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="wOY-RJ-Tou"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nike.com/running" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1s-Zt-Cja">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="nike.com/running" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1s-Zt-Cja">
                                                 <rect key="frame" x="14" y="11" width="111.5" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="Cp2-Bs-IG6"/>
@@ -2142,10 +2142,10 @@ Please sign in to your account to start.</string>
                                     <constraint firstAttribute="trailing" secondItem="iUC-Eh-59y" secondAttribute="trailing" id="vWv-V1-Mox"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nze-LZ-Rd8">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nze-LZ-Rd8">
                                 <rect key="frame" x="0.0" y="183" width="375" height="79"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-n0-9z7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-n0-9z7">
                                         <rect key="frame" x="14" y="-8" width="316" height="73"/>
                                         <string key="text">John Legend is just that, a legend. Check out his station for some of the artsits that influenced him as well as some of the tracks he’s listening to. In his lounge of course.  </string>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
@@ -2162,7 +2162,7 @@ Please sign in to your account to start.</string>
                                     <constraint firstItem="1fA-n0-9z7" firstAttribute="top" secondItem="nze-LZ-Rd8" secondAttribute="top" constant="-8" id="p7H-AJ-ZL9"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gi4-rs-Nfr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gi4-rs-Nfr">
                                 <rect key="frame" x="0.0" y="277" width="375" height="326"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -2173,7 +2173,7 @@ Please sign in to your account to start.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPH-8G-dWi">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPH-8G-dWi">
                                                     <rect key="frame" x="14" y="9" width="110" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="BD8-RK-YbU"/>
@@ -2203,7 +2203,7 @@ Please sign in to your account to start.</string>
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-liked" translatesAutoresizingMaskIntoConstraints="NO" id="Hew-20-24b">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-liked" translatesAutoresizingMaskIntoConstraints="NO" id="Hew-20-24b">
                                                     <rect key="frame" x="142" y="14" width="13" height="11"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Hew-20-24b" secondAttribute="height" multiplier="13:11" id="ap6-cp-VwJ"/>
