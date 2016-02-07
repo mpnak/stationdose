@@ -54,7 +54,7 @@ class EditStationViewController: BaseViewController {
         if let savedStation = savedStation {
             
             if savedStation.undergroundness == nil {
-                savedStation.undergroundness = 2
+                savedStation.undergroundness = 3
             }
             if savedStation.useWeather == nil {
                 savedStation.useWeather = false
@@ -66,7 +66,7 @@ class EditStationViewController: BaseViewController {
                 savedStation.autoupdate = false
             }
             
-            familiaritySlider.value = Float((savedStation.undergroundness)!)/4.0
+            familiaritySlider.value = familiaritySliderValueMapInverse(savedStation.undergroundness!)
             weatherSwitch.on = (savedStation.useWeather)!
             timeSwitch.on = (savedStation.useTimeofday)!
             autoUpdateSwitch.on = (savedStation.autoupdate)!
@@ -120,7 +120,7 @@ class EditStationViewController: BaseViewController {
     
     @IBAction func familiarityTouchUpInside(sender: UISlider) {
         sender.setValue(familiaritySliderRoundValue(sender.value), animated: true)
-        savedStation?.undergroundness = Int(sender.value * 4);
+        savedStation?.undergroundness = familiaritySliderValueMap(sender.value)
         somethingChanged = true
     }
     
@@ -131,6 +131,14 @@ class EditStationViewController: BaseViewController {
     
     func familiaritySliderRoundValue(value:Float) -> Float {
         return Float(round(value*4.0))/4.0
+    }
+
+    func familiaritySliderValueMap(value:Float) -> Int {
+        return Int(value * 4) + 1
+    }
+
+    func familiaritySliderValueMapInverse(value:Int) -> Float {
+        return Float(value - 1) / 4.0
     }
     
     @IBAction func doneAction(sender: AnyObject) {
@@ -180,7 +188,7 @@ class EditStationViewController: BaseViewController {
             if let view = tap.view {
                 let point = tap.locationInView(view)
                 familiaritySlider.setValue(familiaritySliderRoundValue(Float(point.x/view.frame.size.width)), animated: true)
-                savedStation?.undergroundness = Int(familiaritySlider.value * 4);
+                savedStation?.undergroundness = familiaritySliderValueMap(familiaritySlider.value)
                 somethingChanged = true
             }
         }

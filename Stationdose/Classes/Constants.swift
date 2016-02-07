@@ -14,12 +14,9 @@ struct Constants {
         static let ClientId = "dcc5c23ee5e94b6c9583667061a37913"
         static let ClientSecret = "5affe6aadabb400aafe1115ebe59528a"
         static let RedirectUrl = "stationdose-login://callback"
-        static let RefreshUrl = "https://polar-dawn-6054.herokuapp.com/api/spotify/refresh"
-        static let SwapUrl = "https://polar-dawn-6054.herokuapp.com/api/spotify/swap"
         static let GoPremiumUrl = NSURL(string:"https://www.spotify.com/premium")
-        
-//        static let RefreshUrl = "https://frozen-taiga-8620.herokuapp.com/api/spotify/refresh"
-//        static let SwapUrl = "https://frozen-taiga-8620.herokuapp.com/api/spotify/swap"
+        static let RefreshUrl = SongSort.baseUrl + "spotify/refresh"
+        static let SwapUrl = SongSort.baseUrl + "spotify/swap"
     }
     
     struct Notifications {
@@ -38,8 +35,9 @@ struct Constants {
         static let RequestPremiumToRequestPremiumWebSegue = "RequestPremiumToRequestPremiumWebSegue"
     }
     
-    struct SognSort {
-        static let baseDevelopmentUrl = "https://polar-dawn-6054.herokuapp.com/api/"
-//        static let baseDevelopmentUrl = "https://frozen-taiga-8620.herokuapp.com"
+    struct SongSort {
+        //static let baseDevelopmentUrl = "https://polar-dawn-6054.herokuapp.com/api/"
+        static let baseDevelopmentUrl = "https://frozen-taiga-8620.herokuapp.com/api/"
+        static let baseUrl = baseDevelopmentUrl
     }
 }

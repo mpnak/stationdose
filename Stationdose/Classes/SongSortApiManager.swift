@@ -40,7 +40,7 @@ class SongSortApiManager {
         configuration.timeoutIntervalForRequest = 20 // seconds
         configuration.protocolClasses?.insert(NFXProtocol.self, atIndex: 0)
         self.manager = Manager(configuration: configuration)
-        self.baseURL = Constants.SognSort.baseDevelopmentUrl
+        self.baseURL = Constants.SongSort.baseUrl
     }
     
     func getStations(onCompletion:([Station]?,NSError?) -> Void) {

@@ -38,7 +38,6 @@
 		CDBE23131BF92DFB00291F56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23111BF92DFB00291F56 /* Main.storyboard */; };
 		CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23141BF92DFB00291F56 /* Assets.xcassets */; };
 		CDBE23181BF92DFB00291F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23161BF92DFB00291F56 /* LaunchScreen.storyboard */; };
-		CDBE234A1BF930DD00291F56 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23491BF930DD00291F56 /* Info.plist */; };
 		CDEFD01B1C0782EF00957580 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEFD01A1C0782EF00957580 /* TransitionAnimations.swift */; };
 		DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E06A1BF2138C0B19B5B149 /* Pods.framework */; };
 		F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */; };
@@ -61,8 +60,6 @@
 		F1EC7DC71C2823C2003CEA24 /* InternalShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1EC7DC61C2823C2003CEA24 /* InternalShareView.xib */; };
 		F1EC7DC91C28241F003CEA24 /* InternalShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC7DC81C28241F003CEA24 /* InternalShareView.swift */; };
 		F1EC7DCB1C282436003CEA24 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC7DCA1C282436003CEA24 /* ShareView.swift */; };
-		F1F91C681BFEC8A6000E0BB7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F91C661BFEC8A6000E0BB7 /* Fabric.framework */; };
-		F1F91C691BFEC8A6000E0BB7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F91C671BFEC8A6000E0BB7 /* Crashlytics.framework */; };
 		F1F91C6B1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */; };
 		F1F91C6D1BFF9B44000E0BB7 /* StationsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F91C6C1BFF9B44000E0BB7 /* StationsListTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -127,8 +124,6 @@
 		F1EC7DC61C2823C2003CEA24 /* InternalShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalShareView.xib; sourceTree = "<group>"; };
 		F1EC7DC81C28241F003CEA24 /* InternalShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalShareView.swift; sourceTree = "<group>"; };
 		F1EC7DCA1C282436003CEA24 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
-		F1F91C661BFEC8A6000E0BB7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		F1F91C671BFEC8A6000E0BB7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsTableViewCell.swift; sourceTree = "<group>"; };
 		F1F91C6C1BFF9B44000E0BB7 /* StationsListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,10 +134,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9FA4551BF93C7F003B8A62 /* SystemConfiguration.framework in Frameworks */,
-				F1F91C681BFEC8A6000E0BB7 /* Fabric.framework in Frameworks */,
 				CD9FA4531BF93C79003B8A62 /* AVFoundation.framework in Frameworks */,
 				DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */,
-				F1F91C691BFEC8A6000E0BB7 /* Crashlytics.framework in Frameworks */,
 				CD9FA4571BF93D79003B8A62 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,8 +211,6 @@
 				CDBE230B1BF92DFB00291F56 /* Products */,
 				4C040825A14314C251AEA97D /* Pods */,
 				0A4FFF65B56B0189426B28BD /* Frameworks */,
-				F1F91C661BFEC8A6000E0BB7 /* Fabric.framework */,
-				F1F91C671BFEC8A6000E0BB7 /* Crashlytics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -386,7 +377,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Stationdose;
 				TargetAttributes = {
 					CDBE23091BF92DFB00291F56 = {
@@ -426,7 +417,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDBE234A1BF930DD00291F56 /* Info.plist in Resources */,
 				CD9FA46B1BFB71A4003B8A62 /* Yantramanav-Black.ttf in Resources */,
 				F1EC7DC71C2823C2003CEA24 /* InternalShareView.xib in Resources */,
 				CD9FA46F1BFB71A4003B8A62 /* Yantramanav-Regular.ttf in Resources */,
@@ -502,7 +492,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run be3e5758cb7f57efc85bffde1a9a2f6a847f75bb 94a2c2980123cbbebdb8bc75116571ad7228423ea49e36aeab6c253b6567e1e9";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1cc1b03c9e2aad3b5a3803a0e5e8ec94c5e49892 2b61a7b758c5367bd8328c301c2a117ed26c31b8ea87122dab8fe299db994cad";
 		};
 /* End PBXShellScriptBuildPhase section */
 
