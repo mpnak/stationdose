@@ -27,12 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("params ", params)
             }
         }
+        
         Branch.getInstance().setDebug()
         
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         setupAppearance()
-        NFX.sharedInstance().start()
+        
+        //NFX.sharedInstance().start()
         
         return true
     }
