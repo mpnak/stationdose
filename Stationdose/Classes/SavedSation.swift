@@ -14,7 +14,6 @@ class SavedStation: Mappable {
     var undergroundness:Int?
     var useWeather:Bool?
     var useTimeofday:Bool?
-    var autoupdate:Bool?
     var station:Station?
     var tracks:[Track]?
     var updatedAt:NSDate? {
@@ -30,8 +29,6 @@ class SavedStation: Mappable {
     }
     
     required init?(_ map: Map) {
-       
-        
     }
     
     func mapping(map: Map) {
@@ -39,7 +36,6 @@ class SavedStation: Mappable {
         undergroundness     <- map["undergroundness"]
         useWeather          <- map["use_weather"]
         useTimeofday        <- map["use_timeofday"]
-        autoupdate          <- map["autoupdate"]
         station             <- map["station"]
         updatedAt           <- (map["updated_at"], ISO8601DateTransform())
     }

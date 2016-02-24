@@ -58,28 +58,29 @@ class ModelManager: NSObject {
         }
     }
     
-    func generateAutomatedSavedStationsTracksAndCache(savedStations:[SavedStation],onCompletion:() -> Void){
-        
-        let group = dispatch_group_create()
-        
-        savedStations.forEach { (savedStation) -> () in
-            if let autoupdate = savedStation.autoupdate where autoupdate == true {
-                dispatch_group_enter(group)
-                postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
-                SongSortApiManager.sharedInstance.generateSavedStationTracks(savedStation, onCompletion: { (tracks, error) -> Void in
-                    savedStation.tracks = tracks;
-                    savedStation.updatedAt = NSDate()
-                    NSNotificationCenter.defaultCenter().postNotificationName(SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: savedStation)
-                    self.savedStationDidReloadTracks(savedStation)
-                    self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
-                    dispatch_group_leave(group)
-                })
-            }
-        }
-        dispatch_group_notify(group, dispatch_get_main_queue()) {
-            onCompletion()
-        }
-    }
+    // TODO cleanup
+//    func generateAutomatedSavedStationsTracksAndCache(savedStations:[SavedStation],onCompletion:() -> Void){
+//        
+//        let group = dispatch_group_create()
+//        
+//        savedStations.forEach { (savedStation) -> () in
+//            if let autoupdate = savedStation.autoupdate where autoupdate == true {
+//                dispatch_group_enter(group)
+//                postEvent(.WillStartSavedStationTracksReGeneration, id: savedStation.id!)
+//                SongSortApiManager.sharedInstance.generateSavedStationTracks(savedStation, onCompletion: { (tracks, error) -> Void in
+//                    savedStation.tracks = tracks;
+//                    savedStation.updatedAt = NSDate()
+//                    NSNotificationCenter.defaultCenter().postNotificationName(SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: savedStation)
+//                    self.savedStationDidReloadTracks(savedStation)
+//                    self.postEvent(.DidEndSavedStationTracksReGeneration, id: savedStation.id!)
+//                    dispatch_group_leave(group)
+//                })
+//            }
+//        }
+//        dispatch_group_notify(group, dispatch_get_main_queue()) {
+//            onCompletion()
+//        }
+//    }
     
     func reloadNotCachedSavedStationTracksAndCache(savedStation:SavedStation,onCompletion:() -> Void){
         if(savedStation.tracks == nil){
@@ -192,7 +193,9 @@ class ModelManager: NSObject {
                 self.savedStations = savedStations
                 self.postEvent(.SavedStationsDidReloadFromServer)
             }
-            self.generateAutomatedSavedStationsTracksAndCache(self.savedStations, onCompletion: onCompletion)
+            // TODO cleanup
+            //self.generateAutomatedSavedStationsTracksAndCache(self.savedStations, onCompletion: onCompletion)
+            onCompletion()
         }
     }
     

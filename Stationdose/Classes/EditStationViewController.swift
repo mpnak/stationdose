@@ -18,12 +18,10 @@ class EditStationViewController: BaseViewController {
     @IBOutlet weak internal var nameLabel: UILabel!
     @IBOutlet weak var updatedAtLabel: UILabel!
     @IBOutlet weak var familiarityOutlet: UIView!
-    @IBOutlet weak var autoUpdateOutlet: UIView!
     @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var weatherSwitch: UISwitch!
     @IBOutlet weak var timeSwitch: UISwitch!
     @IBOutlet weak var familiaritySlider: UISlider!
-    @IBOutlet weak var autoUpdateSwitch: UISwitch!
     
     private let fullscreenView = FullScreenLoadingView()
     private var somethingChanged:Bool = false
@@ -36,7 +34,6 @@ class EditStationViewController: BaseViewController {
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
         familiarityOutlet.hidden = savedStation == nil ? true : false
-        autoUpdateOutlet.hidden = savedStation == nil ? true : false
         nameLabel?.text = savedStation == nil ? station?.name : savedStation?.station?.name
         shortDescriptionLabel?.text = savedStation == nil ? station?.shortDescription : savedStation?.station?.shortDescription
         updatedAtLabel?.text = savedStation?.updatedAtString()
@@ -62,14 +59,10 @@ class EditStationViewController: BaseViewController {
             if savedStation.useTimeofday == nil {
                 savedStation.useTimeofday = false
             }
-            if savedStation.autoupdate == nil {
-                savedStation.autoupdate = false
-            }
             
             familiaritySlider.value = familiaritySliderValueMapInverse(savedStation.undergroundness!)
             weatherSwitch.on = (savedStation.useWeather)!
             timeSwitch.on = (savedStation.useTimeofday)!
-            autoUpdateSwitch.on = (savedStation.autoupdate)!
             
         } else {
             weatherSwitch.on = ModelManager.sharedInstance.onNexStationSaveUseWeather
@@ -112,10 +105,6 @@ class EditStationViewController: BaseViewController {
         savedStation?.useTimeofday = sender.on
         ModelManager.sharedInstance.onNexStationSaveUseTime = sender.on
         somethingChanged = true
-    }
-    
-    @IBAction func autoUpdateSwitchValueChange(sender: UISwitch) {
-        savedStation?.autoupdate = sender.on
     }
     
     @IBAction func familiarityTouchUpInside(sender: UISlider) {
