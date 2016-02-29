@@ -11,6 +11,7 @@ import NVActivityIndicatorView
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var radioActivityIndicator:NVActivityIndicatorView!
     
@@ -31,7 +32,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginWithSpotify(sender: UIButton) {
-        SpotifyManager.sharedInstance.openLogin()
+        SpotifyManager.sharedInstance.openLogin(self)
+        loginButton.hidden = true
         //self.activityIndicator.startAnimating()
         radioActivityIndicator.startAnimation()
         sender.borderColor = UIColor.customButtonBorderColor()
@@ -55,17 +57,20 @@ class LoginViewController: UIViewController {
                 ModelManager.sharedInstance.initialCache { () -> Void in
                     //self.activityIndicator.stopAnimating()
                     self.radioActivityIndicator.stopAnimation()
+                    self.loginButton.hidden = false
                     self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
                 }
             } else {
                 //self.activityIndicator.stopAnimating()
                 self.radioActivityIndicator.stopAnimation()
+                self.loginButton.hidden = false
                 self.performSegueWithIdentifier(Constants.Segues.LoginToRequestPremiumSegue, sender: self)
             }
         }
     }
     
     func onSessionError(notification:NSNotification){
+        self.loginButton.hidden = false
         showGenericErrorMessage()
     }
 }

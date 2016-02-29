@@ -7,8 +7,9 @@
 //
 
 import UIKit
-
-class SpotifyManager: NSObject {
+import SafariServices
+ 
+class SpotifyManager: NSObject, SFSafariViewControllerDelegate { // SPTAuthViewDelegate
     
     static let sharedInstance = SpotifyManager()
     
@@ -75,8 +76,26 @@ class SpotifyManager: NSObject {
         }
     }
     
+//    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didFailToLogin error: NSError!) {
+//        callback(error, nil)
+//    }
+//    
+//    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
+//        callback(nil, session)
+//    }
+//    
+//    func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
+//    }
+    
     func handleOpenURL(url: NSURL) ->Bool {
         if(SPTAuth.defaultInstance().canHandleURL(url)){
+            
+            if let sfVC = sfLoginViewController {
+                sfVC.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    self.sfLoginViewController = nil
+                })
+            }
+            
             SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: callback)
             return true
 
@@ -84,9 +103,19 @@ class SpotifyManager: NSObject {
         return false
     }
     
-    func openLogin() {
+    var sfLoginViewController: SFSafariViewController?
+    
+    func openLogin(viewController: UIViewController) {
+        
+        //let spv = SPTAuthViewController.authenticationViewController()
+        //spv.delegate = self
+        //viewController.presentViewController(spv, animated: true, completion: nil)
+        
         let spotifyAuthenticator = SPTAuth.defaultInstance()
-        UIApplication.sharedApplication().openURL(spotifyAuthenticator.loginURL)
+        sfLoginViewController = SFSafariViewController(URL: spotifyAuthenticator.loginURL)
+        viewController.presentViewController(sfLoginViewController!, animated: true, completion: nil)
+        
+        //UIApplication.sharedApplication().openURL(spotifyAuthenticator.loginURL)
     }
     
     func checkPremium(callback:(Bool)->()) {
@@ -100,6 +129,7 @@ class SpotifyManager: NSObject {
     }
     
     func logout() {
+        //SPTAuthViewController.authenticationViewController().clearCookies(nil)
         return SPTAuth.defaultInstance().session = nil
     }
     

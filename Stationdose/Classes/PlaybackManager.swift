@@ -219,11 +219,14 @@ class PlaybackManager: NSObject {
         let window = UIApplication.sharedApplication().keyWindow!
         let baseViewControllerCustomViewHeight = window.bounds.size.height - 64 /*navigation bar height*/
         BaseViewController.customViewHeight = baseViewControllerCustomViewHeight
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            var frame = self.playbackControlView!.frame
-            frame.origin.y = window.bounds.size.height
-            self.playbackControlView!.frame = frame
-        }) { (success) -> Void in }
+        
+        if self.playbackControlView != nil {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                var frame = self.playbackControlView!.frame
+                frame.origin.y = window.bounds.size.height
+                self.playbackControlView!.frame = frame
+            }) { (success) -> Void in }
+        }
     }
     
     func show() {

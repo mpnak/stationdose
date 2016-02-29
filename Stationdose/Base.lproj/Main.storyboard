@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TLQ-fv-9An">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -232,6 +231,7 @@ Please sign in to your account to start.</string>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="HNp-Et-hTM" id="uSg-0R-gD6"/>
+                        <outlet property="loginButton" destination="ihv-2m-RBj" id="SaF-e2-e7L"/>
                         <segue destination="4mP-Aw-GMw" kind="presentation" identifier="LoginToHomeSegue" id="etf-Up-yf7"/>
                         <segue destination="Tod-Qa-F7D" kind="presentation" identifier="LoginToRequestPremiumSegue" id="Fl5-av-fhj"/>
                     </connections>
@@ -2236,8 +2236,8 @@ Please sign in to your account to start.</string>
         <image name="track-placeholder" width="43" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N0U-zU-k6a"/>
-        <segue reference="2NR-pA-uPA"/>
+        <segue reference="etf-Up-yf7"/>
+        <segue reference="Fl5-av-fhj"/>
         <segue reference="cgp-lR-yMf"/>
     </inferredMetricsTieBreakers>
 </document>
