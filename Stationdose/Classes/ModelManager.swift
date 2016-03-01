@@ -49,7 +49,6 @@ class ModelManager: NSObject {
     
     func initialCache(onCompletion:() -> Void) {
         self.reloadData(onCompletion)
-        
     }
     
     func reloadCache(onCompletion:() -> Void) {

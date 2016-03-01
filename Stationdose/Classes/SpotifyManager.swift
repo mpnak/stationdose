@@ -8,9 +8,15 @@
 
 import UIKit
 import SafariServices
- 
-class SpotifyManager: NSObject, SFSafariViewControllerDelegate { // SPTAuthViewDelegate
-    
+
+protocol SpotifyManagerLoginDelegate {
+    func loginAcountNeedsPremium() -> Void
+    func loginSuccess() -> Void
+    func loginFailure(error: NSError) -> Void
+    func loginCancelled() -> Void
+}
+
+class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
     static let sharedInstance = SpotifyManager()
     
     override init() {
@@ -21,7 +27,7 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate { // SPTAuthViewD
         spotifyAuthenticator.clientID = Constants.Spotify.ClientId
         spotifyAuthenticator.redirectURL = NSURL(string: Constants.Spotify.RedirectUrl)
         spotifyAuthenticator.sessionUserDefaultsKey = "SpotifySession"
-        spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope,SPTAuthUserReadPrivateScope,SPTAuthPlaylistModifyPrivateScope]
+        spotifyAuthenticator.requestedScopes = [SPTAuthStreamingScope, SPTAuthUserReadPrivateScope, SPTAuthPlaylistModifyPrivateScope]
         spotifyAuthenticator.tokenRefreshURL = NSURL(string:Constants.Spotify.RefreshUrl)
         spotifyAuthenticator.tokenSwapURL = NSURL(string:Constants.Spotify.SwapUrl)
         
@@ -30,109 +36,134 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate { // SPTAuthViewD
         }
     }
     
-    var hasSession:Bool{
+    var hasSession: Bool {
         return SPTAuth.defaultInstance().session != nil
     }
     
-    var hasValidSession:Bool{
+    var hasValidSession: Bool {
         return SPTAuth.defaultInstance().session.isValid()
     }
     
-    var session:SPTSession!{
+    var session: SPTSession! {
         return SPTAuth.defaultInstance().session
     }
     
-    var player:SPTAudioStreamingController?
+    var player: SPTAudioStreamingController?
     
-    private let callback:SPTAuthCallback = {(error: NSError!,session: SPTSession!) in
-        
-        if let error = error {
-            let errorNotification = NSNotification(name: Constants.Notifications.sessionErrorNotification,
-                object: error)
-            NSNotificationCenter.defaultCenter().postNotification(errorNotification)
-            
-            SpotifyManager.sharedInstance.player = nil
-            
-        } else {
-
-            SongSortApiManager.sharedInstance.renewSession(session.accessToken, onCompletion: { (user, error) -> Void in
-                if let user = user where error == nil{
-                    
-                    ModelManager.sharedInstance.reloadCache({ () -> Void in
-                    })
-                    
-                    ModelManager.sharedInstance.user = user
-                    let validSessionNotification = NSNotification(name: Constants.Notifications.sessionValidNotification,
-                        object: session)
-                    NSNotificationCenter.defaultCenter().postNotification(validSessionNotification)
-                } else {
-                    let errorNotification = NSNotification(name: Constants.Notifications.sessionErrorNotification,
-                        object: error)
-                    NSNotificationCenter.defaultCenter().postNotification(errorNotification)
-                }
-            })
-            
-            SpotifyManager.sharedInstance.player = SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
-        }
-    }
+    var loginDelegate: SpotifyManagerLoginDelegate?
     
-//    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didFailToLogin error: NSError!) {
-//        callback(error, nil)
-//    }
-//    
-//    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
-//        callback(nil, session)
-//    }
-//    
-//    func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
-//    }
-    
-    func handleOpenURL(url: NSURL) ->Bool {
-        if(SPTAuth.defaultInstance().canHandleURL(url)){
-            
-            if let sfVC = sfLoginViewController {
-                sfVC.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    self.sfLoginViewController = nil
-                })
-            }
-            
-            SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: callback)
-            return true
-
-        }
-        return false
-    }
-    
+    // Store a reference to the view controller supplied in openLogin
     var sfLoginViewController: SFSafariViewController?
+
+    /**
+     Endpoint for login.
+     
+     A SFSafariViewController login screen is presented. If the user correctly submits the login form Spotify will initiate callback request that will land at the handleOpenURL(url: NSURL) ->Bool function.
+     
+     - Parameters:
+     - viewController a UIViewController that presents the login screen.
+     - callback to be called when dismissing the login screen.
+     
+     */
     
     func openLogin(viewController: UIViewController) {
-        
-        //let spv = SPTAuthViewController.authenticationViewController()
-        //spv.delegate = self
-        //viewController.presentViewController(spv, animated: true, completion: nil)
-        
         let spotifyAuthenticator = SPTAuth.defaultInstance()
         sfLoginViewController = SFSafariViewController(URL: spotifyAuthenticator.loginURL)
-        viewController.presentViewController(sfLoginViewController!, animated: true, completion: nil)
+        sfLoginViewController?.delegate = self
         
-        //UIApplication.sharedApplication().openURL(spotifyAuthenticator.loginURL)
+        loginDelegate = viewController as? SpotifyManagerLoginDelegate
+        
+        viewController.presentViewController(sfLoginViewController!, animated: true, completion: nil)
     }
     
-    func checkPremium(callback:(Bool)->()) {
-        SPTUser.requestCurrentUserWithAccessToken(session.accessToken) { (error, user) in
-            callback(user?.product == .Premium)
-        }
+    /**
+     Endpoint for login.
+     
+     Login using the existing session
+     
+     - Parameters:
+     - loginDelegate
+     
+     */
+    func loginWithExistingSession(loginDelegate: SpotifyManagerLoginDelegate) {
+        self.loginDelegate = loginDelegate
+        SPTAuth.defaultInstance().renewSession(session, callback: spotifyAuthCallback)
     }
     
-    func renewSession() {
-        SPTAuth.defaultInstance().renewSession(session, callback: callback)
-    }
-    
+    /**
+     Endpoint for logout.
+     
+     */
+
     func logout() {
         //SPTAuthViewController.authenticationViewController().clearCookies(nil)
         return SPTAuth.defaultInstance().session = nil
     }
     
+    func spotifyAuthCallback(error: NSError!, session: SPTSession!) -> Void {
+        if let error = error {
+            self.loginDelegate?.loginFailure(error)
+            self.loginDelegate = nil
+            SpotifyManager.sharedInstance.player = nil
+            
+        } else {
+            self.checkPremium({ (isPremium: Bool) -> Void in
+                if isPremium {
+                    self.loginToSongSort(session)
+                } else {
+                    self.loginDelegate?.loginAcountNeedsPremium()
+                    self.loginDelegate = nil
+                }
+            })
+        }
+    }
+    
+    func loginToSongSort(session: SPTSession) {
+        SongSortApiManager.sharedInstance.renewSession(session.accessToken, onCompletion: { (user, error) -> Void in
+            if let user = user where error == nil {
+                ModelManager.sharedInstance.user = user
+                ModelManager.sharedInstance.initialCache { () -> Void in
+                    SpotifyManager.sharedInstance.player = SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
+                    
+                    self.loginDelegate?.loginSuccess()
+                    self.loginDelegate = nil
+                }
+                
+            } else {
+                self.loginDelegate?.loginFailure(error!)
+                self.loginDelegate = nil
+            }
+        })
+    }
+ 
+    func handleOpenURL(url: NSURL) -> Bool {
+        if(SPTAuth.defaultInstance().canHandleURL(url)) {
+            dismissSafariLoginView()
+            SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: spotifyAuthCallback)
+            return true
+        }
+        return false
+    }
+    
+    func dismissSafariLoginView() {
+        if let sfVC = sfLoginViewController {
+            sfVC.dismissViewControllerAnimated(true, completion: nil)
+            self.sfLoginViewController = nil
+        }
+    }
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        loginDelegate?.loginCancelled()
+        self.loginDelegate = nil
+        dismissSafariLoginView()
+    }
+    
+    func checkPremium(callback: (Bool) -> Void) {
+        SPTUser.requestCurrentUserWithAccessToken(session.accessToken) { (error, user) in
+            callback(user?.product == .Premium)
+        }
+    }
+   
     func createPlaylist(stationName: String, tracks :[Track], callback: (success: Bool) -> Void) {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MMM d, h:mma"

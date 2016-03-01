@@ -9,7 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, SpotifyManagerLoginDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -23,18 +23,11 @@ class LoginViewController: UIViewController {
         activityIndicator.hidden = true
         radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
         self.view.addSubview(radioActivityIndicator)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionValid:", name: Constants.Notifications.sessionValidNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onSessionError:", name: Constants.Notifications.sessionErrorNotification, object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     @IBAction func loginWithSpotify(sender: UIButton) {
         SpotifyManager.sharedInstance.openLogin(self)
         loginButton.hidden = true
-        //self.activityIndicator.startAnimating()
         radioActivityIndicator.startAnimation()
         sender.borderColor = UIColor.customButtonBorderColor()
     }
@@ -51,26 +44,31 @@ class LoginViewController: UIViewController {
         sender.borderColor = UIColor.customButtonBorderTapColor()
     }
     
-    func onSessionValid(notification:NSNotification){
-        SpotifyManager.sharedInstance.checkPremium { isPremium in
-            if isPremium {
-                ModelManager.sharedInstance.initialCache { () -> Void in
-                    //self.activityIndicator.stopAnimating()
-                    self.radioActivityIndicator.stopAnimation()
-                    self.loginButton.hidden = false
-                    self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
-                }
-            } else {
-                //self.activityIndicator.stopAnimating()
-                self.radioActivityIndicator.stopAnimation()
-                self.loginButton.hidden = false
-                self.performSegueWithIdentifier(Constants.Segues.LoginToRequestPremiumSegue, sender: self)
-            }
-        }
+    // Mark: - SpotifyManagerLoginDelegate
+    
+    func loginAcountNeedsPremium() {
+        self.performSegueWithIdentifier(Constants.Segues.LoginToRequestPremiumSegue, sender: self)
+        self.radioActivityIndicator.stopAnimation()
+        self.loginButton.hidden = false
     }
     
-    func onSessionError(notification:NSNotification){
+    func loginSuccess() {
+        //ModelManager.sharedInstance.initialCache { () -> Void in
+            //self.activityIndicator.stopAnimating()
+            self.radioActivityIndicator.stopAnimation()
+            self.loginButton.hidden = false
+            self.performSegueWithIdentifier(Constants.Segues.LoginToHomeSegue, sender: self)
+        //}
+    }
+    
+    func loginFailure(error: NSError) {
         self.loginButton.hidden = false
+        self.radioActivityIndicator.stopAnimation()
         showGenericErrorMessage()
+    }
+    
+    func loginCancelled() {
+        self.loginButton.hidden = false
+        self.radioActivityIndicator.stopAnimation()
     }
 }

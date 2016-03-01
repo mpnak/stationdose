@@ -8,13 +8,12 @@
 
 import UIKit
 import NVActivityIndicatorView
+import SafariServices
 
-class RequestPremiumViewController: UIViewController {
+class RequestPremiumViewController: UIViewController, SFSafariViewControllerDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var radioActivityIndicator:NVActivityIndicatorView!
-    
-    private var timer:NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,36 +27,31 @@ class RequestPremiumViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "checkPremium:", userInfo: nil, repeats: true)
-        timer?.fire()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        timer?.invalidate()
+        //timer?.invalidate()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func checkPremium(timer:NSTimer) {
-        SpotifyManager.sharedInstance.checkPremium { isPremium in
-            if isPremium{
-                ModelManager.sharedInstance.initialCache { () -> Void in
-                    self.radioActivityIndicator.stopAnimation()
-                    timer.invalidate()
-                    self.performSegueWithIdentifier(Constants.Segues.RequestPremiumToHomeSegue, sender: self)
-                }
-            }
-        }
-    }
-    
 
     @IBAction func signUpPremium(sender: AnyObject) {
-        //activityIndicator.startAnimating()
-        radioActivityIndicator.stopAnimation()
-        performSegueWithIdentifier(Constants.Segues.RequestPremiumToRequestPremiumWebSegue, sender: self)
+        activityIndicator.startAnimating()
+        //radioActivityIndicator.stopAnimation()
+        
+        let sfVC = SFSafariViewController(URL: Constants.Spotify.GoPremiumUrl!)
+        sfVC.delegate = self
+        
+        presentViewController(sfVC, animated: true, completion: nil)
+    }
+    
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        SpotifyManager.sharedInstance.logout()
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
 }

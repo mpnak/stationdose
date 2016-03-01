@@ -33,7 +33,6 @@
 		CD9FA46F1BFB71A4003B8A62 /* Yantramanav-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9FA4671BFAA197003B8A62 /* Yantramanav-Regular.ttf */; };
 		CD9FA4701BFB71A4003B8A62 /* Yantramanav-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9FA4681BFAA197003B8A62 /* Yantramanav-Thin.ttf */; };
 		CD9FA4721BFB9FD3003B8A62 /* RequestPremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA4711BFB9FD3003B8A62 /* RequestPremiumViewController.swift */; };
-		CD9FA4741BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FA4731BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift */; };
 		CDBE230E1BF92DFB00291F56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBE230D1BF92DFB00291F56 /* AppDelegate.swift */; };
 		CDBE23131BF92DFB00291F56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23111BF92DFB00291F56 /* Main.storyboard */; };
 		CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23141BF92DFB00291F56 /* Assets.xcassets */; };
@@ -94,7 +93,6 @@
 		CD9FA4681BFAA197003B8A62 /* Yantramanav-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Yantramanav-Thin.ttf"; sourceTree = "<group>"; };
 		CD9FA4691BFB6BB0003B8A62 /* UIView+Inspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Inspectable.swift"; sourceTree = "<group>"; };
 		CD9FA4711BFB9FD3003B8A62 /* RequestPremiumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPremiumViewController.swift; sourceTree = "<group>"; };
-		CD9FA4731BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPremiumWebViewController.swift; sourceTree = "<group>"; };
 		CDBE230A1BF92DFB00291F56 /* Stationdose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stationdose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBE230D1BF92DFB00291F56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDBE23121BF92DFB00291F56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -309,7 +307,6 @@
 				CD9FA44A1BF93323003B8A62 /* HomeViewController.swift */,
 				CD9FA45C1BFA8483003B8A62 /* SplashViewController.swift */,
 				CD9FA4711BFB9FD3003B8A62 /* RequestPremiumViewController.swift */,
-				CD9FA4731BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift */,
 				F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */,
 				F15593021C110447009CE684 /* FeaturedStationViewController.swift */,
 				F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */,
@@ -535,7 +532,6 @@
 				CD9FA45D1BFA8483003B8A62 /* SplashViewController.swift in Sources */,
 				F1F91C6D1BFF9B44000E0BB7 /* StationsListTableViewCell.swift in Sources */,
 				F1B4CB791C07B58F007DB048 /* InternalAlertView.swift in Sources */,
-				CD9FA4741BFBA9C7003B8A62 /* RequestPremiumWebViewController.swift in Sources */,
 				CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */,
 				F1EC7DCB1C282436003CEA24 /* ShareView.swift in Sources */,
 				CD520F6B1C19F7C4009062F3 /* User.swift in Sources */,

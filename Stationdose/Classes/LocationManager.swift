@@ -79,8 +79,6 @@ class LocationManager:NSObject,CLLocationManagerDelegate {
         }
     }
     
-
-    
     internal func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         foundLocation(nil, error: error)
     }

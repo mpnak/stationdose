@@ -58,19 +58,19 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showBrandingTitleView()
-        showUserProfileButton()
+        self.showBrandingTitleView()
+        self.showUserProfileButton()
         
-        featuresStationsPageControl.numberOfPages = featuredStations.count
-        reloadSponsoredStations()
+        self.featuresStationsPageControl.numberOfPages = self.featuredStations.count
+        self.reloadSponsoredStations()
         
-        stationsSegmentedControl.selectedSegmentIndex = myStations.count > 0 ? 0 : 1
-        stationsListTableView.alpha = 1
-        myStationsTableView.alpha = 0
+        self.stationsSegmentedControl.selectedSegmentIndex = self.myStations.count > 0 ? 0 : 1
+        self.stationsListTableView.alpha = 1
+        self.myStationsTableView.alpha = 0
         
-        reloadData()
+        self.reloadData()
         
-        featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "featuredStationsTimerStep", userInfo: nil, repeats: true)
+        self.featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "featuredStationsTimerStep", userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(animated: Bool) {
