@@ -33,7 +33,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setCustomViewHeight", name: "BaseViewControllerNewCustomViewHeight", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseViewController.setCustomViewHeight), name: "BaseViewControllerNewCustomViewHeight", object: nil)
         
         if let navigationController = navigationController {
             if navigationController.viewControllers.count > 1 {

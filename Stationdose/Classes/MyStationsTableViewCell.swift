@@ -11,7 +11,7 @@ import UIKit
 class MyStationsTableViewCell: PlayableTableViewCell {
     
     var station: Station!
-    var savedStation: SavedStation!
+    //var savedStation: SavedStation!
     @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     
