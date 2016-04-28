@@ -40,17 +40,17 @@ class PlaybackManager: NSObject {
                 print(error)
             }
         }
-        currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "currentTimeReload", userInfo: nil, repeats: true)
+        currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(PlaybackManager.currentTimeReload), userInfo: nil, repeats: true)
         setupRemoteCommandCenter()
     }
     
     func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
-        commandCenter.playCommand.addTarget(self, action: "play")
-        commandCenter.pauseCommand.addTarget(self, action: "pause")
-        commandCenter.togglePlayPauseCommand.addTarget(self, action: "togglePlayPause")
-        commandCenter.nextTrackCommand.addTarget(self, action: "nextTrack")
-        commandCenter.previousTrackCommand.addTarget(self, action: "previousTrack")
+        commandCenter.playCommand.addTarget(self, action: #selector(MPMediaPlayback.play))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(PlaybackManager.pause))
+        commandCenter.togglePlayPauseCommand.addTarget(self, action: #selector(PlaybackManager.togglePlayPause))
+        commandCenter.nextTrackCommand.addTarget(self, action: #selector(PlaybackManager.nextTrack))
+        commandCenter.previousTrackCommand.addTarget(self, action: #selector(PlaybackManager.previousTrack))
         
         commandCenter.likeCommand.enabled = false
         commandCenter.dislikeCommand.enabled = false
@@ -187,8 +187,8 @@ class PlaybackManager: NSObject {
         playbackControlView = PlaybackControlView.instanceFromNib()
         playbackControlView?.currentTimeProgressView.progress = 0.0
         cleanPlaybackControlView()
-        playbackControlView?.playButton.addTarget(self, action: "play", forControlEvents: .TouchDown)
-        playbackControlView?.pauseButton.addTarget(self, action: "pause", forControlEvents: .TouchDown)
+        playbackControlView?.playButton.addTarget(self, action: #selector(MPMediaPlayback.play), forControlEvents: .TouchDown)
+        playbackControlView?.pauseButton.addTarget(self, action: #selector(PlaybackManager.pause), forControlEvents: .TouchDown)
     }
     
     private func showPlaybackControlView() {
