@@ -19,7 +19,7 @@ extension UIViewController {
     }
     
     func showCustomBack() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "btn-back"), style: .Plain, target: self, action: "back")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "btn-back"), style: .Plain, target: self, action: #selector(UIViewController.back))
     }
     
     func back () {
@@ -27,7 +27,7 @@ extension UIViewController {
     }
     
     func showUserProfileButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-icon"), style: .Plain, target: self, action: "oppenUserProfileAction")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile-icon"), style: .Plain, target: self, action: #selector(UIViewController.oppenUserProfileAction))
     }
     
     func showBrandingTitleView() {
@@ -46,17 +46,18 @@ extension UIViewController {
         self.presentViewController(alert, animated: true) { () -> Void in }
     }
     
-    func showAlertFirstTimeAndSaveStation(savedStation:SavedStation){
-        if (!NSUserDefaults.standardUserDefaults().boolForKey("firstlaunch1.0")) {
-            AlertView(title: "Change influencers", message: "Changes will affect your playlist when you tap the refresh icon or the next time you open the app.", acceptButtonTitle: "That's cool", cancelButtonTitle: "Nevermind") {
-                (_) -> Void in
-                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(savedStation, regenerateTracks: false) { }
-            }.show()
-            
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstlaunch1.0")
-            NSUserDefaults.standardUserDefaults().synchronize();
-        } else {
-            ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(savedStation, regenerateTracks: false) { }
-        }
-    }
+    // TODO FIXME this is temporarily commented out
+//    func showAlertFirstTimeAndSaveStation(savedStation:SavedStation){
+//        if (!NSUserDefaults.standardUserDefaults().boolForKey("firstlaunch1.0")) {
+//            AlertView(title: "Change influencers", message: "Changes will affect your playlist when you tap the refresh icon or the next time you open the app.", acceptButtonTitle: "That's cool", cancelButtonTitle: "Nevermind") {
+//                (_) -> Void in
+//                ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(savedStation, regenerateTracks: false) { }
+//            }.show()
+//            
+//            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstlaunch1.0")
+//            NSUserDefaults.standardUserDefaults().synchronize();
+//        } else {
+//            ModelManager.sharedInstance.updateSavedStationAndRegenerateTracksIfNeeded(savedStation, regenerateTracks: false) { }
+//        }
+//    }
 }

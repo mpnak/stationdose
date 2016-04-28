@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TLQ-fv-9An">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TLQ-fv-9An">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -34,8 +34,6 @@
             <string>Yantramanav-Light</string>
         </mutableArray>
         <mutableArray key="Yantramanav-Regular.ttf">
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
             <string>Yantramanav-Regular</string>
             <string>Yantramanav-Regular</string>
             <string>Yantramanav-Regular</string>
@@ -993,26 +991,6 @@ Please sign in to your account to start.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQA-Sp-QCj">
                                         <rect key="frame" x="0.0" y="94" width="375" height="43"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7E-rX-uI3">
-                                                <rect key="frame" x="7" y="0.0" width="43" height="43"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Q7E-rX-uI3" secondAttribute="height" multiplier="1:1" id="rqf-Zj-iia"/>
-                                                </constraints>
-                                                <state key="normal" image="btn-weather"/>
-                                                <connections>
-                                                    <action selector="toggleWeather:" destination="ExW-W1-YQY" eventType="touchUpInside" id="aF7-yO-g36"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYq-Tq-3sm">
-                                                <rect key="frame" x="50" y="0.0" width="43" height="43"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="OYq-Tq-3sm" secondAttribute="height" multiplier="1:1" id="xU2-Iz-HOc"/>
-                                                </constraints>
-                                                <state key="normal" image="btn-time"/>
-                                                <connections>
-                                                    <action selector="toggleUseTime:" destination="ExW-W1-YQY" eventType="touchUpInside" id="4D9-OC-30b"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNB-3M-LYK">
                                                 <rect key="frame" x="327" y="0.0" width="43" height="43"/>
                                                 <constraints>
@@ -1048,17 +1026,11 @@ Please sign in to your account to start.</string>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="YNB-3M-LYK" secondAttribute="trailing" constant="5" id="2Cp-yv-fxq"/>
                                             <constraint firstItem="vTz-za-ELG" firstAttribute="top" secondItem="ZQA-Sp-QCj" secondAttribute="top" id="3Is-Cn-mVT"/>
-                                            <constraint firstItem="OYq-Tq-3sm" firstAttribute="top" secondItem="ZQA-Sp-QCj" secondAttribute="top" id="3Oi-6f-SPs"/>
                                             <constraint firstItem="vTz-za-ELG" firstAttribute="leading" secondItem="hd2-QE-u1v" secondAttribute="trailing" id="Ajd-tK-8my"/>
-                                            <constraint firstAttribute="bottom" secondItem="OYq-Tq-3sm" secondAttribute="bottom" id="CeG-e0-52Y"/>
                                             <constraint firstAttribute="bottom" secondItem="vTz-za-ELG" secondAttribute="bottom" id="H4r-N0-P4w"/>
                                             <constraint firstItem="hd2-QE-u1v" firstAttribute="top" secondItem="ZQA-Sp-QCj" secondAttribute="top" id="N7x-1I-56k"/>
                                             <constraint firstAttribute="trailing" secondItem="vTz-za-ELG" secondAttribute="trailing" constant="48" id="PTt-zi-6S1"/>
-                                            <constraint firstItem="OYq-Tq-3sm" firstAttribute="leading" secondItem="Q7E-rX-uI3" secondAttribute="trailing" id="QgN-oj-QGX"/>
-                                            <constraint firstAttribute="bottom" secondItem="Q7E-rX-uI3" secondAttribute="bottom" id="Rpt-tQ-yLY"/>
                                             <constraint firstAttribute="bottom" secondItem="hd2-QE-u1v" secondAttribute="bottom" id="aQF-Zq-6De"/>
-                                            <constraint firstItem="Q7E-rX-uI3" firstAttribute="top" secondItem="ZQA-Sp-QCj" secondAttribute="top" id="iqJ-9n-A1R"/>
-                                            <constraint firstItem="Q7E-rX-uI3" firstAttribute="leading" secondItem="ZQA-Sp-QCj" secondAttribute="leading" constant="7" id="jJ1-KQ-ccC"/>
                                             <constraint firstItem="YNB-3M-LYK" firstAttribute="leading" secondItem="vTz-za-ELG" secondAttribute="trailing" id="kBE-MK-cvK"/>
                                             <constraint firstAttribute="height" constant="43" id="kfM-Os-iy8"/>
                                             <constraint firstItem="YNB-3M-LYK" firstAttribute="top" secondItem="ZQA-Sp-QCj" secondAttribute="top" id="t2N-Dv-6RU"/>
@@ -1193,10 +1165,8 @@ Please sign in to your account to start.</string>
                         <outlet property="saveButton" destination="CrE-33-vXA" id="dLc-b0-H6u"/>
                         <outlet property="savedImageView" destination="6GT-pO-Hwi" id="kdH-y6-KIx"/>
                         <outlet property="shortDescriptionLabel" destination="aAa-H9-Gdi" id="MfD-8R-n2a"/>
-                        <outlet property="timeButton" destination="OYq-Tq-3sm" id="v9Q-0f-dSj"/>
                         <outlet property="tracksTableView" destination="MZw-7r-iZt" id="r4R-GZ-aOY"/>
                         <outlet property="updatedAtLabel" destination="qE1-kr-vSc" id="JA0-ii-9jI"/>
-                        <outlet property="weatherButton" destination="Q7E-rX-uI3" id="jMB-Rd-ABu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9p-w3-Jd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1319,77 +1289,10 @@ Please sign in to your account to start.</string>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffw-c7-rQp">
                                 <rect key="frame" x="0.0" y="137" width="375" height="60"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-weather" translatesAutoresizingMaskIntoConstraints="NO" id="R3L-V4-ygW">
-                                        <rect key="frame" x="3" y="8" width="43" height="43"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="43" id="RVd-AC-PPR"/>
-                                            <constraint firstAttribute="width" secondItem="R3L-V4-ygW" secondAttribute="height" multiplier="1:1" id="qFq-ml-pBl"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymc-Sd-983">
-                                        <rect key="frame" x="140" y="8" width="43" height="43"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="ymc-Sd-983" secondAttribute="height" id="fbj-vr-wfn"/>
-                                            <constraint firstAttribute="width" constant="43" id="pMW-dX-IkD"/>
-                                        </constraints>
-                                        <state key="normal" image="btn-info"/>
-                                        <connections>
-                                            <action selector="weatherInfoAction:" destination="4J2-0k-C7D" eventType="touchUpInside" id="bBA-UB-bLm"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0e2-Cr-Jlo">
-                                        <rect key="frame" x="46" y="19" width="92" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="26" id="xoB-Pa-6wI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="xoB-Pa-6wI"/>
-                                            </mask>
-                                        </variation>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WwZ-3y-X16">
-                                        <rect key="frame" x="312" y="14" width="51" height="31"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="z9r-jQ-AdR">
-                                        <rect key="frame" x="312" y="14" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="weatherSwitchValueChange:" destination="4J2-0k-C7D" eventType="valueChanged" id="KdY-Hn-3Zd"/>
-                                        </connections>
-                                    </switch>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ymc-Sd-983" firstAttribute="baseline" secondItem="0e2-Cr-Jlo" secondAttribute="baseline" id="0Qn-xW-t1B"/>
-                                    <constraint firstItem="0e2-Cr-Jlo" firstAttribute="leading" secondItem="R3L-V4-ygW" secondAttribute="trailing" id="4lz-ip-RB7"/>
-                                    <constraint firstItem="WwZ-3y-X16" firstAttribute="height" secondItem="z9r-jQ-AdR" secondAttribute="height" id="5kL-OF-p1h"/>
-                                    <constraint firstItem="WwZ-3y-X16" firstAttribute="centerY" secondItem="z9r-jQ-AdR" secondAttribute="centerY" id="Oow-P1-fHk"/>
-                                    <constraint firstItem="ymc-Sd-983" firstAttribute="centerY" secondItem="z9r-jQ-AdR" secondAttribute="centerY" id="P9c-Qu-Yuj"/>
-                                    <constraint firstItem="WwZ-3y-X16" firstAttribute="centerX" secondItem="z9r-jQ-AdR" secondAttribute="centerX" id="Rc5-xf-aYe"/>
-                                    <constraint firstItem="z9r-jQ-AdR" firstAttribute="centerY" secondItem="ffw-c7-rQp" secondAttribute="centerY" id="SD0-b3-VUk"/>
-                                    <constraint firstItem="R3L-V4-ygW" firstAttribute="leading" secondItem="ffw-c7-rQp" secondAttribute="leading" constant="3" id="VyR-5x-Khd"/>
-                                    <constraint firstItem="ymc-Sd-983" firstAttribute="centerY" secondItem="0e2-Cr-Jlo" secondAttribute="centerY" id="cGZ-K8-Nrv"/>
                                     <constraint firstAttribute="height" constant="60" id="djF-z2-SL1"/>
-                                    <constraint firstItem="0e2-Cr-Jlo" firstAttribute="centerY" secondItem="R3L-V4-ygW" secondAttribute="centerY" id="hXp-Ja-iNb"/>
-                                    <constraint firstItem="WwZ-3y-X16" firstAttribute="width" secondItem="z9r-jQ-AdR" secondAttribute="width" constant="2" id="le5-eN-bJu"/>
-                                    <constraint firstAttribute="trailing" secondItem="z9r-jQ-AdR" secondAttribute="trailing" constant="14" id="sG4-bD-fuG"/>
-                                    <constraint firstItem="WwZ-3y-X16" firstAttribute="leading" secondItem="z9r-jQ-AdR" secondAttribute="leading" id="xVs-bW-sww"/>
-                                    <constraint firstItem="ymc-Sd-983" firstAttribute="leading" secondItem="0e2-Cr-Jlo" secondAttribute="trailing" constant="3" id="yew-NO-aAs"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="0Qn-xW-t1B"/>
-                                        <exclude reference="Rc5-xf-aYe"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4u-Hj-S2G">
                                 <rect key="frame" x="0.0" y="197" width="375" height="60"/>
@@ -1401,51 +1304,6 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="height" constant="1" id="dRV-Nv-Aty"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-time" translatesAutoresizingMaskIntoConstraints="NO" id="buK-ti-Nod">
-                                        <rect key="frame" x="3" y="8" width="43" height="43"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="43" id="K2R-7Y-vIO"/>
-                                            <constraint firstAttribute="width" secondItem="buK-ti-Nod" secondAttribute="height" multiplier="1:1" id="fxY-vZ-ZJy"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOk-0B-aF0">
-                                        <rect key="frame" x="126" y="8" width="43" height="43"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="43" id="0KU-hZ-yT0"/>
-                                            <constraint firstAttribute="width" secondItem="AOk-0B-aF0" secondAttribute="height" id="luc-CG-k2c"/>
-                                        </constraints>
-                                        <state key="normal" image="btn-info"/>
-                                        <connections>
-                                            <action selector="timeInfoAction:" destination="4J2-0k-C7D" eventType="touchUpInside" id="qvQ-8T-Mpd"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time of day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M26-gv-Bhd">
-                                        <rect key="frame" x="46" y="19" width="77" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="26" id="mDs-aB-PBp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="mDs-aB-PBp"/>
-                                            </mask>
-                                        </variation>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZ9-mc-2T5">
-                                        <rect key="frame" x="312" y="14" width="51" height="31"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sf5-8P-EJp">
-                                        <rect key="frame" x="312" y="14" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="timeSwitchValueChange:" destination="4J2-0k-C7D" eventType="valueChanged" id="QJA-km-HMs"/>
-                                        </connections>
-                                    </switch>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNu-lC-Vbk">
                                         <rect key="frame" x="10" y="59" width="355" height="1"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
@@ -1456,35 +1314,13 @@ Please sign in to your account to start.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Sf5-8P-EJp" firstAttribute="centerY" secondItem="y4u-Hj-S2G" secondAttribute="centerY" id="1Yz-Um-NQW"/>
                                     <constraint firstItem="VNu-lC-Vbk" firstAttribute="leading" secondItem="y4u-Hj-S2G" secondAttribute="leading" constant="10" id="5WN-J7-mkT"/>
-                                    <constraint firstItem="FZ9-mc-2T5" firstAttribute="centerX" secondItem="Sf5-8P-EJp" secondAttribute="centerX" id="6gK-Cy-RVU"/>
-                                    <constraint firstAttribute="trailing" secondItem="Sf5-8P-EJp" secondAttribute="trailing" constant="14" id="DKh-oq-FUZ"/>
-                                    <constraint firstItem="AOk-0B-aF0" firstAttribute="leading" secondItem="M26-gv-Bhd" secondAttribute="trailing" constant="3" id="EMF-BJ-v80"/>
-                                    <constraint firstItem="M26-gv-Bhd" firstAttribute="centerY" secondItem="buK-ti-Nod" secondAttribute="centerY" id="Ikj-RV-cdm"/>
-                                    <constraint firstItem="buK-ti-Nod" firstAttribute="leading" secondItem="y4u-Hj-S2G" secondAttribute="leading" constant="3" id="Kyj-M9-6aj"/>
-                                    <constraint firstItem="FZ9-mc-2T5" firstAttribute="width" secondItem="Sf5-8P-EJp" secondAttribute="width" constant="2" id="LiX-jm-JNN"/>
-                                    <constraint firstItem="FZ9-mc-2T5" firstAttribute="leading" secondItem="Sf5-8P-EJp" secondAttribute="leading" id="MyS-v4-Qca"/>
                                     <constraint firstAttribute="height" constant="60" id="O3b-B7-P3h"/>
-                                    <constraint firstItem="FZ9-mc-2T5" firstAttribute="centerY" secondItem="Sf5-8P-EJp" secondAttribute="centerY" id="Ptz-5v-uEP"/>
-                                    <constraint firstItem="AOk-0B-aF0" firstAttribute="centerY" secondItem="Sf5-8P-EJp" secondAttribute="centerY" id="WPu-Xd-449"/>
-                                    <constraint firstItem="buK-ti-Nod" firstAttribute="top" secondItem="fMJ-Hv-hEE" secondAttribute="bottom" constant="5" id="Wz5-Zf-UUv"/>
-                                    <constraint firstItem="M26-gv-Bhd" firstAttribute="leading" secondItem="buK-ti-Nod" secondAttribute="trailing" id="gTf-8d-96a"/>
-                                    <constraint firstItem="FZ9-mc-2T5" firstAttribute="height" secondItem="Sf5-8P-EJp" secondAttribute="height" id="gUx-w8-QbV"/>
                                     <constraint firstItem="fMJ-Hv-hEE" firstAttribute="leading" secondItem="y4u-Hj-S2G" secondAttribute="leading" constant="10" id="j22-q1-Ptu"/>
-                                    <constraint firstItem="AOk-0B-aF0" firstAttribute="centerY" secondItem="M26-gv-Bhd" secondAttribute="centerY" id="mHO-6F-up0"/>
                                     <constraint firstItem="fMJ-Hv-hEE" firstAttribute="top" secondItem="y4u-Hj-S2G" secondAttribute="top" id="mcT-31-pwy"/>
                                     <constraint firstAttribute="trailing" secondItem="VNu-lC-Vbk" secondAttribute="trailing" constant="10" id="pGk-zT-aZX"/>
-                                    <constraint firstItem="AOk-0B-aF0" firstAttribute="baseline" secondItem="M26-gv-Bhd" secondAttribute="baseline" id="sTs-4i-DOt"/>
                                     <constraint firstAttribute="trailing" secondItem="fMJ-Hv-hEE" secondAttribute="trailing" constant="10" id="uSh-DD-Aso"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Wz5-Zf-UUv"/>
-                                        <exclude reference="sTs-4i-DOt"/>
-                                        <exclude reference="6gK-Cy-RVU"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsm-8A-vq2">
                                 <rect key="frame" x="0.0" y="257" width="375" height="120"/>
@@ -1729,9 +1565,7 @@ Please sign in to your account to start.</string>
                         <outlet property="familiaritySlider" destination="YRH-QR-Is2" id="kJ0-B0-lQr"/>
                         <outlet property="nameLabel" destination="fV9-Vb-IgZ" id="OcV-a3-G6i"/>
                         <outlet property="shortDescriptionLabel" destination="Lpp-hs-IPl" id="sLg-02-Lpg"/>
-                        <outlet property="timeSwitch" destination="Sf5-8P-EJp" id="opQ-gl-pCb"/>
                         <outlet property="updatedAtLabel" destination="efA-WH-xH9" id="cB2-Oe-okk"/>
-                        <outlet property="weatherSwitch" destination="z9r-jQ-AdR" id="4If-vs-gBc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOK-IC-bhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2217,14 +2051,10 @@ Please sign in to your account to start.</string>
         <image name="btn-share" width="28" height="28"/>
         <image name="btn-show-feature-station" width="9" height="13"/>
         <image name="btn-stations-next" width="35" height="35"/>
-        <image name="btn-time" width="28" height="28"/>
-        <image name="btn-weather" width="28" height="28"/>
         <image name="featured-station-marker" width="25" height="25"/>
         <image name="full_background" width="375" height="667"/>
         <image name="ico-settings" width="19" height="20"/>
         <image name="icon-liked" width="13" height="11"/>
-        <image name="icon-time" width="43" height="43"/>
-        <image name="icon-weather" width="43" height="43"/>
         <image name="lbl-sponsored-wattermark" width="69" height="18"/>
         <image name="logo" width="161" height="136"/>
         <image name="logo-name" width="181" height="28"/>
@@ -2238,6 +2068,6 @@ Please sign in to your account to start.</string>
     <inferredMetricsTieBreakers>
         <segue reference="etf-Up-yf7"/>
         <segue reference="Fl5-av-fhj"/>
-        <segue reference="cgp-lR-yMf"/>
+        <segue reference="1hY-2o-HLT"/>
     </inferredMetricsTieBreakers>
 </document>

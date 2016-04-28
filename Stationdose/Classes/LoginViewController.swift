@@ -13,7 +13,7 @@ class LoginViewController: UIViewController, SpotifyManagerLoginDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    var radioActivityIndicator:NVActivityIndicatorView!
+    var radioActivityIndicator: NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

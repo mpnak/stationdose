@@ -13,12 +13,13 @@ import AlamofireImage
 
 class HomeViewController: BaseViewController {
     
-    var myStations: [SavedStation]
+    // TODO var myStations: [SavedStation]
+    var myStations: [Station]
     var stationsList: [Station]
     var featuredStations: [Station]
     var sponsoredStations: [Station]
     var currentLocation: CLLocation?
-    var selectedSavedStation: SavedStation?
+    // TODO var selectedSavedStation: SavedStation?
     var selectedStation: Station?
     var featuredStationsTimer: NSTimer?
     private let fullscreenView = FullScreenLoadingView()
@@ -42,13 +43,19 @@ class HomeViewController: BaseViewController {
         
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadPlaylists", name: ModelManagerNotificationKey.SavedStationsDidReloadFromServer.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadStations", name: ModelManagerNotificationKey.StationsDidReloadFromServer.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadPlaylists", name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadStations", name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeModifiers:", name: ModelManagerNotificationKey.SavedStationDidChangeModifiers.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.reloadPlaylists as (HomeViewController) -> () -> ()), name: ModelManagerNotificationKey.StationsDidReloadFromServer.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.reloadStations), name: ModelManagerNotificationKey.StationsDidReloadFromServer.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.reloadPlaylists as (HomeViewController) -> () -> ()), name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.reloadStations), name: ModelManagerNotificationKey.AllDataDidReloadFromServer.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.stationDidChangeModifiers(_:)), name: ModelManagerNotificationKey.StationDidChangeModifiers.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.stationDidChangeUpdatedAt(_:)), name: SongSortApiManagerNotificationKey.StationDidChangeUpdatedAt.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.stationDidChangeUpdatedAt(_:)), name: ModelManagerNotificationKey.DidEndStationTracksReGeneration.rawValue, object: nil)
     }
     
     deinit {
@@ -70,7 +77,7 @@ class HomeViewController: BaseViewController {
         
         self.reloadData()
         
-        self.featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "featuredStationsTimerStep", userInfo: nil, repeats: true)
+        self.featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(HomeViewController.featuredStationsTimerStep), userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -79,7 +86,7 @@ class HomeViewController: BaseViewController {
             self.currentLocation = location
         }
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.SavedStationsDidChange.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelManagerNotificationKey.StationsDidChange.rawValue, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -90,36 +97,22 @@ class HomeViewController: BaseViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
     
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadData", name: ModelManagerNotificationKey.SavedStationsDidChange.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.reloadData), name: ModelManagerNotificationKey.StationsDidChange.rawValue, object: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
-            if LocationManager.sharedInstance.isEnabled{
-                selectedSavedStation?.useWeather = selectedSavedStation?.useWeather == nil ? true : selectedSavedStation!.useWeather
-                selectedSavedStation?.useTimeofday = selectedSavedStation?.useTimeofday == nil ? true : selectedSavedStation!.useTimeofday
-            }else{
-                selectedSavedStation?.useWeather = selectedSavedStation?.useWeather == nil ? false : selectedSavedStation!.useWeather
-                selectedSavedStation?.useTimeofday = selectedSavedStation?.useTimeofday == nil ? false : selectedSavedStation!.useTimeofday
-
-            }
-            destinationViewController.savedStation = selectedSavedStation
-            
-            if let station = selectedSavedStation?.station{
-                destinationViewController.station = station
-            } else {
-                destinationViewController.station = selectedStation
-            }
+            if LocationManager.sharedInstance.isEnabled {}
+            destinationViewController.station = selectedStation
         }
-        selectedSavedStation = nil
         selectedStation = nil
     }
     
-    func savedStationDidChangeModifiers(notification:NSNotification) {
+    func stationDidChangeModifiers(notification:NSNotification) {
         myStationsTableView.reloadData()
     }
     
-    func savedStationDidChangeUpdatedAt(notification:NSNotification) {
+    func stationDidChangeUpdatedAt(notification:NSNotification) {
         myStationsTableView.reloadData()
     }
     
@@ -220,8 +213,8 @@ class HomeViewController: BaseViewController {
         let fullscreenView = FullScreenLoadingView()
         fullscreenView.show(0.5)
         
-        SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
-            if let tracks = tracks {
+        SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!), onCompletion: { (_station, error) -> Void in
+            if let tracks = _station?.tracks {
                 self.selectedStation!.tracks = tracks
                 self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
                 fullscreenView.hide(1.5)
@@ -238,8 +231,8 @@ class HomeViewController: BaseViewController {
                     selectedStation = station
                     let fullscreenView = FullScreenLoadingView()
                     fullscreenView.show(0.5)
-                    SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!.id)!, onCompletion: { (tracks, error) -> Void in
-                        if let tracks = tracks {
+                    SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!), onCompletion: { (_station, error) -> Void in
+                        if let tracks = _station?.tracks {
                             self.selectedStation!.tracks = tracks
                             self.performSegueWithIdentifier("ToFeaturedStationViewController", sender: nil)
                             fullscreenView.hide(1.5)
@@ -440,14 +433,14 @@ extension HomeViewController: UITableViewDataSource {
     func buildWeatherButton(on:Bool)->MGSwipeButton{
         return MGSwipeButton(title: nil, icon: UIImage(named: on ? "btn-cell-weather" : "btn-cell-weather-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
             if let cell = cell as? MyStationsTableViewCell {
-                if let savedStation = cell.savedStation {
-                    savedStation.useWeather = !on
-                    cell.leftButtons = [self.buildWeatherButton(!on), cell.leftButtons[1], cell.leftButtons[2]]
+                if cell.station != nil {
+                    //savedStation.useWeather = !on
+                    //cell.leftButtons = [self.buildWeatherButton(!on), cell.leftButtons[1], cell.leftButtons[2]]
                     self.myStationsTableView.beginUpdates()
                     let indexPath = self.myStationsTableView.indexPathForCell(cell)
                     self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
                     self.myStationsTableView.endUpdates()
-                    self.showAlertFirstTimeAndSaveStation(savedStation)
+                    //self.showAlertFirstTimeAndSaveStation(savedStation)
                 }
             }
             return true
@@ -457,14 +450,14 @@ extension HomeViewController: UITableViewDataSource {
     func buildTimeButton(on:Bool)->MGSwipeButton{
         return MGSwipeButton(title: nil, icon: UIImage(named: on ? "btn-cell-time" : "btn-cell-time-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
             if let cell = cell as? MyStationsTableViewCell {
-                if let savedStation = cell.savedStation {
-                    savedStation.useTimeofday = !on
-                    cell.leftButtons = [cell.leftButtons[0], self.buildTimeButton(!on), cell.leftButtons[2]]
+                if let savedStation = cell.station {
+                    //savedStation.useTimeofday = !on
+                    //cell.leftButtons = [cell.leftButtons[0], self.buildTimeButton(!on), cell.leftButtons[2]]
                     self.myStationsTableView.beginUpdates()
                     let indexPath = self.myStationsTableView.indexPathForCell(cell)
                     self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
                     self.myStationsTableView.endUpdates()
-                    self.showAlertFirstTimeAndSaveStation(savedStation)
+                    //self.showAlertFirstTimeAndSaveStation(savedStation)
                 }
             }
             return true
@@ -474,15 +467,16 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == myStationsTableView {
             let savedStation = myStations[indexPath.row]
-            let station = savedStation.station
+            // TODO let station = savedStation.station
+            let station = savedStation
             let cell:MyStationsTableViewCell = tableView.dequeueReusableCellWithIdentifier("MyStationsTableViewCellIdentifier") as! MyStationsTableViewCell
             
             cell.station = station
-            cell.savedStation = savedStation
-            cell.titleLabel.text = station!.name
+            //cell.savedStation = savedStation
+            cell.titleLabel.text = station.name
             cell.shortDescriptionLabel.text = savedStation.updatedAtString()
 //            cell.coverImageView.image = nil
-            if let sponsoredUrl = station?.art where sponsoredUrl.characters.count > 0 {
+            if let sponsoredUrl = station.art where sponsoredUrl.characters.count > 0 {
                 print("sponsoredUrl " + sponsoredUrl)
                 if let URL = NSURL(string: sponsoredUrl) {
                     cell.coverImageView.af_setImageWithURL(URL, placeholderImage: UIImage(named: "stations-list-placeholder"))
@@ -508,15 +502,13 @@ extension HomeViewController: UITableViewDataSource {
             deleteButton.setPadding(0)
             cell.rightButtons = [deleteButton]
             cell.rightSwipeSettings.transition = .Drag
-            let location = LocationManager.sharedInstance.isEnabled
-            let weatherButton = buildWeatherButton(savedStation.useWeather != nil ? savedStation.useWeather! : location)
-            weatherButton.setPadding(0)
-            let timeButton = buildTimeButton(savedStation.useTimeofday != nil ? savedStation.useTimeofday! : location)
-            timeButton.setPadding(0)
+            //let location = LocationManager.sharedInstance.isEnabled
+            //let weatherButton = buildWeatherButton(savedStation.useWeather != nil ? savedStation.useWeather! : location)
+            //weatherButton.setPadding(0)
+            //let timeButton = buildTimeButton(savedStation.useTimeofday != nil ? savedStation.useTimeofday! : location)
+            //timeButton.setPadding(0)
             let reloadButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-cell-reload"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
-                ModelManager.sharedInstance.forceGenerateSavedStationTracks(savedStation){
-                }
-                
+                ModelManager.sharedInstance.forceGenerateStationTracks(savedStation) {}
                 return true
             })
             reloadButton.setPadding(0)
@@ -551,7 +543,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.saveButton.alpha = 1
             cell.removeButton.alpha = 0
             for savedStation in myStations {
-                if savedStation.station!.id == station.id {
+                if savedStation.id == station.id {
                     cell.savedImageView.alpha = 1
                     cell.saveButton.alpha = 0
                     cell.removeButton.alpha = 1
@@ -576,59 +568,41 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     @IBAction func showStation(sender: UIView) {
-        selectedSavedStation = nil
         selectedStation = nil
         if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
                 selectedStation = station
             }
         } else if let cell = self.tableViewCellForSubview(sender) as? MyStationsTableViewCell {
-            if let station = cell.savedStation {
-                selectedSavedStation = station
+            if let station = cell.station {
+                selectedStation = station
             }
         }
         
-        if(selectedSavedStation != nil) {
-            
-            moveToSavedStationPlaylist()
-            
-        } else if (selectedStation != nil) {
-            if let station = self.selectedStation {
-                
-                for savedStation in myStations {
-                    if savedStation.station!.id == station.id {
-                        self.selectedSavedStation = savedStation
-                        
-                        break
-                    }
-                }
-            }
-            if (selectedSavedStation != nil) {
-                moveToSavedStationPlaylist()
-            } else {
-                moveToStationPlaylist()
-            }
+        if(selectedStation != nil) {
+            moveToStationPlaylist()
         }
     }
     
-    func moveToSavedStationPlaylist(){
-        fullscreenView.setMessage("Just a moment, we’re getting your playlist")
-        fullscreenView.show(0.5)
-        ModelManager.sharedInstance.reloadNotCachedSavedStationTracksAndCache(selectedSavedStation!) { () -> Void in
-            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-            self.fullscreenView.hide(1.5)
-        }
-    }
-    
-    func moveToStationPlaylist(){
-        fullscreenView.setMessage("Just a moment, we’re generating your playlist")
-        fullscreenView.show(0.5)
+    func moveToStationPlaylist() {
+        self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
         
-        ModelManager.sharedInstance.generateStationTracksAndCache(selectedStation!) { () -> Void in
-            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-            self.fullscreenView.hide(1.5)
-        }
+//        fullscreenView.setMessage("Just a moment, we’re getting your playlist")
+//        fullscreenView.show(0.5)
+//        ModelManager.sharedInstance.reloadNotCachedStationTracksAndCache(selectedStation!) { () -> Void in
+//            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+//            self.fullscreenView.hide(1.5)
+//        }
     }
+    
+//    func moveToStationPlaylist(){
+//        fullscreenView.setMessage("Just a moment, we’re getting your playlist")
+//        fullscreenView.show(0.5)
+//        ModelManager.sharedInstance.reloadNotCachedStationTracksAndCache(selectedStation!) { () -> Void in
+//            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
+//            self.fullscreenView.hide(1.5)
+//        }
+//    }
     
     @IBAction func saveStation(sender: UIButton) {
         sender.enabled = false
@@ -663,7 +637,7 @@ extension HomeViewController: UITableViewDataSource {
         if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
             if let station = cell.station {
                 
-                let savedStationsToRemove = myStations.filter { $0.station?.id == station.id}
+                let savedStationsToRemove = myStations.filter { $0.id == station.id}
                 
                 ModelManager.sharedInstance.removeSavedStation(savedStationsToRemove.first!) { (removed) -> Void in
                     sender.enabled = true

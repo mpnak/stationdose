@@ -11,9 +11,10 @@ import MGSwipeTableCell
 
 class PlaylistViewController: BaseViewController {
     
-    var savedStation:SavedStation?
-    var station:Station?
-    var tracks:[Track]!
+    // TODO var savedStation: SavedStation?
+    //var savedStation: Station?
+    var station: Station?
+    var tracks: [Track]!
     let fullscreenView = FullScreenLoadingView()
     
     @IBOutlet weak var coverImageView: UIImageView!
@@ -27,24 +28,24 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var savedImageView: UIImageView!
     @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var weatherButton: UIButton!
-    @IBOutlet weak var timeButton: UIButton!
+    //@IBOutlet weak var weatherButton: UIButton!
+    //@IBOutlet weak var timeButton: UIButton!
     @IBOutlet weak var rightButtonsLayoutConstraint: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartSavedStationTracksReGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndSavedStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndSavedStationTracksReGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"willStartStationTracksReGeneration:", name: ModelManagerNotificationKey.WillStartStationTracksReGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"didEndStationTracksReGeneration:", name: ModelManagerNotificationKey.DidEndStationTracksReGeneration.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeModifiers:", name: ModelManagerNotificationKey.SavedStationDidChangeModifiers.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"savedStationDidChangeUpdatedAt:", name: SongSortApiManagerNotificationKey.SavedStationDidChangeUpdatedAt.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.willStartStationTracksReGeneration(_:)), name: ModelManagerNotificationKey.WillStartStationTracksReGeneration.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.didEndStationTracksReGeneration(_:)), name: ModelManagerNotificationKey.DidEndStationTracksReGeneration.rawValue, object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.stationDidChangeModifiers(_:)), name: ModelManagerNotificationKey.StationDidChangeModifiers.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.stationDidChangeUpdatedAt(_:)), name: SongSortApiManagerNotificationKey.StationDidChangeUpdatedAt.rawValue, object: nil)
+        
         showBrandingTitleView()
         showUserProfileButton()
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription
-        updatedAtLabel?.text = savedStation?.updatedAtString()
+        updatedAtLabel?.text = station?.updatedAtString()
         if let url = station?.url {
             urlLabel?.text = url.stringByReplacingOccurrencesOfString("http://", withString: "").stringByReplacingOccurrencesOfString("https://", withString: "")
         }
@@ -56,119 +57,106 @@ class PlaylistViewController: BaseViewController {
             coverImageView.image = UIImage(named: "station-placeholder")
         }
         
-        saveButton?.alpha = savedStation == nil ? 1 : 0
-        removeButton?.alpha = savedStation == nil ? 0 : 1
-        savedImageView?.alpha = savedStation == nil ? 0 : 1
+        saveButton?.alpha = station?.savedStation == true ? 0 : 1
+        removeButton?.alpha = station?.savedStation == true ? 1 : 0
+        savedImageView?.alpha = station?.savedStation == true ? 1 : 0
         
-        let location = LocationManager.sharedInstance.isEnabled
-        if location{
-            ModelManager.sharedInstance.onNexStationSaveUseTime = savedStation !== nil ? true : ModelManager.sharedInstance.onNexStationSaveUseTime
-            ModelManager.sharedInstance.onNexStationSaveUseWeather = savedStation !== nil ? true : ModelManager.sharedInstance.onNexStationSaveUseWeather
-        }
-        if let isPlaying = station?.isPlaying where isPlaying { }else{
-            ModelManager.sharedInstance.onNexStationSaveUseWeather = true
-            ModelManager.sharedInstance.onNexStationSaveUseTime = true
-        }
-
-        updateWeatherIcon(savedStation)
-        updateTimeIcon(savedStation)
+//        let location = LocationManager.sharedInstance.isEnabled
+//        if location{
+//            ModelManager.sharedInstance.onNexStationSaveUseTime = station?.savedStation == true ? true : ModelManager.sharedInstance.onNexStationSaveUseTime
+//            ModelManager.sharedInstance.onNexStationSaveUseWeather = station?.savedStation == true ? true : ModelManager.sharedInstance.onNexStationSaveUseWeather
+//        }
+//        if let isPlaying = station?.isPlaying where isPlaying { } else {
+//            ModelManager.sharedInstance.onNexStationSaveUseWeather = true
+//            ModelManager.sharedInstance.onNexStationSaveUseTime = true
+//        }
         
-        if let savedStation = savedStation {
-            tracks = []
-            if let theTracks = savedStation.tracks{
-                tracks = theTracks
-            }
+        if let _tracks = station?.tracks {
+            self.tracks = _tracks
         } else {
-            if let theTracks = station?.tracks {
-                tracks = theTracks
-                self.tracksTableView.reloadData()
+            self.tracks = []
+            ModelManager.sharedInstance.reloadNotCachedStationTracksAndCache(station!) { () -> Void in
+                //self.fullscreenView.hide(1.5)
             }
         }
+        
         self.view.layoutIfNeeded()
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        updateWeatherIcon(savedStation)
-        updateTimeIcon(savedStation)
-
     }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func savedStationDidChangeModifiers(notification:NSNotification) {
-        if let savedStation = notification.object as? SavedStation {
-            if savedStation.id == self.savedStation?.id {
-                updateWeatherIcon(savedStation)
-                updateTimeIcon(savedStation)
+    func stationDidChangeUpdatedAt(notification:NSNotification) {
+        // TODO if let savedStation = notification.object as? SavedStation {
+        if let station = notification.object as? Station {
+            if station.id == self.station?.id {
+                updatedAtLabel?.text = station.updatedAtString()
             }
         }
     }
     
-    func savedStationDidChangeUpdatedAt(notification:NSNotification) {
-        if let savedStation = notification.object as? SavedStation {
-            if savedStation.id == self.savedStation?.id {
-                updatedAtLabel?.text = savedStation.updatedAtString()
-            }
-        }
-    }
+//    // TODO func updateWeatherIcon(savedStation:SavedStation?) {
+//    func updateWeatherIcon(station: Station?) {
+//        if let station = station where station.isStandardType {
+//            if let useWeather = station.useWeather where useWeather {
+//                weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
+//            } else {
+//                weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
+//            }
+//        } else if let weatherButton = weatherButton {
+//            if ModelManager.sharedInstance.onNexStationSaveUseWeather {
+//                weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
+//            } else {
+//                weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
+//            }
+//        }
+//    }
+//    
+//    // TODO func updateTimeIcon(savedStation:SavedStation?) {
+//    func updateTimeIcon(station: Station?) {
+//        if let station = station where station.isStandardType {
+//            if let useTime = station.useTimeofday where useTime {
+//                timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
+//            } else {
+//                timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
+//            }
+//        } else if let timeButton = timeButton {
+//            if ModelManager.sharedInstance.onNexStationSaveUseTime {
+//                timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
+//            } else {
+//                timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
+//            }
+//        }
+//    }
     
-    func updateWeatherIcon(savedStation:SavedStation?) {
-        if let savedStation = savedStation {
-            if let useWeather = savedStation.useWeather where useWeather {
-                weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
-            } else {
-                weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
-            }
-        } else if let weatherButton = weatherButton {
-            if ModelManager.sharedInstance.onNexStationSaveUseWeather {
-                weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
-            } else {
-                weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
-            }
-        }
-    }
-    
-    func updateTimeIcon(savedStation:SavedStation?) {
-        if let savedStation = savedStation {
-            if let useTime = savedStation.useTimeofday where useTime {
-                timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
-            } else {
-                timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
-            }
-        } else if let timeButton = timeButton {
-            if ModelManager.sharedInstance.onNexStationSaveUseTime {
-                timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
-            } else {
-                timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
-            }
-        }
-    }
-    
-    func willStartSavedStationTracksReGeneration(notification:NSNotification){
-        if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
+    func willStartStationTracksReGeneration(notification: NSNotification){
+        if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
             fullscreenView.setMessage("Just a moment, we’re generating your playlist")
             fullscreenView.show()
         }
     }
 
-    func willStartStationTracksReGeneration(notification:NSNotification){
-        if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.station?.id == id {
-            fullscreenView.setMessage("Just a moment, we’re generating your playlist")
-            fullscreenView.show()
-        }
-    }
+//    func willStartStationTracksReGeneration(notification: NSNotification){
+//        if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
+//            fullscreenView.setMessage("Just a moment, we’re generating your playlist")
+//            fullscreenView.show()
+//        }
+//    }
 
-    func didEndStationTracksReGeneration(notification:NSNotification){
-         if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.station?.id == id {
-                self.tracks = self.station?.tracks
-                self.tracksTableView.reloadData()
-                fullscreenView.hide(1.5)
-        }
-    }
-    func didEndSavedStationTracksReGeneration(notification:NSNotification){
-        if let notifInfo = notification.object as? Dictionary<String,Int>, id = notifInfo["id"] where self.savedStation?.id == id {
-            self.tracks = self.savedStation!.tracks
+//    func didEndStationTracksReGeneration(notification: NSNotification){
+//        if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
+//                self.tracks = self.station?.tracks
+//                self.tracksTableView.reloadData()
+//                fullscreenView.hide(1.5)
+//        }
+//    }
+
+    func didEndStationTracksReGeneration(notification: NSNotification){
+        if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
+            self.tracks = self.station!.tracks
             self.tracksTableView.reloadData()
             fullscreenView.hide(1.5)
         }
@@ -184,10 +172,10 @@ class PlaylistViewController: BaseViewController {
     
     @IBAction func removeStation(sender: UIButton) {
         sender.enabled = false
-        ModelManager.sharedInstance.removeSavedStation(savedStation!) { (removed) -> Void in
+        ModelManager.sharedInstance.removeSavedStation(station!) { (removed) -> Void in
             sender.enabled = true
             if removed {
-                self.savedStation = nil
+                //self.savedStation = nil
                 self.saveButton.alpha = 1
                 self.removeButton.alpha = 0
                 self.savedImageView.alpha = 0
@@ -196,12 +184,8 @@ class PlaylistViewController: BaseViewController {
     }
     
     @IBAction func forceRefresh(sender: UIButton) {
-        if let savedStation = self.savedStation {
-            ModelManager.sharedInstance.forceGenerateSavedStationTracks(savedStation) { }
-        } else if let station = self.station {
-            ModelManager.sharedInstance.generateStationTracksAndCache(station) {
-            }
-
+        if let station = self.station {
+            ModelManager.sharedInstance.forceGenerateStationTracks(station) {}
         }
     }
     
@@ -223,34 +207,36 @@ class PlaylistViewController: BaseViewController {
         }
     }
     
-    @IBAction func toggleWeather(sender: UIButton) {
-        if let savedStation = self.savedStation {
-            savedStation.toggleWeather()
-            updateWeatherIcon(savedStation)
-            showAlertFirstTimeAndSaveStation(savedStation)
-        } else {
-            ModelManager.sharedInstance.onNexStationSaveUseWeather = !ModelManager.sharedInstance.onNexStationSaveUseWeather
-            updateWeatherIcon(nil)
-        }
-    }
-    
-    @IBAction func toggleUseTime(sender: UIButton) {
-        if let savedStation = savedStation {
-            savedStation.toggleTime()
-            updateTimeIcon(savedStation)
-            showAlertFirstTimeAndSaveStation(savedStation)
-        } else {
-            ModelManager.sharedInstance.onNexStationSaveUseTime = !ModelManager.sharedInstance.onNexStationSaveUseTime
-            updateTimeIcon(nil)
-        }
-    }
+//    @IBAction func toggleWeather(sender: UIButton) {
+//        if let station = self.station {
+//            station.toggleWeather()
+//            updateWeatherIcon(station)
+//            //showAlertFirstTimeAndSaveStation(station)
+//        }
+////        } else {
+////            ModelManager.sharedInstance.onNexStationSaveUseWeather = !ModelManager.sharedInstance.onNexStationSaveUseWeather
+////            updateWeatherIcon(nil)
+////        }
+//    }
+//    
+//    @IBAction func toggleUseTime(sender: UIButton) {
+//        if let station = station {
+//            station.toggleTime()
+//            updateTimeIcon(station)
+//            //showAlertFirstTimeAndSaveStation(savedStation)
+//        }
+////        else {
+////            ModelManager.sharedInstance.onNexStationSaveUseTime = !ModelManager.sharedInstance.onNexStationSaveUseTime
+////            updateTimeIcon(nil)
+////        }
+//    }
     
     @IBAction func saveStation(sender: UIButton) {
         sender.enabled = false
         ModelManager.sharedInstance.saveStation(station!) { (saved, savedStation) -> Void in
             sender.enabled = true
             if saved {
-                self.savedStation = savedStation
+                self.station = savedStation
                 self.saveButton.alpha = 0
                 self.removeButton.alpha = 1
                 self.savedImageView.alpha = 1
@@ -260,7 +246,6 @@ class PlaylistViewController: BaseViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? EditStationViewController {
-            destinationViewController.savedStation = savedStation
             destinationViewController.station = station
         }
     }
@@ -277,7 +262,11 @@ extension PlaylistViewController: UITableViewDataSource {
             
             if let cell = cell as? TrackTableViewCell {
                 if cell.track.liked == nil || !cell.track.liked! {
-                    SongSortApiManager.sharedInstance.favoriteTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
+                    // TODO SongSortApiManager.sharedInstance.favoriteTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
+                    SongSortApiManager.sharedInstance.favoriteTrack(
+                        self.station!.id!,
+                        trackId: cell.track.id!
+                    )
                     cell.likedImageView.alpha = 1
                     cell.track.liked = true
                     cell.leftButtons = [self.unlike()]
@@ -296,7 +285,11 @@ extension PlaylistViewController: UITableViewDataSource {
             
             if let cell = cell as? TrackTableViewCell {
                 if cell.track.liked! {
-                    SongSortApiManager.sharedInstance.unfavoriteTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
+                    // TODO  SongSortApiManager.sharedInstance.unfavoriteTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
+                    SongSortApiManager.sharedInstance.unfavoriteTrack(
+                        self.station!.id!,
+                        trackId: cell.track.id!
+                    )
                     cell.likedImageView.alpha = 0
                     cell.track.liked = false
                     cell.leftButtons = [self.like()]
@@ -304,7 +297,6 @@ extension PlaylistViewController: UITableViewDataSource {
                     let indexPath = self.tracksTableView.indexPathForCell(cell)
                     self.tracksTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
                     self.tracksTableView.endUpdates()
-                    
                 }
             }
             return true
@@ -341,16 +333,20 @@ extension PlaylistViewController: UITableViewDataSource {
             cell.likedImageView.alpha = 0
         }
         
-        if savedStation != nil {
+        if station?.savedStation == true {
             
             let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-track"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
                 if let cell = cell as? TrackTableViewCell {
-                    SongSortApiManager.sharedInstance.banTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
+                    // TODO  SongSortApiManager.sharedInstance.banTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
+                    SongSortApiManager.sharedInstance.banTrack(
+                        self.station!.id!,
+                        trackId: cell.track.id!
+                    )
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         
                         if let tracks = self.tracks {
                             var index: Int?
-                            for var i = 0; i<tracks.count; i++ {
+                            for i in 0 ..< tracks.count {
                                 if cell.track?.id == tracks[i].id {
                                     index = i
                                     break

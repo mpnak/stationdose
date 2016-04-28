@@ -23,7 +23,6 @@ class LocationManager:NSObject,CLLocationManagerDelegate {
     deinit {
         locationManager?.delegate = nil
         locationManager = nil
-
     }
     
     private func requestAuthorization(showErrorController:UIViewController){
@@ -53,7 +52,6 @@ class LocationManager:NSObject,CLLocationManagerDelegate {
         }
         
     }
-    
     
     private func foundLocation(location: CLLocation?, error: NSError?) {
         //locationManager?.stopUpdatingLocation()
@@ -112,11 +110,5 @@ class LocationManager:NSObject,CLLocationManagerDelegate {
 
         self.requestAuthorization(showErrorController)
     }
-    
-    
-    
-    
-    
-    
 
 }
