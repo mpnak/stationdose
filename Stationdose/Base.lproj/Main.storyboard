@@ -31,7 +31,6 @@
             <string>Yantramanav-Light</string>
             <string>Yantramanav-Light</string>
             <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
         </mutableArray>
         <mutableArray key="Yantramanav-Regular.ttf">
             <string>Yantramanav-Regular</string>
@@ -1535,14 +1534,14 @@ Please sign in to your account to start.</string>
                                 <constraint firstItem="0Pg-Nj-aM3" firstAttribute="centerY" secondItem="RYs-n8-sQx" secondAttribute="centerY" id="yqC-hG-Be4"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Nun-Zk-WSQ">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="Nun-Zk-WSQ">
                             <view key="customView" contentMode="scaleToFill" id="URX-bf-3St">
                                 <rect key="frame" x="276" y="5" width="83" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCJ-Qo-Mmb">
-                                        <rect key="frame" x="45" y="0.0" width="38" height="33"/>
-                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                                        <rect key="frame" x="41" y="0.0" width="42" height="33"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="DONE">
                                             <color key="titleColor" red="0.070588235294117646" green="0.82352941176470584" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -2067,8 +2066,8 @@ Please sign in to your account to start.</string>
         <image name="track-placeholder" width="43" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="cgp-lR-yMf"/>
         <segue reference="etf-Up-yf7"/>
         <segue reference="Fl5-av-fhj"/>
-        <segue reference="1hY-2o-HLT"/>
     </inferredMetricsTieBreakers>
 </document>
