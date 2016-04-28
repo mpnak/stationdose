@@ -254,7 +254,10 @@ class PlaylistViewController: BaseViewController {
 extension PlaylistViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tracks.count
+        if tracks != nil {
+            return tracks.count
+        }
+        return 0
     }
     
     func like()->MGSwipeButton{

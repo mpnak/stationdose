@@ -72,7 +72,13 @@ class HomeViewController: BaseViewController {
         self.reloadSponsoredStations()
         
         self.stationsSegmentedControl.selectedSegmentIndex = self.myStations.count > 0 ? 0 : 1
+        
+        self.stationsListTableView.rowHeight = UITableViewAutomaticDimension
+        self.stationsListTableView.estimatedRowHeight = 84.0
         self.stationsListTableView.alpha = 1
+        
+        self.myStationsTableView.rowHeight = UITableViewAutomaticDimension
+        self.myStationsTableView.estimatedRowHeight = 84.0
         self.myStationsTableView.alpha = 0
         
         self.reloadData()
@@ -165,16 +171,18 @@ class HomeViewController: BaseViewController {
     func reloadTablesViewContaignerHeight() {
         reloadTablesViewContaignerHeight(0, delay: 0)
     }
-    
+        
     func reloadTablesViewContaignerHeight(animationDuration: NSTimeInterval, delay: NSTimeInterval) {
         
         let myStationsEmptyViewHeight = myStationsEmptyView.frame.size.height
         if stationsSegmentedControl.selectedSegmentIndex == 0 {
-            let myStationsTableViewHeight = CGFloat(myStations.count) * myStationsTableView.rowHeight
-            tablesViewContaignerHeightLayoutConstraint.constant = max(myStationsTableViewHeight, myStationsEmptyViewHeight)
+            self.myStationsTableView.setNeedsLayout()
+            self.myStationsTableView.layoutIfNeeded()
+            tablesViewContaignerHeightLayoutConstraint.constant = max(self.myStationsTableView.contentSize.height, myStationsEmptyViewHeight)
         } else {
-            let stationsListTableViewHeight = CGFloat(stationsList.count) * stationsListTableView.rowHeight
-            tablesViewContaignerHeightLayoutConstraint.constant = max(stationsListTableViewHeight, myStationsEmptyViewHeight)
+            self.stationsListTableView.setNeedsLayout()
+            self.stationsListTableView.layoutIfNeeded()
+            tablesViewContaignerHeightLayoutConstraint.constant = max(self.stationsListTableView.contentSize.height, myStationsEmptyViewHeight)
         }
         UIView.animateWithDuration(animationDuration, delay: delay, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.view.layoutIfNeeded()
@@ -642,22 +650,24 @@ extension HomeViewController: UITableViewDataSource {
                 
                 let savedStationsToRemove = myStations.filter { $0.id == station.id}
                 
-                ModelManager.sharedInstance.removeSavedStation(savedStationsToRemove.first!) { (removed) -> Void in
-                    sender.enabled = true
-                    if removed {
-                        cell.saveButton.alpha = 1
-                        cell.removeButton.alpha = 0
-                        cell.savedImageView.alpha = 0
-                        
-                        UIView.animateWithDuration(0.1, animations: { () -> Void in
-                            cell.removedMessageView.alpha = 1
-                            }, completion: { (_) -> Void in
-                                UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
-                                    cell.removedMessageView.alpha = 0
-                                    }, completion:nil)
-                        })
-                        
-                        self.reloadPlaylists(false)
+                if let first = savedStationsToRemove.first {
+                    ModelManager.sharedInstance.removeSavedStation(first) { (removed) -> Void in
+                        sender.enabled = true
+                        if removed {
+                            cell.saveButton.alpha = 1
+                            cell.removeButton.alpha = 0
+                            cell.savedImageView.alpha = 0
+                            
+                            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                                cell.removedMessageView.alpha = 1
+                                }, completion: { (_) -> Void in
+                                    UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
+                                        cell.removedMessageView.alpha = 0
+                                        }, completion:nil)
+                            })
+                            
+                            self.reloadPlaylists(false)
+                        }
                     }
                 }
             } else {

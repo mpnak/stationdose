@@ -609,10 +609,10 @@ Please sign in to your account to start.</string>
                                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2a-oj-yLP">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2a-oj-yLP">
                                                                                     <rect key="frame" x="89" y="27" width="200" height="54.5"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="k7I-23-Fxl"/>
+                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="k7I-23-Fxl"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
                                                                                     <color key="textColor" red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
@@ -692,6 +692,7 @@ Please sign in to your account to start.</string>
                                                                             <constraints>
                                                                                 <constraint firstItem="CFK-2u-QkV" firstAttribute="trailing" secondItem="8zY-Fv-NRm" secondAttribute="trailing" id="07x-VO-LeG"/>
                                                                                 <constraint firstItem="tTK-K9-UOy" firstAttribute="top" secondItem="jbN-VT-F7y" secondAttribute="top" id="1Wg-ct-F4W"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="8zY-Fv-NRm" secondAttribute="bottom" constant="5" id="56B-s7-77e"/>
                                                                                 <constraint firstItem="JTe-Jh-GwP" firstAttribute="leading" secondItem="jbN-VT-F7y" secondAttribute="leading" id="6T8-ZA-3eo"/>
                                                                                 <constraint firstItem="BMc-b8-blk" firstAttribute="width" secondItem="BMc-b8-blk" secondAttribute="height" multiplier="1:1" id="92t-wH-tzq"/>
                                                                                 <constraint firstItem="4bv-yQ-eFh" firstAttribute="leading" secondItem="8zY-Fv-NRm" secondAttribute="trailing" constant="16" id="AsD-BW-1fH"/>
@@ -717,6 +718,7 @@ Please sign in to your account to start.</string>
                                                                                 <constraint firstAttribute="trailing" secondItem="kpi-uh-qGq" secondAttribute="trailing" constant="6" id="loo-we-bZH"/>
                                                                                 <constraint firstItem="kpi-uh-qGq" firstAttribute="leading" secondItem="Wip-1v-1NC" secondAttribute="trailing" constant="1" id="q2o-J2-EuM"/>
                                                                                 <constraint firstItem="kpi-uh-qGq" firstAttribute="centerY" secondItem="8zY-Fv-NRm" secondAttribute="centerY" id="tBv-ST-R7L"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="P2a-oj-yLP" secondAttribute="bottom" constant="1" id="tM0-gw-quD"/>
                                                                                 <constraint firstItem="8zY-Fv-NRm" firstAttribute="leading" secondItem="jbN-VT-F7y" secondAttribute="leading" id="uTM-5x-teP"/>
                                                                                 <constraint firstItem="tTK-K9-UOy" firstAttribute="leading" secondItem="jbN-VT-F7y" secondAttribute="leading" id="wOl-XU-V77"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="JTe-Jh-GwP" secondAttribute="trailing" id="xGR-Lj-BB6"/>
@@ -726,6 +728,7 @@ Please sign in to your account to start.</string>
                                                                                     <exclude reference="JTe-Jh-GwP"/>
                                                                                 </mask>
                                                                                 <mask key="constraints">
+                                                                                    <exclude reference="tM0-gw-quD"/>
                                                                                     <exclude reference="iqG-Eq-arM"/>
                                                                                 </mask>
                                                                             </variation>
