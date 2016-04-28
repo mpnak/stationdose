@@ -307,12 +307,13 @@ class HomeViewController: BaseViewController {
         animateTableCells(leftTable, currentTranslation: leftInitialTranslation, translationTarget: leftTargetTranslation) { () -> Void in
             if leftTargetTranslation != 0 {
                 leftTable.alpha = 0
-                for var i=0; i<leftTable.visibleCells.count; i++ {
+                for i in 0 ..< leftTable.visibleCells.count {
                     let cell = leftTable.visibleCells[i]
                     cell.layer.transform = CATransform3DIdentity
                 }
             }
-            if --self.animateStationsTableCounter! == 0 {
+            self.animateStationsTableCounter! -= 1
+            if self.animateStationsTableCounter! == 0 {
                 completion()
             }
             
@@ -324,12 +325,13 @@ class HomeViewController: BaseViewController {
         animateTableCells(rightTable, currentTranslation: currentTranslation2, translationTarget: translationTarget2) { () -> Void in
             if translationTarget2 != 0 {
                 rightTable.alpha = 0
-                for var i=0; i<rightTable.visibleCells.count; i++ {
+                for i in 0 ..< rightTable.visibleCells.count {
                     let cell = rightTable.visibleCells[i]
                     cell.layer.transform = CATransform3DIdentity
                 }
             }
-            if --self.animateStationsTableCounter! == 0 {
+            self.animateStationsTableCounter! -= 1
+            if self.animateStationsTableCounter! == 0 {
                 completion()
             }
         }
@@ -339,7 +341,7 @@ class HomeViewController: BaseViewController {
         
         let animationBaseTime = 0.1
         
-        for var i=0; i<table.visibleCells.count; i++ {
+        for i in 0 ..< table.visibleCells.count {
             let cell = table.visibleCells[i]
             let lastCell = (i == table.visibleCells.count-1)
             cell.layer.transform = CATransform3DMakeTranslation(currentTranslation, 0.0, 0.0)
@@ -450,7 +452,8 @@ extension HomeViewController: UITableViewDataSource {
     func buildTimeButton(on:Bool)->MGSwipeButton{
         return MGSwipeButton(title: nil, icon: UIImage(named: on ? "btn-cell-time" : "btn-cell-time-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
             if let cell = cell as? MyStationsTableViewCell {
-                if let savedStation = cell.station {
+//                if let savedStation = cell.station {
+                if cell.station != nil {
                     //savedStation.useTimeofday = !on
                     //cell.leftButtons = [cell.leftButtons[0], self.buildTimeButton(!on), cell.leftButtons[2]]
                     self.myStationsTableView.beginUpdates()

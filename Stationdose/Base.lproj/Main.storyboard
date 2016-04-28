@@ -143,8 +143,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkz-k8-hfr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wKA-2l-tXf">
-                                        <rect key="frame" x="145" y="96" width="86" height="73"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wKA-2l-tXf">
+                                        <rect key="frame" x="145" y="95" width="86" height="73"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wKA-2l-tXf" secondAttribute="height" multiplier="161:136" id="BGu-Dk-dQK"/>
                                         </constraints>
@@ -174,8 +174,8 @@
                                             <action selector="loginWithSpotifyTouchDragExit:" destination="BYZ-38-t0r" eventType="touchDragExit" id="8sD-Ce-GFU"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign in to Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF5-hd-Ads">
-                                        <rect key="frame" x="0.0" y="183" width="375" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF5-hd-Ads">
+                                        <rect key="frame" x="0.0" y="182" width="375" height="34"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -186,8 +186,8 @@
                                             <constraint firstAttribute="width" secondItem="GDU-BE-pr5" secondAttribute="height" multiplier="286:150" id="cHm-IA-vEe"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-OS-Kfv">
-                                        <rect key="frame" x="8" y="230" width="359" height="42"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpX-OS-Kfv">
+                                        <rect key="frame" x="8" y="229" width="359" height="42"/>
                                         <string key="text">Stationdose uses Spotify for music playback.
 Please sign in to your account to start.</string>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
@@ -931,8 +931,8 @@ Please sign in to your account to start.</string>
                                                         <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-9X-4C8">
-                                                        <rect key="frame" x="151" y="-5" width="35" height="35"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-9X-4C8">
+                                                        <rect key="frame" x="152" y="-5" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="n59-fI-fXY"/>
                                                             <constraint firstAttribute="width" constant="35" id="qix-ed-W72"/>
@@ -942,8 +942,8 @@ Please sign in to your account to start.</string>
                                                             <action selector="removeStation:" destination="ExW-W1-YQY" eventType="touchUpInside" id="RZg-y9-tgl"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrE-33-vXA">
-                                                        <rect key="frame" x="151" y="-5" width="35" height="35"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrE-33-vXA">
+                                                        <rect key="frame" x="152" y="-5" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="3xN-sx-MKD"/>
                                                             <constraint firstAttribute="height" constant="35" id="aqi-mr-MpU"/>
@@ -1418,8 +1418,8 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="width" constant="43" id="I8X-W9-cTw"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nw-iQ-k6m">
-                                        <rect key="frame" x="117" y="6" width="43" height="43"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nw-iQ-k6m">
+                                        <rect key="frame" x="118" y="6" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="4nw-iQ-k6m" secondAttribute="height" id="ahK-ew-Tsb"/>
                                             <constraint firstAttribute="width" constant="43" id="mp0-FO-07o"/>
@@ -1497,11 +1497,11 @@ Please sign in to your account to start.</string>
                     <navigationItem key="navigationItem" id="gKA-2M-IzU">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="RYs-n8-sQx">
-                            <rect key="frame" x="113" y="6" width="150" height="33"/>
+                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Pg-Nj-aM3">
-                                    <rect key="frame" x="26" y="0.0" width="99" height="33"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pg-Nj-aM3">
+                                    <rect key="frame" x="26.5" y="0.0" width="98" height="33"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Station" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oba-t2-lmP">
                                             <rect key="frame" x="24" y="0.0" width="74" height="33"/>

@@ -29,7 +29,7 @@ class Station: Mappable {
     }
     
     required init?(_ map: Map) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setIsPlayingFalse", name: "noOneIsPlayingNotifiactionKey", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Station.setIsPlayingFalse), name: "noOneIsPlayingNotifiactionKey", object: nil)
     }
     
     deinit {
@@ -54,7 +54,7 @@ class Station: Mappable {
         NSNotificationCenter.defaultCenter().postNotificationName("noOneIsPlayingNotifiactionKey", object: nil)
     }
     
-    private func setIsPlayingFalse() {
+    @objc private func setIsPlayingFalse() {
         isPlaying = false
     }
     

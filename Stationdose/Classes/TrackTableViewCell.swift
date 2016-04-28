@@ -17,7 +17,7 @@ class TrackTableViewCell: PlayableTableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "validatePlaying", name: "playbackCurrentTrackDidChange", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TrackTableViewCell.validatePlaying), name: "playbackCurrentTrackDidChange", object: nil)
     }
     
     deinit {

@@ -175,22 +175,22 @@ class ShareView: NSObject {
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         contaignerView.superview!.insertSubview(blurEffectView, belowSubview: contaignerView)
         
-        contaignerView.facebookButton.addTarget(self, action: "shareByFacebook", forControlEvents: .TouchUpInside)
-        contaignerView.twitterButton.addTarget(self, action: "shareByTwitter", forControlEvents: .TouchUpInside)
-        contaignerView.emailButton.addTarget(self, action: "shareByEmail", forControlEvents: .TouchUpInside)
+        contaignerView.facebookButton.addTarget(self, action: #selector(ShareView.shareByFacebook), forControlEvents: .TouchUpInside)
+        contaignerView.twitterButton.addTarget(self, action: #selector(ShareView.shareByTwitter), forControlEvents: .TouchUpInside)
+        contaignerView.emailButton.addTarget(self, action: #selector(ShareView.shareByEmail), forControlEvents: .TouchUpInside)
         if let presenter = self.presenterViewController as? FeaturedStationViewController{                            contaignerView.createPlaylistButton.hidden = presenter.station!.type == "featured" ? true : false
             contaignerView.emailBtnConstraint.constant = presenter.station!.type == "featured" ? CGFloat(20.0) : CGFloat(84.0)
         }
 
-        contaignerView.createPlaylistButton.addTarget(self, action: "createPlaylist", forControlEvents: .TouchUpInside)
+        contaignerView.createPlaylistButton.addTarget(self, action: #selector(ShareView.createPlaylist), forControlEvents: .TouchUpInside)
         
 
         contaignerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.0)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("cancelAction"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ShareView.cancelAction))
         contaignerView.addGestureRecognizer(tapGestureRecognizer)
         
-        contaignerView.closeButton.addTarget(self, action: "cancelAction", forControlEvents: .TouchUpInside)
+        contaignerView.closeButton.addTarget(self, action: #selector(ShareView.cancelAction), forControlEvents: .TouchUpInside)
         
         contaignerView.layoutIfNeeded()
     }
