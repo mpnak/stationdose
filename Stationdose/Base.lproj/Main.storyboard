@@ -1007,7 +1007,7 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                                 <state key="normal" image="btn-settings"/>
                                                 <connections>
-                                                    <segue destination="4J2-0k-C7D" kind="show" id="1hY-2o-HLT"/>
+                                                    <segue destination="jkc-SX-8QY" kind="show" id="rDm-uo-kje"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTz-za-ELG">
@@ -1191,14 +1191,14 @@ Please sign in to your account to start.</string>
                         <viewControllerLayoutGuide type="bottom" id="nid-w6-9ih"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cpH-1Y-VDR">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29S-sS-XrP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29S-sS-XrP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="137"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y3R-Au-ht2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="station-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Jjn-EO-NHV">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="94"/>
@@ -1207,7 +1207,7 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAC-Xq-gNY">
-                                                <rect key="frame" x="94" y="0.0" width="281" height="94"/>
+                                                <rect key="frame" x="94" y="0.0" width="506" height="94"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV9-Vb-IgZ">
                                                         <rect key="frame" x="14" y="0.0" width="135" height="26"/>
@@ -1218,14 +1218,14 @@ Please sign in to your account to start.</string>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efA-WH-xH9">
-                                                        <rect key="frame" x="14" y="64" width="253" height="16"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efA-WH-xH9">
+                                                        <rect key="frame" x="14" y="64" width="478" height="16"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="12"/>
                                                         <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-hs-IPl">
-                                                        <rect key="frame" x="14" y="28" width="253" height="34"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-hs-IPl">
+                                                        <rect key="frame" x="14" y="28" width="478" height="34"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="13"/>
                                                         <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1265,7 +1265,7 @@ Please sign in to your account to start.</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UtC-no-Onc">
-                                        <rect key="frame" x="0.0" y="94" width="375" height="43"/>
+                                        <rect key="frame" x="0.0" y="94" width="600" height="43"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use the controls below to fine-tune the station. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw5-dl-vez">
                                                 <rect key="frame" x="12" y="13" width="265" height="18"/>
@@ -1296,25 +1296,25 @@ Please sign in to your account to start.</string>
                                     <constraint firstItem="y3R-Au-ht2" firstAttribute="leading" secondItem="29S-sS-XrP" secondAttribute="leading" id="u0p-l3-vnP"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffw-c7-rQp">
-                                <rect key="frame" x="0.0" y="137" width="375" height="60"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ffw-c7-rQp">
+                                <rect key="frame" x="0.0" y="137" width="600" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="djF-z2-SL1"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4u-Hj-S2G">
-                                <rect key="frame" x="0.0" y="197" width="375" height="60"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4u-Hj-S2G">
+                                <rect key="frame" x="0.0" y="197" width="600" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMJ-Hv-hEE">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="1"/>
+                                        <rect key="frame" x="10" y="0.0" width="580" height="1"/>
                                         <color key="backgroundColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="dRV-Nv-Aty"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNu-lC-Vbk">
-                                        <rect key="frame" x="10" y="59" width="355" height="1"/>
+                                        <rect key="frame" x="10" y="59" width="580" height="1"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="NYl-pO-WbQ"/>
@@ -1331,17 +1331,17 @@ Please sign in to your account to start.</string>
                                     <constraint firstAttribute="trailing" secondItem="fMJ-Hv-hEE" secondAttribute="trailing" constant="10" id="uSh-DD-Aso"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsm-8A-vq2">
-                                <rect key="frame" x="0.0" y="257" width="375" height="120"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xsm-8A-vq2">
+                                <rect key="frame" x="0.0" y="257" width="600" height="120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nio-ib-MOP">
-                                        <rect key="frame" x="26" y="44" width="323" height="41"/>
+                                        <rect key="frame" x="26" y="44" width="548" height="41"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCg-yb-Ewk">
-                                                <rect key="frame" x="0.0" y="15" width="323" height="10"/>
+                                                <rect key="frame" x="0.0" y="15" width="548" height="10"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTp-2A-Va3">
-                                                        <rect key="frame" x="81" y="3" width="1" height="4"/>
+                                                        <rect key="frame" x="137" y="3" width="1" height="4"/>
                                                         <color key="backgroundColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="4" id="bfg-On-HfE"/>
@@ -1349,7 +1349,7 @@ Please sign in to your account to start.</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZRQ-K7-DbO">
-                                                        <rect key="frame" x="161" y="3" width="1" height="4"/>
+                                                        <rect key="frame" x="273" y="3" width="1" height="4"/>
                                                         <color key="backgroundColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="4" id="bj8-Ww-HD1"/>
@@ -1357,7 +1357,7 @@ Please sign in to your account to start.</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1c-dv-Bdl">
-                                                        <rect key="frame" x="242" y="3" width="1" height="4"/>
+                                                        <rect key="frame" x="411" y="3" width="1" height="4"/>
                                                         <color key="backgroundColor" red="0.3411764706" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="1" id="13J-kq-Tc8"/>
@@ -1382,7 +1382,7 @@ Please sign in to your account to start.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YRH-QR-Is2">
-                                                <rect key="frame" x="-12" y="6" width="347" height="31"/>
+                                                <rect key="frame" x="-12" y="6" width="572" height="31"/>
                                                 <connections>
                                                     <action selector="familiarityTouchUpInside:" destination="4J2-0k-C7D" eventType="touchUpInside" id="DGq-DN-Bca"/>
                                                     <action selector="familiarityTouchUpOutside:" destination="4J2-0k-C7D" eventType="touchUpOutside" id="QG5-uB-fjD"/>
@@ -1411,7 +1411,7 @@ Please sign in to your account to start.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Underground" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2C-K9-iQP">
-                                        <rect key="frame" x="291" y="85" width="73" height="18"/>
+                                        <rect key="frame" x="516" y="85" width="73" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="Pja-oh-Fq0"/>
                                         </constraints>
@@ -1579,7 +1579,15 @@ Please sign in to your account to start.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOK-IC-bhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2043.5" y="2038.5"/>
+            <point key="canvasLocation" x="1756" y="2033"/>
+        </scene>
+        <!--Edit-->
+        <scene sceneID="puw-nM-pOa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Edit" id="jkc-SX-8QY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Yq-Yh-KpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1389.5" y="1978"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yqW-vA-oSg">
@@ -2001,26 +2009,6 @@ Please sign in to your account to start.</string>
             </objects>
             <point key="canvasLocation" x="424.5" y="2046.5"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="3aK-5b-Q3Y">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KBf-gG-1V4" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0ra-vj-EnA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="4J2-0k-C7D" kind="relationship" relationship="rootViewController" id="cgp-lR-yMf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XDa-Ei-IdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1476.5" y="1576.5"/>
-        </scene>
     </scenes>
     <resources>
         <image name="bnt-sponsored-play" width="34" height="34"/>
@@ -2050,6 +2038,5 @@ Please sign in to your account to start.</string>
     <inferredMetricsTieBreakers>
         <segue reference="Fl5-av-fhj"/>
         <segue reference="N0U-zU-k6a"/>
-        <segue reference="1hY-2o-HLT"/>
     </inferredMetricsTieBreakers>
 </document>

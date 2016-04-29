@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C54F0DD1CD422D80069677D /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C54F0DB1CD422D80069677D /* Edit.storyboard */; };
+		7C54F0DF1CD423670069677D /* EnergyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0DE1CD423670069677D /* EnergyChartViewController.swift */; };
 		CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */; };
 		CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */; };
 		CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */; };
@@ -66,6 +68,8 @@
 /* Begin PBXFileReference section */
 		24E06A1BF2138C0B19B5B149 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7C54F0DC1CD422D80069677D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Edit.storyboard; sourceTree = "<group>"; };
+		7C54F0DE1CD423670069677D /* EnergyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyChartViewController.swift; sourceTree = "<group>"; };
 		CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalFullScreenLoadingView.xib; sourceTree = "<group>"; };
 		CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenLoadingView.swift; sourceTree = "<group>"; };
 		CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalFullScreenLoadingView.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				CDBE23421BF92E9100291F56 /* Classes */,
 				CDBE230D1BF92DFB00291F56 /* AppDelegate.swift */,
 				CDBE23111BF92DFB00291F56 /* Main.storyboard */,
+				7C54F0DB1CD422D80069677D /* Edit.storyboard */,
 				F18E15391C18747C0020AA17 /* PlaybackControlView.xib */,
 				CDBE23141BF92DFB00291F56 /* Assets.xcassets */,
 				CDBE23161BF92DFB00291F56 /* LaunchScreen.storyboard */,
@@ -310,6 +315,7 @@
 				F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */,
 				F15593021C110447009CE684 /* FeaturedStationViewController.swift */,
 				F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */,
+				7C54F0DE1CD423670069677D /* EnergyChartViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 				CD9FA46E1BFB71A4003B8A62 /* Yantramanav-Medium.ttf in Resources */,
 				CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */,
 				CD9FA4701BFB71A4003B8A62 /* Yantramanav-Thin.ttf in Resources */,
+				7C54F0DD1CD422D80069677D /* Edit.storyboard in Resources */,
 				CDBE23181BF92DFB00291F56 /* LaunchScreen.storyboard in Resources */,
 				CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */,
 				F18E153A1C18747C0020AA17 /* PlaybackControlView.xib in Resources */,
@@ -525,6 +532,7 @@
 				F1F91C6B1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift in Sources */,
 				CDBE230E1BF92DFB00291F56 /* AppDelegate.swift in Sources */,
 				F18E15381C1871D40020AA17 /* PlaybackControlView.swift in Sources */,
+				7C54F0DF1CD423670069677D /* EnergyChartViewController.swift in Sources */,
 				CD9FA44B1BF93323003B8A62 /* HomeViewController.swift in Sources */,
 				CD9FA4511BF93876003B8A62 /* Constants.swift in Sources */,
 				CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */,
@@ -541,6 +549,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7C54F0DB1CD422D80069677D /* Edit.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C54F0DC1CD422D80069677D /* Base */,
+			);
+			name = Edit.storyboard;
+			sourceTree = "<group>";
+		};
 		CDBE23111BF92DFB00291F56 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
