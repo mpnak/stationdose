@@ -37,10 +37,12 @@ struct Constants {
     
     struct SongSort {
         //static let baseDevelopmentUrl = "https://polar-dawn-6054.herokuapp.com/api/"
-        //static let baseDevelopmentUrl = "https://frozen-taiga-8620.herokuapp.com/api/"
+        
         
         static let baseDevelopmentUrl = "http://localhost:3000/api/"
-        static let baseProductionUrl = "https://songsort.herokuapp.com/api/"
+        //static let baseProductionUrl = "https://songsort.herokuapp.com/api/"
+        static let baseProductionUrl = "https://frozen-taiga-8620.herokuapp.com/api/"
+        
         static var baseUrl: String {
             get {
                 if NSProcessInfo.processInfo().environment["SIMULATOR_DEVICE_NAME"] != nil {
