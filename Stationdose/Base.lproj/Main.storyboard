@@ -1826,8 +1826,8 @@ Please sign in to your account to start.</string>
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-i0-ZmU">
-                                                <rect key="frame" x="0.0" y="0.0" width="332" height="43"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-i0-ZmU">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                                 <connections>
                                                     <action selector="openStationUrl:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="WoY-1c-3kY"/>
                                                 </connections>
@@ -1836,6 +1836,7 @@ Please sign in to your account to start.</string>
                                         <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="Ub3-i0-ZmU" firstAttribute="top" secondItem="VDf-mD-lnB" secondAttribute="top" id="3pI-Kt-nXj"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ub3-i0-ZmU" secondAttribute="trailing" id="S15-yB-AoL"/>
                                             <constraint firstItem="n1s-Zt-Cja" firstAttribute="leading" secondItem="VDf-mD-lnB" secondAttribute="leading" constant="14" id="X9r-4S-tum"/>
                                             <constraint firstItem="n1s-Zt-Cja" firstAttribute="centerY" secondItem="VDf-mD-lnB" secondAttribute="centerY" id="XeA-Bu-9mx"/>
                                             <constraint firstItem="Ub3-i0-ZmU" firstAttribute="leading" secondItem="VDf-mD-lnB" secondAttribute="leading" id="e7M-QF-eZN"/>
