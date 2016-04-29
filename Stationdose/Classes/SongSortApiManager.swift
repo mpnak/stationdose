@@ -94,9 +94,20 @@ class SongSortApiManager {
     
     func getStationTracks(stationId: Int, onCompletion: (Station?, NSError?) -> Void) {
         manager.request(.GET, baseURL+String(format: ApiMethods.stationTracks, stationId)).responseObject("station") { (response: Response<Station, NSError>) in
+            let str = NSString(data: response.data!, encoding: NSUTF8StringEncoding)
+            print(str)
+            print(response)
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
+        
+//        manager.request(.GET, baseURL+String(format: ApiMethods.stationTracks, stationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+//            let str = NSString(data: response.data!, encoding: NSUTF8StringEncoding)
+//            print(str)
+//            print(response)
+//            self.showGenericErrorIfNeeded(response.result.error)
+//            onCompletion(response.result.value, response.result.error)
+//        }
     }
     
     func generateStationTracks(station: Station, onCompletion:(Station?,NSError?) -> Void) {

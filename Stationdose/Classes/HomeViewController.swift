@@ -125,10 +125,16 @@ class HomeViewController: BaseViewController {
     func featuredStationsTimerStep() {
         let indexPath = featuredStationsCollectionView.indexPathForItemAtPoint(CGPoint(x: featuredStationsCollectionView.contentOffset.x + 1, y: 1))
         var nextIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-        if indexPath?.row < featuredStations.count - 1 {
-            nextIndexPath = NSIndexPath(forRow: (indexPath?.row)! + 1, inSection: 0)
+        if indexPath?.row != nil {
+            if indexPath?.row < featuredStations.count - 1 {
+                nextIndexPath = NSIndexPath(forRow: (indexPath?.row)! + 1, inSection: 0)
+            } else {
+                featuredStationsTimer?.invalidate()
+                return
+            }
         } else {
             featuredStationsTimer?.invalidate()
+            return
         }
         featuredStationsCollectionView.scrollToItemAtIndexPath(nextIndexPath, atScrollPosition: .CenteredHorizontally, animated: true)
     }

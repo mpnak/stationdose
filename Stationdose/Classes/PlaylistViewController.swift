@@ -80,6 +80,9 @@ class PlaylistViewController: BaseViewController {
             }
         }
         
+        let shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(PlaylistViewController.share))
+        self.navigationItem.rightBarButtonItem = shareButton
+        
         self.view.layoutIfNeeded()
     }
     override func viewWillAppear(animated: Bool) {
@@ -134,7 +137,7 @@ class PlaylistViewController: BaseViewController {
     
     func willStartStationTracksReGeneration(notification: NSNotification){
         if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
-            fullscreenView.setMessage("Just a moment, we’re generating your playlist")
+            fullscreenView.setMessage("Just a moment")
             fullscreenView.show()
         }
     }

@@ -1096,8 +1096,8 @@ Please sign in to your account to start.</string>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="aOP-Ig-ggz"/>
                                                         <constraint firstAttribute="height" constant="15" id="lkx-GR-ecf"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="12"/>
-                                                    <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
+                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -1785,16 +1785,6 @@ Please sign in to your account to start.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CB1-CF-pVo">
                                         <rect key="frame" x="0.0" y="140" width="375" height="43"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtg-4u-91X">
-                                                <rect key="frame" x="332" y="0.0" width="43" height="43"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="xtg-4u-91X" secondAttribute="height" multiplier="1:1" id="Nlx-91-Uf6"/>
-                                                </constraints>
-                                                <state key="normal" image="btn-share"/>
-                                                <connections>
-                                                    <action selector="share:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="LSQ-gL-rze"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjL-4f-yDC">
                                                 <rect key="frame" x="14" y="11" width="110" height="21"/>
                                                 <constraints>
@@ -1815,26 +1805,12 @@ Please sign in to your account to start.</string>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="9Ym-u3-0xp"/>
                                             <constraint firstItem="cjL-4f-yDC" firstAttribute="centerY" secondItem="CB1-CF-pVo" secondAttribute="centerY" id="Cuy-C1-kml"/>
-                                            <constraint firstItem="xtg-4u-91X" firstAttribute="top" secondItem="CB1-CF-pVo" secondAttribute="top" id="W06-lU-ktc"/>
-                                            <constraint firstAttribute="bottom" secondItem="xtg-4u-91X" secondAttribute="bottom" id="WND-56-bWW"/>
                                             <constraint firstItem="cjL-4f-yDC" firstAttribute="leading" secondItem="CB1-CF-pVo" secondAttribute="leading" constant="14" id="qQs-GI-ruA"/>
-                                            <constraint firstAttribute="trailing" secondItem="xtg-4u-91X" secondAttribute="trailing" id="xmx-o5-nGW"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDf-mD-lnB">
                                         <rect key="frame" x="0.0" y="140" width="375" height="43"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6F-FT-wDg">
-                                                <rect key="frame" x="332" y="0.0" width="43" height="43"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="S6F-FT-wDg" secondAttribute="height" multiplier="1:1" id="gU5-Oi-4bU"/>
-                                                </constraints>
-                                                <state key="normal" image="btn-share"/>
-                                                <connections>
-                                                    <action selector="share:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="wOY-RJ-Tou"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nike.com/running" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1s-Zt-Cja">
                                                 <rect key="frame" x="14" y="11" width="112" height="21"/>
                                                 <constraints>
@@ -1850,7 +1826,7 @@ Please sign in to your account to start.</string>
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-i0-ZmU">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-i0-ZmU">
                                                 <rect key="frame" x="0.0" y="0.0" width="332" height="43"/>
                                                 <connections>
                                                     <action selector="openStationUrl:" destination="3y6-zg-Wyl" eventType="touchUpInside" id="WoY-1c-3kY"/>
@@ -1860,14 +1836,10 @@ Please sign in to your account to start.</string>
                                         <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="Ub3-i0-ZmU" firstAttribute="top" secondItem="VDf-mD-lnB" secondAttribute="top" id="3pI-Kt-nXj"/>
-                                            <constraint firstAttribute="bottom" secondItem="S6F-FT-wDg" secondAttribute="bottom" id="NOW-Ae-M7i"/>
                                             <constraint firstItem="n1s-Zt-Cja" firstAttribute="leading" secondItem="VDf-mD-lnB" secondAttribute="leading" constant="14" id="X9r-4S-tum"/>
                                             <constraint firstItem="n1s-Zt-Cja" firstAttribute="centerY" secondItem="VDf-mD-lnB" secondAttribute="centerY" id="XeA-Bu-9mx"/>
-                                            <constraint firstItem="S6F-FT-wDg" firstAttribute="top" secondItem="VDf-mD-lnB" secondAttribute="top" id="bqU-45-mdZ"/>
                                             <constraint firstItem="Ub3-i0-ZmU" firstAttribute="leading" secondItem="VDf-mD-lnB" secondAttribute="leading" id="e7M-QF-eZN"/>
                                             <constraint firstAttribute="bottom" secondItem="Ub3-i0-ZmU" secondAttribute="bottom" id="nkV-7D-a9r"/>
-                                            <constraint firstItem="S6F-FT-wDg" firstAttribute="leading" secondItem="Ub3-i0-ZmU" secondAttribute="trailing" id="s71-pr-9Y9"/>
-                                            <constraint firstAttribute="trailing" secondItem="S6F-FT-wDg" secondAttribute="trailing" id="tFY-IW-RIJ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2069,8 +2041,8 @@ Please sign in to your account to start.</string>
         <image name="track-placeholder" width="43" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cgp-lR-yMf"/>
         <segue reference="etf-Up-yf7"/>
         <segue reference="Fl5-av-fhj"/>
+        <segue reference="1hY-2o-HLT"/>
     </inferredMetricsTieBreakers>
 </document>

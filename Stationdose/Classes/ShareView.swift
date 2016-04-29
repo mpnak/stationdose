@@ -152,7 +152,7 @@ class ShareView: NSObject {
     func createPlaylist() {
         if let tracks = tracks {
             let fullscreenView = FullScreenLoadingView()
-            fullscreenView.setMessage("Just a moment, we’re saving your playlist")
+            fullscreenView.setMessage("Just a moment")
             fullscreenView.show()
             SpotifyManager.sharedInstance.createPlaylist(shareText, tracks: tracks, callback: { (success) -> Void in
                 self.callback(shared: success)
