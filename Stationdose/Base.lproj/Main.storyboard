@@ -571,15 +571,53 @@ Please sign in to your account to start.</string>
                                                                     <outlet property="dataSource" destination="ISF-u2-Npe" id="tzx-1c-JkG"/>
                                                                 </connections>
                                                             </tableView>
+                                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQK-mb-Dwg">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your experience" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KO-Vl-oj5">
+                                                                        <rect key="frame" x="80" y="91" width="216" height="21"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="21" id="OUj-DZ-MDM"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="20"/>
+                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKR-eR-mPd">
+                                                                        <rect key="frame" x="141" y="116" width="94" height="30"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="30" id="5Y4-VV-2tf"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                                                                        <state key="normal" title="+ Add Stations">
+                                                                            <color key="titleColor" red="0.070588235289999995" green="0.82352941180000006" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="NO"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="addStations:" destination="ISF-u2-Npe" eventType="touchUpInside" id="D56-se-ZTU"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="RKR-eR-mPd" firstAttribute="centerY" secondItem="jQK-mb-Dwg" secondAttribute="centerY" constant="15" id="01v-0m-j6i"/>
+                                                                    <constraint firstAttribute="height" constant="232.5" id="4B5-bU-bUh"/>
+                                                                    <constraint firstItem="RKR-eR-mPd" firstAttribute="centerX" secondItem="jQK-mb-Dwg" secondAttribute="centerX" id="LJ0-Lz-WMD"/>
+                                                                    <constraint firstItem="5KO-Vl-oj5" firstAttribute="centerX" secondItem="jQK-mb-Dwg" secondAttribute="centerX" id="P33-Cg-d7q"/>
+                                                                    <constraint firstItem="5KO-Vl-oj5" firstAttribute="centerY" secondItem="jQK-mb-Dwg" secondAttribute="centerY" constant="-15" id="SIa-9I-eGl"/>
+                                                                </constraints>
+                                                            </view>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x2O-rK-0py">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
                                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <prototypes>
-                                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StationsListTableViewCellIdentifier" id="p9h-Up-28t" customClass="StationsListTableViewCell" customModule="Stationdose" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="28" width="375" height="83"/>
+                                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StationsListTableViewCellIdentifier" rowHeight="84" id="p9h-Up-28t" customClass="StationsListTableViewCell" customModule="Stationdose" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="28" width="375" height="84"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p9h-Up-28t" id="jbN-VT-F7y">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JTe-Jh-GwP">
@@ -610,7 +648,7 @@ Please sign in to your account to start.</string>
                                                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2a-oj-yLP">
-                                                                                    <rect key="frame" x="89" y="27" width="200" height="54.5"/>
+                                                                                    <rect key="frame" x="89" y="27" width="240" height="54.5"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="k7I-23-Fxl"/>
                                                                                     </constraints>
@@ -630,23 +668,13 @@ Please sign in to your account to start.</string>
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wip-1v-1NC">
-                                                                                    <rect key="frame" x="298" y="24" width="35" height="35"/>
+                                                                                    <rect key="frame" x="209" y="0.0" width="32" height="32"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="35" id="tWy-f9-R0t"/>
+                                                                                        <constraint firstAttribute="width" constant="32" id="tWy-f9-R0t"/>
                                                                                     </constraints>
                                                                                     <state key="normal" image="btn-add-station"/>
                                                                                     <connections>
                                                                                         <action selector="saveStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="Utq-hy-x4g"/>
-                                                                                    </connections>
-                                                                                </button>
-                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMc-b8-blk">
-                                                                                    <rect key="frame" x="298" y="24" width="35" height="35"/>
-                                                                                    <constraints>
-                                                                                        <constraint firstAttribute="width" constant="35" id="bcw-jW-Oza"/>
-                                                                                    </constraints>
-                                                                                    <state key="normal" image="btn-remove-station"/>
-                                                                                    <connections>
-                                                                                        <action selector="removeStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="ekQ-op-M35"/>
                                                                                     </connections>
                                                                                 </button>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTK-K9-UOy">
@@ -687,17 +715,29 @@ Please sign in to your account to start.</string>
                                                                                         <constraint firstItem="lej-H7-7RG" firstAttribute="centerY" secondItem="YIm-n2-lij" secondAttribute="centerY" id="Foy-sv-ifA"/>
                                                                                     </constraints>
                                                                                 </view>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMc-b8-blk">
+                                                                                    <rect key="frame" x="209" y="0.0" width="32" height="32"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="32" id="bcw-jW-Oza"/>
+                                                                                    </constraints>
+                                                                                    <state key="normal" image="btn-remove-station"/>
+                                                                                    <connections>
+                                                                                        <action selector="removeStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="ekQ-op-M35"/>
+                                                                                    </connections>
+                                                                                </button>
                                                                             </subviews>
                                                                             <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="CFK-2u-QkV" firstAttribute="trailing" secondItem="8zY-Fv-NRm" secondAttribute="trailing" id="07x-VO-LeG"/>
                                                                                 <constraint firstItem="tTK-K9-UOy" firstAttribute="top" secondItem="jbN-VT-F7y" secondAttribute="top" id="1Wg-ct-F4W"/>
+                                                                                <constraint firstItem="Wip-1v-1NC" firstAttribute="leading" secondItem="4bv-yQ-eFh" secondAttribute="trailing" constant="10" id="4R6-Sh-yIl"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="8zY-Fv-NRm" secondAttribute="bottom" constant="5" id="56B-s7-77e"/>
                                                                                 <constraint firstItem="JTe-Jh-GwP" firstAttribute="leading" secondItem="jbN-VT-F7y" secondAttribute="leading" id="6T8-ZA-3eo"/>
                                                                                 <constraint firstItem="BMc-b8-blk" firstAttribute="width" secondItem="BMc-b8-blk" secondAttribute="height" multiplier="1:1" id="92t-wH-tzq"/>
                                                                                 <constraint firstItem="4bv-yQ-eFh" firstAttribute="leading" secondItem="8zY-Fv-NRm" secondAttribute="trailing" constant="16" id="AsD-BW-1fH"/>
                                                                                 <constraint firstItem="CFK-2u-QkV" firstAttribute="bottom" secondItem="8zY-Fv-NRm" secondAttribute="bottom" id="Eb0-JH-NKL"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="YIm-n2-lij" secondAttribute="bottom" id="EcQ-Ve-8rw"/>
+                                                                                <constraint firstItem="kpi-uh-qGq" firstAttribute="leading" secondItem="P2a-oj-yLP" secondAttribute="trailing" constant="5" id="I2d-e6-BZD"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="tTK-K9-UOy" secondAttribute="bottom" id="KOK-TI-lYP"/>
                                                                                 <constraint firstItem="YIm-n2-lij" firstAttribute="leading" secondItem="jbN-VT-F7y" secondAttribute="leading" id="Llz-Gm-a05"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="YIm-n2-lij" secondAttribute="trailing" id="M22-Kc-wJz"/>
@@ -706,7 +746,7 @@ Please sign in to your account to start.</string>
                                                                                 <constraint firstItem="8zY-Fv-NRm" firstAttribute="top" secondItem="jbN-VT-F7y" secondAttribute="top" constant="5" id="UDq-E0-VEc"/>
                                                                                 <constraint firstItem="Wip-1v-1NC" firstAttribute="width" secondItem="Wip-1v-1NC" secondAttribute="height" multiplier="1:1" id="YSy-TG-Fqc"/>
                                                                                 <constraint firstItem="BMc-b8-blk" firstAttribute="centerX" secondItem="Wip-1v-1NC" secondAttribute="centerX" id="Zf4-rW-BAe"/>
-                                                                                <constraint firstItem="Wip-1v-1NC" firstAttribute="centerY" secondItem="kpi-uh-qGq" secondAttribute="centerY" id="bN1-JJ-mWw"/>
+                                                                                <constraint firstItem="Wip-1v-1NC" firstAttribute="centerY" secondItem="kpi-uh-qGq" secondAttribute="centerY" constant="-25.5" id="bN1-JJ-mWw"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="JTe-Jh-GwP" secondAttribute="bottom" id="bcr-Ei-7TO"/>
                                                                                 <constraint firstItem="4bv-yQ-eFh" firstAttribute="top" secondItem="jbN-VT-F7y" secondAttribute="top" constant="5" id="brL-xa-T6Q"/>
                                                                                 <constraint firstItem="P2a-oj-yLP" firstAttribute="leading" secondItem="CFK-2u-QkV" secondAttribute="trailing" constant="16" id="bx3-5d-LFe"/>
@@ -714,9 +754,10 @@ Please sign in to your account to start.</string>
                                                                                 <constraint firstItem="JTe-Jh-GwP" firstAttribute="top" secondItem="jbN-VT-F7y" secondAttribute="top" id="dMO-Zd-cto"/>
                                                                                 <constraint firstItem="kpi-uh-qGq" firstAttribute="leading" secondItem="JTe-Jh-GwP" secondAttribute="trailing" id="iqG-Eq-arM"/>
                                                                                 <constraint firstItem="BMc-b8-blk" firstAttribute="centerY" secondItem="Wip-1v-1NC" secondAttribute="centerY" id="iur-Vj-0Vd"/>
-                                                                                <constraint firstItem="Wip-1v-1NC" firstAttribute="leading" secondItem="P2a-oj-yLP" secondAttribute="trailing" constant="9" id="lhS-o0-pxM"/>
+                                                                                <constraint firstItem="Wip-1v-1NC" firstAttribute="leading" secondItem="P2a-oj-yLP" secondAttribute="trailing" constant="-82" id="lhS-o0-pxM"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="kpi-uh-qGq" secondAttribute="trailing" constant="6" id="loo-we-bZH"/>
-                                                                                <constraint firstItem="kpi-uh-qGq" firstAttribute="leading" secondItem="Wip-1v-1NC" secondAttribute="trailing" constant="1" id="q2o-J2-EuM"/>
+                                                                                <constraint firstItem="Wip-1v-1NC" firstAttribute="centerY" secondItem="4bv-yQ-eFh" secondAttribute="centerY" id="m7Y-gL-Mgr"/>
+                                                                                <constraint firstItem="kpi-uh-qGq" firstAttribute="leading" secondItem="Wip-1v-1NC" secondAttribute="trailing" constant="95" id="q2o-J2-EuM"/>
                                                                                 <constraint firstItem="kpi-uh-qGq" firstAttribute="centerY" secondItem="8zY-Fv-NRm" secondAttribute="centerY" id="tBv-ST-R7L"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="P2a-oj-yLP" secondAttribute="bottom" constant="1" id="tM0-gw-quD"/>
                                                                                 <constraint firstItem="8zY-Fv-NRm" firstAttribute="leading" secondItem="jbN-VT-F7y" secondAttribute="leading" id="uTM-5x-teP"/>
@@ -729,7 +770,10 @@ Please sign in to your account to start.</string>
                                                                                 </mask>
                                                                                 <mask key="constraints">
                                                                                     <exclude reference="tM0-gw-quD"/>
+                                                                                    <exclude reference="bN1-JJ-mWw"/>
+                                                                                    <exclude reference="lhS-o0-pxM"/>
                                                                                     <exclude reference="iqG-Eq-arM"/>
+                                                                                    <exclude reference="q2o-J2-EuM"/>
                                                                                 </mask>
                                                                             </variation>
                                                                         </tableViewCellContentView>
@@ -752,44 +796,6 @@ Please sign in to your account to start.</string>
                                                                     <outlet property="dataSource" destination="ISF-u2-Npe" id="pa0-7n-7cG"/>
                                                                 </connections>
                                                             </tableView>
-                                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQK-mb-Dwg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your experience" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KO-Vl-oj5">
-                                                                        <rect key="frame" x="80" y="91" width="216" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="21" id="OUj-DZ-MDM"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="20"/>
-                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKR-eR-mPd">
-                                                                        <rect key="frame" x="141" y="116" width="94" height="30"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="30" id="5Y4-VV-2tf"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
-                                                                        <state key="normal" title="+ Add Stations">
-                                                                            <color key="titleColor" red="0.070588235289999995" green="0.82352941180000006" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        </state>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="NO"/>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="addStations:" destination="ISF-u2-Npe" eventType="touchUpInside" id="D56-se-ZTU"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="RKR-eR-mPd" firstAttribute="centerY" secondItem="jQK-mb-Dwg" secondAttribute="centerY" constant="15" id="01v-0m-j6i"/>
-                                                                    <constraint firstAttribute="height" constant="232.5" id="4B5-bU-bUh"/>
-                                                                    <constraint firstItem="RKR-eR-mPd" firstAttribute="centerX" secondItem="jQK-mb-Dwg" secondAttribute="centerX" id="LJ0-Lz-WMD"/>
-                                                                    <constraint firstItem="5KO-Vl-oj5" firstAttribute="centerX" secondItem="jQK-mb-Dwg" secondAttribute="centerX" id="P33-Cg-d7q"/>
-                                                                    <constraint firstItem="5KO-Vl-oj5" firstAttribute="centerY" secondItem="jQK-mb-Dwg" secondAttribute="centerY" constant="-15" id="SIa-9I-eGl"/>
-                                                                </constraints>
-                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -1911,8 +1917,8 @@ Please sign in to your account to start.</string>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="PlS-n9-PHC"/>
                                                         <constraint firstAttribute="height" constant="15" id="UL9-Uw-MhP"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="12"/>
-                                                    <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
+                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -2042,8 +2048,8 @@ Please sign in to your account to start.</string>
         <image name="track-placeholder" width="43" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="etf-Up-yf7"/>
         <segue reference="Fl5-av-fhj"/>
+        <segue reference="N0U-zU-k6a"/>
         <segue reference="1hY-2o-HLT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -287,16 +287,18 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
-        if let url = trackMetadata[SPTAudioStreamingMetadataTrackURI] {
-            if let track = tracksMap[url as! String] {
-                playbackControlView?.titleLabel.text = track.title
-                playbackControlView?.artistLabel.text = track.artist
-                playbackControlView?.playButton.alpha = 0
-                playbackControlView?.pauseButton.alpha = 1
-                setPlayPauseButtonsEnabled(true)
-                currentTrack = track
-                setNowPlayingInfo()
-                NSNotificationCenter.defaultCenter().postNotificationName("playbackCurrentTrackDidChange", object: nil)
+        if trackMetadata != nil {
+            if let url = trackMetadata[SPTAudioStreamingMetadataTrackURI] {
+                if let track = tracksMap[url as! String] {
+                    playbackControlView?.titleLabel.text = track.title
+                    playbackControlView?.artistLabel.text = track.artist
+                    playbackControlView?.playButton.alpha = 0
+                    playbackControlView?.pauseButton.alpha = 1
+                    setPlayPauseButtonsEnabled(true)
+                    currentTrack = track
+                    setNowPlayingInfo()
+                    NSNotificationCenter.defaultCenter().postNotificationName("playbackCurrentTrackDidChange", object: nil)
+                }
             }
         }
     }
