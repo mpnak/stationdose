@@ -668,7 +668,7 @@ Please sign in to your account to start.</string>
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wip-1v-1NC">
-                                                                                    <rect key="frame" x="209" y="0.0" width="32" height="32"/>
+                                                                                    <rect key="frame" x="206" y="0.0" width="32" height="32"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="32" id="tWy-f9-R0t"/>
                                                                                     </constraints>
@@ -716,7 +716,7 @@ Please sign in to your account to start.</string>
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMc-b8-blk">
-                                                                                    <rect key="frame" x="209" y="0.0" width="32" height="32"/>
+                                                                                    <rect key="frame" x="206" y="0.0" width="32" height="32"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="32" id="bcw-jW-Oza"/>
                                                                                     </constraints>
@@ -730,7 +730,7 @@ Please sign in to your account to start.</string>
                                                                             <constraints>
                                                                                 <constraint firstItem="CFK-2u-QkV" firstAttribute="trailing" secondItem="8zY-Fv-NRm" secondAttribute="trailing" id="07x-VO-LeG"/>
                                                                                 <constraint firstItem="tTK-K9-UOy" firstAttribute="top" secondItem="jbN-VT-F7y" secondAttribute="top" id="1Wg-ct-F4W"/>
-                                                                                <constraint firstItem="Wip-1v-1NC" firstAttribute="leading" secondItem="4bv-yQ-eFh" secondAttribute="trailing" constant="10" id="4R6-Sh-yIl"/>
+                                                                                <constraint firstItem="Wip-1v-1NC" firstAttribute="leading" secondItem="4bv-yQ-eFh" secondAttribute="trailing" constant="7" id="4R6-Sh-yIl"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="8zY-Fv-NRm" secondAttribute="bottom" constant="5" id="56B-s7-77e"/>
                                                                                 <constraint firstItem="JTe-Jh-GwP" firstAttribute="leading" secondItem="jbN-VT-F7y" secondAttribute="leading" id="6T8-ZA-3eo"/>
                                                                                 <constraint firstItem="BMc-b8-blk" firstAttribute="width" secondItem="BMc-b8-blk" secondAttribute="height" multiplier="1:1" id="92t-wH-tzq"/>
@@ -934,7 +934,7 @@ Please sign in to your account to start.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qE1-kr-vSc">
-                                                        <rect key="frame" x="14" y="65" width="253" height="16"/>
+                                                        <rect key="frame" x="14" y="68" width="253" height="16"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="12"/>
                                                         <color key="textColor" white="0.49549470514950172" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -967,7 +967,7 @@ Please sign in to your account to start.</string>
                                                     <constraint firstAttribute="trailing" secondItem="qE1-kr-vSc" secondAttribute="trailing" constant="14" id="4U2-rV-nT1"/>
                                                     <constraint firstItem="6IW-9X-4C8" firstAttribute="centerY" secondItem="b9i-kw-Dqn" secondAttribute="centerY" id="6D7-ZX-j5d"/>
                                                     <constraint firstItem="6IW-9X-4C8" firstAttribute="leading" secondItem="b9i-kw-Dqn" secondAttribute="trailing" priority="750" constant="3" id="9MN-ib-Qei"/>
-                                                    <constraint firstAttribute="bottom" secondItem="qE1-kr-vSc" secondAttribute="bottom" constant="13" id="FSI-pw-MRj"/>
+                                                    <constraint firstAttribute="bottom" secondItem="qE1-kr-vSc" secondAttribute="bottom" constant="10" id="FSI-pw-MRj"/>
                                                     <constraint firstItem="b9i-kw-Dqn" firstAttribute="top" secondItem="8PJ-RW-fZn" secondAttribute="top" id="JnY-qb-5U7"/>
                                                     <constraint firstItem="CrE-33-vXA" firstAttribute="centerY" secondItem="6IW-9X-4C8" secondAttribute="centerY" id="LZM-Br-QJV"/>
                                                     <constraint firstItem="aAa-H9-Gdi" firstAttribute="leading" secondItem="8PJ-RW-fZn" secondAttribute="leading" constant="14" id="Xcr-eI-qwc"/>
