@@ -48,7 +48,7 @@ class EditStationViewController: BaseViewController {
         if let station = station {
             
             if station.undergroundness == nil {
-                station.undergroundness = 3
+                station.undergroundness = 4
             }
             
             familiaritySlider.value = familiaritySliderValueMapInverse(station.undergroundness!)
