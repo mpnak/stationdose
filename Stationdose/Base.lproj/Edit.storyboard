@@ -142,7 +142,7 @@
                                     <constraint firstAttribute="height" constant="140" id="BCR-ke-TNd"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="qXZ-XN-zoO" kind="embed" id="S58-9g-liM"/>
+                                    <segue destination="Vh4-xC-yw5" kind="embed" id="3WW-TH-dj8"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3S-Ph-IX0" userLabel="Separator View">
@@ -438,13 +438,27 @@
                             <constraint firstItem="VRj-I8-pKK" firstAttribute="leading" secondItem="zg3-MZ-MHo" secondAttribute="leading" constant="40" id="waU-CF-WwL"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="140"/>
                     <connections>
                         <outlet property="chartView" destination="VRj-I8-pKK" id="5RE-jO-q4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ZT-Tn-p1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072" y="1012"/>
+            <point key="canvasLocation" x="695" y="1033"/>
+        </scene>
+        <!--Paginated Scroll View Controller-->
+        <scene sceneID="X20-7q-wzS">
+            <objects>
+                <pageViewController storyboardIdentifier="PaginatedScrollViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Vh4-xC-yw5" customClass="PaginatedScrollViewController" customModule="Stationdose" customModuleProvider="target" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="140"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K33-wb-kwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1024" y="1305"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4MK-D2-Eps">
