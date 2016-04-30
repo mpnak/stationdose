@@ -23,7 +23,8 @@ class EditStationViewController: BaseViewController {
     private let fullscreenView = FullScreenLoadingView()
     private var somethingChanged: Bool = false
     
-
+    var energyChartViewController: EnergyChartViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -133,6 +134,9 @@ class EditStationViewController: BaseViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
             destinationViewController.station = station
+        }
+        if let vc = segue.destinationViewController as? EnergyChartViewController {
+            vc.station = station
         }
     }
 
