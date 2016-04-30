@@ -74,10 +74,12 @@ class PlaybackManager: NSObject {
         
         info[MPMediaItemPropertyTitle] = currentTrack?.title
         info[MPMediaItemPropertyArtist] = currentTrack?.artist
+        
+        info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: UIImage(named: "lock-screen-featured-placeholder")!)
+        
         if let currentImage = currentImage {
             info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: currentImage)
         }
-//        info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: UIImage(named: "station-placeholder")!)
         
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = info
     }
