@@ -23,7 +23,7 @@ class EditStationViewController: BaseViewController {
     private let fullscreenView = FullScreenLoadingView()
     private var somethingChanged: Bool = false
     
-    var energyChartViewController: EnergyChartViewController?
+    var energyChartViewPageScrollController: PageScrollViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,8 +135,9 @@ class EditStationViewController: BaseViewController {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
             destinationViewController.station = station
         }
-        if let vc = segue.destinationViewController as? EnergyChartViewController {
-            vc.station = station
+        if let vc = segue.destinationViewController as? PageScrollViewController {
+            energyChartViewPageScrollController = vc
+            energyChartViewPageScrollController!.station = station
         }
     }
 

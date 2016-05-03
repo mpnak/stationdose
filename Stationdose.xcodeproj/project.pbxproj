@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7C54F0DD1CD422D80069677D /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C54F0DB1CD422D80069677D /* Edit.storyboard */; };
-		7C54F0DF1CD423670069677D /* EnergyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0DE1CD423670069677D /* EnergyChartViewController.swift */; };
-		7C54F0E11CD445260069677D /* PaginatedScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E01CD445260069677D /* PaginatedScrollViewController.swift */; };
+		7C54F0E31CD44D140069677D /* PageScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E21CD44D140069677D /* PageScrollViewController.swift */; };
+		7C54F0E61CD44E620069677D /* PageScrollHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */; };
+		7C54F0EB1CD465DB0069677D /* EnergyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */; };
 		CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */; };
 		CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */; };
 		CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */; };
@@ -70,8 +71,9 @@
 		24E06A1BF2138C0B19B5B149 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7C54F0DC1CD422D80069677D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Edit.storyboard; sourceTree = "<group>"; };
-		7C54F0DE1CD423670069677D /* EnergyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyChartViewController.swift; sourceTree = "<group>"; };
-		7C54F0E01CD445260069677D /* PaginatedScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedScrollViewController.swift; sourceTree = "<group>"; };
+		7C54F0E21CD44D140069677D /* PageScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollViewController.swift; sourceTree = "<group>"; };
+		7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollHelperView.swift; sourceTree = "<group>"; };
+		7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyChartViewController.swift; sourceTree = "<group>"; };
 		CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalFullScreenLoadingView.xib; sourceTree = "<group>"; };
 		CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenLoadingView.swift; sourceTree = "<group>"; };
 		CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalFullScreenLoadingView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,14 @@
 				3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7C54F0E41CD44E440069677D /* PageScrollHelperView */ = {
+			isa = PBXGroup;
+			children = (
+				7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */,
+			);
+			name = PageScrollHelperView;
 			sourceTree = "<group>";
 		};
 		CD520F5B1C1924F5009062F3 /* FullScreenLoading */ = {
@@ -292,6 +302,7 @@
 		CDBE23461BF92EA800291F56 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7C54F0E41CD44E440069677D /* PageScrollHelperView */,
 				F1EC7DC51C2823A7003CEA24 /* Share */,
 				F1B4CB7A1C07B5A7007DB048 /* Alert */,
 				CD520F5B1C1924F5009062F3 /* FullScreenLoading */,
@@ -317,8 +328,8 @@
 				F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */,
 				F15593021C110447009CE684 /* FeaturedStationViewController.swift */,
 				F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */,
-				7C54F0DE1CD423670069677D /* EnergyChartViewController.swift */,
-				7C54F0E01CD445260069677D /* PaginatedScrollViewController.swift */,
+				7C54F0E21CD44D140069677D /* PageScrollViewController.swift */,
+				7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -517,8 +528,10 @@
 				F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */,
 				F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */,
 				F1EC7DC91C28241F003CEA24 /* InternalShareView.swift in Sources */,
+				7C54F0E31CD44D140069677D /* PageScrollViewController.swift in Sources */,
 				F13FBBB11C10893600797EC4 /* PlayableTableViewCell.swift in Sources */,
 				F1B4CB721C0748ED007DB048 /* SavedSation.swift in Sources */,
+				7C54F0E61CD44E620069677D /* PageScrollHelperView.swift in Sources */,
 				CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */,
 				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,
 				CD8666E61C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift in Sources */,
@@ -527,16 +540,15 @@
 				CD9FA4491BF9327F003B8A62 /* LoginViewController.swift in Sources */,
 				F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */,
 				CD9FA4611BFA993C003B8A62 /* UIViewController+Stationdose.swift in Sources */,
-				7C54F0E11CD445260069677D /* PaginatedScrollViewController.swift in Sources */,
 				CD8666E21C078904007F4F0A /* TransitionManager.swift in Sources */,
 				CDEFD01B1C0782EF00957580 /* TransitionAnimations.swift in Sources */,
 				CD9FA4721BFB9FD3003B8A62 /* RequestPremiumViewController.swift in Sources */,
 				F1B4CB731C0748ED007DB048 /* Track.swift in Sources */,
+				7C54F0EB1CD465DB0069677D /* EnergyChartViewController.swift in Sources */,
 				F1CC91921C0F530800E3C090 /* ModelManager.swift in Sources */,
 				F1F91C6B1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift in Sources */,
 				CDBE230E1BF92DFB00291F56 /* AppDelegate.swift in Sources */,
 				F18E15381C1871D40020AA17 /* PlaybackControlView.swift in Sources */,
-				7C54F0DF1CD423670069677D /* EnergyChartViewController.swift in Sources */,
 				CD9FA44B1BF93323003B8A62 /* HomeViewController.swift in Sources */,
 				CD9FA4511BF93876003B8A62 /* Constants.swift in Sources */,
 				CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */,

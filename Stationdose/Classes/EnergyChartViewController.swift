@@ -11,12 +11,26 @@ import Charts
 
 class EnergyChartViewController: UIViewController {
 
-    @IBOutlet weak var chartView: LineChartView!
     weak var station: Station?
+    var chartView: LineChartView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.clearColor()
+        chartView = LineChartView(frame: self.view.frame)
+        chartView?.backgroundColor = UIColor.clearColor()
+        self.view.addSubview(chartView!)        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func setupChart () {
+        
         var energyValues: [Double] = []
         if station != nil && station?.tracks?.count > 0 {
             for track in station!.tracks! {
@@ -26,32 +40,23 @@ class EnergyChartViewController: UIViewController {
             }
         }
         
-        setupChart(energyValues)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func setupChart (values: [Double]) {
         var dataEntries: [ChartDataEntry] = []
         
         var xIndices: [Int] = []
-        for i in 0..<values.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+        for i in 0..<energyValues.count {
+            let dataEntry = ChartDataEntry(value: energyValues[i], xIndex: i)
             dataEntries.append(dataEntry)
             xIndices.append(i)
         }
         
-        let left = chartView.getAxis(ChartYAxis.AxisDependency.Left)
+        let left = chartView!.getAxis(ChartYAxis.AxisDependency.Left)
         left.axisMaxValue = 1.5
         left.axisMinValue = 0.0
         left.granularity = 0.05
         left.drawLabelsEnabled = false
         left.drawGridLinesEnabled = true
         
-        let right = chartView.xAxis
+        let right = chartView!.xAxis
         right.drawLabelsEnabled = false
         right.drawGridLinesEnabled = false
         
@@ -62,8 +67,8 @@ class EnergyChartViewController: UIViewController {
         chartDataSet.fillAlpha = 1.0
         chartDataSet.drawFilledEnabled = true
         
-//        let c1 = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1).CGColor
-//        let c2 = UIColor(red: 0, green: 1.0, blue: 0, alpha: 1).CGColor
+        //        let c1 = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1).CGColor
+        //        let c2 = UIColor(red: 0, green: 1.0, blue: 0, alpha: 1).CGColor
         let topColor = UIColor.yellowColor().CGColor
         let botColor = UIColor(red: 0, green: 1, blue: 1, alpha: 1).CGColor
         
@@ -74,15 +79,15 @@ class EnergyChartViewController: UIViewController {
         }
         
         let chartData = LineChartData(xVals: xIndices, dataSet: chartDataSet)
-        chartView.scaleXEnabled = false
-        chartView.scaleYEnabled = false
-        chartView.dragEnabled = false
-        chartView.descriptionText = ""
-        chartView.legend.enabled = false
-        chartView.userInteractionEnabled = false
-        chartView.data = chartData
+        chartView!.scaleXEnabled = false
+        chartView!.scaleYEnabled = false
+        chartView!.dragEnabled = false
+        chartView!.descriptionText = ""
+        chartView!.legend.enabled = false
+        chartView!.userInteractionEnabled = false
+        chartView!.data = chartData
         
-        let handler = chartView.viewPortHandler
+        let handler = chartView!.viewPortHandler
         handler.fitScreen()
     }
 
