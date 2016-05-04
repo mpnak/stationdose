@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C1031B91CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1031B81CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift */; };
+		7C1031BB1CD9A02E00B65E7A /* StationsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1031BA1CD9A02E00B65E7A /* StationsListTableViewController.swift */; };
 		7C54F0DD1CD422D80069677D /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C54F0DB1CD422D80069677D /* Edit.storyboard */; };
 		7C54F0E31CD44D140069677D /* PageScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E21CD44D140069677D /* PageScrollViewController.swift */; };
 		7C54F0E61CD44E620069677D /* PageScrollHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */; };
 		7C54F0EB1CD465DB0069677D /* EnergyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */; };
+		7C54F0ED1CD82DCC0069677D /* MyStationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EC1CD82DCC0069677D /* MyStationsCollectionViewCell.swift */; };
+		7C54F0EF1CD831480069677D /* MyStationsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EE1CD831480069677D /* MyStationsCollectionViewController.swift */; };
 		CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */; };
 		CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */; };
 		CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */; };
@@ -70,10 +74,14 @@
 /* Begin PBXFileReference section */
 		24E06A1BF2138C0B19B5B149 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7C1031B81CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsCollectionViewLayout.swift; sourceTree = "<group>"; };
+		7C1031BA1CD9A02E00B65E7A /* StationsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsListTableViewController.swift; sourceTree = "<group>"; };
 		7C54F0DC1CD422D80069677D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Edit.storyboard; sourceTree = "<group>"; };
 		7C54F0E21CD44D140069677D /* PageScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollViewController.swift; sourceTree = "<group>"; };
 		7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollHelperView.swift; sourceTree = "<group>"; };
 		7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyChartViewController.swift; sourceTree = "<group>"; };
+		7C54F0EC1CD82DCC0069677D /* MyStationsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsCollectionViewCell.swift; sourceTree = "<group>"; };
+		7C54F0EE1CD831480069677D /* MyStationsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsCollectionViewController.swift; sourceTree = "<group>"; };
 		CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalFullScreenLoadingView.xib; sourceTree = "<group>"; };
 		CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenLoadingView.swift; sourceTree = "<group>"; };
 		CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalFullScreenLoadingView.swift; sourceTree = "<group>"; };
@@ -309,6 +317,7 @@
 				F13FBBAE1C10889C00797EC4 /* BaseTableViewCell.swift */,
 				F13FBBB01C10893600797EC4 /* PlayableTableViewCell.swift */,
 				F1F91C6A1BFF9B29000E0BB7 /* MyStationsTableViewCell.swift */,
+				7C54F0EC1CD82DCC0069677D /* MyStationsCollectionViewCell.swift */,
 				F1F91C6C1BFF9B44000E0BB7 /* StationsListTableViewCell.swift */,
 				F10FB1761C0E3005000C90C1 /* TrackTableViewCell.swift */,
 				CD8666E51C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift */,
@@ -330,6 +339,9 @@
 				F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */,
 				7C54F0E21CD44D140069677D /* PageScrollViewController.swift */,
 				7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */,
+				7C1031BA1CD9A02E00B65E7A /* StationsListTableViewController.swift */,
+				7C54F0EE1CD831480069677D /* MyStationsCollectionViewController.swift */,
+				7C1031B81CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -519,10 +531,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C54F0ED1CD82DCC0069677D /* MyStationsCollectionViewCell.swift in Sources */,
 				F1A394781BFE453100A2C970 /* BaseViewController.swift in Sources */,
 				CD6BD2CD1C062AFB006D812B /* Station.swift in Sources */,
 				F1B4CB751C079E64007DB048 /* AlertView.swift in Sources */,
 				CD9FA45F1BFA873F003B8A62 /* SpotifyManager.swift in Sources */,
+				7C1031B91CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift in Sources */,
 				F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */,
 				F17157441C1774BC008378C3 /* PlaybackManager.swift in Sources */,
 				F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */,
@@ -541,8 +555,10 @@
 				F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */,
 				CD9FA4611BFA993C003B8A62 /* UIViewController+Stationdose.swift in Sources */,
 				CD8666E21C078904007F4F0A /* TransitionManager.swift in Sources */,
+				7C1031BB1CD9A02E00B65E7A /* StationsListTableViewController.swift in Sources */,
 				CDEFD01B1C0782EF00957580 /* TransitionAnimations.swift in Sources */,
 				CD9FA4721BFB9FD3003B8A62 /* RequestPremiumViewController.swift in Sources */,
+				7C54F0EF1CD831480069677D /* MyStationsCollectionViewController.swift in Sources */,
 				F1B4CB731C0748ED007DB048 /* Track.swift in Sources */,
 				7C54F0EB1CD465DB0069677D /* EnergyChartViewController.swift in Sources */,
 				F1CC91921C0F530800E3C090 /* ModelManager.swift in Sources */,
