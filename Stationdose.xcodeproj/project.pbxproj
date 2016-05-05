@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7C1031B91CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1031B81CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift */; };
 		7C1031BB1CD9A02E00B65E7A /* StationsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1031BA1CD9A02E00B65E7A /* StationsListTableViewController.swift */; };
+		7C1031C11CDAADBB00B65E7A /* SideScrollerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1031C01CDAADBB00B65E7A /* SideScrollerViewController.swift */; };
+		7C1031C31CDBD12700B65E7A /* EditPlaylistChartWeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C1031C21CDBD12700B65E7A /* EditPlaylistChartWeatherView.xib */; };
+		7C1031C51CDBD4A300B65E7A /* EditPlaylistChartWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1031C41CDBD4A300B65E7A /* EditPlaylistChartWeatherView.swift */; };
 		7C54F0DD1CD422D80069677D /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C54F0DB1CD422D80069677D /* Edit.storyboard */; };
 		7C54F0E31CD44D140069677D /* PageScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E21CD44D140069677D /* PageScrollViewController.swift */; };
 		7C54F0E61CD44E620069677D /* PageScrollHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */; };
@@ -76,6 +79,9 @@
 		3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7C1031B81CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		7C1031BA1CD9A02E00B65E7A /* StationsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsListTableViewController.swift; sourceTree = "<group>"; };
+		7C1031C01CDAADBB00B65E7A /* SideScrollerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideScrollerViewController.swift; sourceTree = "<group>"; };
+		7C1031C21CDBD12700B65E7A /* EditPlaylistChartWeatherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPlaylistChartWeatherView.xib; sourceTree = "<group>"; };
+		7C1031C41CDBD4A300B65E7A /* EditPlaylistChartWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlaylistChartWeatherView.swift; sourceTree = "<group>"; };
 		7C54F0DC1CD422D80069677D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Edit.storyboard; sourceTree = "<group>"; };
 		7C54F0E21CD44D140069677D /* PageScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollViewController.swift; sourceTree = "<group>"; };
 		7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollHelperView.swift; sourceTree = "<group>"; };
@@ -181,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */,
+				7C1031C21CDBD12700B65E7A /* EditPlaylistChartWeatherView.xib */,
+				7C1031C41CDBD4A300B65E7A /* EditPlaylistChartWeatherView.swift */,
 			);
 			name = PageScrollHelperView;
 			sourceTree = "<group>";
@@ -338,6 +346,7 @@
 				F15593021C110447009CE684 /* FeaturedStationViewController.swift */,
 				F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */,
 				7C54F0E21CD44D140069677D /* PageScrollViewController.swift */,
+				7C1031C01CDAADBB00B65E7A /* SideScrollerViewController.swift */,
 				7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */,
 				7C1031BA1CD9A02E00B65E7A /* StationsListTableViewController.swift */,
 				7C54F0EE1CD831480069677D /* MyStationsCollectionViewController.swift */,
@@ -447,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9FA46B1BFB71A4003B8A62 /* Yantramanav-Black.ttf in Resources */,
+				7C1031C31CDBD12700B65E7A /* EditPlaylistChartWeatherView.xib in Resources */,
 				F1EC7DC71C2823C2003CEA24 /* InternalShareView.xib in Resources */,
 				CD9FA46F1BFB71A4003B8A62 /* Yantramanav-Regular.ttf in Resources */,
 				CD9FA46E1BFB71A4003B8A62 /* Yantramanav-Medium.ttf in Resources */,
@@ -539,6 +549,7 @@
 				7C1031B91CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift in Sources */,
 				F15593031C110447009CE684 /* FeaturedStationViewController.swift in Sources */,
 				F17157441C1774BC008378C3 /* PlaybackManager.swift in Sources */,
+				7C1031C51CDBD4A300B65E7A /* EditPlaylistChartWeatherView.swift in Sources */,
 				F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */,
 				F13FBBAF1C10889C00797EC4 /* BaseTableViewCell.swift in Sources */,
 				F1EC7DC91C28241F003CEA24 /* InternalShareView.swift in Sources */,
@@ -547,6 +558,7 @@
 				F1B4CB721C0748ED007DB048 /* SavedSation.swift in Sources */,
 				7C54F0E61CD44E620069677D /* PageScrollHelperView.swift in Sources */,
 				CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */,
+				7C1031C11CDAADBB00B65E7A /* SideScrollerViewController.swift in Sources */,
 				CD6BD2D01C0651A6006D812B /* LocationManager.swift in Sources */,
 				CD8666E61C079E73007F4F0A /* FeaturedStationsCollectionViewCell.swift in Sources */,
 				F114BFBE1C21EFB20000A3CC /* EditStationViewController.swift in Sources */,

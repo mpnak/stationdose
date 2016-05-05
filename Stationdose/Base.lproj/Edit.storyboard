@@ -153,24 +153,24 @@
                                     <constraint firstAttribute="height" constant="1" id="b0I-6V-Elb"/>
                                 </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7S-GO-0Kl" userLabel="Mode Container View">
-                                <rect key="frame" x="0.0" y="298" width="600" height="60"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7S-GO-0Kl" userLabel="SideScrollerContainerView">
+                                <rect key="frame" x="0.0" y="298" width="600" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="pkV-0k-sLF"/>
+                                    <constraint firstAttribute="height" constant="80" id="pkV-0k-sLF"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="sIZ-Ir-2x0" kind="embed" id="hx9-wj-81v"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geS-9a-KeN" userLabel="Separator View">
-                                <rect key="frame" x="10" y="358" width="580" height="1"/>
+                                <rect key="frame" x="10" y="378" width="580" height="1"/>
                                 <color key="backgroundColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="hfn-IE-z2R"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mwf-M0-zp6">
-                                <rect key="frame" x="0.0" y="359" width="600" height="120"/>
+                                <rect key="frame" x="0.0" y="379" width="600" height="120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCL-3Y-q1Y">
                                         <rect key="frame" x="26" y="44" width="548" height="41"/>
@@ -467,22 +467,40 @@
             </objects>
             <point key="canvasLocation" x="1042" y="1467"/>
         </scene>
-        <!--View Controller-->
+        <!--Side Scroller View Controller-->
         <scene sceneID="4MK-D2-Eps">
             <objects>
-                <viewController id="sIZ-Ir-2x0" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SideScrollerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sIZ-Ir-2x0" customClass="SideScrollerViewController" customModule="Stationdose" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GO2-jc-jy4"/>
                         <viewControllerLayoutGuide type="bottom" id="wTD-Jl-GJR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qA4-aJ-dqB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NL-Hh-yf0">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sIZ-Ir-2x0" id="ItU-LQ-laU"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9NL-Hh-yf0" firstAttribute="top" secondItem="GO2-jc-jy4" secondAttribute="bottom" id="BiS-7y-fZF"/>
+                            <constraint firstAttribute="trailing" secondItem="9NL-Hh-yf0" secondAttribute="trailing" id="Vvc-7v-EzK"/>
+                            <constraint firstItem="wTD-Jl-GJR" firstAttribute="top" secondItem="9NL-Hh-yf0" secondAttribute="bottom" id="Zd0-O8-zHy"/>
+                            <constraint firstItem="9NL-Hh-yf0" firstAttribute="leading" secondItem="qA4-aJ-dqB" secondAttribute="leading" id="cmE-yN-a2Z"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="9NL-Hh-yf0" id="c4O-7t-11W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdv-Z3-OUX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1042" y="1658"/>
         </scene>
     </scenes>
     <resources>

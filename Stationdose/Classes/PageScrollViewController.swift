@@ -8,13 +8,26 @@
 
 import UIKit
 
+protocol DetailsPageScrollDelegate {
+    func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int)
+    func detailsScrollViewSetIndex(defaultIndex: Int)
+    func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat)
+    func detailsScrollViewDidPage(scrollView: UIScrollView)
+}
+
 class PageScrollViewController: UIViewController, UIScrollViewDelegate {
 
     var altPlaylistCount = 5
     let kPadding: CGFloat = 40.0
+    var prevPageIndex = -1
     var currentPageIndex = 0
+    var nextPageIndex = 1
     var myViews: [UIView] = []
     var laidOut = false
+    
+    var pageScrollDelegate: DetailsPageScrollDelegate?
+    
+    var defaultPlaylistIndex = 2
     
     @IBOutlet weak var scrollView: UIScrollView?
     var station: Station?
@@ -47,8 +60,12 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
             }
             let w: CGFloat = CGFloat(altPlaylistCount) * self.scrollView!.bounds.size.width
             self.scrollView?.contentSize = CGSizeMake(w, self.scrollView!.contentSize.height)
+            currentPageIndex = defaultPlaylistIndex
+            self.scrollView?.contentOffset = CGPointMake(CGFloat(currentPageIndex)*self.scrollView!.bounds.width, 0)
             self.initializeAnimations()
             
+            pageScrollDelegate?.detailsScrollViewSetIndex(defaultPlaylistIndex)
+
             laidOut = true
         }
     }
@@ -60,6 +77,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     
     var prevOffsetX: CGFloat = 0.0
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        
         let offsetX = scrollView.contentOffset.x
         print(offsetX)
     
@@ -77,6 +95,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         currentPageIndex = calculatePageIndex()
         print("page: \(currentPageIndex)")
+        pageScrollDelegate?.detailsScrollViewDidPage(scrollView)
     }
     
     func calculatePageIndex () -> Int {
@@ -101,6 +120,12 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
 //        let ratio = modulo / self.view.bounds.size.width
         
         print("ratio: \(ratio)")
+        
+        if direction > 0 {
+            pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex+1, direction: direction, withOffsetProportion: ratio)
+        } else {
+            pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex-1, direction: direction, withOffsetProportion: ratio)
+        }
         
         if ratio > 0 {
             if direction > 0 && currentPageIndex < myViews.count-1 {
@@ -157,15 +182,4 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
             }
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
