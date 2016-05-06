@@ -243,7 +243,7 @@ Please sign in to your account to start.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDY-KY-Q4s">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBH-K0-lSX">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
@@ -257,27 +257,27 @@ Please sign in to your account to start.</string>
                                                             <action selector="showSponsoredStationAction:" destination="ISF-u2-Npe" eventType="touchUpInside" id="mS1-KT-jqV"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bnt-sponsored-play" translatesAutoresizingMaskIntoConstraints="NO" id="PD7-kf-3Gx">
-                                                        <rect key="frame" x="245" y="63" width="120" height="34"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="PD7-kf-3Gx" secondAttribute="height" multiplier="33:33" constant="86" id="JLx-xQ-KHo"/>
-                                                        </constraints>
-                                                    </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lbl-sponsored-wattermark" translatesAutoresizingMaskIntoConstraints="NO" id="rTG-8G-nMg">
                                                         <rect key="frame" x="306" y="2" width="69" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="rTG-8G-nMg" secondAttribute="height" multiplier="207:54" id="CEk-JR-702"/>
                                                         </constraints>
                                                     </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn-check-playlist" translatesAutoresizingMaskIntoConstraints="NO" id="PD7-kf-3Gx">
+                                                        <rect key="frame" x="210" y="67" width="150" height="28"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="28" id="bWZ-Eu-5zJ"/>
+                                                            <constraint firstAttribute="width" secondItem="PD7-kf-3Gx" secondAttribute="height" multiplier="75:14" id="nby-bw-DV4"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="rTG-8G-nMg" secondAttribute="trailing" id="2SR-S7-aJV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PD7-kf-3Gx" secondAttribute="bottom" constant="15" id="5WR-Fv-uok"/>
                                                     <constraint firstItem="rTG-8G-nMg" firstAttribute="width" secondItem="JBH-K0-lSX" secondAttribute="width" multiplier="0.184" id="6Kq-zH-7F0"/>
                                                     <constraint firstItem="rTG-8G-nMg" firstAttribute="top" secondItem="JBH-K0-lSX" secondAttribute="top" constant="2" id="Bt5-dI-KjQ"/>
-                                                    <constraint firstItem="PD7-kf-3Gx" firstAttribute="width" secondItem="JBH-K0-lSX" secondAttribute="width" multiplier="0.09" constant="86.25" id="NG5-qS-8kC"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PD7-kf-3Gx" secondAttribute="trailing" constant="10" id="XfW-JI-zBd"/>
-                                                    <constraint firstAttribute="bottom" secondItem="PD7-kf-3Gx" secondAttribute="bottom" constant="13" id="Zx2-Xd-vvk"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PD7-kf-3Gx" secondAttribute="trailing" constant="15" id="JVe-cK-Bcr"/>
                                                     <constraint firstAttribute="width" secondItem="JBH-K0-lSX" secondAttribute="height" multiplier="75:22" id="d48-Tz-ISp"/>
                                                     <constraint firstAttribute="trailing" secondItem="Qar-6M-lHy" secondAttribute="trailing" id="him-6Y-ou0"/>
                                                     <constraint firstAttribute="bottom" secondItem="cGr-A0-kn3" secondAttribute="bottom" id="iSE-BC-HKL"/>
@@ -290,13 +290,13 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWr-pu-nM5">
-                                                <rect key="frame" x="0.0" y="110" width="375" height="197"/>
+                                                <rect key="frame" x="0.0" y="110" width="375" height="197.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEl-xf-zgg">
-                                                        <rect key="frame" x="0.0" y="33" width="375" height="165"/>
+                                                        <rect key="frame" x="0.0" y="33" width="375" height="164.5"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C09-e5-zHc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="OVS-6n-KEL">
                                                                     <size key="itemSize" width="375" height="164"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -468,7 +468,7 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JW1-be-RUO">
-                                                <rect key="frame" x="0.0" y="307" width="375" height="296"/>
+                                                <rect key="frame" x="0.0" y="307.5" width="375" height="296"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sQj-RJ-pN8">
                                                         <rect key="frame" x="70" y="20" width="235" height="29"/>
@@ -1591,8 +1591,8 @@ Please sign in to your account to start.</string>
         </scene>
     </scenes>
     <resources>
-        <image name="bnt-sponsored-play" width="34" height="34"/>
         <image name="btn-add-station" width="35" height="35"/>
+        <image name="btn-check-playlist" width="139" height="26"/>
         <image name="btn-refresh" width="28" height="28"/>
         <image name="btn-remove-station" width="35" height="35"/>
         <image name="btn-settings" width="28" height="28"/>
