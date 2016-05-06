@@ -87,9 +87,16 @@ class SongSortApiManager {
         }
     }
 
-    
     func removeSavedStation(stationId: Int) {
-        manager.request(.DELETE, baseURL+String(format: ApiMethods.station, stationId))
+        guard let _ = ModelManager.sharedInstance.user
+            else{
+                self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
+                return
+        }
+        let data = ["station": ["saved_station": false]]
+        manager.request(.PUT, String(format:baseURL+ApiMethods.station, stationId), parameters:data).responseObject("station") { (response: Response<Station, NSError>) -> Void in
+            self.showGenericErrorIfNeeded(response.result.error)
+        }
     }
     
     func getStationTracks(stationId: Int, onCompletion: (Station?, NSError?) -> Void) {
