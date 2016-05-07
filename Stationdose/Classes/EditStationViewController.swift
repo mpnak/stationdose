@@ -65,8 +65,8 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
         sideScrollerViewController?.scrollingFromIndex(fromIndex, toIndex: toIndex, direction: direction, withOffsetProportion: withOffsetProportion)
     }
     
-    func detailsScrollViewDidPage(scrollView: UIScrollView) {
-        sideScrollerViewController?.scrollViewDidPage(scrollView)
+    func detailsScrollViewDidPage(scrollView: UIScrollView, pageIndex: Int) {
+        sideScrollerViewController?.scrollViewDidPage(scrollView, pageIndex: pageIndex)
     }
     
     func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int) {

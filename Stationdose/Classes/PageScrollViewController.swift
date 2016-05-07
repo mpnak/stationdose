@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import Foundation
 
 protocol DetailsPageScrollDelegate {
     func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int)
     func detailsScrollViewSetIndex(defaultIndex: Int)
     func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat)
-    func detailsScrollViewDidPage(scrollView: UIScrollView)
+    func detailsScrollViewDidPage(scrollView: UIScrollView, pageIndex: Int)
 }
 
 class PageScrollViewController: UIViewController, UIScrollViewDelegate {
-
+    
     var altPlaylistCount = 5
     let kPadding: CGFloat = 40.0
     var prevPageIndex = -1
@@ -28,13 +29,15 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     var pageScrollDelegate: DetailsPageScrollDelegate?
     
     var defaultPlaylistIndex = 2
+    var prevDirection = 0
+    var pagingCancelled = false
     
     @IBOutlet weak var scrollView: UIScrollView?
     var station: Station?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.clearColor()
         self.scrollView?.bounces = false
@@ -65,11 +68,11 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
             self.initializeAnimations()
             
             pageScrollDelegate?.detailsScrollViewSetIndex(defaultPlaylistIndex)
-
+            
             laidOut = true
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -80,106 +83,162 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
         
         let offsetX = scrollView.contentOffset.x
         print(offsetX)
-    
+        
+        var direction = 0
         if prevOffsetX < offsetX {
-            animateProperties(1)
+            direction = 1
         } else {
             if offsetX < myViews.last?.frame.origin.x {
-                animateProperties(-1)
+                direction = -1
             }
         }
+        if prevDirection != direction && prevDirection != 0 {
+            pagingCancelled = true
+        }
+        animateProperties(direction)
         
+        prevDirection = direction
         prevOffsetX = offsetX
     }
-
+    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        currentPageIndex = calculatePageIndex()
+        prevDirection = 0
+        pagingCancelled = false
+        
+        currentPageIndex = Int(round(calculatePageIndex()))
         print("page: \(currentPageIndex)")
-        pageScrollDelegate?.detailsScrollViewDidPage(scrollView)
+    
+        pageScrollDelegate?.detailsScrollViewDidPage(scrollView, pageIndex: currentPageIndex)
+        UIView.animateWithDuration(0.2) { 
+            self.initializeAnimations()
+        }
     }
     
-    func calculatePageIndex () -> Int {
+    func calculatePageIndex () -> Double {
         let offsetX = scrollView!.contentOffset.x
-        return Int(offsetX / self.scrollView!.frame.size.width)
+        return Double(offsetX / self.scrollView!.frame.size.width)
     }
     
     func initializeAnimations () {
+        let currentView = myViews[currentPageIndex]
         for view in myViews {
-            view.transform = CGAffineTransformMakeScale(0.7, 0.7)
+            if view != currentView {
+                view.transform = CGAffineTransformMakeScale(0.7, 0.7)
+            }
         }
-        myViews[currentPageIndex].transform = CGAffineTransformMakeScale(1.0, 1.0)
+        currentView.transform = CGAffineTransformMakeScale(1.0, 1.0)
     }
-
+    
     func animateProperties (direction: Int) {
         
         let offsetX = scrollView!.contentOffset.x
         let modulo = offsetX % scrollView!.bounds.size.width
         let ratio = modulo / scrollView!.bounds.size.width
-        
-//        let modulo = offsetX % self.view.bounds.size.width
-//        let ratio = modulo / self.view.bounds.size.width
-        
         print("ratio: \(ratio)")
         
-        if direction > 0 {
-            pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex+1, direction: direction, withOffsetProportion: ratio)
-        } else {
-            pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex-1, direction: direction, withOffsetProportion: ratio)
-        }
-        
-        if ratio > 0 {
-            if direction > 0 && currentPageIndex < myViews.count-1 {
-                let oldPage = currentPageIndex
-                let newPage = currentPageIndex + 1
-                if oldPage <= myViews.count-1 {
-                    let oldView = myViews[oldPage]
-                    
+        if !pagingCancelled {
+    
+            if direction > 0 {
+                pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex+1, direction: direction, withOffsetProportion: ratio)
+            } else {
+                pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex-1, direction: direction, withOffsetProportion: ratio)
+            }
+            
+            if ratio != 0 {
+                if direction > 0 {
+                    let currentView = myViews[currentPageIndex]
                     var scale = 1.0 - ratio
-                    if scale <= 0.7 {
+                    if scale < 0.7 {
                         scale = 0.7
                     }
-                    let transform = CGAffineTransformMakeScale(scale, scale)
-                    oldView.transform = transform
-                }
-                if newPage <= myViews.count-1 {
-                    let newView = myViews[newPage]
+                    let t1 = CGAffineTransformMakeScale(scale, scale)
+                    currentView.transform = t1
                     
-                    var scale = ratio + 0.7
-                    if scale >= 1.0 {
-                        scale = 1.0
+                    if currentPageIndex+1 <= myViews.count-1 {
+                        let nextView = myViews[currentPageIndex+1]
+                        scale = ratio + 0.7
+                        if scale >= 1.0 {
+                            scale = 1.0
+                        }
+                        let t2 = CGAffineTransformMakeScale(scale, scale)
+                        nextView.transform = t2
                     }
-                    let transform = CGAffineTransformMakeScale(scale, scale)
-                    newView.transform = transform
+                }
+                
+                if direction < 0 {
+                    
+                    let currentView = myViews[currentPageIndex]
+                    var scale = max(ratio, 0.7)
+                    
+                    print("scale-current: \(scale)")
+                    let t1 = CGAffineTransformMakeScale(scale, scale)
+                    currentView.transform = t1
+                    
+                    if currentPageIndex-1 >= 0 {
+                        let prevView = myViews[currentPageIndex-1]
+                        scale = 1 - ratio + 0.7
+                        if scale >= 1.0 {
+                            scale = 1.0
+                        }
+                        print("scale-prev: \(scale)")
+                        let t2 = CGAffineTransformMakeScale(scale, scale)
+                        prevView.transform = t2
+                    }
+                }
+            }
+        } else {
+            print("PAGING CANCELLED!!!!!!!!!!!")
+            
+            if direction < 0 {
+                pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex+1, direction: direction, withOffsetProportion: ratio)
+            } else {
+                pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex-1, direction: direction, withOffsetProportion: ratio)
+            }
+            
+            if ratio != 0 {
+                if direction < 0 {
+                    let currentView = myViews[currentPageIndex]
+                    var scale = 1.0 - ratio
+                    if scale < 0.7 {
+                        scale = 0.7
+                    }
+                    let t1 = CGAffineTransformMakeScale(scale, scale)
+                    currentView.transform = t1
+                    
+                    if currentPageIndex+1 <= myViews.count-1 {
+                        let nextView = myViews[currentPageIndex+1]
+                        scale = ratio + 0.7
+                        if scale >= 1.0 {
+                            scale = 1.0
+                        }
+                        let t2 = CGAffineTransformMakeScale(scale, scale)
+                        nextView.transform = t2
+                    }
+                }
+                
+                if direction > 0 {
+                    
+                    let currentView = myViews[currentPageIndex]
+                    var scale = max(ratio, 0.7)
+                    
+                    print("scale-current: \(scale)")
+                    let t1 = CGAffineTransformMakeScale(scale, scale)
+                    currentView.transform = t1
+                    
+                    if currentPageIndex-1 >= 0 {
+                        let prevView = myViews[currentPageIndex-1]
+                        scale = 1 - ratio + 0.7
+                        if scale >= 1.0 {
+                            scale = 1.0
+                        }
+                        print("scale-prev: \(scale)")
+                        let t2 = CGAffineTransformMakeScale(scale, scale)
+                        prevView.transform = t2
+                    }
                 }
             }
             
-            if direction < 0 {
-                let currentPage = currentPageIndex
-                let prevPage = currentPageIndex - 1
-                
-                if currentPage <= myViews.count-1 && currentPage >= 0 {
-                    let currentView = myViews[currentPage]
-                    
-                    var scale = ratio
-                    if scale <= 0.7 {
-                        scale = 0.7
-                    }
-                    let transform = CGAffineTransformMakeScale(scale, scale)
-                    currentView.transform = transform
-                }
-                
-                if prevPage >= 0 {
-                    print("prevPage: \(prevPage)")
-                    let prevView = myViews[prevPage]
-                    
-                    var scale = 1.0 - ratio + 0.7
-                    if scale >= 1.0 {
-                        scale = 1.0
-                    }
-                    let transform = CGAffineTransformMakeScale(scale, scale)
-                    prevView.transform = transform
-                }
-            }
         }
+            
     }
 }

@@ -487,44 +487,6 @@ Please sign in to your account to start.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I01-N4-isG">
                                                         <rect key="frame" x="0.0" y="63" width="375" height="233"/>
                                                         <subviews>
-                                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQK-mb-Dwg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your experience" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KO-Vl-oj5">
-                                                                        <rect key="frame" x="80" y="91" width="216" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="21" id="OUj-DZ-MDM"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="20"/>
-                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKR-eR-mPd">
-                                                                        <rect key="frame" x="141" y="116" width="94" height="30"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="30" id="5Y4-VV-2tf"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
-                                                                        <state key="normal" title="+ Add Stations">
-                                                                            <color key="titleColor" red="0.070588235289999995" green="0.82352941180000006" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        </state>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="NO"/>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="addStations:" destination="ISF-u2-Npe" eventType="touchUpInside" id="D56-se-ZTU"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <color key="backgroundColor" red="0.0" green="0.39826428282772186" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="RKR-eR-mPd" firstAttribute="centerY" secondItem="jQK-mb-Dwg" secondAttribute="centerY" constant="15" id="01v-0m-j6i"/>
-                                                                    <constraint firstAttribute="height" constant="232.5" id="4B5-bU-bUh"/>
-                                                                    <constraint firstItem="RKR-eR-mPd" firstAttribute="centerX" secondItem="jQK-mb-Dwg" secondAttribute="centerX" id="LJ0-Lz-WMD"/>
-                                                                    <constraint firstItem="5KO-Vl-oj5" firstAttribute="centerX" secondItem="jQK-mb-Dwg" secondAttribute="centerX" id="P33-Cg-d7q"/>
-                                                                    <constraint firstItem="5KO-Vl-oj5" firstAttribute="centerY" secondItem="jQK-mb-Dwg" secondAttribute="centerY" constant="-15" id="SIa-9I-eGl"/>
-                                                                </constraints>
-                                                            </view>
                                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaa-C9-xKa" userLabel="MyStations Container View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -536,7 +498,7 @@ Please sign in to your account to start.</string>
                                                                     <segue destination="Z9F-Hp-HB0" kind="embed" id="AFN-hR-NhC"/>
                                                                 </connections>
                                                             </containerView>
-                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgG-2c-gdC" userLabel="Stations Container View">
+                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgG-2c-gdC" userLabel="StationsList Container View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -550,25 +512,16 @@ Please sign in to your account to start.</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstItem="jQK-mb-Dwg" firstAttribute="leading" secondItem="I01-N4-isG" secondAttribute="leading" id="7da-pS-xRp"/>
                                                             <constraint firstItem="qaa-C9-xKa" firstAttribute="top" secondItem="I01-N4-isG" secondAttribute="top" id="Dq2-36-Upg"/>
                                                             <constraint firstItem="dgG-2c-gdC" firstAttribute="top" secondItem="I01-N4-isG" secondAttribute="top" id="GBp-Ry-Qhx"/>
-                                                            <constraint firstAttribute="trailing" secondItem="jQK-mb-Dwg" secondAttribute="trailing" id="N0b-aU-dTo"/>
                                                             <constraint firstAttribute="trailing" secondItem="dgG-2c-gdC" secondAttribute="trailing" id="VBa-w3-27L"/>
                                                             <constraint firstAttribute="trailing" secondItem="qaa-C9-xKa" secondAttribute="trailing" id="az9-xT-WcZ"/>
-                                                            <constraint firstItem="jQK-mb-Dwg" firstAttribute="top" secondItem="I01-N4-isG" secondAttribute="top" id="i4q-YB-sz1"/>
                                                             <constraint firstAttribute="bottom" secondItem="dgG-2c-gdC" secondAttribute="bottom" id="jMq-eh-LG2"/>
                                                             <constraint firstItem="dgG-2c-gdC" firstAttribute="leading" secondItem="I01-N4-isG" secondAttribute="leading" id="jxq-uj-6gC"/>
-                                                            <constraint firstAttribute="bottom" secondItem="jQK-mb-Dwg" secondAttribute="bottom" id="kig-w6-QSc"/>
                                                             <constraint firstAttribute="height" constant="232.5" id="mSh-aT-TDO"/>
                                                             <constraint firstItem="qaa-C9-xKa" firstAttribute="leading" secondItem="I01-N4-isG" secondAttribute="leading" id="qce-yd-i5U"/>
                                                             <constraint firstAttribute="bottom" secondItem="qaa-C9-xKa" secondAttribute="bottom" id="wu7-Tv-MAu"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="kig-w6-QSc"/>
-                                                            </mask>
-                                                        </variation>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -629,7 +582,6 @@ Please sign in to your account to start.</string>
                         <outlet property="featuresStationsPageControl" destination="kMz-kF-H1R" id="3Pk-8V-LAQ"/>
                         <outlet property="mainScrollView" destination="W6P-Wa-afx" id="MWr-Fg-tNe"/>
                         <outlet property="myStationsContainerView" destination="qaa-C9-xKa" id="5xU-PO-7fM"/>
-                        <outlet property="myStationsEmptyView" destination="jQK-mb-Dwg" id="dqb-OO-HO3"/>
                         <outlet property="sponsoredImageView" destination="cGr-A0-kn3" id="35S-8K-ICK"/>
                         <outlet property="stationsListContainerView" destination="dgG-2c-gdC" id="HmK-ek-WlX"/>
                         <outlet property="stationsSegmentedControl" destination="sQj-RJ-pN8" id="MEF-Eb-YVA"/>
@@ -650,7 +602,12 @@ Please sign in to your account to start.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.19275085295130001" green="0.0" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                        <collectionViewLayout key="collectionViewLayout" id="eSO-fl-GdZ" customClass="MyStationsCollectionViewLayout" customModule="Stationdose" customModuleProvider="target"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="SRv-Qs-S3x">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="375" height="233"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyStationsCollectionViewCell" id="FCo-Wx-QQD" customClass="MyStationsCollectionViewCell" customModule="Stationdose" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="172" height="172"/>
@@ -677,6 +634,57 @@ Please sign in to your account to start.</string>
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmptyView" id="VKG-IS-1xF">
+                            <rect key="frame" x="0.0" y="172" width="375" height="233"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymi-6x-yid" userLabel="EmptyView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your experience" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKx-bF-qGR">
+                                            <rect key="frame" x="80" y="91" width="216" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="216" id="83e-Yr-6VP"/>
+                                                <constraint firstAttribute="height" constant="21" id="a12-Ki-Isc"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="20"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjG-hH-xPn">
+                                            <rect key="frame" x="141" y="116" width="94" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="94" id="9WH-oH-6Wh"/>
+                                                <constraint firstAttribute="height" constant="30" id="DJP-gB-ayt"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                                            <state key="normal" title="+ Add Stations">
+                                                <color key="titleColor" red="0.070588235289999995" green="0.82352941180000006" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="addStationsPressed:" destination="Z9F-Hp-HB0" eventType="touchUpInside" id="lD0-0L-Z7r"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="zjG-hH-xPn" firstAttribute="centerX" secondItem="xKx-bF-qGR" secondAttribute="centerX" id="Ov6-ez-LOO"/>
+                                        <constraint firstItem="xKx-bF-qGR" firstAttribute="centerX" secondItem="Ymi-6x-yid" secondAttribute="centerX" id="oUe-XB-LjZ"/>
+                                        <constraint firstItem="zjG-hH-xPn" firstAttribute="top" secondItem="xKx-bF-qGR" secondAttribute="bottom" constant="4" id="rPc-Da-y2q"/>
+                                        <constraint firstItem="xKx-bF-qGR" firstAttribute="top" secondItem="Ymi-6x-yid" secondAttribute="top" constant="91" id="y3j-Dd-ezE"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Ymi-6x-yid" secondAttribute="trailing" id="IvQ-yu-HQk"/>
+                                <constraint firstItem="Ymi-6x-yid" firstAttribute="top" secondItem="VKG-IS-1xF" secondAttribute="top" id="UjA-qm-Jot"/>
+                                <constraint firstAttribute="bottom" secondItem="Ymi-6x-yid" secondAttribute="bottom" id="tfG-pU-lN0"/>
+                                <constraint firstItem="Ymi-6x-yid" firstAttribute="leading" secondItem="VKG-IS-1xF" secondAttribute="leading" id="udi-iq-zAR"/>
+                            </constraints>
+                        </collectionReusableView>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1576,7 +1584,7 @@ Please sign in to your account to start.</string>
                         </prototypes>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" red="0.99927953890489918" green="0.0" blue="0.12801972829246708" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.0" green="0.66100645332858987" blue="0.99927953890489918" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>

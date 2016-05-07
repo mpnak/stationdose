@@ -30,10 +30,10 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var tablesViewContaignerHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
     @IBOutlet weak var stationsSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var myStationsEmptyView: UIView!
     
     @IBOutlet weak var myStationsContainerView: UIView?
     @IBOutlet weak var stationsListContainerView: UIView?
+    var originalTableViewHeight: CGFloat = 0.0
     
     var myStationsCollectionViewController: MyStationsCollectionViewController?
     var stationsListTableViewController: StationsListTableViewController?
@@ -72,14 +72,12 @@ class HomeViewController: BaseViewController {
         self.showBrandingTitleView()
         self.showUserProfileButton()
         
+        originalTableViewHeight = tablesViewContaignerHeightLayoutConstraint.constant
+        
         self.featuresStationsPageControl.numberOfPages = self.featuredStations.count
         self.reloadSponsoredStations()
         
         self.stationsSegmentedControl.selectedSegmentIndex = self.myStations.count > 0 ? 0 : 1
-        
-        if myStationsCollectionViewController != nil {
-            self.myStationsContainerView?.frame.origin.x = self.myStations.count > 0 ? 0.0 : -self.view.bounds.width
-        }
         
         self.reloadData()
         
@@ -187,15 +185,15 @@ class HomeViewController: BaseViewController {
     }
         
     func reloadTablesViewContaignerHeight(animationDuration: NSTimeInterval, delay: NSTimeInterval) {
-        let myStationsEmptyViewHeight = myStationsEmptyView.frame.size.height
+        let emptyViewHeight = originalTableViewHeight
         if stationsSegmentedControl.selectedSegmentIndex == 0 {
             self.myStationsCollectionViewController?.view.setNeedsLayout()
             self.myStationsCollectionViewController?.view.layoutIfNeeded()
-            tablesViewContaignerHeightLayoutConstraint.constant = max(self.myStationsCollectionViewController!.collectionView!.contentSize.height, myStationsEmptyViewHeight)
+            tablesViewContaignerHeightLayoutConstraint.constant = max(self.myStationsCollectionViewController!.collectionView!.contentSize.height, emptyViewHeight)
         } else {
             self.stationsListTableViewController?.tableView.setNeedsLayout()
             self.stationsListTableViewController?.tableView.layoutIfNeeded()
-            tablesViewContaignerHeightLayoutConstraint.constant = max(self.stationsListTableViewController!.tableView.contentSize.height, myStationsEmptyViewHeight)
+            tablesViewContaignerHeightLayoutConstraint.constant = max(self.stationsListTableViewController!.tableView.contentSize.height, emptyViewHeight)
         }
         UIView.animateWithDuration(animationDuration, delay: delay, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.view.layoutIfNeeded()
@@ -206,17 +204,8 @@ class HomeViewController: BaseViewController {
         myStations = ModelManager.sharedInstance.savedStations
         stationsList = ModelManager.sharedInstance.stations
         
-        if stationsSegmentedControl.selectedSegmentIndex == 0 {
-            //myStations
-            if myStations.count == 0 {
-                self.myStationsEmptyView.alpha = 1
-            } else {
-                self.myStationsEmptyView.alpha = 0
-            }
-        } else {
-            //stationsList
-            self.myStationsEmptyView.alpha = 0
-        }
+        self.stationsListContainerView?.hidden = stationsSegmentedControl.selectedSegmentIndex == 0
+        self.stationsListContainerView?.userInteractionEnabled = stationsSegmentedControl.selectedSegmentIndex == 1
         
         stationsListTableViewController?.tableView.reloadData()
         myStationsCollectionViewController?.collectionView?.reloadData()
@@ -270,18 +259,13 @@ class HomeViewController: BaseViewController {
         }
         stationsSegmentedControlValueChangedEnabled = false
         
-        let moveToLeft = myStationsContainerView?.frame.origin.x == 0
-        
-        if myStations.count == 0 {
-            UIView.animateWithDuration(0.1, delay: moveToLeft ? 0.0 : 0.1, options: .CurveEaseInOut, animations: { () -> Void in
-                self.myStationsEmptyView.alpha = moveToLeft ? 0 : 1
-            }, completion: nil)
-        }
-        
         closeTableViewSwipeButtons(stationsListTableViewController!.tableView, animated:true)
         
+        let moveToLeft = sender.selectedSegmentIndex == 1
         animateStationsTableTransition(moveToLeft, completion:{ () -> Void in
             self.stationsSegmentedControlValueChangedEnabled = true
+            
+            self.stationsListContainerView?.userInteractionEnabled = moveToLeft
         })
         
         if moveToLeft {
@@ -329,15 +313,17 @@ class HomeViewController: BaseViewController {
         
         let currentTranslation2 = moveToLeft ? leftTable.frame.size.width : CGFloat(0.0)
         let translationTarget2 = moveToLeft ? CGFloat(0.0) : leftTable.frame.size.width
-        
+        //setup the beginning frames before animating to targets
+        for cell in self.stationsListTableViewController!.tableView.visibleCells {
+            cell.layer.transform = CATransform3DMakeTranslation(currentTranslation2, 0.0, 0.0)
+        }
+        self.stationsListContainerView?.hidden = false
         animateTableCells(rightTable, currentTranslation: currentTranslation2, translationTarget: translationTarget2) { () -> Void in
-            if translationTarget2 != 0 {
-                for i in 0 ..< rightTable.visibleCells.count {
-                    let cell = rightTable.visibleCells[i]
-                    cell.layer.transform = CATransform3DIdentity
-                }
-            } else {
-                print("back to list")
+            
+            self.stationsListContainerView?.hidden = !moveToLeft
+            
+            for cell in self.stationsListTableViewController!.tableView.visibleCells {
+                cell.layer.transform = CATransform3DIdentity
             }
             
             self.animateStationsTableCounter! -= 1
@@ -353,9 +339,7 @@ class HomeViewController: BaseViewController {
         
         for i in 0 ..< table.visibleCells.count {
             let cell = table.visibleCells[i]
-            
             let lastCell = (i == table.visibleCells.count-1)
-            cell.layer.transform = CATransform3DMakeTranslation(currentTranslation, 0.0, 0.0)
             
             let delay = Double(i) * animationBaseTime
             let time = 4.0 * animationBaseTime //2.0 * animationBaseTime if the animation don't user damping
@@ -363,10 +347,9 @@ class HomeViewController: BaseViewController {
             UIView.animateWithDuration(time, delay: delay, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .CurveEaseOut, animations: { () -> Void in
                 cell.layer.transform = CATransform3DMakeTranslation(translationTarget, 0.0, 0.0)
             }, completion: { finished -> Void in
-                    if lastCell {
-                        self.stationsListContainerView!.frame.origin.x = translationTarget
-                        completion()
-                    }
+                if lastCell {
+                    completion()
+                }
             })
             
         }
@@ -413,7 +396,7 @@ class HomeViewController: BaseViewController {
                 }
             }, completion: { finished -> Void in
                 if lastRow {
-                    self.myStationsContainerView!.frame.origin.x = translationTarget1
+                    
                     completion()
                 }
             })

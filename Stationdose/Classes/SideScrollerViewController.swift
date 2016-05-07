@@ -26,8 +26,6 @@ class SideScrollerViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         if !initialized {
-            
-            
             initialized = true
         }
     }
@@ -63,7 +61,7 @@ class SideScrollerViewController: UIViewController {
     
     func scrollingFromIndex (fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat) {
         if withOffsetProportion > 0 {
-            print("sideScrollView offset: \(scrollView!.contentOffset.x)")
+//            print("sideScrollView offset: \(scrollView!.contentOffset.x)")
             if toIndex > fromIndex && fromIndex == selectionDefaultIndex {
                 scrollView?.contentOffset = CGPointMake(scrollView!.bounds.width+withOffsetProportion*scrollView!.bounds.width, 0)
                 
@@ -83,12 +81,17 @@ class SideScrollerViewController: UIViewController {
         }
     }
     
-    func scrollViewDidPage(scrollView: UIScrollView) {
-        let offsetX = scrollView.contentOffset.x
-        print("setting current offset: \(currentOffset.x)")
-//        if pageIndex > prevPageIndex {
-//        }
-//        prevPageIndex = pageIndex
+    func scrollViewDidPage(pageScrollView: UIScrollView, pageIndex: Int) {
+        if pageIndex < selectionDefaultIndex {
+            self.scrollView?.contentOffset = CGPointMake(0, 0)
+        }
+        if pageIndex == selectionDefaultIndex {
+            self.scrollView?.contentOffset = CGPointMake(self.scrollView!.bounds.width, 0)
+        }
+        if pageIndex > selectionDefaultIndex {
+            self.scrollView?.contentOffset = CGPointMake(self.scrollView!.bounds.width*2, 0)
+        }
+        myCurrentPageIndex = pageIndex
     }
     
     override func didReceiveMemoryWarning() {

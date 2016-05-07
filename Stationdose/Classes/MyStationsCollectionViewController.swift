@@ -10,8 +10,9 @@ import UIKit
 
 private let reuseIdentifier = "MyStationsCollectionViewCell"
 
-class MyStationsCollectionViewController: UICollectionViewController {
+class MyStationsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    let kItemSpacing: CGFloat = 0.0
     weak var parentController: HomeViewController?
     
     override func viewDidLoad() {
@@ -22,14 +23,18 @@ class MyStationsCollectionViewController: UICollectionViewController {
 
         // Register cell classes
 //        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+        
         // Do any additional setup after loading the view.
         self.collectionView?.allowsSelection = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func addStationsPressed (sender: AnyObject?) {
+        self.parentController?.addStations(sender!)
     }
 
     /*
@@ -83,6 +88,26 @@ class MyStationsCollectionViewController: UICollectionViewController {
         
         let w = UIScreen.mainScreen().bounds.width
         return CGSize(width: w/2, height: w/2)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSizeMake(self.view.bounds.width, 233.0);
+    }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        var reusableview: UICollectionReusableView?
+        if kind == UICollectionElementKindSectionFooter {
+            reusableview = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "EmptyView", forIndexPath: indexPath)
+            if(parentController!.myStations.count > 0) {
+                reusableview!.hidden = true
+                reusableview!.frame = CGRectMake(0, 0, 0, 0);
+            }else{
+                reusableview!.hidden = false
+//                reusableview!.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+            }
+        }
+        return reusableview!
     }
 
     // MARK: UICollectionViewDelegate
