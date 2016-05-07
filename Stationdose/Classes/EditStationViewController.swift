@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class EditStationViewController: BaseViewController {
+class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     
     var station: Station?
     
@@ -23,7 +23,9 @@ class EditStationViewController: BaseViewController {
     private let fullscreenView = FullScreenLoadingView()
     private var somethingChanged: Bool = false
     
-
+    var energyChartViewPageScrollController: PageScrollViewController?
+    var sideScrollerViewController: SideScrollerViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +55,22 @@ class EditStationViewController: BaseViewController {
             
             familiaritySlider.value = familiaritySliderValueMapInverse(station.undergroundness!)
         }
+    }
+    
+    func detailsScrollViewSetIndex(defaultIndex: Int) {
+        sideScrollerViewController?.setDefaultIndex(defaultIndex)
+    }
+    
+    func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat) {
+        sideScrollerViewController?.scrollingFromIndex(fromIndex, toIndex: toIndex, direction: direction, withOffsetProportion: withOffsetProportion)
+    }
+    
+    func detailsScrollViewDidPage(scrollView: UIScrollView, pageIndex: Int) {
+        sideScrollerViewController?.scrollViewDidPage(scrollView, pageIndex: pageIndex)
+    }
+    
+    func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int) {
+        print("delegate")
     }
     
 //    deinit {
@@ -133,6 +151,14 @@ class EditStationViewController: BaseViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
             destinationViewController.station = station
+        }
+        if let vc = segue.destinationViewController as? PageScrollViewController {
+            energyChartViewPageScrollController = vc
+            energyChartViewPageScrollController!.station = station
+            energyChartViewPageScrollController?.pageScrollDelegate = self
+        }
+        if let vc = segue.destinationViewController as? SideScrollerViewController {
+            sideScrollerViewController = vc
         }
     }
 

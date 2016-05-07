@@ -13,15 +13,15 @@ import AlamofireImage
 
 class HomeViewController: BaseViewController {
     
-    // TODO var myStations: [SavedStation]
+    var currentLocation: CLLocation?
+    var featuredStationsTimer: NSTimer?
+    
     var myStations: [Station]
     var stationsList: [Station]
     var featuredStations: [Station]
     var sponsoredStations: [Station]
-    var currentLocation: CLLocation?
-    // TODO var selectedSavedStation: SavedStation?
+    
     var selectedStation: Station?
-    var featuredStationsTimer: NSTimer?
     private let fullscreenView = FullScreenLoadingView()
     
     @IBOutlet weak var mainScrollView: UIScrollView!
@@ -30,9 +30,13 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var tablesViewContaignerHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var featuresStationsPageControl: UIPageControl!
     @IBOutlet weak var stationsSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var myStationsEmptyView: UIView!
-    @IBOutlet weak var myStationsTableView: UITableView!
-    @IBOutlet weak var stationsListTableView: UITableView!
+    
+    @IBOutlet weak var myStationsContainerView: UIView?
+    @IBOutlet weak var stationsListContainerView: UIView?
+    var originalTableViewHeight: CGFloat = 0.0
+    
+    var myStationsCollectionViewController: MyStationsCollectionViewController?
+    var stationsListTableViewController: StationsListTableViewController?
     
     required init?(coder aDecoder: NSCoder) {
         stationsList = ModelManager.sharedInstance.stations
@@ -68,18 +72,12 @@ class HomeViewController: BaseViewController {
         self.showBrandingTitleView()
         self.showUserProfileButton()
         
+        originalTableViewHeight = tablesViewContaignerHeightLayoutConstraint.constant
+        
         self.featuresStationsPageControl.numberOfPages = self.featuredStations.count
         self.reloadSponsoredStations()
         
         self.stationsSegmentedControl.selectedSegmentIndex = self.myStations.count > 0 ? 0 : 1
-        
-        self.stationsListTableView.rowHeight = UITableViewAutomaticDimension
-        self.stationsListTableView.estimatedRowHeight = 84.0
-        self.stationsListTableView.alpha = 1
-        
-        self.myStationsTableView.rowHeight = UITableViewAutomaticDimension
-        self.myStationsTableView.estimatedRowHeight = 84.0
-        self.myStationsTableView.alpha = 0
         
         self.reloadData()
         
@@ -111,15 +109,23 @@ class HomeViewController: BaseViewController {
             if LocationManager.sharedInstance.isEnabled {}
             destinationViewController.station = selectedStation
         }
+        if let cvc = segue.destinationViewController as? MyStationsCollectionViewController {
+            myStationsCollectionViewController = cvc
+            myStationsCollectionViewController!.parentController = self
+        }
+        if let vc = segue.destinationViewController as? StationsListTableViewController {
+            stationsListTableViewController = vc
+            stationsListTableViewController!.parentController = self
+        }
         selectedStation = nil
     }
     
     func stationDidChangeModifiers(notification:NSNotification) {
-        myStationsTableView.reloadData()
+        myStationsCollectionViewController?.collectionView?.reloadData()
     }
     
     func stationDidChangeUpdatedAt(notification:NSNotification) {
-        myStationsTableView.reloadData()
+        myStationsCollectionViewController?.collectionView?.reloadData()
     }
     
     func featuredStationsTimerStep() {
@@ -151,26 +157,26 @@ class HomeViewController: BaseViewController {
     
     func reloadPlaylists(andStationsList: Bool) {
         myStations = ModelManager.sharedInstance.savedStations
-        myStationsTableView.reloadData()
+        myStationsCollectionViewController?.collectionView?.reloadData()
         if andStationsList {
-            stationsListTableView.reloadData()
+            stationsListTableViewController?.tableView.reloadData()
         }
         reloadTablesViewContaignerHeight()
     }
     
     func reloadPlaylists() {
-        if myStationsTableView == nil {
+        if myStationsCollectionViewController == nil {
             return
         }
         reloadPlaylists(true)
     }
     
     func reloadStations() {
-        if stationsListTableView == nil {
+        if stationsListTableViewController == nil {
             return
         }
         stationsList = ModelManager.sharedInstance.stations
-        stationsListTableView.reloadData()
+        stationsListTableViewController?.tableView.reloadData()
         reloadTablesViewContaignerHeight()
     }
     
@@ -179,16 +185,15 @@ class HomeViewController: BaseViewController {
     }
         
     func reloadTablesViewContaignerHeight(animationDuration: NSTimeInterval, delay: NSTimeInterval) {
-        
-        let myStationsEmptyViewHeight = myStationsEmptyView.frame.size.height
+        let emptyViewHeight = originalTableViewHeight
         if stationsSegmentedControl.selectedSegmentIndex == 0 {
-            self.myStationsTableView.setNeedsLayout()
-            self.myStationsTableView.layoutIfNeeded()
-            tablesViewContaignerHeightLayoutConstraint.constant = max(self.myStationsTableView.contentSize.height, myStationsEmptyViewHeight)
+            self.myStationsCollectionViewController?.view.setNeedsLayout()
+            self.myStationsCollectionViewController?.view.layoutIfNeeded()
+            tablesViewContaignerHeightLayoutConstraint.constant = max(self.myStationsCollectionViewController!.collectionView!.contentSize.height, emptyViewHeight)
         } else {
-            self.stationsListTableView.setNeedsLayout()
-            self.stationsListTableView.layoutIfNeeded()
-            tablesViewContaignerHeightLayoutConstraint.constant = max(self.stationsListTableView.contentSize.height, myStationsEmptyViewHeight)
+            self.stationsListTableViewController?.tableView.setNeedsLayout()
+            self.stationsListTableViewController?.tableView.layoutIfNeeded()
+            tablesViewContaignerHeightLayoutConstraint.constant = max(self.stationsListTableViewController!.tableView.contentSize.height, emptyViewHeight)
         }
         UIView.animateWithDuration(animationDuration, delay: delay, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.view.layoutIfNeeded()
@@ -196,29 +201,14 @@ class HomeViewController: BaseViewController {
     }
     
     func reloadData() {
-        
         myStations = ModelManager.sharedInstance.savedStations
         stationsList = ModelManager.sharedInstance.stations
         
-        let showMyStations = stationsSegmentedControl.selectedSegmentIndex == 0
+        self.stationsListContainerView?.hidden = stationsSegmentedControl.selectedSegmentIndex == 0
+        self.stationsListContainerView?.userInteractionEnabled = stationsSegmentedControl.selectedSegmentIndex == 1
         
-        if showMyStations {
-            self.stationsListTableView.alpha = 0
-            if myStations.count == 0 {
-                self.myStationsEmptyView.alpha = 1
-                self.myStationsTableView.alpha = 0
-            } else {
-                self.myStationsEmptyView.alpha = 0
-                self.myStationsTableView.alpha = 1
-            }
-        } else {
-            self.myStationsEmptyView.alpha = 0
-            self.myStationsTableView.alpha = 0
-            self.stationsListTableView.alpha = 1
-        }
-        
-        stationsListTableView.reloadData()
-        myStationsTableView.reloadData()
+        stationsListTableViewController?.tableView.reloadData()
+        myStationsCollectionViewController?.collectionView?.reloadData()
         reloadTablesViewContaignerHeight()
     }
     
@@ -226,7 +216,6 @@ class HomeViewController: BaseViewController {
         selectedStation = sponsoredStations.first
         let fullscreenView = FullScreenLoadingView()
         fullscreenView.show(0.5)
-        
         SongSortApiManager.sharedInstance.generateStationTracks((selectedStation!), onCompletion: { (_station, error) -> Void in
             if let tracks = _station?.tracks {
                 self.selectedStation!.tracks = tracks
@@ -238,7 +227,6 @@ class HomeViewController: BaseViewController {
     }
     
     @IBAction func showFeaturedStationAction(sender: UIButton) {
-        
         if let cell = self.collectionViewCellForSubview(sender) {
             if let cell = cell as? FeaturedStationsCollectionViewCell {
                 if let station = cell.station {
@@ -271,20 +259,13 @@ class HomeViewController: BaseViewController {
         }
         stationsSegmentedControlValueChangedEnabled = false
         
-        let moveToLeft = stationsListTableView.alpha == 0
+        closeTableViewSwipeButtons(stationsListTableViewController!.tableView, animated:true)
         
-        if myStations.count == 0 {
-            UIView.animateWithDuration(0.1, delay: moveToLeft ? 0.0 : 0.1, options: .CurveEaseInOut, animations: { () -> Void in
-                self.myStationsEmptyView.alpha = moveToLeft ? 0 : 1
-            }, completion: nil)
-        }
-        
-        closeTableViewSwipeButtons(myStationsTableView, animated:true)
-        closeTableViewSwipeButtons(stationsListTableView, animated:true)
-        
+        let moveToLeft = sender.selectedSegmentIndex == 1
         animateStationsTableTransition(moveToLeft, completion:{ () -> Void in
-            self.stationsListTableView.alpha = moveToLeft ? 1 : 0
             self.stationsSegmentedControlValueChangedEnabled = true
+            
+            self.stationsListContainerView?.userInteractionEnabled = moveToLeft
         })
         
         if moveToLeft {
@@ -303,29 +284,26 @@ class HomeViewController: BaseViewController {
     }
     
     var animateStationsTableCounter: Int?
+    
     func animateStationsTableTransition(moveToLeft: Bool, completion: () -> Void) {
         
-        let rightTable = stationsListTableView
-        let leftTable = myStationsTableView
+        let leftTable = myStationsCollectionViewController!.collectionView!
+        let rightTable = stationsListTableViewController!.tableView
         
-        let leftInitialTranslation = moveToLeft ? CGFloat(0.0) : -leftTable.frame.size.width
-        let leftTargetTranslation = moveToLeft ? -leftTable.frame.size.width : CGFloat(0.0)
+        let leftInitialTranslation1 = moveToLeft ? CGFloat(0.0) : -leftTable.frame.size.width
+        let w = UIScreen.mainScreen().bounds.width/2
+        let leftInitialTranslation2 = moveToLeft ? w : -leftTable.frame.size.width
+        let leftTargetTranslation1 = moveToLeft ? -leftTable.frame.size.width : CGFloat(0.0)
+        let leftTargetTranslation2 = moveToLeft ? -leftTable.frame.size.width : CGFloat(0.0)
         
-        animateStationsTableCounter = (leftTable.visibleCells.count>0 ? 1 : 0) + (rightTable.visibleCells.count>0 ? 1 : 0)
-        
+        animateStationsTableCounter = (leftTable.visibleCells().count>0 ? 1 : 0) + (rightTable.visibleCells.count>0 ? 1 : 0)
         if animateStationsTableCounter == 0 {
             completion()
             return
         }
         
-        animateTableCells(leftTable, currentTranslation: leftInitialTranslation, translationTarget: leftTargetTranslation) { () -> Void in
-            if leftTargetTranslation != 0 {
-                leftTable.alpha = 0
-                for i in 0 ..< leftTable.visibleCells.count {
-                    let cell = leftTable.visibleCells[i]
-                    cell.layer.transform = CATransform3DIdentity
-                }
-            }
+        animateCollectionCells(leftTable, currentTranslation1: leftInitialTranslation1, currentTranslation2: leftInitialTranslation2, translationTarget1: leftTargetTranslation1, translationTarget2: leftTargetTranslation2) { () -> Void in
+            
             self.animateStationsTableCounter! -= 1
             if self.animateStationsTableCounter! == 0 {
                 completion()
@@ -335,15 +313,19 @@ class HomeViewController: BaseViewController {
         
         let currentTranslation2 = moveToLeft ? leftTable.frame.size.width : CGFloat(0.0)
         let translationTarget2 = moveToLeft ? CGFloat(0.0) : leftTable.frame.size.width
-        
+        //setup the beginning frames before animating to targets
+        for cell in self.stationsListTableViewController!.tableView.visibleCells {
+            cell.layer.transform = CATransform3DMakeTranslation(currentTranslation2, 0.0, 0.0)
+        }
+        self.stationsListContainerView?.hidden = false
         animateTableCells(rightTable, currentTranslation: currentTranslation2, translationTarget: translationTarget2) { () -> Void in
-            if translationTarget2 != 0 {
-                rightTable.alpha = 0
-                for i in 0 ..< rightTable.visibleCells.count {
-                    let cell = rightTable.visibleCells[i]
-                    cell.layer.transform = CATransform3DIdentity
-                }
+            
+            self.stationsListContainerView?.hidden = !moveToLeft
+            
+            for cell in self.stationsListTableViewController!.tableView.visibleCells {
+                cell.layer.transform = CATransform3DIdentity
             }
+            
             self.animateStationsTableCounter! -= 1
             if self.animateStationsTableCounter! == 0 {
                 completion()
@@ -358,22 +340,66 @@ class HomeViewController: BaseViewController {
         for i in 0 ..< table.visibleCells.count {
             let cell = table.visibleCells[i]
             let lastCell = (i == table.visibleCells.count-1)
-            cell.layer.transform = CATransform3DMakeTranslation(currentTranslation, 0.0, 0.0)
-            if lastCell {
-                table.alpha = 1
-            }
             
             let delay = Double(i) * animationBaseTime
             let time = 4.0 * animationBaseTime //2.0 * animationBaseTime if the animation don't user damping
             
             UIView.animateWithDuration(time, delay: delay, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .CurveEaseOut, animations: { () -> Void in
                 cell.layer.transform = CATransform3DMakeTranslation(translationTarget, 0.0, 0.0)
-                }, completion: { finished -> Void in
-                    if lastCell {
-                        completion()
-                    }
+            }, completion: { finished -> Void in
+                if lastCell {
+                    completion()
+                }
             })
             
+        }
+    }
+    
+    func animateCollectionCells(table: UICollectionView, currentTranslation1: CGFloat, currentTranslation2: CGFloat, translationTarget1: CGFloat, translationTarget2: CGFloat, completion: () -> Void) {
+        
+        let animationBaseTime = 0.1
+        
+        //first we need to sort the indexPaths by row
+        var paths = table.indexPathsForVisibleItems()
+        paths = paths.sort { (p1, p2) -> Bool in
+            return p1.row < p2.row
+        }
+        var cellsRemaining = paths.count
+        
+        for i in 0 ..< paths.count where i % 2 == 0 {
+            
+            let ip1 = paths[i]
+            let cell1 = table.cellForItemAtIndexPath(ip1)
+            cellsRemaining -= 1
+            var ip2: NSIndexPath?
+            var cell2: UICollectionViewCell?
+            if i+1 < paths.count {
+                ip2 = paths[i+1]
+                cellsRemaining -= 1
+                cell2 = table.cellForItemAtIndexPath(ip2!)
+            }
+            
+            let lastRow = cellsRemaining == 0 || cellsRemaining == 1
+            
+            cell1!.layer.transform = CATransform3DMakeTranslation(currentTranslation1, 0.0, 0.0)
+            if cell2 != nil {
+                cell2!.layer.transform = CATransform3DMakeTranslation(currentTranslation2, 0.0, 0.0)
+            }
+            
+            let delay = Double(i) * animationBaseTime
+            let time = 4.0 * animationBaseTime //2.0 * animationBaseTime if the animation don't user damping
+            
+            UIView.animateWithDuration(time, delay: delay, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .CurveEaseOut, animations: { () -> Void in
+                cell1!.layer.transform = CATransform3DMakeTranslation(translationTarget1, 0.0, 0.0)
+                if cell2 != nil {
+                    cell2!.layer.transform = CATransform3DMakeTranslation(translationTarget2, 0.0, 0.0)
+                }
+            }, completion: { finished -> Void in
+                if lastRow {
+                    
+                    completion()
+                }
+            })
         }
     }
 }
@@ -436,26 +462,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == myStationsTableView {
-            return myStations.count
-        } else {
-            return stationsList.count
-        }
-    }
-    
+ 
     func buildWeatherButton(on:Bool)->MGSwipeButton{
         return MGSwipeButton(title: nil, icon: UIImage(named: on ? "btn-cell-weather" : "btn-cell-weather-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
             if let cell = cell as? MyStationsTableViewCell {
                 if cell.station != nil {
                     //savedStation.useWeather = !on
                     //cell.leftButtons = [self.buildWeatherButton(!on), cell.leftButtons[1], cell.leftButtons[2]]
-                    self.myStationsTableView.beginUpdates()
-                    let indexPath = self.myStationsTableView.indexPathForCell(cell)
-                    self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
-                    self.myStationsTableView.endUpdates()
+//                    self.myStationsTableView.beginUpdates()
+//                    let indexPath = self.myStationsTableView.indexPathForCell(cell)
+//                    self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+//                    self.myStationsTableView.endUpdates()
                     //self.showAlertFirstTimeAndSaveStation(savedStation)
                 }
             }
@@ -470,132 +489,20 @@ extension HomeViewController: UITableViewDataSource {
                 if cell.station != nil {
                     //savedStation.useTimeofday = !on
                     //cell.leftButtons = [cell.leftButtons[0], self.buildTimeButton(!on), cell.leftButtons[2]]
-                    self.myStationsTableView.beginUpdates()
-                    let indexPath = self.myStationsTableView.indexPathForCell(cell)
-                    self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
-                    self.myStationsTableView.endUpdates()
-                    //self.showAlertFirstTimeAndSaveStation(savedStation)
+//                    self.myStationsTableView.beginUpdates()
+//                    let indexPath = self.myStationsTableView.indexPathForCell(cell)
+//                    self.myStationsTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+//                    self.myStationsTableView.endUpdates()
+//                    //self.showAlertFirstTimeAndSaveStation(savedStation)
                 }
             }
             return true
         })
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tableView == myStationsTableView {
-            let savedStation = myStations[indexPath.row]
-            // TODO let station = savedStation.station
-            let station = savedStation
-            let cell:MyStationsTableViewCell = tableView.dequeueReusableCellWithIdentifier("MyStationsTableViewCellIdentifier") as! MyStationsTableViewCell
-            
-            cell.station = station
-            //cell.savedStation = savedStation
-            cell.titleLabel.text = station.name
-            cell.shortDescriptionLabel.text = savedStation.updatedAtString()
-//            cell.coverImageView.image = nil
-            if let sponsoredUrl = station.art where sponsoredUrl.characters.count > 0 {
-                print("sponsoredUrl " + sponsoredUrl)
-                if let URL = NSURL(string: sponsoredUrl) {
-                    cell.coverImageView.af_setImageWithURL(URL, placeholderImage: UIImage(named: "stations-list-placeholder"))
-                } else {
-                    cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
-                }
-            } else {
-                cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
-            }
-
-            cell.backgroundColor = UIColor.clearColor()
-            let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-station"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
-                ModelManager.sharedInstance.removeSavedStation(savedStation) { (removed) -> Void in
-                    if removed {
-                        self.reloadPlaylists()
-                        
-                    } else {
-                        cell.hideSwipeAnimated(true)
-                    }
-                }
-                return false
-            })
-            deleteButton.setPadding(0)
-            cell.rightButtons = [deleteButton]
-            cell.rightSwipeSettings.transition = .Drag
-            //let location = LocationManager.sharedInstance.isEnabled
-            //let weatherButton = buildWeatherButton(savedStation.useWeather != nil ? savedStation.useWeather! : location)
-            //weatherButton.setPadding(0)
-            //let timeButton = buildTimeButton(savedStation.useTimeofday != nil ? savedStation.useTimeofday! : location)
-            //timeButton.setPadding(0)
-            let reloadButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-cell-reload"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
-                ModelManager.sharedInstance.forceGenerateStationTracks(savedStation) {}
-                return true
-            })
-            reloadButton.setPadding(0)
-            //cell.leftButtons = [weatherButton, timeButton, reloadButton]
-            //cell.leftSwipeSettings.transition = .Drag
-            cell.touchUpInsideAction = {
-                self.showStation(cell)
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                    cell.setSelected(false, animated: true)
-                }
-            }
-            
-            return cell
-            
-        } else {
-            let station = stationsList[indexPath.row]
-            let cell:StationsListTableViewCell = tableView.dequeueReusableCellWithIdentifier("StationsListTableViewCellIdentifier") as! StationsListTableViewCell
-            
-            cell.station = station
-            cell.titleLabel.text = station.name
-            cell.shortDescriptionLabel.text = station.shortDescription
-            
-//            cell.coverImageView.image = nil
-            if let sponsoredUrl = station.art {
-                let URL = NSURL(string: sponsoredUrl)!
-                cell.coverImageView.af_setImageWithURL(URL, placeholderImage: UIImage(named: "stations-list-placeholder"))
-            } else {
-                cell.coverImageView.image = UIImage(named: "stations-list-placeholder")
-            }
-            
-            cell.savedImageView.alpha = 0
-            cell.saveButton.alpha = 1
-            cell.removeButton.alpha = 0
-            for savedStation in myStations {
-                if savedStation.id == station.id {
-                    cell.savedImageView.alpha = 1
-                    cell.saveButton.alpha = 0
-                    cell.removeButton.alpha = 1
-                    break
-                }
-            }
-            
-            cell.backgroundColor = UIColor.clearColor()
-            
-            cell.removedMessageView.alpha = 0
-            cell.addedMessageView.alpha = 0
-            
-            cell.touchUpInsideAction = {
-                self.showStation(cell)
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                    cell.setSelected(false, animated: true)
-                }
-            }
-            
-            return cell
-        }
-    }
-    
-    @IBAction func showStation(sender: UIView) {
+    func showStationAtIndexPath(indexPath: NSIndexPath) {
         selectedStation = nil
-        if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
-            if let station = cell.station {
-                selectedStation = station
-            }
-        } else if let cell = self.tableViewCellForSubview(sender) as? MyStationsTableViewCell {
-            if let station = cell.station {
-                selectedStation = station
-            }
-        }
-        
+        selectedStation = stationsList[indexPath.row]
         if(selectedStation != nil) {
             moveToStationPlaylist()
         }
@@ -603,94 +510,5 @@ extension HomeViewController: UITableViewDataSource {
     
     func moveToStationPlaylist() {
         self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-        
-//        fullscreenView.setMessage("Just a moment, we’re getting your playlist")
-//        fullscreenView.show(0.5)
-//        ModelManager.sharedInstance.reloadNotCachedStationTracksAndCache(selectedStation!) { () -> Void in
-//            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-//            self.fullscreenView.hide(1.5)
-//        }
-    }
-    
-//    func moveToStationPlaylist(){
-//        fullscreenView.setMessage("Just a moment, we’re getting your playlist")
-//        fullscreenView.show(0.5)
-//        ModelManager.sharedInstance.reloadNotCachedStationTracksAndCache(selectedStation!) { () -> Void in
-//            self.performSegueWithIdentifier("ToPlaylistViewController", sender: nil)
-//            self.fullscreenView.hide(1.5)
-//        }
-//    }
-    
-    @IBAction func saveStation(sender: UIButton) {
-        sender.enabled = false
-        if let cell = tableViewCellForSubview(sender) as? StationsListTableViewCell {
-            if let station = cell.station {
-                
-                UIView.animateWithDuration(0.1, animations: { () -> Void in
-                    cell.addedMessageView.alpha = 1
-                    }, completion: { (_) -> Void in
-                        UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
-                            cell.addedMessageView.alpha = 0
-                            }, completion:nil)
-                })
-                
-                cell.saveButton.alpha = 0
-                cell.removeButton.alpha = 1
-                cell.savedImageView.alpha = 1
-                
-                ModelManager.sharedInstance.saveStation(station, onCompletion: { (success) -> Void in
-                    sender.enabled = true
-                    self.reloadPlaylists(false)
-                })
-            } else {
-                sender.enabled = true
-            }
-        }
-    }
-    
-    @IBAction func removeStation(sender: UIButton) {
-        sender.enabled = false
-        
-        if let cell = self.tableViewCellForSubview(sender) as? StationsListTableViewCell {
-            if let station = cell.station {
-                
-                let savedStationsToRemove = myStations.filter { $0.id == station.id}
-                
-                if let first = savedStationsToRemove.first {
-                    ModelManager.sharedInstance.removeSavedStation(first) { (removed) -> Void in
-                        sender.enabled = true
-                        if removed {
-                            cell.saveButton.alpha = 1
-                            cell.removeButton.alpha = 0
-                            cell.savedImageView.alpha = 0
-                            
-                            UIView.animateWithDuration(0.1, animations: { () -> Void in
-                                cell.removedMessageView.alpha = 1
-                                }, completion: { (_) -> Void in
-                                    UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
-                                        cell.removedMessageView.alpha = 0
-                                        }, completion:nil)
-                            })
-                            
-                            self.reloadPlaylists(false)
-                        }
-                    }
-                }
-            } else {
-                sender.enabled = true
-            }
-        }
-    }
-    
-    func tableViewCellForSubview(subview: UIView) -> UITableViewCell? {
-        if let cell = subview as? UITableViewCell {
-            return cell
-        }
-        if let superview = subview.superview {
-            if let result = tableViewCellForSubview(superview) {
-                return result
-            }
-        }
-        return nil
     }
 }
