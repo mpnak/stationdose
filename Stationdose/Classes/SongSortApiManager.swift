@@ -23,6 +23,7 @@ class SongSortApiManager {
     
     struct ApiMethods{
         static let stations = "stations"
+        static let stationsPlaylistProfileChooser = "stations/playlist_profile_chooser"
         static let station = "stations/%i"
         static let stationTracks = "stations/%i/tracks"
         static let playTrack = "tracks/%i/play"
@@ -50,6 +51,20 @@ class SongSortApiManager {
         }
         
         manager.request(.GET, baseURL+ApiMethods.stations).responseArray("stations") { (response: Response<[Station], NSError>) in
+            self.showGenericErrorIfNeeded(response.result.error)
+            onCompletion(response.result.value, response.result.error)
+        }
+    }
+    
+    func getPlaylistProfiles(onCompletion:(Station?, NSError?) -> Void) {
+        guard let _ = ModelManager.sharedInstance.user
+            else{
+                self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
+                onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+                return
+        }
+        
+        manager.request(.GET, baseURL+ApiMethods.stationsPlaylistProfileChooser).responseObject("playlist_profile_chooser") { (response: Response<Station, NSError>) in
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }

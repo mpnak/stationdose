@@ -9,13 +9,15 @@
 import UIKit
 import MGSwipeTableCell
 
-class PlaylistViewController: BaseViewController {
+class PlaylistViewController: BaseViewController, UIScrollViewDelegate {
     
     // TODO var savedStation: SavedStation?
     //var savedStation: Station?
     var station: Station?
     var tracks: [Track]!
     let fullscreenView = FullScreenLoadingView()
+    var currentTrackIndex = -1
+    var isPlaying = false
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var bannerImageView: UIImageView!
@@ -27,19 +29,29 @@ class PlaylistViewController: BaseViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var savedImageView: UIImageView!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var playButton: UIButton?
+    @IBOutlet weak var editButton: UIButton?
     //@IBOutlet weak var weatherButton: UIButton!
     //@IBOutlet weak var timeButton: UIButton!
     @IBOutlet weak var rightButtonsLayoutConstraint: NSLayoutConstraint!
     
-    
+    var bannerViewHeight: CGFloat?
+    var bannerImageEffectView: UIView?
+    @IBOutlet weak var bannerView: UIView?
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint?
+    @IBOutlet weak var bannerControlsView: UIView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bannerViewHeight = bannerViewHeightConstraint?.constant
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.willStartStationTracksReGeneration(_:)), name: ModelManagerNotificationKey.WillStartStationTracksReGeneration.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.didEndStationTracksReGeneration(_:)), name: ModelManagerNotificationKey.DidEndStationTracksReGeneration.rawValue, object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.stationDidChangeModifiers(_:)), name: ModelManagerNotificationKey.StationDidChangeModifiers.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.stationDidChangeUpdatedAt(_:)), name: SongSortApiManagerNotificationKey.StationDidChangeUpdatedAt.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlaylistViewController.playbackDidPause(_:)), name: Constants.Notifications.playbackDidPause, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlaylistViewController.playbackDidResume(_:)), name: Constants.Notifications.playbackDidResume, object: nil)
         
         showBrandingTitleView()
         showUserProfileButton()
@@ -56,6 +68,14 @@ class PlaylistViewController: BaseViewController {
         } else {
             coverImageView.image = UIImage(named: "station-placeholder")
         }
+        
+        // create effect
+        let blur = UIBlurEffect(style: .Dark)
+        let effectView = UIVisualEffectView(effect: blur)
+        effectView.frame = self.bannerImageView.frame
+        effectView.alpha = 0.8
+        bannerImageEffectView = effectView
+        self.bannerImageView.addSubview(bannerImageEffectView!)
         
         saveButton?.alpha = station?.savedStation == true ? 0 : 1
         removeButton?.alpha = station?.savedStation == true ? 1 : 0
@@ -90,6 +110,58 @@ class PlaylistViewController: BaseViewController {
     }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    @IBAction func playButtonPressed (sender: AnyObject?) {
+        if isPlaying {
+            PlaybackManager.sharedInstance.pauseFromMain()
+            self.station?.isPlaying = false
+            self.isPlaying = false
+            self.playButton?.setImage(UIImage(named:"btn-play-list"), forState: .Normal)
+        } else {
+            if currentTrackIndex < 0 {
+                currentTrackIndex = 0
+                var tracks = [Track]()
+                tracks.append(self.tracks[currentTrackIndex])
+                PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
+            } else {
+                PlaybackManager.sharedInstance.playFromMain()
+            }
+            PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
+            self.station?.isPlaying = true
+            self.isPlaying = true
+            self.playButton?.setImage(UIImage(named:"btn-pause-list"), forState: .Normal)
+        }
+    }
+    
+    func playbackDidPause (notification: NSNotification?) {
+        self.isPlaying = false
+        self.playButton?.setImage(UIImage(named:"btn-play-list"), forState: .Normal)
+    }
+    
+    func playbackDidResume (notification: NSNotification?) {
+        self.isPlaying = true
+        self.playButton?.setImage(UIImage(named:"btn-pause-list"), forState: .Normal)
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        if offsetY < 0 {
+            let newHeight = bannerViewHeight! - offsetY
+            bannerViewHeightConstraint?.constant = newHeight
+            bannerImageEffectView?.frame.size.height = newHeight
+            bannerView?.setNeedsLayout()
+            bannerView?.layoutIfNeeded()
+            bannerImageEffectView?.setNeedsLayout()
+            bannerImageEffectView?.layoutIfNeeded()
+            let damping: CGFloat = 160
+            var alpha = 1 + offsetY / damping
+            bannerControlsView?.alpha = 1 + offsetY / damping
+            if alpha >= 0.85 {
+                alpha = 0.85
+            }
+            bannerImageEffectView?.alpha = alpha;
+        }
     }
     
     func stationDidChangeUpdatedAt(notification:NSNotification) {
@@ -317,6 +389,7 @@ extension PlaylistViewController: UITableViewDataSource {
         cell.titleLabel.text = cell.track?.title
         cell.subtitleLabel.text = cell.track?.artist
         cell.touchUpInsideAction = {
+            self.currentTrackIndex = indexPath.row
             var tracks = [Track]()
             var addTacks = false
             for track in self.tracks {
@@ -331,6 +404,8 @@ extension PlaylistViewController: UITableViewDataSource {
             PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
             PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
             self.station?.isPlaying = true
+            self.isPlaying = true
+            self.playButton?.setImage(UIImage(named:"btn-pause-list"), forState: .Normal)
         }
         
         if let liked = cell.track.liked {

@@ -23,6 +23,8 @@ struct Constants {
         static let sessionValidNotification = "com.stationdose.sessionValidNotificationKey"
         static let sessionErrorNotification = "com.stationdose.sessionErrorNotificationKey"
         static let playbackCurrentTrackDidChange = "com.stationdose.playbackCurrentTrackDidChange"
+        static let playbackDidPause = "com.stationdose.playbackDidPause"
+        static let playbackDidResume = "com.stationdose.playbackDidResume"
     }
     
     struct Segues {

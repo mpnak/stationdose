@@ -101,9 +101,21 @@ class PlaybackManager: NSObject {
     func play() {
         setPlayPauseButtonsEnabled(false)
         player.setIsPlaying(true, callback: { (error) -> Void in })
+        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.playbackDidResume, object: nil)
+    }
+    
+    func playFromMain() {
+        setPlayPauseButtonsEnabled(false)
+        player.setIsPlaying(true, callback: { (error) -> Void in })
     }
     
     func pause() {
+        setPlayPauseButtonsEnabled(false)
+        player.setIsPlaying(false, callback: { (error) -> Void in })
+        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.playbackDidPause, object: nil)
+    }
+    
+    func pauseFromMain() {
         setPlayPauseButtonsEnabled(false)
         player.setIsPlaying(false, callback: { (error) -> Void in })
     }

@@ -29,6 +29,8 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "btn-back"), style: .Plain, target: self, action: #selector(UIViewController.back))
+        
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EditStationViewController.stationDidChangeUpdatedAt(_:)), name: SongSortApiManagerNotificationKey.StationDidChangeUpdatedAt.rawValue, object: nil)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
@@ -48,12 +50,15 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
         setupFamiliaritySlider()
         
         if let station = station {
-            
             if station.undergroundness == nil {
                 station.undergroundness = 4
             }
-            
             familiaritySlider.value = familiaritySliderValueMapInverse(station.undergroundness!)
+        }
+        
+        SongSortApiManager.sharedInstance.getPlaylistProfiles { (station, error) in
+            print("error: \(error)")
+            print(station)
         }
     }
     
@@ -92,6 +97,14 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
 //    @IBAction func timeInfoAction(sender: AnyObject) {
 //        AlertView(title: "Time of day", message: "Similar to using the weather to push your playlist a certain way, adding time of day will only amplify the effect. Rainy Monday morning? Gonna be a properly mellow playlist. Rainy Friday afternoon? Well we take one part rainy, add two parts Friday, a half-tablespoon of afternoon, and whip up a rocktail that won’t dissapoint. Served with a twist of lime.", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
 //    }
+    
+    @IBAction func energyProfileInfoAction(sender: AnyObject) {
+        AlertView(title: "Energy Profile", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
+    }
+    
+    @IBAction func basedOnInfoAction(sender: AnyObject) {
+        AlertView(title: "Based On", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
+    }
     
     @IBAction func familiarityInfoAction(sender: AnyObject) {
         AlertView(title: "Familiarity", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
