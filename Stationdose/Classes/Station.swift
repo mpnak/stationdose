@@ -22,6 +22,8 @@ class Station: Mappable {
     var savedStation: Bool?
     var tracks: [Track]?
     var isPlaying: Bool?
+    var playlistProfile: String?
+    var playlistProfileChooser: PlaylistProfileChooser?
     var isStandardType: Bool {
         get {
             return self.type == "standard"

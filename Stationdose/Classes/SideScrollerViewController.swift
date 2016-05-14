@@ -13,6 +13,8 @@ class SideScrollerViewController: UIViewController {
     var initialized = false
     @IBOutlet weak var scrollView: UIScrollView?
     
+    var conditionsView: EditPlaylistChartWeatherView?
+    
     var selectionDefaultIndex = 0
     var myCurrentPageIndex: Int = 0
     var prevPageIndex: Int = 0
@@ -42,7 +44,8 @@ class SideScrollerViewController: UIViewController {
         if let defaultView = NSBundle.mainBundle().loadNibNamed("EditPlaylistChartWeatherView", owner: self, options: nil).first as? EditPlaylistChartWeatherView {
             defaultView.frame = scrollView!.bounds
             defaultView.frame.origin.x = scrollView!.bounds.width
-            scrollView?.addSubview(defaultView)
+            conditionsView = defaultView
+            scrollView?.addSubview(conditionsView!)
         }
         
         let manualLabel2 = UILabel(frame: scrollView!.bounds)
@@ -57,6 +60,21 @@ class SideScrollerViewController: UIViewController {
         myCurrentPageIndex = 1
         scrollView?.contentOffset = CGPointMake(scrollView!.bounds.width*CGFloat(myCurrentPageIndex), 0)
         currentOffset = scrollView!.contentOffset
+    }
+    
+    func setConditions (defaultIndex defaultIndex: Int, weather: String?, time: String?) {
+        setDefaultIndex(defaultIndex)
+        if weather != nil {
+            conditionsView?.weatherImageView?.image = UIImage(named: "icon-" + weather!)
+        }
+        if time != nil {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-M-d'T'H:m:sZ"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+            let date = dateFormatter.dateFromString(time!)
+            print(time!)
+            print(date)
+        }
     }
     
     func scrollingFromIndex (fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat) {
@@ -99,7 +117,6 @@ class SideScrollerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -107,6 +124,6 @@ class SideScrollerViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
 
 }

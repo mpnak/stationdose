@@ -56,7 +56,7 @@ class SongSortApiManager {
         }
     }
     
-    func getPlaylistProfiles(onCompletion:(Station?, NSError?) -> Void) {
+    func getPlaylistProfiles(onCompletion:(PlaylistProfileChooser?, NSError?) -> Void) {
         guard let _ = ModelManager.sharedInstance.user
             else{
                 self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
@@ -64,7 +64,7 @@ class SongSortApiManager {
                 return
         }
         
-        manager.request(.GET, baseURL+ApiMethods.stationsPlaylistProfileChooser).responseObject("playlist_profile_chooser") { (response: Response<Station, NSError>) in
+        manager.request(.GET, baseURL+ApiMethods.stationsPlaylistProfileChooser).responseObject("playlist_profile_chooser") { (response: Response<PlaylistProfileChooser, NSError>) in
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }

@@ -54,11 +54,26 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
                 station.undergroundness = 4
             }
             familiaritySlider.value = familiaritySliderValueMapInverse(station.undergroundness!)
-        }
-        
-        SongSortApiManager.sharedInstance.getPlaylistProfiles { (station, error) in
-            print("error: \(error)")
-            print(station)
+            
+            SongSortApiManager.sharedInstance.getPlaylistProfiles { (profileChooser, error) in
+                print("error: \(error)")
+                print("PROFILE: \(profileChooser?.name)")
+                
+                station.playlistProfileChooser = profileChooser
+                
+                let p = ["mellow","chill","vibes","lounge","club","bangin"]
+                for i in 0..<p.count {
+                    if profileChooser?.name == p[i] {
+                        self.energyChartViewPageScrollController?.defaultPlaylistIndex = i
+                        break
+                    }
+                }
+                let weather = profileChooser?.weather
+                let time = profileChooser?.localtime
+                if self.sideScrollerViewController != nil {
+                    self.sideScrollerViewController!.setConditions(defaultIndex: self.energyChartViewPageScrollController!.defaultPlaylistIndex, weather: weather, time: time)
+                }
+            }
         }
     }
     
@@ -134,7 +149,6 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     }
     
     @IBAction func doneAction(sender: AnyObject) {
-//        self.dismissViewControllerAnimated(true) { () -> Void in }
         if !somethingChanged {
             self.navigationController?.popViewControllerAnimated(true)
             return

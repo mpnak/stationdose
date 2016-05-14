@@ -18,7 +18,7 @@ protocol DetailsPageScrollDelegate {
 
 class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     
-    var altPlaylistCount = 5
+    var altPlaylistCount = 6
     let kPadding: CGFloat = 40.0
     var prevPageIndex = -1
     var currentPageIndex = 0
@@ -28,7 +28,36 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     
     var pageScrollDelegate: DetailsPageScrollDelegate?
     
-    var defaultPlaylistIndex = 2
+    var defaultPlaylistIndex = 0 {
+        didSet {
+            if !laidOut {
+                for i in 0 ..< altPlaylistCount {
+                    let x = CGFloat(i)*self.scrollView!.bounds.size.width
+                    let vc = EnergyChartViewController()
+                    self.addChildViewController(vc)
+                    
+                    vc.view.frame = CGRectMake(x, 0, self.scrollView!.bounds.size.width, self.scrollView!.bounds.size.height)
+                    vc.chartView!.frame = CGRectMake(0, 0, self.scrollView!.bounds.size.width, self.scrollView!.bounds.size.height)
+                    
+                    vc.station = station!
+                    vc.chartName = "graph-\(i+1)"
+                    vc.setupChart()
+                    
+                    self.scrollView?.addSubview(vc.view)
+                    myViews.append(vc.view)
+                }
+                let w: CGFloat = CGFloat(altPlaylistCount) * self.scrollView!.bounds.size.width
+                self.scrollView?.contentSize = CGSizeMake(w, self.scrollView!.contentSize.height)
+                currentPageIndex = defaultPlaylistIndex
+                self.scrollView?.contentOffset = CGPointMake(CGFloat(currentPageIndex)*self.scrollView!.bounds.width, 0)
+                self.initializeAnimations()
+                
+                pageScrollDelegate?.detailsScrollViewSetIndex(defaultPlaylistIndex)
+                
+                laidOut = true
+            }
+        }
+    }
     var prevDirection = 0
     var pagingCancelled = false
     
@@ -46,31 +75,6 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if !laidOut {
-            for i in 0 ..< altPlaylistCount {
-                let x = CGFloat(i)*self.scrollView!.bounds.size.width
-                let vc = EnergyChartViewController()
-                self.addChildViewController(vc)
-                
-                vc.view.frame = CGRectMake(x, 0, self.scrollView!.bounds.size.width, self.scrollView!.bounds.size.height)
-                vc.chartView!.frame = CGRectMake(0, 0, self.scrollView!.bounds.size.width, self.scrollView!.bounds.size.height)
-                
-                vc.station = station!
-                vc.setupChart()
-                
-                self.scrollView?.addSubview(vc.view)
-                myViews.append(vc.view)
-            }
-            let w: CGFloat = CGFloat(altPlaylistCount) * self.scrollView!.bounds.size.width
-            self.scrollView?.contentSize = CGSizeMake(w, self.scrollView!.contentSize.height)
-            currentPageIndex = defaultPlaylistIndex
-            self.scrollView?.contentOffset = CGPointMake(CGFloat(currentPageIndex)*self.scrollView!.bounds.width, 0)
-            self.initializeAnimations()
-            
-            pageScrollDelegate?.detailsScrollViewSetIndex(defaultPlaylistIndex)
-            
-            laidOut = true
-        }
     }
     
     override func didReceiveMemoryWarning() {

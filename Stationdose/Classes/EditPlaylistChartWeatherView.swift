@@ -14,6 +14,10 @@ class EditPlaylistChartWeatherView: UIView {
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var weatherImageView: UIImageView?
     
+    override func awakeFromNib() {
+        self.weatherImageView?.image = nil
+    }
+    
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
