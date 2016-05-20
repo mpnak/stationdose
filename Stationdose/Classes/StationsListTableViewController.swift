@@ -30,7 +30,7 @@ class StationsListTableViewController: UITableViewController, StationCellDelegat
         
         self.tableView.separatorStyle = .None
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 84.0
+        self.tableView.estimatedRowHeight = 104.0
     }
 
     override func didReceiveMemoryWarning() {
