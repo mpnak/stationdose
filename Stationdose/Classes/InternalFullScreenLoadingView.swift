@@ -28,7 +28,11 @@ class InternalFullScreenLoadingView: UIView {
         layoutIfNeeded()
         
         if radioActivityIndicator == nil {
-            radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicatoer.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
+            
+            let indy = NVActivityIndicatorView(frame: CGRectMake(0, 0, 35, 35), type: .LineScale, color:UIColor.customSectionDividersColor())
+            indy.center = activityIndicatoer.center
+            
+            radioActivityIndicator = indy
             addSubview(radioActivityIndicator)
             radioActivityIndicator.startAnimation()
         }
