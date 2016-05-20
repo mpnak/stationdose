@@ -113,6 +113,7 @@ class MyStationsCollectionViewController: UICollectionViewController, UICollecti
     // MARK: UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
         if let station = parentController?.myStations[indexPath.row] {
             parentController!.selectedStation = station
             parentController!.showStationAtIndexPath(indexPath)

@@ -14,6 +14,7 @@
 		7C1031C51CDBD4A300B65E7A /* EditPlaylistChartWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1031C41CDBD4A300B65E7A /* EditPlaylistChartWeatherView.swift */; };
 		7C1031DA1CDD569100B65E7A /* MyStationsEmptyReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1031D91CDD569100B65E7A /* MyStationsEmptyReusableView.swift */; };
 		7C1032871CE2CB6F00B65E7A /* PlaylistProfileChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1032861CE2CB6F00B65E7A /* PlaylistProfileChooser.swift */; };
+		7C5078551CEE87AC00ADDD5C /* PlaylistBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5078541CEE87AC00ADDD5C /* PlaylistBaseViewController.swift */; };
 		7C54F0DD1CD422D80069677D /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C54F0DB1CD422D80069677D /* Edit.storyboard */; };
 		7C54F0E31CD44D140069677D /* PageScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E21CD44D140069677D /* PageScrollViewController.swift */; };
 		7C54F0E61CD44E620069677D /* PageScrollHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */; };
@@ -86,6 +87,7 @@
 		7C1031C41CDBD4A300B65E7A /* EditPlaylistChartWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlaylistChartWeatherView.swift; sourceTree = "<group>"; };
 		7C1031D91CDD569100B65E7A /* MyStationsEmptyReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsEmptyReusableView.swift; sourceTree = "<group>"; };
 		7C1032861CE2CB6F00B65E7A /* PlaylistProfileChooser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistProfileChooser.swift; sourceTree = "<group>"; };
+		7C5078541CEE87AC00ADDD5C /* PlaylistBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistBaseViewController.swift; sourceTree = "<group>"; };
 		7C54F0DC1CD422D80069677D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Edit.storyboard; sourceTree = "<group>"; };
 		7C54F0E21CD44D140069677D /* PageScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollViewController.swift; sourceTree = "<group>"; };
 		7C54F0E51CD44E620069677D /* PageScrollHelperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollHelperView.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				CD9FA44A1BF93323003B8A62 /* HomeViewController.swift */,
 				CD9FA45C1BFA8483003B8A62 /* SplashViewController.swift */,
 				CD9FA4711BFB9FD3003B8A62 /* RequestPremiumViewController.swift */,
+				7C5078541CEE87AC00ADDD5C /* PlaylistBaseViewController.swift */,
 				F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */,
 				F15593021C110447009CE684 /* FeaturedStationViewController.swift */,
 				F114BFBD1C21EFB20000A3CC /* EditStationViewController.swift */,
@@ -590,6 +593,7 @@
 				CD6BD2CB1C06249F006D812B /* SongSortApiManager.swift in Sources */,
 				F10FB1771C0E3005000C90C1 /* TrackTableViewCell.swift in Sources */,
 				CD9FA45D1BFA8483003B8A62 /* SplashViewController.swift in Sources */,
+				7C5078551CEE87AC00ADDD5C /* PlaylistBaseViewController.swift in Sources */,
 				F1F91C6D1BFF9B44000E0BB7 /* StationsListTableViewCell.swift in Sources */,
 				F1B4CB791C07B58F007DB048 /* InternalAlertView.swift in Sources */,
 				CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeaturedStationViewController: PlaylistViewController {
+class FeaturedStationViewController: PlaylistBaseViewController {
     
     @IBOutlet weak var sponsoredTitleView: UIView!
     @IBOutlet weak var featuredTitleView: UIView!
@@ -46,4 +46,5 @@ class FeaturedStationViewController: PlaylistViewController {
             //urlButtonOutlet.userInteractionEnabled = true
         }
     }
+
 }

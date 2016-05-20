@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class SideScrollerViewController: UIViewController {
 
@@ -68,12 +69,20 @@ class SideScrollerViewController: UIViewController {
             conditionsView?.weatherImageView?.image = UIImage(named: "icon-" + weather!)
         }
         if time != nil {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-M-d'T'H:m:sZ"
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-            let date = dateFormatter.dateFromString(time!)
-            print(time!)
-            print(date)
+            let formatter = NSDateFormatter()
+            formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+            formatter.AMSymbol = "am"
+            formatter.PMSymbol = "pm"
+            let date = formatter.dateFromString(time!)
+            
+            formatter.dateFormat = "EE"
+            let day = formatter.stringFromDate(date!)
+            conditionsView?.dayLabel?.text = day
+            
+            formatter.dateFormat = "h:mma"
+            let shortTime = formatter.stringFromDate(date!)
+            conditionsView?.timeLabel?.text = shortTime
         }
     }
     

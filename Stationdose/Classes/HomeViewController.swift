@@ -105,7 +105,7 @@ class HomeViewController: BaseViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
+        if let destinationViewController = segue.destinationViewController as? PlaylistBaseViewController {
             if LocationManager.sharedInstance.isEnabled {}
             destinationViewController.station = selectedStation
         }
@@ -501,8 +501,8 @@ extension HomeViewController {
     }
     
     func showStationAtIndexPath(indexPath: NSIndexPath) {
-        selectedStation = nil
-        selectedStation = stationsList[indexPath.row]
+//        selectedStation = nil
+//        selectedStation = stationsList[indexPath.row]
         if(selectedStation != nil) {
             moveToStationPlaylist()
         }
