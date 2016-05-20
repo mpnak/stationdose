@@ -339,6 +339,7 @@ class HomeViewController: BaseViewController {
         
         for i in 0 ..< table.visibleCells.count {
             let cell = table.visibleCells[i]
+            
             let lastCell = (i == table.visibleCells.count-1)
             
             let delay = Double(i) * animationBaseTime

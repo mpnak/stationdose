@@ -29,11 +29,11 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "btn-back"), style: .Plain, target: self, action: #selector(UIViewController.back))
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "btn-back"), style: .Plain, target: self, action: #selector(UIViewController.back))
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EditStationViewController.stationDidChangeUpdatedAt(_:)), name: SongSortApiManagerNotificationKey.StationDidChangeUpdatedAt.rawValue, object: nil)
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
         familiarityOutlet.hidden = false
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription
@@ -50,6 +50,14 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
         setupFamiliaritySlider()
         
         if let station = station {
+            
+            let title = UILabel(frame: self.navigationController!.navigationBar.frame)
+            title.textColor = .whiteColor()
+            title.textAlignment = NSTextAlignment.Center
+            title.text = station.name
+            title.sizeToFit()
+            self.navigationItem.titleView = title
+            
             if station.undergroundness == nil {
                 station.undergroundness = 4
             }

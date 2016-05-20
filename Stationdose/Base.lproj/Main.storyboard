@@ -979,8 +979,8 @@ Please sign in to your account to start.</string>
                                                 <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBm-IU-3cE">
-                                                <rect key="frame" x="304" y="20" width="50" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBm-IU-3cE">
+                                                <rect key="frame" x="304" y="21" width="50" height="50"/>
                                                 <color key="backgroundColor" red="0.066666666666666666" green="0.57871575955963794" blue="0.87058823529411766" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="01M-o7-6SC"/>
@@ -1603,7 +1603,7 @@ Please sign in to your account to start.</string>
                                                 <action selector="saveStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="cVx-1w-BuB"/>
                                             </connections>
                                         </button>
-                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjH-HM-gZ7" userLabel="RemovedFromView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjH-HM-gZ7" userLabel="RemovedFromView">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Removed from My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khs-ZE-s4l">
@@ -1622,7 +1622,7 @@ Please sign in to your account to start.</string>
                                                 <constraint firstItem="khs-ZE-s4l" firstAttribute="centerY" secondItem="vjH-HM-gZ7" secondAttribute="centerY" id="vc7-Hm-4qB"/>
                                             </constraints>
                                         </view>
-                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpB-sc-ewg" userLabel="AddedToView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpB-sc-ewg" userLabel="AddedToView">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added to My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twb-27-2Tr">

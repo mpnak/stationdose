@@ -19,12 +19,14 @@ protocol DetailsPageScrollDelegate {
 class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     
     var altPlaylistCount = 6
-    let kPadding: CGFloat = 40.0
+    let kPadding: CGFloat = 20.0
     var prevPageIndex = -1
     var currentPageIndex = 0
     var nextPageIndex = 1
     var myViews: [UIView] = []
     var laidOut = false
+    
+    var SCALE_MIN: CGFloat = 0.8
     
     var pageScrollDelegate: DetailsPageScrollDelegate?
     
@@ -127,7 +129,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
         let currentView = myViews[currentPageIndex]
         for view in myViews {
             if view != currentView {
-                view.transform = CGAffineTransformMakeScale(0.7, 0.7)
+                view.transform = CGAffineTransformMakeScale(SCALE_MIN, SCALE_MIN)
             }
         }
         currentView.transform = CGAffineTransformMakeScale(1.0, 1.0)
@@ -152,15 +154,15 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
                 if direction > 0 {
                     let currentView = myViews[currentPageIndex]
                     var scale = 1.0 - ratio
-                    if scale < 0.7 {
-                        scale = 0.7
+                    if scale < SCALE_MIN {
+                        scale = SCALE_MIN
                     }
                     let t1 = CGAffineTransformMakeScale(scale, scale)
                     currentView.transform = t1
                     
                     if currentPageIndex+1 <= myViews.count-1 {
                         let nextView = myViews[currentPageIndex+1]
-                        scale = ratio + 0.7
+                        scale = ratio + SCALE_MIN
                         if scale >= 1.0 {
                             scale = 1.0
                         }
@@ -172,7 +174,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
                 if direction < 0 {
                     
                     let currentView = myViews[currentPageIndex]
-                    var scale = max(ratio, 0.7)
+                    var scale = max(ratio, SCALE_MIN)
                     
                     print("scale-current: \(scale)")
                     let t1 = CGAffineTransformMakeScale(scale, scale)
@@ -180,7 +182,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
                     
                     if currentPageIndex-1 >= 0 {
                         let prevView = myViews[currentPageIndex-1]
-                        scale = 1 - ratio + 0.7
+                        scale = 1 - ratio + SCALE_MIN
                         if scale >= 1.0 {
                             scale = 1.0
                         }
@@ -203,15 +205,15 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
                 if direction < 0 {
                     let currentView = myViews[currentPageIndex]
                     var scale = 1.0 - ratio
-                    if scale < 0.7 {
-                        scale = 0.7
+                    if scale < SCALE_MIN {
+                        scale = SCALE_MIN
                     }
                     let t1 = CGAffineTransformMakeScale(scale, scale)
                     currentView.transform = t1
                     
                     if currentPageIndex+1 <= myViews.count-1 {
                         let nextView = myViews[currentPageIndex+1]
-                        scale = ratio + 0.7
+                        scale = ratio + SCALE_MIN
                         if scale >= 1.0 {
                             scale = 1.0
                         }
@@ -223,7 +225,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
                 if direction > 0 {
                     
                     let currentView = myViews[currentPageIndex]
-                    var scale = max(ratio, 0.7)
+                    var scale = max(ratio, SCALE_MIN)
                     
                     print("scale-current: \(scale)")
                     let t1 = CGAffineTransformMakeScale(scale, scale)
@@ -231,7 +233,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
                     
                     if currentPageIndex-1 >= 0 {
                         let prevView = myViews[currentPageIndex-1]
-                        scale = 1 - ratio + 0.7
+                        scale = 1 - ratio + SCALE_MIN
                         if scale >= 1.0 {
                             scale = 1.0
                         }

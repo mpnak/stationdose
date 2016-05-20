@@ -42,25 +42,25 @@ class StationsListTableViewController: UITableViewController, StationCellDelegat
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        if parentController?.stationsList != nil {
-            return parentController!.stationsList.count
-        }
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
 //        if parentController?.stationsList != nil {
 //            return parentController!.stationsList.count
 //        }
         return 1
     }
 
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        if parentController?.stationsList != nil {
+            return parentController!.stationsList.count
+        }
+        return 0
+    }
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell:StationsListTableViewCell = tableView.dequeueReusableCellWithIdentifier(IDENTIFIER) as! StationsListTableViewCell
         
-        if let station = parentController?.stationsList[indexPath.section] {
+        if let station = parentController?.stationsList[indexPath.row] {
             cell.station = station
             cell.titleLabel.text = station.name
             cell.shortDescriptionLabel.text = station.shortDescription
@@ -88,9 +88,8 @@ class StationsListTableViewController: UITableViewController, StationCellDelegat
             
             cell.touchUpInsideAction = {
                 if self.parentController != nil {
-                    let adjIndexPath = NSIndexPath(forRow: indexPath.section, inSection: indexPath.row)
-                    self.parentController!.selectedStation = self.parentController!.stationsList[adjIndexPath.row]
-                    self.parentController!.showStationAtIndexPath(adjIndexPath)
+                    self.parentController!.selectedStation = self.parentController!.stationsList[indexPath.row]
+                    self.parentController!.showStationAtIndexPath(indexPath)
                 }
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
                     cell.setSelected(false, animated: true)
@@ -156,23 +155,9 @@ class StationsListTableViewController: UITableViewController, StationCellDelegat
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if parentController != nil {
-            let adjIndexPath = NSIndexPath(forRow: indexPath.section, inSection: indexPath.row)
-            parentController!.selectedStation = parentController!.stationsList[adjIndexPath.row]
-            parentController!.showStationAtIndexPath(adjIndexPath)
+            parentController!.selectedStation = parentController!.stationsList[indexPath.row]
+            parentController!.showStationAtIndexPath(indexPath)
         }
-    }
-
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section < parentController!.stationsList.count-1 {
-            return 20.0
-        }
-        return 0
-    }
-    
-    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let v = UIView(frame: CGRectMake(0, 0, self.tableView.frame.size.width, 20.0))
-        v.backgroundColor = .clearColor()
-        return v
     }
     
     /*
