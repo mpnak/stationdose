@@ -26,6 +26,10 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     var energyChartViewPageScrollController: PageScrollViewController?
     var sideScrollerViewController: SideScrollerViewController?
     
+    var defaultProfile: String = ""
+    var currentProfile: String = ""
+    let profiles = ["mellow","chill","vibes","lounge","club","bangin"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,9 +73,10 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
                 
                 station.playlistProfileChooser = profileChooser
                 
-                let p = ["mellow","chill","vibes","lounge","club","bangin"]
-                for i in 0..<p.count {
-                    if profileChooser?.name == p[i] {
+                for i in 0..<self.profiles.count {
+                    if profileChooser?.name == self.profiles[i] {
+                        self.defaultProfile = self.profiles[i]
+                        self.currentProfile = self.profiles[i]
                         self.energyChartViewPageScrollController?.defaultPlaylistIndex = i
                         break
                     }
@@ -95,6 +100,8 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     
     func detailsScrollViewDidPage(scrollView: UIScrollView, pageIndex: Int) {
         sideScrollerViewController?.scrollViewDidPage(scrollView, pageIndex: pageIndex)
+        currentProfile = profiles[pageIndex]
+        
     }
     
     func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int) {
@@ -157,7 +164,7 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     }
     
     @IBAction func doneAction(sender: AnyObject) {
-        if !somethingChanged {
+        if !somethingChanged && currentProfile == defaultProfile {
             self.navigationController?.popViewControllerAnimated(true)
             return
         }
@@ -167,12 +174,16 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
             
             if accept {
                 if self.station != nil {
-                    ModelManager.sharedInstance.updateStationAndRegenerateTracksIfNeeded(self.station!, regenerateTracks: true) {
+                    self.station!.playlistProfile = self.currentProfile
+
+                    ModelManager.sharedInstance.updateStationAndRegenerateTracksWithProfileIfNeeded(self.station!, regenerateTracks: true) {
                         self.navigationController?.popViewControllerAnimated(true)
                     }
                 } else {
-                    if self.station != nil{
-                        ModelManager.sharedInstance.updateStationAndRegenerateTracksIfNeeded(self.station!, regenerateTracks: false) {
+                    if self.station != nil {
+                        
+                            self.station!.playlistProfile = self.currentProfile
+                        ModelManager.sharedInstance.updateStationAndRegenerateTracksWithProfileIfNeeded(self.station!, regenerateTracks: false) {
                             self.navigationController?.popViewControllerAnimated(true)
                         }
                     } else {
@@ -211,6 +222,7 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     func setupFamiliaritySlider() {
         familiaritySlider.setThumbImage(UIImage(named: "slider"), forState: .Normal)
         familiaritySlider.setMaximumTrackImage(UIImage(named: "empty-point"), forState: .Normal)
+//        familiaritySlider.setMaximumTrackImage(UIImage(named: "slider-bg"), forState: .Normal)
         familiaritySlider.tintColor = UIColor.clearColor()
         familiaritySlider.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EditStationViewController.familiarityTapRecognized(_:))))
     }

@@ -990,7 +990,7 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                                 <state key="normal" image="btn-update-list"/>
                                                 <connections>
-                                                    <segue destination="jkc-SX-8QY" kind="show" id="ngY-1m-CF0"/>
+                                                    <segue destination="jkc-SX-8QY" kind="show" identifier="ToEditPlaylistViewController" id="ngY-1m-CF0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3K-rt-w6h">

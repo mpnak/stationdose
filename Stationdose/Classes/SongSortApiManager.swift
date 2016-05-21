@@ -132,6 +132,31 @@ class SongSortApiManager {
 //        }
     }
     
+    func generateStationTracks(station: Station, playlistProfile: String?, onCompletion:(Station?,NSError?) -> Void) {
+        guard let _ = ModelManager.sharedInstance.user else {
+            self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
+            onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+            return
+        }
+        
+        var data = [String: AnyObject]()
+        if let location = LocationManager.sharedInstance.currentLocation {
+            data["ll"] = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        }
+        
+        if playlistProfile != nil {
+            data["name"] = playlistProfile!
+        }
+        manager.request(
+            .POST,
+            baseURL+String(format: ApiMethods.stationTracks, station.id!),
+            parameters:data
+            ).responseObject("station") { (response: Response<Station, NSError>) in
+                self.showGenericErrorIfNeeded(response.result.error)
+                onCompletion(response.result.value, response.result.error)
+        }
+    }
+    
     func generateStationTracks(station: Station, onCompletion:(Station?,NSError?) -> Void) {
         guard let _ = ModelManager.sharedInstance.user else {
             self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
@@ -140,9 +165,10 @@ class SongSortApiManager {
         }
         
         var data = [String: AnyObject]()
-        if let location = LocationManager.sharedInstance.currentLocation{
+        if let location = LocationManager.sharedInstance.currentLocation {
             data["ll"] = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         }
+      
         manager.request(
             .POST,
             baseURL+String(format: ApiMethods.stationTracks, station.id!),

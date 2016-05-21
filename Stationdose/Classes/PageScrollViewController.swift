@@ -25,6 +25,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     var nextPageIndex = 1
     var myViews: [UIView] = []
     var laidOut = false
+    var inited = false
     
     var SCALE_MIN: CGFloat = 0.8
     
@@ -52,6 +53,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
                 self.scrollView?.contentSize = CGSizeMake(w, self.scrollView!.contentSize.height)
                 currentPageIndex = defaultPlaylistIndex
                 self.scrollView?.contentOffset = CGPointMake(CGFloat(currentPageIndex)*self.scrollView!.bounds.width, 0)
+                self.prevOffsetX = CGFloat(currentPageIndex)*self.scrollView!.bounds.width
                 self.initializeAnimations()
                 
                 pageScrollDelegate?.detailsScrollViewSetIndex(defaultPlaylistIndex)
@@ -84,27 +86,30 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    var prevOffsetX: CGFloat = 0.0
+    var prevOffsetX: CGFloat = -999.0
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        let offsetX = scrollView.contentOffset.x
-        print(offsetX)
-        
-        var direction = 0
-        if prevOffsetX < offsetX {
-            direction = 1
-        } else {
-            if offsetX < myViews.last?.frame.origin.x {
-                direction = -1
+        if (inited) {
+            let offsetX = scrollView.contentOffset.x
+            print(offsetX)
+            
+            var direction = 0
+            if prevOffsetX < offsetX {
+                direction = 1
+            } else {
+                if offsetX < myViews.last?.frame.origin.x {
+                    direction = -1
+                }
             }
+            if prevDirection != direction && prevDirection != 0 {
+                pagingCancelled = true
+            }
+            animateProperties(direction)
+            prevDirection = direction
+            prevOffsetX = offsetX
+        } else {
+            inited = true;
         }
-        if prevDirection != direction && prevDirection != 0 {
-            pagingCancelled = true
-        }
-        animateProperties(direction)
-        
-        prevDirection = direction
-        prevOffsetX = offsetX
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
