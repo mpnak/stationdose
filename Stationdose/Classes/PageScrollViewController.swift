@@ -86,6 +86,18 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func advanceNext () {
+        if currentPageIndex + 1 <= self.myViews.count-1 {
+            
+        }
+    }
+    
+    func advancePrev () {
+        if currentPageIndex >= 1 {
+            
+        }
+    }
+    
     var prevOffsetX: CGFloat = -999.0
     func scrollViewDidScroll(scrollView: UIScrollView) {
         

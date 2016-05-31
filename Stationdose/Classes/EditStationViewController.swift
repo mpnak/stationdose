@@ -90,6 +90,14 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
         }
     }
     
+    @IBAction func nextPressed (sender: AnyObject?) {
+        energyChartViewPageScrollController.advanceNext()
+    }
+    
+    @IBAction func prevPressed (sender: AnyObject?) {
+        energyChartViewPageScrollController.advancePrev()
+    }
+    
     func detailsScrollViewSetIndex(defaultIndex: Int) {
         sideScrollerViewController?.setDefaultIndex(defaultIndex)
     }

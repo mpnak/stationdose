@@ -127,6 +127,9 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="mAX-g0-QPi"/>
                                         </constraints>
                                         <state key="normal" image="tiny-arrow-left"/>
+                                        <connections>
+                                            <action selector="prevPressed:" destination="zw6-Np-wVJ" eventType="touchUpInside" id="jNz-hf-yIv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iw-LK-fmU" userLabel="RightButton">
                                         <rect key="frame" x="560" y="0.0" width="30" height="30"/>
@@ -135,6 +138,9 @@
                                             <constraint firstAttribute="width" secondItem="9iw-LK-fmU" secondAttribute="height" multiplier="1:1" id="uVU-FF-0yV"/>
                                         </constraints>
                                         <state key="normal" image="tiny-arrow-right"/>
+                                        <connections>
+                                            <action selector="nextPressed:" destination="zw6-Np-wVJ" eventType="touchUpInside" id="Lyr-4j-Gdn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
