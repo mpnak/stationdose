@@ -24,7 +24,8 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     private var somethingChanged: Bool = false
     
     var energyChartViewPageScrollController: PageScrollViewController?
-    var sideScrollerViewController: SideScrollerViewController?
+    var weatherSideScrollerViewController: WeatherSideScrollerViewController?
+    var recommendedSideScrollerViewController: RecommendedSideScrollerViewController?
     
     var defaultProfile: String = ""
     var currentProfile: String = ""
@@ -83,23 +84,38 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
                 }
                 let weather = profileChooser?.weather
                 let time = profileChooser?.localtime
-                if self.sideScrollerViewController != nil {
-                    self.sideScrollerViewController!.setConditions(defaultIndex: self.energyChartViewPageScrollController!.defaultPlaylistIndex, weather: weather, time: time)
+                if self.weatherSideScrollerViewController != nil {
+                    self.weatherSideScrollerViewController!.setConditions(defaultIndex: self.energyChartViewPageScrollController!.defaultPlaylistIndex, weather: weather, time: time, forParentScrollView: self.energyChartViewPageScrollController!.scrollView!)
                 }
             }
         }
     }
     
-    func detailsScrollViewSetIndex(defaultIndex: Int) {
-        sideScrollerViewController?.setDefaultIndex(defaultIndex)
+    @IBAction func nextPressed (sender: AnyObject?) {
+        if energyChartViewPageScrollController!.currentPageIndex + 1 <= energyChartViewPageScrollController!.myViews.count-1 {
+            energyChartViewPageScrollController?.advanceNext()
+            weatherSideScrollerViewController?.forceNext()
+        }
     }
     
-    func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat) {
-        sideScrollerViewController?.scrollingFromIndex(fromIndex, toIndex: toIndex, direction: direction, withOffsetProportion: withOffsetProportion)
+    @IBAction func prevPressed (sender: AnyObject?) {
+        if energyChartViewPageScrollController!.currentPageIndex >= 1 {
+            energyChartViewPageScrollController?.advancePrev()
+            weatherSideScrollerViewController?.forcePrev()
+        }
     }
+    
+    func detailsScrollViewSetIndex(defaultIndex: Int) {
+        weatherSideScrollerViewController?.setDefaultIndex(defaultIndex, forParentScrollView: energyChartViewPageScrollController!.scrollView!)
+        recommendedSideScrollerViewController?.setDefaultIndex(defaultIndex, forParentScrollView: energyChartViewPageScrollController!.scrollView!)
+    }
+    
+//    func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat) {
+//        sideScrollerViewController?.scrollingFromIndex(fromIndex, toIndex: toIndex, direction: direction, withOffsetProportion: withOffsetProportion)
+//    }
     
     func detailsScrollViewDidPage(scrollView: UIScrollView, pageIndex: Int) {
-        sideScrollerViewController?.scrollViewDidPage(scrollView, pageIndex: pageIndex)
+        weatherSideScrollerViewController?.scrollViewDidPage(scrollView, pageIndex: pageIndex)
         currentProfile = profiles[pageIndex]
         
     }
@@ -203,8 +219,11 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
             energyChartViewPageScrollController!.station = station
             energyChartViewPageScrollController?.pageScrollDelegate = self
         }
-        if let vc = segue.destinationViewController as? SideScrollerViewController {
-            sideScrollerViewController = vc
+        if let vc = segue.destinationViewController as? WeatherSideScrollerViewController {
+            weatherSideScrollerViewController = vc
+        }
+        if let vc = segue.destinationViewController as? RecommendedSideScrollerViewController {
+            recommendedSideScrollerViewController = vc
         }
     }
 
