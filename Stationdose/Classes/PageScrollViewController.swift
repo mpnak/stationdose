@@ -10,9 +10,9 @@ import UIKit
 import Foundation
 
 protocol DetailsPageScrollDelegate {
-    func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int)
+//    func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int)
     func detailsScrollViewSetIndex(defaultIndex: Int)
-    func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat)
+//    func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat)
     func detailsScrollViewDidPage(scrollView: UIScrollView, pageIndex: Int)
 }
 
@@ -30,6 +30,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     var SCALE_MIN: CGFloat = 0.8
     
     var pageScrollDelegate: DetailsPageScrollDelegate?
+    var forcedScroll = false
     
     var defaultPlaylistIndex = 0 {
         didSet {
@@ -87,15 +88,23 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func advanceNext () {
-        if currentPageIndex + 1 <= self.myViews.count-1 {
-            
-        }
+        let newOffsetX = self.scrollView!.contentOffset.x + self.scrollView!.frame.size.width
+        self.scrollView!.setContentOffset(CGPointMake(newOffsetX, 0), animated: true)
+        prevDirection = 0
+        pagingCancelled = false
+        prevOffsetX = newOffsetX
+        currentPageIndex += 1
+        pageScrollDelegate?.detailsScrollViewDidPage(self.scrollView!, pageIndex: currentPageIndex)
     }
     
     func advancePrev () {
-        if currentPageIndex >= 1 {
-            
-        }
+        let newOffsetX = self.scrollView!.contentOffset.x - self.scrollView!.frame.size.width
+        self.scrollView!.setContentOffset(CGPointMake(newOffsetX, 0), animated: true)
+        prevDirection = 0
+        pagingCancelled = false
+        prevOffsetX = newOffsetX
+        currentPageIndex -= 1
+        pageScrollDelegate?.detailsScrollViewDidPage(self.scrollView!, pageIndex: currentPageIndex)
     }
     
     var prevOffsetX: CGFloat = -999.0
@@ -122,6 +131,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
         } else {
             inited = true;
         }
+        
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -132,7 +142,7 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
         print("page: \(currentPageIndex)")
     
         pageScrollDelegate?.detailsScrollViewDidPage(scrollView, pageIndex: currentPageIndex)
-        UIView.animateWithDuration(0.2) { 
+        UIView.animateWithDuration(0.2) {
             self.initializeAnimations()
         }
     }
@@ -161,12 +171,6 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
         
         if !pagingCancelled {
     
-            if direction > 0 {
-                pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex+1, direction: direction, withOffsetProportion: ratio)
-            } else {
-                pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex-1, direction: direction, withOffsetProportion: ratio)
-            }
-            
             if ratio != 0 {
                 if direction > 0 {
                     let currentView = myViews[currentPageIndex]
@@ -211,12 +215,6 @@ class PageScrollViewController: UIViewController, UIScrollViewDelegate {
             }
         } else {
             print("PAGING CANCELLED!!!!!!!!!!!")
-            
-            if direction < 0 {
-                pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex+1, direction: direction, withOffsetProportion: ratio)
-            } else {
-                pageScrollDelegate?.detailsScrollViewScrollingfromIndex(currentPageIndex, toIndex: currentPageIndex-1, direction: direction, withOffsetProportion: ratio)
-            }
             
             if ratio != 0 {
                 if direction < 0 {
