@@ -94,14 +94,12 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     @IBAction func nextPressed (sender: AnyObject?) {
         if energyChartViewPageScrollController!.currentPageIndex + 1 <= energyChartViewPageScrollController!.myViews.count-1 {
             energyChartViewPageScrollController?.advanceNext()
-            weatherSideScrollerViewController?.forceNext()
         }
     }
     
     @IBAction func prevPressed (sender: AnyObject?) {
         if energyChartViewPageScrollController!.currentPageIndex >= 1 {
             energyChartViewPageScrollController?.advancePrev()
-            weatherSideScrollerViewController?.forcePrev()
         }
     }
     

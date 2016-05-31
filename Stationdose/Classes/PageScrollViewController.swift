@@ -10,9 +10,7 @@ import UIKit
 import Foundation
 
 protocol DetailsPageScrollDelegate {
-//    func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int)
     func detailsScrollViewSetIndex(defaultIndex: Int)
-//    func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat)
     func detailsScrollViewDidPage(scrollView: UIScrollView, pageIndex: Int)
 }
 

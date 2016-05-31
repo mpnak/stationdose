@@ -52,59 +52,8 @@ class SideScrollerViewController: UIViewController {
         parentScrollView?.removeObserver(self, forKeyPath: "contentOffset", context: nil)
     }
     
-    func forceNext() {
-        if myCurrentPageIndex == selectionDefaultIndex {
-            scrollView?.setContentOffset(CGPointMake(scrollView!.bounds.width+scrollView!.bounds.width, 0), animated: true)
-        }
-        if myCurrentPageIndex+1 == selectionDefaultIndex {
-            scrollView?.setContentOffset(CGPointMake(scrollView!.bounds.width, 0), animated: true)
-        }
-        myCurrentPageIndex += 1;
-    }
-    
-    func forcePrev() {
-        if myCurrentPageIndex == selectionDefaultIndex {
-            scrollView?.setContentOffset(CGPointMake(0, 0), animated: true)
-        }
-        if myCurrentPageIndex-1 == selectionDefaultIndex {
-            scrollView?.setContentOffset(CGPointMake(scrollView!.bounds.width, 0), animated: true)
-        }
-        myCurrentPageIndex -= 1
-    }
-    
-//    func scrollingFromIndex (fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat) {
-////        if withOffsetProportion > 0 {
-//////            print("sideScrollView offset: \(scrollView!.contentOffset.x)")
-////            if toIndex > fromIndex && fromIndex == selectionDefaultIndex {
-////                scrollView?.contentOffset = CGPointMake(scrollView!.bounds.width+withOffsetProportion*scrollView!.bounds.width, 0)
-////                
-////            }
-////            if toIndex > fromIndex && toIndex == selectionDefaultIndex {
-////                scrollView?.contentOffset = CGPointMake(withOffsetProportion*scrollView!.bounds.width, 0)
-////                
-////            }
-////            if toIndex < fromIndex && fromIndex == selectionDefaultIndex {
-////                scrollView?.contentOffset = CGPointMake(withOffsetProportion*scrollView!.bounds.width, 0)
-////                
-////            }
-////            if toIndex < fromIndex && toIndex == selectionDefaultIndex {
-////                scrollView?.contentOffset = CGPointMake(scrollView!.bounds.width+withOffsetProportion*scrollView!.bounds.width, 0)
-////                
-////            }
-////        }
-//    }
-    
     func scrollViewDidPage(pageScrollView: UIScrollView, pageIndex: Int) {
-//        if pageIndex < selectionDefaultIndex {
-//            self.scrollView?.contentOffset = CGPointMake(0, 0)
-//        }
-//        if pageIndex == selectionDefaultIndex {
-//            self.scrollView?.contentOffset = CGPointMake(self.scrollView!.bounds.width, 0)
-//        }
-//        if pageIndex > selectionDefaultIndex {
-//            self.scrollView?.contentOffset = CGPointMake(self.scrollView!.bounds.width*2, 0)
-//        }
-//        myCurrentPageIndex = pageIndex
+
     }
     
     override func didReceiveMemoryWarning() {
