@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Yantramanav-Light.ttf">
@@ -22,17 +21,26 @@
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="nLk-z9-Tba">
                             <rect key="frame" x="177" y="324" width="20" height="20"/>
                         </activityIndicatorView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Just a moment, we’re building your playlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qi7-af-z9r">
-                            <rect key="frame" x="10" y="372" width="355" height="21"/>
-                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
-                            <color key="textColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just a moment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qi7-af-z9r">
+                            <rect key="frame" x="10" y="372" width="355" height="34"/>
+                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="rsq-pB-GFg">
+                            <rect key="frame" x="108" y="153" width="158" height="133"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="133" id="2ta-Oh-DfM"/>
+                                <constraint firstAttribute="width" constant="158" id="kDO-ti-ef7"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.78000000000000003" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="qi7-af-z9r" firstAttribute="leading" secondItem="YYR-qp-O42" secondAttribute="leading" constant="10" id="15A-F0-nNj"/>
+                        <constraint firstItem="rsq-pB-GFg" firstAttribute="centerX" secondItem="YYR-qp-O42" secondAttribute="centerX" id="2qI-0x-4Xr"/>
                         <constraint firstItem="qi7-af-z9r" firstAttribute="top" secondItem="nLk-z9-Tba" secondAttribute="bottom" constant="28" id="52p-O3-zlo"/>
+                        <constraint firstItem="nLk-z9-Tba" firstAttribute="top" secondItem="rsq-pB-GFg" secondAttribute="bottom" constant="38" id="Ae9-Nn-8YU"/>
                         <constraint firstAttribute="trailing" secondItem="qi7-af-z9r" secondAttribute="trailing" constant="10" id="HN8-1d-Gjv"/>
                         <constraint firstItem="nLk-z9-Tba" firstAttribute="centerX" secondItem="YYR-qp-O42" secondAttribute="centerX" id="gLp-5T-bwk"/>
                         <constraint firstItem="nLk-z9-Tba" firstAttribute="centerY" secondItem="YYR-qp-O42" secondAttribute="centerY" id="ozr-sL-Et3"/>
@@ -54,4 +62,7 @@
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="logo" width="161" height="136"/>
+    </resources>
 </document>

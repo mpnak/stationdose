@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class EditStationViewController: BaseViewController {
+class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     
     var station: Station?
     
@@ -23,13 +23,22 @@ class EditStationViewController: BaseViewController {
     private let fullscreenView = FullScreenLoadingView()
     private var somethingChanged: Bool = false
     
-
+    var energyChartViewPageScrollController: PageScrollViewController?
+    var weatherSideScrollerViewController: WeatherSideScrollerViewController?
+    var recommendedSideScrollerViewController: RecommendedSideScrollerViewController?
+    
+    var defaultProfile: String = ""
+    var currentProfile: String = ""
+    let profiles = ["mellow","chill","vibes","lounge","club","bangin"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "btn-back"), style: .Plain, target: self, action: #selector(UIViewController.back))
+        
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EditStationViewController.stationDidChangeUpdatedAt(_:)), name: SongSortApiManagerNotificationKey.StationDidChangeUpdatedAt.rawValue, object: nil)
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0)))
         familiarityOutlet.hidden = false
         nameLabel?.text = station?.name
         shortDescriptionLabel?.text = station?.shortDescription
@@ -47,12 +56,72 @@ class EditStationViewController: BaseViewController {
         
         if let station = station {
             
-            if station.undergroundness == nil {
-                station.undergroundness = 3
-            }
+            let title = UILabel(frame: self.navigationController!.navigationBar.frame)
+            title.textColor = .whiteColor()
+            title.textAlignment = NSTextAlignment.Center
+            title.text = station.name
+            title.sizeToFit()
+            self.navigationItem.titleView = title
             
+            if station.undergroundness == nil {
+                station.undergroundness = 4
+            }
             familiaritySlider.value = familiaritySliderValueMapInverse(station.undergroundness!)
+            
+            SongSortApiManager.sharedInstance.getPlaylistProfiles { (profileChooser, error) in
+                print("error: \(error)")
+                print("PROFILE: \(profileChooser?.name)")
+                
+                station.playlistProfileChooser = profileChooser
+                
+                for i in 0..<self.profiles.count {
+                    if profileChooser?.name == self.profiles[i] {
+                        self.defaultProfile = self.profiles[i]
+                        self.currentProfile = self.profiles[i]
+                        self.energyChartViewPageScrollController?.defaultPlaylistIndex = i
+                        break
+                    }
+                }
+                let weather = profileChooser?.weather
+                let time = profileChooser?.localtime
+                if self.weatherSideScrollerViewController != nil {
+                    self.weatherSideScrollerViewController!.setConditions(defaultIndex: self.energyChartViewPageScrollController!.defaultPlaylistIndex, weather: weather, time: time, forParentScrollView: self.energyChartViewPageScrollController!.scrollView!)
+                }
+            }
         }
+    }
+    
+    @IBAction func nextPressed (sender: AnyObject?) {
+        if energyChartViewPageScrollController!.currentPageIndex + 1 <= energyChartViewPageScrollController!.myViews.count-1 {
+            energyChartViewPageScrollController?.advanceNext()
+            weatherSideScrollerViewController?.forceNext()
+        }
+    }
+    
+    @IBAction func prevPressed (sender: AnyObject?) {
+        if energyChartViewPageScrollController!.currentPageIndex >= 1 {
+            energyChartViewPageScrollController?.advancePrev()
+            weatherSideScrollerViewController?.forcePrev()
+        }
+    }
+    
+    func detailsScrollViewSetIndex(defaultIndex: Int) {
+        weatherSideScrollerViewController?.setDefaultIndex(defaultIndex, forParentScrollView: energyChartViewPageScrollController!.scrollView!)
+        recommendedSideScrollerViewController?.setDefaultIndex(defaultIndex, forParentScrollView: energyChartViewPageScrollController!.scrollView!)
+    }
+    
+//    func detailsScrollViewScrollingfromIndex(fromIndex: Int, toIndex: Int, direction: Int, withOffsetProportion: CGFloat) {
+//        sideScrollerViewController?.scrollingFromIndex(fromIndex, toIndex: toIndex, direction: direction, withOffsetProportion: withOffsetProportion)
+//    }
+    
+    func detailsScrollViewDidPage(scrollView: UIScrollView, pageIndex: Int) {
+        weatherSideScrollerViewController?.scrollViewDidPage(scrollView, pageIndex: pageIndex)
+        currentProfile = profiles[pageIndex]
+        
+    }
+    
+    func detailsScrollViewShouldScroll(scrollView: UIScrollView, withPrevPageIndex: Int, current: Int, next: Int) {
+        print("delegate")
     }
     
 //    deinit {
@@ -74,6 +143,14 @@ class EditStationViewController: BaseViewController {
 //    @IBAction func timeInfoAction(sender: AnyObject) {
 //        AlertView(title: "Time of day", message: "Similar to using the weather to push your playlist a certain way, adding time of day will only amplify the effect. Rainy Monday morning? Gonna be a properly mellow playlist. Rainy Friday afternoon? Well we take one part rainy, add two parts Friday, a half-tablespoon of afternoon, and whip up a rocktail that won’t dissapoint. Served with a twist of lime.", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
 //    }
+    
+    @IBAction func energyProfileInfoAction(sender: AnyObject) {
+        AlertView(title: "Energy Profile", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
+    }
+    
+    @IBAction func basedOnInfoAction(sender: AnyObject) {
+        AlertView(title: "Based On", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
+    }
     
     @IBAction func familiarityInfoAction(sender: AnyObject) {
         AlertView(title: "Familiarity", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
@@ -103,8 +180,7 @@ class EditStationViewController: BaseViewController {
     }
     
     @IBAction func doneAction(sender: AnyObject) {
-//        self.dismissViewControllerAnimated(true) { () -> Void in }
-        if !somethingChanged {
+        if !somethingChanged && currentProfile == defaultProfile {
             self.navigationController?.popViewControllerAnimated(true)
             return
         }
@@ -114,12 +190,16 @@ class EditStationViewController: BaseViewController {
             
             if accept {
                 if self.station != nil {
-                    ModelManager.sharedInstance.updateStationAndRegenerateTracksIfNeeded(self.station!, regenerateTracks: true) {
+                    self.station!.playlistProfile = self.currentProfile
+
+                    ModelManager.sharedInstance.updateStationAndRegenerateTracksWithProfileIfNeeded(self.station!, regenerateTracks: true) {
                         self.navigationController?.popViewControllerAnimated(true)
                     }
                 } else {
-                    if self.station != nil{
-                        ModelManager.sharedInstance.updateStationAndRegenerateTracksIfNeeded(self.station!, regenerateTracks: false) {
+                    if self.station != nil {
+                        
+                            self.station!.playlistProfile = self.currentProfile
+                        ModelManager.sharedInstance.updateStationAndRegenerateTracksWithProfileIfNeeded(self.station!, regenerateTracks: false) {
                             self.navigationController?.popViewControllerAnimated(true)
                         }
                     } else {
@@ -133,6 +213,17 @@ class EditStationViewController: BaseViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationViewController = segue.destinationViewController as? PlaylistViewController {
             destinationViewController.station = station
+        }
+        if let vc = segue.destinationViewController as? PageScrollViewController {
+            energyChartViewPageScrollController = vc
+            energyChartViewPageScrollController!.station = station
+            energyChartViewPageScrollController?.pageScrollDelegate = self
+        }
+        if let vc = segue.destinationViewController as? WeatherSideScrollerViewController {
+            weatherSideScrollerViewController = vc
+        }
+        if let vc = segue.destinationViewController as? RecommendedSideScrollerViewController {
+            recommendedSideScrollerViewController = vc
         }
     }
 
@@ -150,6 +241,7 @@ class EditStationViewController: BaseViewController {
     func setupFamiliaritySlider() {
         familiaritySlider.setThumbImage(UIImage(named: "slider"), forState: .Normal)
         familiaritySlider.setMaximumTrackImage(UIImage(named: "empty-point"), forState: .Normal)
+//        familiaritySlider.setMaximumTrackImage(UIImage(named: "slider-bg"), forState: .Normal)
         familiaritySlider.tintColor = UIColor.clearColor()
         familiaritySlider.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EditStationViewController.familiarityTapRecognized(_:))))
     }

@@ -183,6 +183,33 @@ class ModelManager: NSObject {
         }
     }
     
+    func updateStationAndRegenerateTracksWithProfileIfNeeded(station: Station, regenerateTracks: Bool, onCompletion: () -> Void) {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(ModelManagerNotificationKey.StationDidChangeModifiers.rawValue, object: station)
+        
+        if regenerateTracks {
+            postEvent(.WillStartStationTracksReGeneration, id: station.id!)
+        }
+        SongSortApiManager.sharedInstance.updateStation(station) { (newStation, error) -> Void in
+            if let newStation = newStation {
+                for (index, toChangeStation) in self.savedStations.enumerate() {
+                    if toChangeStation.id == station.id{
+                        self.savedStations[index] = toChangeStation
+                    }
+                }
+                if(regenerateTracks){
+                    SongSortApiManager.sharedInstance.generateStationTracks(newStation, playlistProfile: station.playlistProfile, onCompletion: { (_station, error) -> Void in
+                        self.handleFetchedTracks(station, stationWithTracks: _station, onCompletion: onCompletion)
+                    })
+                } else {
+                    onCompletion()
+                }
+            } else {
+                onCompletion()
+            }
+        }
+    }
+    
     func saveStation(station: Station, onCompletion: (saved:Bool, savedStation: Station?) -> Void) {
         SongSortApiManager.sharedInstance.saveStation(station.id!) { (savedStation, error) -> Void in
             if let savedStation = savedStation {

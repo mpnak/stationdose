@@ -94,19 +94,19 @@ class AlertView: NSObject {
         
         contaignerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.0)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("cancelAction"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AlertView.cancelAction))
         contaignerView.addGestureRecognizer(tapGestureRecognizer)
         
         contaignerView.titleLabel.text = title
         contaignerView.messageLabel.text = message
         contaignerView.acceptButton.setTitle(acceptButtonTitle, forState: .Normal)
-        contaignerView.acceptButton.addTarget(self, action: "acceptAction", forControlEvents: .TouchUpInside)
-        contaignerView.closeButton.addTarget(self, action: "cancelAction", forControlEvents: .TouchUpInside)
+        contaignerView.acceptButton.addTarget(self, action: #selector(AlertView.acceptAction), forControlEvents: .TouchUpInside)
+        contaignerView.closeButton.addTarget(self, action: #selector(AlertView.cancelAction), forControlEvents: .TouchUpInside)
         
         if let cancelButtonTitle = cancelButtonTitle {
             contaignerView.cancelButton.setTitle(cancelButtonTitle, forState: .Normal)
             contaignerView.cancelButtonWidthLayoutConstraint.constant = (contaignerView.cancelButton.superview?.frame.size.width)!/2.0
-            contaignerView.cancelButton.addTarget(self, action: "cancelAction", forControlEvents: .TouchUpInside)
+            contaignerView.cancelButton.addTarget(self, action: #selector(AlertView.cancelAction), forControlEvents: .TouchUpInside)
         } else {
             contaignerView.cancelButtonWidthLayoutConstraint.constant = 0.0
         }

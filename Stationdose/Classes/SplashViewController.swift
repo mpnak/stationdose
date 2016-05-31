@@ -22,8 +22,9 @@ class SplashViewController: UIViewController, SpotifyManagerLoginDelegate {
         activityIndicator.setNeedsLayout()
         activityIndicator.layoutIfNeeded()
         
-        let activityIndicatorView = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
+        let activityIndicatorView = NVActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40), type: .LineScale, color:UIColor.customSectionDividersColor())
         self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.center = activityIndicator.center
         activityIndicatorView.startAnimation()
         
         addFullBackground()

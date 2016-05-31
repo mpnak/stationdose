@@ -17,6 +17,7 @@ class Track: Mappable {
     var artist:String?
     var undergroundness:String?
     var liked:Bool?
+    var energy:String?
     
     required init?(_ map: Map) {
         
@@ -30,6 +31,7 @@ class Track: Mappable {
         artist              <- map["artist"]
         undergroundness     <- map["undergroundness"]
         liked               <- map["favorited"]
+        energy               <- map["energy"]
     }
     
     func spotifyUrl() -> String {

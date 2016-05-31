@@ -23,6 +23,7 @@ class SongSortApiManager {
     
     struct ApiMethods{
         static let stations = "stations"
+        static let stationsPlaylistProfileChooser = "stations/playlist_profile_chooser"
         static let station = "stations/%i"
         static let stationTracks = "stations/%i/tracks"
         static let playTrack = "tracks/%i/play"
@@ -50,6 +51,20 @@ class SongSortApiManager {
         }
         
         manager.request(.GET, baseURL+ApiMethods.stations).responseArray("stations") { (response: Response<[Station], NSError>) in
+            self.showGenericErrorIfNeeded(response.result.error)
+            onCompletion(response.result.value, response.result.error)
+        }
+    }
+    
+    func getPlaylistProfiles(onCompletion:(PlaylistProfileChooser?, NSError?) -> Void) {
+        guard let _ = ModelManager.sharedInstance.user
+            else{
+                self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
+                onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+                return
+        }
+        
+        manager.request(.GET, baseURL+ApiMethods.stationsPlaylistProfileChooser).responseObject("playlist_profile_chooser") { (response: Response<PlaylistProfileChooser, NSError>) in
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
         }
@@ -89,13 +104,56 @@ class SongSortApiManager {
 
     
     func removeSavedStation(stationId: Int) {
-        manager.request(.DELETE, baseURL+String(format: ApiMethods.station, stationId))
+        guard let _ = ModelManager.sharedInstance.user else {
+            self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
+            return
+        }
+        let data = ["station": ["saved_station": false]]
+        manager.request(.PUT, String(format:baseURL+ApiMethods.station, stationId), parameters:data).responseObject("station") { (response: Response<Station, NSError>) -> Void in
+             self.showGenericErrorIfNeeded(response.result.error)
+        }
     }
     
     func getStationTracks(stationId: Int, onCompletion: (Station?, NSError?) -> Void) {
         manager.request(.GET, baseURL+String(format: ApiMethods.stationTracks, stationId)).responseObject("station") { (response: Response<Station, NSError>) in
+            let str = NSString(data: response.data!, encoding: NSUTF8StringEncoding)
+            print(str)
+            print(response)
             self.showGenericErrorIfNeeded(response.result.error)
             onCompletion(response.result.value, response.result.error)
+        }
+        
+//        manager.request(.GET, baseURL+String(format: ApiMethods.stationTracks, stationId)).responseArray("tracks") { (response: Response<[Track], NSError>) in
+//            let str = NSString(data: response.data!, encoding: NSUTF8StringEncoding)
+//            print(str)
+//            print(response)
+//            self.showGenericErrorIfNeeded(response.result.error)
+//            onCompletion(response.result.value, response.result.error)
+//        }
+    }
+    
+    func generateStationTracks(station: Station, playlistProfile: String?, onCompletion:(Station?,NSError?) -> Void) {
+        guard let _ = ModelManager.sharedInstance.user else {
+            self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
+            onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
+            return
+        }
+        
+        var data = [String: AnyObject]()
+        if let location = LocationManager.sharedInstance.currentLocation {
+            data["ll"] = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        }
+        
+        if playlistProfile != nil {
+            data["name"] = playlistProfile!
+        }
+        manager.request(
+            .POST,
+            baseURL+String(format: ApiMethods.stationTracks, station.id!),
+            parameters:data
+            ).responseObject("station") { (response: Response<Station, NSError>) in
+                self.showGenericErrorIfNeeded(response.result.error)
+                onCompletion(response.result.value, response.result.error)
         }
     }
     
@@ -107,9 +165,10 @@ class SongSortApiManager {
         }
         
         var data = [String: AnyObject]()
-        if let location = LocationManager.sharedInstance.currentLocation{
+        if let location = LocationManager.sharedInstance.currentLocation {
             data["ll"] = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         }
+      
         manager.request(
             .POST,
             baseURL+String(format: ApiMethods.stationTracks, station.id!),
