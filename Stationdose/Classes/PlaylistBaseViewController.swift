@@ -49,7 +49,7 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.willStartStationTracksReGeneration(_:)), name: ModelManagerNotificationKey.WillStartStationTracksReGeneration.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.didEndStationTracksReGeneration(_:)), name: ModelManagerNotificationKey.DidEndStationTracksReGeneration.rawValue, object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.stationDidChangeModifiers(_:)), name: ModelManagerNotificationKey.StationDidChangeModifiers.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.stationDidChangeUpdatedAt(_:)), name: SongSortApiManagerNotificationKey.StationDidChangeUpdatedAt.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PlaylistViewController.stationDidChangeUpdatedAt(_:)), name: ModelManagerNotificationKey.DidUpdatePlaylistTracks.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlaylistViewController.playbackDidPause(_:)), name: Constants.Notifications.playbackDidPause, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlaylistViewController.playbackDidResume(_:)), name: Constants.Notifications.playbackDidResume, object: nil)
         
@@ -160,9 +160,10 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
     
     func stationDidChangeUpdatedAt(notification:NSNotification) {
         // TODO if let savedStation = notification.object as? SavedStation {
-        if let station = notification.object as? Station {
-            if station.id == self.station?.id {
-                updatedAtLabel?.text = station.updatedAtString()
+        if let dict = notification.object as? [String: AnyObject] {
+            if dict["id"] as? Int == self.station?.id {
+                let text = self.station!.updatedAtString()
+                updatedAtLabel?.text = text
             }
         }
     }

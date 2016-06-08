@@ -16,6 +16,7 @@ enum ModelManagerNotificationKey: String {
     case StationDidChangeModifiers
     case WillStartStationTracksReGeneration
     case DidEndStationTracksReGeneration
+    case DidUpdatePlaylistTracks
 }
 
 class ModelManager: NSObject {
@@ -80,6 +81,7 @@ class ModelManager: NSObject {
         station.tracksUpdatedAt = stationWithTracks?.tracksUpdatedAt
         self.stationDidReloadTracks(station)
         self.postEvent(.DidEndStationTracksReGeneration, id: station.id!)
+        self.postEvent(.DidUpdatePlaylistTracks, id: station.id!)
         onCompletion()
     }
     
@@ -183,30 +185,20 @@ class ModelManager: NSObject {
         }
     }
     
-    func updateStationAndRegenerateTracksWithProfileIfNeeded(station: Station, regenerateTracks: Bool, onCompletion: () -> Void) {
+    func generateTracksForStationWithParameters (station station: Station, params: [String: AnyObject], onCompletion: () -> Void) {
         
         NSNotificationCenter.defaultCenter().postNotificationName(ModelManagerNotificationKey.StationDidChangeModifiers.rawValue, object: station)
+        postEvent(.WillStartStationTracksReGeneration, id: station.id!)
         
-        if regenerateTracks {
-            postEvent(.WillStartStationTracksReGeneration, id: station.id!)
-        }
-        SongSortApiManager.sharedInstance.updateStation(station) { (newStation, error) -> Void in
-            if let newStation = newStation {
-                for (index, toChangeStation) in self.savedStations.enumerate() {
-                    if toChangeStation.id == station.id{
-                        self.savedStations[index] = toChangeStation
-                    }
+        SongSortApiManager.sharedInstance.generateStationTracksWithParameters(station: station, params: params) { (_station, error) in
+            
+            for (index, toChangeStation) in self.savedStations.enumerate() {
+                if toChangeStation.id == station.id{
+                    self.savedStations[index] = toChangeStation
                 }
-                if(regenerateTracks){
-                    SongSortApiManager.sharedInstance.generateStationTracks(newStation, playlistProfile: station.playlistProfile, onCompletion: { (_station, error) -> Void in
-                        self.handleFetchedTracks(station, stationWithTracks: _station, onCompletion: onCompletion)
-                    })
-                } else {
-                    onCompletion()
-                }
-            } else {
-                onCompletion()
             }
+            
+            self.handleFetchedTracks(station, stationWithTracks: _station, onCompletion: onCompletion)
         }
     }
     

@@ -29,7 +29,7 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     
     var defaultProfile: String = ""
     var currentProfile: String = ""
-    let profiles = ["mellow","chill","vibes","lounge","club","bangin"]
+    var profiles = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +72,8 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
                 print("error: \(error)")
                 print("PROFILE: \(profileChooser?.name)")
                 
-                station.playlistProfileChooser = profileChooser
+//                station.playlistProfileChooser = profileChooser
+                self.profiles = profileChooser!.all_names!
                 
                 for i in 0..<self.profiles.count {
                     if profileChooser?.name == self.profiles[i] {
@@ -178,34 +179,17 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     }
     
     @IBAction func doneAction(sender: AnyObject) {
-        if !somethingChanged && currentProfile == defaultProfile {
-            self.navigationController?.popViewControllerAnimated(true)
-            return
+        if self.station != nil {
+            let energyPage = self.energyChartViewPageScrollController!.currentPageIndex
+            let params = [
+                "undergroundness": station!.undergroundness!,
+                "name": profiles[energyPage]
+            ] as [String: AnyObject]
+            ModelManager.sharedInstance.generateTracksForStationWithParameters(station: self.station!, params: params) {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
         }
         
-        AlertView(title: "Update Playlist Now?", message: "You’ve made changes to your station, do you want to update the playlist now?", acceptButtonTitle: "Update Now", cancelButtonTitle: "Update Later") {
-            (accept) -> Void in
-            
-            if accept {
-                if self.station != nil {
-                    self.station!.playlistProfile = self.currentProfile
-
-                    ModelManager.sharedInstance.updateStationAndRegenerateTracksWithProfileIfNeeded(self.station!, regenerateTracks: true) {
-                        self.navigationController?.popViewControllerAnimated(true)
-                    }
-                } else {
-                    if self.station != nil {
-                        
-                            self.station!.playlistProfile = self.currentProfile
-                        ModelManager.sharedInstance.updateStationAndRegenerateTracksWithProfileIfNeeded(self.station!, regenerateTracks: false) {
-                            self.navigationController?.popViewControllerAnimated(true)
-                        }
-                    } else {
-                        self.navigationController?.popViewControllerAnimated(true)
-                    }
-                }
-            }
-        }.show()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

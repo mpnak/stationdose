@@ -1098,7 +1098,7 @@ Please sign in to your account to start.</string>
                         <outlet property="savedImageView" destination="6GT-pO-Hwi" id="kdH-y6-KIx"/>
                         <outlet property="shortDescriptionLabel" destination="aAa-H9-Gdi" id="MfD-8R-n2a"/>
                         <outlet property="tracksTableView" destination="MZw-7r-iZt" id="r4R-GZ-aOY"/>
-                        <outlet property="updatedAtLabel" destination="qE1-kr-vSc" id="JA0-ii-9jI"/>
+                        <outlet property="updatedAtLabel" destination="vHL-S2-qI0" id="kNf-uM-2PK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9p-w3-Jd3" userLabel="First Responder" sceneMemberID="firstResponder"/>

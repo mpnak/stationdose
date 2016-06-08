@@ -22,8 +22,7 @@ class Station: Mappable {
     var savedStation: Bool?
     var tracks: [Track]?
     var isPlaying: Bool?
-    var playlistProfile: String?
-    var playlistProfileChooser: PlaylistProfileChooser?
+    
     var isStandardType: Bool {
         get {
             return self.type == "standard"
@@ -65,9 +64,9 @@ class Station: Mappable {
         if let updatedAt = tracksUpdatedAt {
             let components = NSCalendar.currentCalendar().components(.Day, fromDate: updatedAt, toDate: NSDate(), options: .WrapComponents)
             
-            var result = "Updated: "
+            var result = ""
             let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "hh:mm a"
+            dateFormatter.dateFormat = "h:mm a"
             if dateFormatter.stringFromDate(updatedAt).containsString(":00"){
                 dateFormatter.dateFormat = "ha"
             }
@@ -75,9 +74,9 @@ class Station: Mappable {
             result += ", "
             
             if components.day == 0 {
-                result += "today"
+                result += "Today"
             } else if components.day == 1 {
-                result += "yesterday"
+                result += "Yesterday"
             } else {
                 result += String(format: "%i days ago", components.day)
             }

@@ -132,7 +132,8 @@ class SongSortApiManager {
 //        }
     }
     
-    func generateStationTracks(station: Station, playlistProfile: String?, onCompletion:(Station?,NSError?) -> Void) {
+    func generateStationTracksWithParameters (station station: Station, params: [String: AnyObject], onCompletion:(Station?, NSError?) -> Void) {
+        
         guard let _ = ModelManager.sharedInstance.user else {
             self.showGenericErrorIfNeeded(NSError(domain: "No User", code: 0, userInfo: nil))
             onCompletion(nil, NSError(domain: "No User", code: 0, userInfo: nil))
@@ -143,10 +144,9 @@ class SongSortApiManager {
         if let location = LocationManager.sharedInstance.currentLocation {
             data["ll"] = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         }
-        
-        if playlistProfile != nil {
-            data["name"] = playlistProfile!
-        }
+        data["name"] = params["name"]
+        data["undergroundness"] = params["undergroundness"]
+    
         manager.request(
             .POST,
             baseURL+String(format: ApiMethods.stationTracks, station.id!),

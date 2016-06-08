@@ -57,7 +57,7 @@ class HomeViewController: BaseViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.stationDidChangeModifiers(_:)), name: ModelManagerNotificationKey.StationDidChangeModifiers.rawValue, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.stationDidChangeUpdatedAt(_:)), name: SongSortApiManagerNotificationKey.StationDidChangeUpdatedAt.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.stationDidChangeUpdatedAt(_:)), name: ModelManagerNotificationKey.DidUpdatePlaylistTracks.rawValue, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(HomeViewController.stationDidChangeUpdatedAt(_:)), name: ModelManagerNotificationKey.DidEndStationTracksReGeneration.rawValue, object: nil)
     }
