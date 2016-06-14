@@ -6,9 +6,9 @@ target "Stationdose" do
 
 pod 'Alamofire', '~> 3.0'
 pod 'ChameleonFramework', '~> 2.0'
-pod 'ObjectMapper', '~> 1.0'
+pod 'ObjectMapper', '1.2'
 pod 'AlamofireObjectMapper', '~> 2.0'
-pod 'NVActivityIndicatorView', '~> 2.0'
+pod 'NVActivityIndicatorView', '2.6'
 pod 'MGSwipeTableCell', '~> 1.5'
 pod 'AlamofireImage', '~> 2.0'
 pod 'netfox', '~> 1.7'
