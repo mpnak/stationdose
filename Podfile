@@ -16,5 +16,6 @@ pod 'Branch', '~> 0.11'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'Charts'
+pod 'HanekeSwift'
 
 end
