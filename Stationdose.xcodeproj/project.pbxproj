@@ -57,7 +57,6 @@
 		CDBE23151BF92DFB00291F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23141BF92DFB00291F56 /* Assets.xcassets */; };
 		CDBE23181BF92DFB00291F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBE23161BF92DFB00291F56 /* LaunchScreen.storyboard */; };
 		CDEFD01B1C0782EF00957580 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEFD01A1C0782EF00957580 /* TransitionAnimations.swift */; };
-		DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E06A1BF2138C0B19B5B149 /* Pods.framework */; };
 		F10FB1751C0DF224000C90C1 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10FB1741C0DF224000C90C1 /* PlaylistViewController.swift */; };
 		F10FB1771C0E3005000C90C1 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10FB1761C0E3005000C90C1 /* TrackTableViewCell.swift */; };
 		F111C96E1BFCF57700CC0CCB /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F111C96D1BFCF57700CC0CCB /* UIColor+CustomColors.swift */; };
@@ -84,7 +83,6 @@
 
 /* Begin PBXFileReference section */
 		156607D2D36CA6229049177D /* Pods-Stationdose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stationdose.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stationdose/Pods-Stationdose.debug.xcconfig"; sourceTree = "<group>"; };
-		24E06A1BF2138C0B19B5B149 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DE5C033DDD061F0DDA80AB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7C1031B81CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		7C1031BA1CD9A02E00B65E7A /* StationsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsListTableViewController.swift; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 			files = (
 				CD9FA4551BF93C7F003B8A62 /* SystemConfiguration.framework in Frameworks */,
 				CD9FA4531BF93C79003B8A62 /* AVFoundation.framework in Frameworks */,
-				DE8ABE07B065DFD6DC14E4CC /* Pods.framework in Frameworks */,
 				CD9FA4571BF93D79003B8A62 /* Spotify.framework in Frameworks */,
 				CC81366C0E7B0E17AD8865A8 /* Pods_Stationdose.framework in Frameworks */,
 			);
@@ -188,7 +185,6 @@
 				CD9FA4561BF93D79003B8A62 /* Spotify.framework */,
 				CD9FA4541BF93C7F003B8A62 /* SystemConfiguration.framework */,
 				CD9FA4521BF93C79003B8A62 /* AVFoundation.framework */,
-				24E06A1BF2138C0B19B5B149 /* Pods.framework */,
 				A97756DD76D4052AE905CE88 /* Pods_Stationdose.framework */,
 			);
 			name = Frameworks;

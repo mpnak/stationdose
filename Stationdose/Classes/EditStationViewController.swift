@@ -92,6 +92,15 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParentViewController() {
+            if station?.tracks == nil {
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+        }
+    }
+    
     @IBAction func nextPressed (sender: AnyObject?) {
         if energyChartViewPageScrollController!.currentPageIndex + 1 <= energyChartViewPageScrollController!.myViews.count-1 {
             energyChartViewPageScrollController?.advanceNext()

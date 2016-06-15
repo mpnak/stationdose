@@ -8,6 +8,8 @@
 
 import UIKit
 import AlamofireImage
+import Haneke
+import ObjectMapper
 
 enum ModelManagerNotificationKey: String {
     case StationsDidReloadFromServer
@@ -30,13 +32,35 @@ class ModelManager: NSObject {
     var user:User?
     let imageDownloader = ImageDownloader.defaultInstance
     
+    var cachedStations: [Station]
+    
     override init() {
         savedStations = []
         stations = []
         featuredStations = []
         sponsoredStations = []
-        
+        cachedStations = []
         super.init()
+        getLocalCachedStations()
+    }
+    
+    func getLocalCachedStations () {
+        // Use a string cache
+        let cache = Shared.stringCache
+        // Fetch from the cache and deserialize
+        cache.fetch(key: "CACHED_STATIONS").onSuccess { jsonString in
+            self.cachedStations = Mapper<Station>().mapArray(jsonString)!
+            print(self.cachedStations)
+        }
+    }
+    
+    func cacheLocalStations () {
+        let cache = Shared.stringCache
+        //Use ObjectMapper to serialize the data into a json string
+        if let jsonString = Mapper().toJSONString(stations, prettyPrint: false) {
+            //Store the json string to a cache
+            cache.set(value: jsonString, key: "CACHED_STATIONS")
+        }
     }
     
     func initialCache(onCompletion:() -> Void) {
@@ -79,6 +103,7 @@ class ModelManager: NSObject {
     func handleFetchedTracks(station: Station, stationWithTracks: Station?, onCompletion: () -> Void) {
         station.tracks = stationWithTracks?.tracks
         station.tracksUpdatedAt = stationWithTracks?.tracksUpdatedAt
+        self.cacheLocalStations()
         self.stationDidReloadTracks(station)
         self.postEvent(.DidEndStationTracksReGeneration, id: station.id!)
         self.postEvent(.DidUpdatePlaylistTracks, id: station.id!)
@@ -145,9 +170,21 @@ class ModelManager: NSObject {
         }
     }
     
+    func mergeCachedStationTracksWithStation (station: Station) {
+        for cachedStation in cachedStations {
+            if cachedStation.id == station.id {
+                station.tracks = cachedStation.tracks
+            }
+        }
+    }
+    
     func reloadStations(onCompletion:() -> Void) {
         SongSortApiManager.sharedInstance.getStations { (stations, error) -> Void in
             if let stations = stations {
+                //we need to merge the cached tracks
+                for station in stations {
+                    self.mergeCachedStationTracksWithStation(station)
+                }
                 self.stations = stations.filter{ $0.type == "standard" }
                 self.featuredStations = stations.filter{ $0.type == "featured" }
                 self.sponsoredStations = stations.filter{ $0.type == "sponsored" }
@@ -206,6 +243,7 @@ class ModelManager: NSObject {
         SongSortApiManager.sharedInstance.saveStation(station.id!) { (savedStation, error) -> Void in
             if let savedStation = savedStation {
                 savedStation.savedStation = true
+                savedStation.tracks = station.tracks
                 self.updateStationAndRegenerateTracksIfNeeded(savedStation, regenerateTracks: false) {
                     self.savedStations.append(savedStation)
                     onCompletion(saved: true, savedStation:savedStation)
