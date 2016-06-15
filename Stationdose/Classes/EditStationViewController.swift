@@ -153,15 +153,15 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
 //    }
     
     @IBAction func energyProfileInfoAction(sender: AnyObject) {
-        AlertView(title: "Energy Profile", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
+        AlertView(title: "Energy Profile", message: "Playlist Profiles showing more blue in the graph will feature lower energy music while profiles with more red will feature more upbeat tracks. Based on day of the week, time of day and weather, Stationdose recommends a profile we think will suit. Of course you can always adjust it up and down to better suit your mood.", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
     }
     
     @IBAction func basedOnInfoAction(sender: AnyObject) {
-        AlertView(title: "Based On", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
+        AlertView(title: "Based On", message: "Stationdose looks at the day of the week, time of day, and local weather conditions to select a vibe for your playlist. Early Monday morning we’ll recommend a more mellow playlist while Friday afternoon we think you’ll like it more upbeat.", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
     }
     
     @IBAction func familiarityInfoAction(sender: AnyObject) {
-        AlertView(title: "Familiarity", message: "Pretty much what it says on the tin. Stationdose won’t go too crazy with the sounds from the middle of the slide-bar, left. Slide right and hear the best B-sides, rare releases and out-there tracks in the genre. We suggest you get adventurous!", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
+        AlertView(title: "Familiarity", message: "For a playlist with songs you’re more likely to know, move the slider left. For a playlist with songs you might not have heard before, move it right. For a little bit of both keep it in the middle.", acceptButtonTitle: "Cool", cancelButtonTitle: nil) { (_) -> Void in }.show()
     }
     
     @IBAction func familiarityTouchUpInside(sender: UISlider) {
