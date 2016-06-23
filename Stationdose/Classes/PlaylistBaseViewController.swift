@@ -98,6 +98,11 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if station?.tracks != nil {
+            let ip = NSIndexPath(forRow: 0, inSection: 0)
+            self.tracksTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: true)
+        }
     }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
