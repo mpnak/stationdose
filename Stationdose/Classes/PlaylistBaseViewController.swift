@@ -89,9 +89,6 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
             self.tracks = []
             //goto edit playlist view controller
             self.performSegueWithIdentifier("ToEditPlaylistViewController", sender: self)
-//            ModelManager.sharedInstance.reloadNotCachedStationTracksAndCache(station!) { () -> Void in
-//                //self.fullscreenView.hide(1.5)
-//            }
         }
         
         let shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(PlaylistViewController.share))

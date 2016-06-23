@@ -31,6 +31,13 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     var currentProfile: String = ""
     var profiles = [String]()
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if let nav = self.navigationController as? MainNavigationController {
+            nav.hideLoading()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,6 +103,9 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
         super.viewWillDisappear(animated)
         if self.isMovingFromParentViewController() {
             if station?.tracks == nil {
+                if let nav = self.navigationController as? MainNavigationController {
+                    nav.showLoading()
+                }
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
         }

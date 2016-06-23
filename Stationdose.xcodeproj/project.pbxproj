@@ -25,6 +25,7 @@
 		7C54F0EB1CD465DB0069677D /* EnergyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */; };
 		7C54F0ED1CD82DCC0069677D /* MyStationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EC1CD82DCC0069677D /* MyStationsCollectionViewCell.swift */; };
 		7C54F0EF1CD831480069677D /* MyStationsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EE1CD831480069677D /* MyStationsCollectionViewController.swift */; };
+		7CC655D61D1C93860000121B /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC655D51D1C93860000121B /* MainNavigationController.swift */; };
 		CC81366C0E7B0E17AD8865A8 /* Pods_Stationdose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A97756DD76D4052AE905CE88 /* Pods_Stationdose.framework */; };
 		CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */; };
 		CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */; };
@@ -102,6 +103,7 @@
 		7C54F0EA1CD465DB0069677D /* EnergyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyChartViewController.swift; sourceTree = "<group>"; };
 		7C54F0EC1CD82DCC0069677D /* MyStationsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		7C54F0EE1CD831480069677D /* MyStationsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStationsCollectionViewController.swift; sourceTree = "<group>"; };
+		7CC655D51D1C93860000121B /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		8C4BA086175416C4C509705C /* Pods-Stationdose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stationdose.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stationdose/Pods-Stationdose.release.xcconfig"; sourceTree = "<group>"; };
 		A97756DD76D4052AE905CE88 /* Pods_Stationdose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stationdose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalFullScreenLoadingView.xib; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				7C1031BA1CD9A02E00B65E7A /* StationsListTableViewController.swift */,
 				7C54F0EE1CD831480069677D /* MyStationsCollectionViewController.swift */,
 				7C1031B81CD98EA000B65E7A /* MyStationsCollectionViewLayout.swift */,
+				7CC655D51D1C93860000121B /* MainNavigationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				CD9FA45D1BFA8483003B8A62 /* SplashViewController.swift in Sources */,
 				7C5078551CEE87AC00ADDD5C /* PlaylistBaseViewController.swift in Sources */,
 				F1F91C6D1BFF9B44000E0BB7 /* StationsListTableViewCell.swift in Sources */,
+				7CC655D61D1C93860000121B /* MainNavigationController.swift in Sources */,
 				F1B4CB791C07B58F007DB048 /* InternalAlertView.swift in Sources */,
 				CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */,
 				F1EC7DCB1C282436003CEA24 /* ShareView.swift in Sources */,

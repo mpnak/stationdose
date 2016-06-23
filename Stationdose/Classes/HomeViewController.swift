@@ -95,6 +95,9 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if let nav = self.navigationController as? MainNavigationController {
+            nav.hideLoading()
+        }
         reloadData()
     }
     
@@ -505,6 +508,11 @@ extension HomeViewController {
 //        selectedStation = nil
 //        selectedStation = stationsList[indexPath.row]
         if(selectedStation != nil) {
+            if selectedStation?.tracks == nil {
+                if let nav = self.navigationController as? MainNavigationController {
+                    nav.showLoading()
+                }
+            }
             moveToStationPlaylist()
         }
     }
