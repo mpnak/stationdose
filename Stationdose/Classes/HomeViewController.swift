@@ -289,9 +289,10 @@ class HomeViewController: BaseViewController {
         closeTableViewSwipeButtons(stationsListTableViewController!.tableView, animated:true)
         
         let moveToLeft = sender.selectedSegmentIndex == 1
+        self.stationsListContainerView?.userInteractionEnabled = moveToLeft
+        
         animateStationsTableTransition(moveToLeft, completion:{ () -> Void in
             self.stationsSegmentedControlValueChangedEnabled = true
-            self.stationsListContainerView?.userInteractionEnabled = moveToLeft
         })
         
         if moveToLeft {
