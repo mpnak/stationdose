@@ -69,6 +69,11 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
             coverImageView.image = UIImage(named: "station-placeholder")
         }
         
+        PlaybackManager.sharedInstance.needsStandardArtwork = false
+        if station?.type == "standard" {
+            PlaybackManager.sharedInstance.needsStandardArtwork = true
+        }
+        
         saveButton?.alpha = station?.savedStation == true ? 0 : 1
         removeButton?.alpha = station?.savedStation == true ? 1 : 0
         savedImageView?.alpha = station?.savedStation == true ? 1 : 0

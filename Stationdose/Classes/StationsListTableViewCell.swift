@@ -20,6 +20,9 @@ class StationsListTableViewCell: PlayableTableViewCell {
     @IBOutlet weak var addedMessageView: UIView?
     @IBOutlet weak var removedMessageView: UIView?
     
+    @IBOutlet var leadingConstraint: NSLayoutConstraint?
+    @IBOutlet var trailingConstraint: NSLayoutConstraint?
+    
     @IBAction func savePressed (sender: AnyObject?) {
         buttonDelegate?.savePressed(self)
     }

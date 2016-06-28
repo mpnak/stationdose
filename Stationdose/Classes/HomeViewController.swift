@@ -35,6 +35,9 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var stationsListContainerView: UIView?
     var originalTableViewHeight: CGFloat = 0.0
     
+    @IBOutlet var stationsListLeadingConstraint: NSLayoutConstraint?
+    @IBOutlet var stationsListTrailingConstraint: NSLayoutConstraint?
+    
     var myStationsCollectionViewController: MyStationsCollectionViewController?
     var stationsListTableViewController: StationsListTableViewController?
     
@@ -77,11 +80,10 @@ class HomeViewController: BaseViewController {
         self.featuresStationsPageControl.numberOfPages = self.featuredStations.count
         self.reloadSponsoredStations()
         
-        self.stationsSegmentedControl.selectedSegmentIndex = self.myStations.count > 0 ? 0 : 1
-        
-        self.reloadData()
-        
         self.featuredStationsTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(HomeViewController.featuredStationsTimerStep), userInfo: nil, repeats: true)
+        
+        self.stationsSegmentedControl.selectedSegmentIndex = self.myStations.count > 0 ? 0 : 1
+        self.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -160,10 +162,11 @@ class HomeViewController: BaseViewController {
     
     func reloadPlaylists(andStationsList: Bool) {
         myStations = ModelManager.sharedInstance.savedStations
-        myStationsCollectionViewController?.collectionView?.reloadData()
-        if andStationsList {
-            stationsListTableViewController?.tableView.reloadData()
-        }
+//        myStationsCollectionViewController?.collectionView?.reloadData()
+//        if andStationsList {
+//            stationsListTableViewController?.tableView.reloadData()
+//        }
+        reloadData()
         reloadTablesViewContaignerHeight()
     }
     
@@ -192,13 +195,18 @@ class HomeViewController: BaseViewController {
         if stationsSegmentedControl.selectedSegmentIndex == 0 {
             self.myStationsCollectionViewController?.view.setNeedsLayout()
             self.myStationsCollectionViewController?.view.layoutIfNeeded()
-            tablesViewContaignerHeightLayoutConstraint.constant = max(self.myStationsCollectionViewController!.collectionView!.contentSize.height, emptyViewHeight)
+            let cv = myStationsCollectionViewController?.collectionView
+            let ip = NSIndexPath(forRow: 0, inSection: 0)
+            let size =  myStationsCollectionViewController?.collectionView(cv!, layout: cv!.collectionViewLayout, sizeForItemAtIndexPath: ip)
+            let h = (floor(CGFloat(myStations.count) / 2) + (CGFloat(myStations.count) % 2)) * size!.height
+            tablesViewContaignerHeightLayoutConstraint.constant = max(h, emptyViewHeight)
         } else {
             self.stationsListTableViewController?.tableView.setNeedsLayout()
             self.stationsListTableViewController?.tableView.layoutIfNeeded()
             tablesViewContaignerHeightLayoutConstraint.constant = max(self.stationsListTableViewController!.tableView.contentSize.height, emptyViewHeight)
         }
         UIView.animateWithDuration(animationDuration, delay: delay, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.view.setNeedsLayout()
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -209,6 +217,14 @@ class HomeViewController: BaseViewController {
         
         self.stationsListContainerView?.hidden = stationsSegmentedControl.selectedSegmentIndex == 0
         self.stationsListContainerView?.userInteractionEnabled = stationsSegmentedControl.selectedSegmentIndex == 1
+        
+        if self.stationsListTableViewController != nil {
+            for i in 0 ..< self.stationsListTableViewController!.tableView.visibleCells.count {
+                if let cell = self.stationsListTableViewController!.tableView.visibleCells[i] as? StationsListTableViewCell {
+                    cell.contentView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                }
+            }
+        }
         
         stationsListTableViewController?.tableView.reloadData()
         myStationsCollectionViewController?.collectionView?.reloadData()
@@ -253,6 +269,14 @@ class HomeViewController: BaseViewController {
         stationsSegmentedControlValueChanged(stationsSegmentedControl)
     }
     
+    func closeTableViewSwipeButtons(tableview: UITableView, animated: Bool) {
+        for cell in tableview.visibleCells {
+            if let cell = cell as? MGSwipeTableCell {
+                cell.hideSwipeAnimated(animated)
+            }
+        }
+    }
+    
     var stationsSegmentedControlValueChangedEnabled = true
     @IBAction func stationsSegmentedControlValueChanged(sender: UISegmentedControl) {
         
@@ -267,7 +291,6 @@ class HomeViewController: BaseViewController {
         let moveToLeft = sender.selectedSegmentIndex == 1
         animateStationsTableTransition(moveToLeft, completion:{ () -> Void in
             self.stationsSegmentedControlValueChangedEnabled = true
-            
             self.stationsListContainerView?.userInteractionEnabled = moveToLeft
         })
         
@@ -277,33 +300,44 @@ class HomeViewController: BaseViewController {
             self.reloadTablesViewContaignerHeight(0.5, delay: 0.25)
         }
     }
-    
-    func closeTableViewSwipeButtons(tableview: UITableView, animated: Bool) {
-        for cell in tableview.visibleCells {
-            if let cell = cell as? MGSwipeTableCell {
-                cell.hideSwipeAnimated(animated)
-            }
-        }
-    }
-    
+
     var animateStationsTableCounter: Int?
-    
     func animateStationsTableTransition(moveToLeft: Bool, completion: () -> Void) {
         
         let leftTable = myStationsCollectionViewController!.collectionView!
         let rightTable = stationsListTableViewController!.tableView
+        
+        animateStationsTableCounter = (leftTable.visibleCells().count > 0 ? 1 : 0) + (rightTable.visibleCells.count > 0 ? 1 : 0)
+        if animateStationsTableCounter == 0 {
+            completion()
+            return
+        }
+        
+        let currentTableCellTranslation = moveToLeft ? leftTable.frame.size.width : CGFloat(0.0)
+        let targetTableCellTranslation = moveToLeft ? CGFloat(0.0) : leftTable.frame.size.width
+        
+        for cell in self.stationsListTableViewController!.tableView.visibleCells {
+            if let c = cell as? StationsListTableViewCell {
+                c.leadingConstraint?.constant = currentTableCellTranslation
+                c.trailingConstraint?.constant = -currentTableCellTranslation
+                c.layoutIfNeeded()
+            }
+        }
+        self.stationsListContainerView?.hidden = false
+        animateTableCells(rightTable, currentTranslation: currentTableCellTranslation, translationTarget: targetTableCellTranslation) { () -> Void in
+            self.stationsListContainerView?.hidden = !moveToLeft
+            
+            self.animateStationsTableCounter! -= 1
+            if self.animateStationsTableCounter! == 0 {
+                completion()
+            }
+        }
         
         let leftInitialTranslation1 = moveToLeft ? CGFloat(0.0) : -leftTable.frame.size.width
         let w = UIScreen.mainScreen().bounds.width/2
         let leftInitialTranslation2 = moveToLeft ? w : -leftTable.frame.size.width
         let leftTargetTranslation1 = moveToLeft ? -leftTable.frame.size.width : CGFloat(0.0)
         let leftTargetTranslation2 = moveToLeft ? -leftTable.frame.size.width : CGFloat(0.0)
-        
-        animateStationsTableCounter = (leftTable.visibleCells().count>0 ? 1 : 0) + (rightTable.visibleCells.count>0 ? 1 : 0)
-        if animateStationsTableCounter == 0 {
-            completion()
-            return
-        }
         
         animateCollectionCells(leftTable, currentTranslation1: leftInitialTranslation1, currentTranslation2: leftInitialTranslation2, translationTarget1: leftTargetTranslation1, translationTarget2: leftTargetTranslation2) { () -> Void in
             
@@ -314,26 +348,7 @@ class HomeViewController: BaseViewController {
             
         }
         
-        let currentTranslation2 = moveToLeft ? leftTable.frame.size.width : CGFloat(0.0)
-        let translationTarget2 = moveToLeft ? CGFloat(0.0) : leftTable.frame.size.width
-        //setup the beginning frames before animating to targets
-        for cell in self.stationsListTableViewController!.tableView.visibleCells {
-            cell.layer.transform = CATransform3DMakeTranslation(currentTranslation2, 0.0, 0.0)
-        }
-        self.stationsListContainerView?.hidden = false
-        animateTableCells(rightTable, currentTranslation: currentTranslation2, translationTarget: translationTarget2) { () -> Void in
-            
-            self.stationsListContainerView?.hidden = !moveToLeft
-            
-            for cell in self.stationsListTableViewController!.tableView.visibleCells {
-                cell.layer.transform = CATransform3DIdentity
-            }
-            
-            self.animateStationsTableCounter! -= 1
-            if self.animateStationsTableCounter! == 0 {
-                completion()
-            }
-        }
+        
     }
     
     func animateTableCells(table: UITableView, currentTranslation: CGFloat, translationTarget: CGFloat, completion: () -> Void) {
@@ -341,21 +356,35 @@ class HomeViewController: BaseViewController {
         let animationBaseTime = 0.1
         
         for i in 0 ..< table.visibleCells.count {
-            let cell = table.visibleCells[i]
-            
-            let lastCell = (i == table.visibleCells.count-1)
-            
-            let delay = Double(i) * animationBaseTime
-            let time = 4.0 * animationBaseTime //2.0 * animationBaseTime if the animation don't user damping
-            
-            UIView.animateWithDuration(time, delay: delay, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .CurveEaseOut, animations: { () -> Void in
-                cell.layer.transform = CATransform3DMakeTranslation(translationTarget, 0.0, 0.0)
-            }, completion: { finished -> Void in
-                if lastCell {
-                    completion()
+            if let cell = table.visibleCells[i] as? StationsListTableViewCell {
+                let lastCell = (i == table.visibleCells.count-1)
+                
+                let delay = Double(i) * animationBaseTime
+                let time = 4.0 * animationBaseTime //2.0 * animationBaseTime if the animation don't user damping
+                
+                cell.leadingConstraint?.constant = translationTarget
+                cell.trailingConstraint?.constant = -translationTarget
+                if translationTarget == 0.0 {
+                    cell.contentView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+                } else {
+                    cell.contentView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
                 }
-            })
-            
+                    
+                UIView.animateWithDuration(time, delay: delay, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .CurveEaseOut, animations: { () -> Void in
+                    
+                    cell.layoutIfNeeded()
+                    if translationTarget == 0.0 {
+                        cell.contentView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                    } else {
+                        cell.contentView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+                    }
+                    
+                }, completion: { finished -> Void in
+                    if lastCell {
+                        completion()
+                    }
+                })
+            }
         }
     }
     
@@ -400,7 +429,6 @@ class HomeViewController: BaseViewController {
                 }
             }, completion: { finished -> Void in
                 if lastRow {
-                    
                     completion()
                 }
             })

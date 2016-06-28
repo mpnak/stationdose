@@ -104,21 +104,23 @@ class StationsListTableViewController: UITableViewController, StationCellDelegat
     func savePressed(sender: StationsListTableViewCell?) {
         if let cell = sender {
             
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
-                cell.addedMessageView?.alpha = 1
-            }, completion: { (_) -> Void in
-                UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
-                    cell.addedMessageView?.alpha = 0
-                }, completion:nil)
-            })
-            
-            cell.saveButton.alpha = 0
-            cell.removeButton.alpha = 1
-            cell.savedImageView.alpha = 1
-            
-            ModelManager.sharedInstance.saveStation(cell.station, onCompletion: { (success) -> Void in
-                if self.parentController != nil {
-                    self.parentController!.reloadPlaylists(false)
+            ModelManager.sharedInstance.saveStation(cell.station, onCompletion: { (success, savedStation) -> Void in
+                if success {
+                    UIView.animateWithDuration(0.1, animations: { () -> Void in
+                        cell.addedMessageView?.alpha = 1
+                        }, completion: { (_) -> Void in
+                            UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
+                                cell.addedMessageView?.alpha = 0
+                                }, completion:{ (finished) in
+                                    if self.parentController != nil {
+                                        self.parentController!.reloadPlaylists(false)
+                                    }
+                            })
+                    })
+                    
+                    cell.saveButton.alpha = 0
+                    cell.removeButton.alpha = 1
+                    cell.savedImageView.alpha = 1
                 }
             })
         }
@@ -142,10 +144,13 @@ class StationsListTableViewController: UITableViewController, StationCellDelegat
                             }, completion: { (_) -> Void in
                                 UIView.animateWithDuration(0.1, delay: 1.0, options: .CurveEaseInOut, animations: { () -> Void in
                                     cell.removedMessageView?.alpha = 0
-                                }, completion:nil)
+                                }, completion: { (finished) in
+                                    if self.parentController != nil {
+                                        self.parentController!.reloadPlaylists(false)
+                                    }
+                                })
                             })
                             
-                            self.parentController!.reloadPlaylists(false)
                         }
                     }
                 }

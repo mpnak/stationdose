@@ -27,7 +27,6 @@
 		7C54F0ED1CD82DCC0069677D /* MyStationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EC1CD82DCC0069677D /* MyStationsCollectionViewCell.swift */; };
 		7C54F0EF1CD831480069677D /* MyStationsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54F0EE1CD831480069677D /* MyStationsCollectionViewController.swift */; };
 		7CC655D61D1C93860000121B /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC655D51D1C93860000121B /* MainNavigationController.swift */; };
-		CC81366C0E7B0E17AD8865A8 /* Pods_Stationdose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A97756DD76D4052AE905CE88 /* Pods_Stationdose.framework */; };
 		CD520F651C1927A6009062F3 /* InternalFullScreenLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD520F641C1927A6009062F3 /* InternalFullScreenLoadingView.xib */; };
 		CD520F671C1927CA009062F3 /* FullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F661C1927CA009062F3 /* FullScreenLoadingView.swift */; };
 		CD520F691C1927F0009062F3 /* InternalFullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520F681C1927F0009062F3 /* InternalFullScreenLoadingView.swift */; };
@@ -449,7 +448,7 @@
 				TargetAttributes = {
 					CDBE23091BF92DFB00291F56 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 9DBVBC4284;
+						DevelopmentTeam = NGB2T9XWW3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -747,7 +746,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Stationdose/Stationdose.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Hoofnagle (8W4QGB8Q63)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -777,7 +776,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Stationdose/Stationdose.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Hoofnagle (8W4QGB8Q63)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -15,6 +15,7 @@ class PlaybackManager: NSObject {
     
     var currentImage:UIImage?
     var currentTrack:Track?
+    var needsStandardArtwork: Bool = false
     
     var alwaysOnTop: Bool
     
@@ -78,7 +79,9 @@ class PlaybackManager: NSObject {
         info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: UIImage(named: "lock-screen-featured-placeholder")!)
         
         if let currentImage = currentImage {
-            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: currentImage)
+            if needsStandardArtwork {
+                info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: currentImage)
+            }
         }
         
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = info

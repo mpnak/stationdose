@@ -586,6 +586,8 @@ Please sign in to your account to start.</string>
                         <outlet property="myStationsContainerView" destination="qaa-C9-xKa" id="5xU-PO-7fM"/>
                         <outlet property="sponsoredImageView" destination="cGr-A0-kn3" id="35S-8K-ICK"/>
                         <outlet property="stationsListContainerView" destination="dgG-2c-gdC" id="HmK-ek-WlX"/>
+                        <outlet property="stationsListLeadingConstraint" destination="jxq-uj-6gC" id="qtX-yl-u8H"/>
+                        <outlet property="stationsListTrailingConstraint" destination="VBa-w3-27L" id="Ylm-x1-p0g"/>
                         <outlet property="stationsSegmentedControl" destination="sQj-RJ-pN8" id="MEF-Eb-YVA"/>
                         <outlet property="tablesViewContaignerHeightLayoutConstraint" destination="mSh-aT-TDO" id="iK3-RV-18k"/>
                         <segue destination="ExW-W1-YQY" kind="show" identifier="ToPlaylistViewController" id="Y7A-tX-kNc"/>
@@ -1550,161 +1552,156 @@ Please sign in to your account to start.</string>
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="103.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stations-list-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="C7L-o8-aoy">
-                                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-87-PFS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="103.5"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stations-list-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="C6W-7r-Dzy" userLabel="CoverImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="84" id="Zgl-fa-yrx"/>
+                                                        <constraint firstAttribute="width" secondItem="C6W-7r-Dzy" secondAttribute="height" multiplier="1:1" id="fZp-TT-xJ2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saved-station" translatesAutoresizingMaskIntoConstraints="NO" id="wls-dV-YIf" userLabel="SavedImageView">
+                                                    <rect key="frame" x="56" y="56" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="28" id="GWs-28-Pes"/>
+                                                        <constraint firstAttribute="width" secondItem="wls-dV-YIf" secondAttribute="height" multiplier="1:1" id="LGK-7v-8vy"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntp-gx-c5r" userLabel="TitleLabel">
+                                                    <rect key="frame" x="99" y="5" width="110" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="6hW-Y8-P3j"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMc-ij-Hff" userLabel="ShortDescriptionLabel">
+                                                    <rect key="frame" x="99" y="26" width="238" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IOJ-9I-ghR"/>
+                                                        <constraint firstAttribute="width" constant="240" id="oat-EI-W1J"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="t2E-SM-50c"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
+                                                    <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="oat-EI-W1J"/>
+                                                            <exclude reference="t2E-SM-50c"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1Q-5F-2kD" userLabel="RemoveButton">
+                                                    <rect key="frame" x="216" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="k1Q-5F-2kD" secondAttribute="height" multiplier="1:1" id="BT2-ME-zRQ"/>
+                                                        <constraint firstAttribute="width" constant="32" id="s6Z-pm-KPb"/>
+                                                    </constraints>
+                                                    <state key="normal" image="icon-checkmark"/>
+                                                    <connections>
+                                                        <action selector="removePressed:" destination="xgJ-Nm-s7V" eventType="touchUpInside" id="d8g-rC-Coh"/>
+                                                        <action selector="removeStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="Srs-Ri-1DU"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gs4-VA-p6S" userLabel="Save Button">
+                                                    <rect key="frame" x="216" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="gs4-VA-p6S" secondAttribute="height" multiplier="1:1" id="9iI-0J-AYm"/>
+                                                        <constraint firstAttribute="width" constant="32" id="rtm-xX-LFI"/>
+                                                    </constraints>
+                                                    <state key="normal" image="btn-add-station"/>
+                                                    <connections>
+                                                        <action selector="savePressed:" destination="xgJ-Nm-s7V" eventType="touchUpInside" id="eT3-FM-hWi"/>
+                                                        <action selector="saveStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="zfV-aS-wz8"/>
+                                                    </connections>
+                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56G-Uf-bCo" userLabel="RemovedFromView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Removed from My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tD4-ED-0a4">
+                                                            <rect key="frame" x="98" y="31" width="178" height="21"/>
+                                                            <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eth-g2-jed" userLabel="AddedToView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Added to My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13b-kB-xDC">
+                                                            <rect key="frame" x="116" y="31" width="142" height="21"/>
+                                                            <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="84" id="8Xn-sv-b3w"/>
-                                                <constraint firstAttribute="width" secondItem="C7L-o8-aoy" secondAttribute="height" multiplier="1:1" id="gzH-gn-lGG"/>
+                                                <constraint firstAttribute="bottom" secondItem="56G-Uf-bCo" secondAttribute="bottom" constant="20" id="2pK-D2-Boz"/>
+                                                <constraint firstAttribute="bottom" secondItem="C6W-7r-Dzy" secondAttribute="bottom" constant="20" id="5da-7x-AF1"/>
+                                                <constraint firstItem="k1Q-5F-2kD" firstAttribute="top" secondItem="wgl-87-PFS" secondAttribute="top" id="7eL-uF-mut"/>
+                                                <constraint firstItem="yMc-ij-Hff" firstAttribute="top" secondItem="wgl-87-PFS" secondAttribute="top" constant="5" id="CbL-OB-Iwx"/>
+                                                <constraint firstItem="Eth-g2-jed" firstAttribute="top" secondItem="wgl-87-PFS" secondAttribute="top" id="CjW-cq-bFF"/>
+                                                <constraint firstAttribute="trailing" secondItem="56G-Uf-bCo" secondAttribute="trailing" id="EHM-h5-FoN"/>
+                                                <constraint firstItem="wls-dV-YIf" firstAttribute="bottom" secondItem="C6W-7r-Dzy" secondAttribute="bottom" id="EkQ-SC-YyX"/>
+                                                <constraint firstItem="gs4-VA-p6S" firstAttribute="leading" secondItem="ntp-gx-c5r" secondAttribute="trailing" constant="7" id="FUa-Wr-H1A"/>
+                                                <constraint firstItem="C6W-7r-Dzy" firstAttribute="top" secondItem="wgl-87-PFS" secondAttribute="top" id="FXt-sc-pUC"/>
+                                                <constraint firstItem="wls-dV-YIf" firstAttribute="trailing" secondItem="C6W-7r-Dzy" secondAttribute="trailing" id="Gzo-YZ-mwf"/>
+                                                <constraint firstItem="yMc-ij-Hff" firstAttribute="top" secondItem="ntp-gx-c5r" secondAttribute="bottom" id="LGD-xS-RU3"/>
+                                                <constraint firstItem="56G-Uf-bCo" firstAttribute="top" secondItem="wgl-87-PFS" secondAttribute="top" id="MEf-u5-i4V"/>
+                                                <constraint firstItem="ntp-gx-c5r" firstAttribute="top" secondItem="wgl-87-PFS" secondAttribute="top" constant="5" id="Plo-wL-G4d"/>
+                                                <constraint firstItem="Eth-g2-jed" firstAttribute="leading" secondItem="wgl-87-PFS" secondAttribute="leading" id="QEQ-u5-tAW"/>
+                                                <constraint firstItem="ntp-gx-c5r" firstAttribute="leading" secondItem="C6W-7r-Dzy" secondAttribute="trailing" constant="15" id="WjI-mj-3Q7"/>
+                                                <constraint firstItem="C6W-7r-Dzy" firstAttribute="leading" secondItem="wgl-87-PFS" secondAttribute="leading" id="Zao-Pt-H4k"/>
+                                                <constraint firstItem="k1Q-5F-2kD" firstAttribute="leading" secondItem="ntp-gx-c5r" secondAttribute="trailing" constant="7" id="jOU-3e-Bcm"/>
+                                                <constraint firstAttribute="trailing" secondItem="yMc-ij-Hff" secondAttribute="trailing" constant="38" id="kn3-uV-wct"/>
+                                                <constraint firstItem="yMc-ij-Hff" firstAttribute="leading" secondItem="C6W-7r-Dzy" secondAttribute="trailing" constant="15" id="mKc-J4-VKa"/>
+                                                <constraint firstItem="56G-Uf-bCo" firstAttribute="leading" secondItem="wgl-87-PFS" secondAttribute="leading" id="o4e-vc-6C8"/>
+                                                <constraint firstAttribute="bottom" secondItem="Eth-g2-jed" secondAttribute="bottom" constant="20" id="qcX-7G-3z3"/>
+                                                <constraint firstItem="gs4-VA-p6S" firstAttribute="top" secondItem="wgl-87-PFS" secondAttribute="top" id="rm6-PY-krq"/>
+                                                <constraint firstAttribute="trailing" secondItem="Eth-g2-jed" secondAttribute="trailing" id="yLE-o0-iUr"/>
                                             </constraints>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saved-station" translatesAutoresizingMaskIntoConstraints="NO" id="yxW-Ut-HQK">
-                                            <rect key="frame" x="56" y="56" width="28" height="28"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="yxW-Ut-HQK" secondAttribute="height" multiplier="1:1" id="7Uc-71-EtT"/>
-                                                <constraint firstAttribute="width" constant="28" id="v0d-RP-plF"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXW-vr-wVc">
-                                            <rect key="frame" x="99" y="5" width="110" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="iFd-m9-643"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djK-tK-5PZ">
-                                            <rect key="frame" x="99" y="26" width="238" height="18.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="O3m-dF-gMW"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="Rq0-3B-5Fd"/>
-                                                <constraint firstAttribute="width" constant="240" id="XML-QP-6nj"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
-                                            <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="Rq0-3B-5Fd"/>
-                                                    <exclude reference="XML-QP-6nj"/>
+                                                    <exclude reference="CbL-OB-Iwx"/>
                                                 </mask>
                                             </variation>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7a-p3-hJu" userLabel="RemoveButton">
-                                            <rect key="frame" x="216" y="0.0" width="32" height="32"/>
-                                            <state key="normal" image="icon-checkmark"/>
-                                            <connections>
-                                                <action selector="removePressed:" destination="xgJ-Nm-s7V" eventType="touchUpInside" id="WbD-zg-VKQ"/>
-                                                <action selector="removeStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="DvU-Sd-35T"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8P6-nO-1wn" userLabel="Save Button">
-                                            <rect key="frame" x="216" y="0.0" width="32" height="32"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="8P6-nO-1wn" secondAttribute="height" multiplier="1:1" id="rNh-Gf-etR"/>
-                                                <constraint firstAttribute="width" constant="32" id="tPB-TK-E2F"/>
-                                            </constraints>
-                                            <state key="normal" image="btn-add-station"/>
-                                            <connections>
-                                                <action selector="savePressed:" destination="xgJ-Nm-s7V" eventType="touchUpInside" id="tWn-mO-LOG"/>
-                                                <action selector="saveStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="cVx-1w-BuB"/>
-                                            </connections>
-                                        </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjH-HM-gZ7" userLabel="RemovedFromView">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Removed from My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khs-ZE-s4l">
-                                                    <rect key="frame" x="98" y="31" width="178" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="PjT-lz-Whd"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="khs-ZE-s4l" firstAttribute="centerX" secondItem="vjH-HM-gZ7" secondAttribute="centerX" id="QGk-Bw-21h"/>
-                                                <constraint firstItem="khs-ZE-s4l" firstAttribute="centerY" secondItem="vjH-HM-gZ7" secondAttribute="centerY" id="vc7-Hm-4qB"/>
-                                            </constraints>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpB-sc-ewg" userLabel="AddedToView">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added to My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twb-27-2Tr">
-                                                    <rect key="frame" x="116" y="31" width="142" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Kx1-lW-sPZ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="twb-27-2Tr" firstAttribute="centerY" secondItem="QpB-sc-ewg" secondAttribute="centerY" id="cVY-wd-STF"/>
-                                                <constraint firstItem="twb-27-2Tr" firstAttribute="centerX" secondItem="QpB-sc-ewg" secondAttribute="centerX" id="dfY-pg-uTL"/>
-                                            </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="djK-tK-5PZ" secondAttribute="bottom" constant="14.5" id="0Md-j9-p4m"/>
-                                        <constraint firstAttribute="bottom" secondItem="C7L-o8-aoy" secondAttribute="bottom" constant="20" id="0Xb-SI-wVn"/>
-                                        <constraint firstAttribute="bottom" secondItem="QpB-sc-ewg" secondAttribute="bottom" constant="20" id="1CD-m4-pXm"/>
-                                        <constraint firstItem="C7L-o8-aoy" firstAttribute="top" secondItem="0lb-Ee-Q2X" secondAttribute="top" id="1sG-6b-qGx"/>
-                                        <constraint firstItem="8P6-nO-1wn" firstAttribute="centerY" secondItem="IXW-vr-wVc" secondAttribute="centerY" id="3kK-TE-LuY"/>
-                                        <constraint firstItem="yxW-Ut-HQK" firstAttribute="trailing" secondItem="C7L-o8-aoy" secondAttribute="trailing" id="8AG-GM-UQI"/>
-                                        <constraint firstItem="8P6-nO-1wn" firstAttribute="centerX" secondItem="K7a-p3-hJu" secondAttribute="centerX" id="A2F-Yb-rvh"/>
-                                        <constraint firstItem="IXW-vr-wVc" firstAttribute="top" secondItem="0lb-Ee-Q2X" secondAttribute="top" constant="5" id="AX8-W0-CXf"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="djK-tK-5PZ" secondAttribute="trailing" constant="30" id="D4M-Ok-ixK"/>
-                                        <constraint firstItem="IXW-vr-wVc" firstAttribute="leading" secondItem="C7L-o8-aoy" secondAttribute="trailing" constant="5.5" id="D6a-Rd-uQy"/>
-                                        <constraint firstItem="QpB-sc-ewg" firstAttribute="leading" secondItem="0lb-Ee-Q2X" secondAttribute="leading" id="FaP-1m-iGt"/>
-                                        <constraint firstItem="QpB-sc-ewg" firstAttribute="top" secondItem="0lb-Ee-Q2X" secondAttribute="top" id="HBb-K4-GRo"/>
-                                        <constraint firstItem="yxW-Ut-HQK" firstAttribute="bottom" secondItem="C7L-o8-aoy" secondAttribute="bottom" id="IxX-I4-0yo"/>
-                                        <constraint firstItem="djK-tK-5PZ" firstAttribute="leading" secondItem="C7L-o8-aoy" secondAttribute="trailing" constant="15" id="MXk-4W-bY3"/>
-                                        <constraint firstItem="C7L-o8-aoy" firstAttribute="leading" secondItem="0lb-Ee-Q2X" secondAttribute="leading" id="OiI-vS-xtS"/>
-                                        <constraint firstItem="8P6-nO-1wn" firstAttribute="top" secondItem="K7a-p3-hJu" secondAttribute="top" id="Pq9-6B-o23"/>
-                                        <constraint firstAttribute="trailing" secondItem="QpB-sc-ewg" secondAttribute="trailing" id="WXj-z2-yuf"/>
-                                        <constraint firstAttribute="bottom" secondItem="djK-tK-5PZ" secondAttribute="bottom" constant="3" id="Z8x-nS-7zR"/>
-                                        <constraint firstItem="8P6-nO-1wn" firstAttribute="leading" secondItem="IXW-vr-wVc" secondAttribute="trailing" constant="7" id="ZCF-Jd-0U1"/>
-                                        <constraint firstItem="vjH-HM-gZ7" firstAttribute="top" secondItem="0lb-Ee-Q2X" secondAttribute="top" id="aX6-Rg-ypu"/>
-                                        <constraint firstItem="djK-tK-5PZ" firstAttribute="top" secondItem="IXW-vr-wVc" secondAttribute="bottom" id="bGM-RS-Dv9"/>
-                                        <constraint firstAttribute="trailing" secondItem="vjH-HM-gZ7" secondAttribute="trailing" id="fKK-w4-Rho"/>
-                                        <constraint firstItem="IXW-vr-wVc" firstAttribute="leading" secondItem="C7L-o8-aoy" secondAttribute="trailing" constant="15" id="hE8-gW-qC5"/>
-                                        <constraint firstItem="vjH-HM-gZ7" firstAttribute="leading" secondItem="0lb-Ee-Q2X" secondAttribute="leading" id="heJ-d5-6cw"/>
-                                        <constraint firstItem="8P6-nO-1wn" firstAttribute="centerY" secondItem="K7a-p3-hJu" secondAttribute="centerY" id="n7U-9k-cYp"/>
-                                        <constraint firstItem="QpB-sc-ewg" firstAttribute="bottom" secondItem="yxW-Ut-HQK" secondAttribute="bottom" id="rCf-AE-9N4"/>
-                                        <constraint firstItem="8P6-nO-1wn" firstAttribute="leading" secondItem="K7a-p3-hJu" secondAttribute="leading" id="rOF-vq-bRS"/>
-                                        <constraint firstAttribute="bottom" secondItem="vjH-HM-gZ7" secondAttribute="bottom" constant="20" id="soE-Vi-eRT"/>
-                                        <constraint firstItem="yxW-Ut-HQK" firstAttribute="width" secondItem="yxW-Ut-HQK" secondAttribute="height" multiplier="1:1" id="us3-sQ-1xR"/>
+                                        <constraint firstAttribute="bottom" secondItem="wgl-87-PFS" secondAttribute="bottom" id="Q7f-e1-JP8"/>
+                                        <constraint firstAttribute="trailing" secondItem="wgl-87-PFS" secondAttribute="trailing" id="Xfm-Zp-vOV"/>
+                                        <constraint firstItem="wgl-87-PFS" firstAttribute="leading" secondItem="0lb-Ee-Q2X" secondAttribute="leading" id="ft5-84-JKC"/>
+                                        <constraint firstItem="wgl-87-PFS" firstAttribute="top" secondItem="0lb-Ee-Q2X" secondAttribute="top" id="vsw-Ks-qI3"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="us3-sQ-1xR"/>
-                                            <exclude reference="D6a-Rd-uQy"/>
-                                            <exclude reference="0Md-j9-p4m"/>
-                                            <exclude reference="Z8x-nS-7zR"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.78039445244956773" green="0.0" blue="0.045384163321293289" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="addedMessageView" destination="QpB-sc-ewg" id="YXX-I7-m8b"/>
-                                    <outlet property="coverImageView" destination="C7L-o8-aoy" id="b1I-8Q-FII"/>
-                                    <outlet property="removeButton" destination="K7a-p3-hJu" id="dO0-LW-ocV"/>
-                                    <outlet property="removedMessageView" destination="vjH-HM-gZ7" id="ggS-wj-dZZ"/>
-                                    <outlet property="saveButton" destination="8P6-nO-1wn" id="9WW-H5-UU3"/>
-                                    <outlet property="savedImageView" destination="yxW-Ut-HQK" id="NkV-K6-l0t"/>
-                                    <outlet property="shortDescriptionLabel" destination="djK-tK-5PZ" id="Bd5-q4-pz2"/>
-                                    <outlet property="titleLabel" destination="IXW-vr-wVc" id="faU-CK-P18"/>
+                                    <outlet property="addedMessageView" destination="Eth-g2-jed" id="9Qn-g5-8BJ"/>
+                                    <outlet property="coverImageView" destination="C6W-7r-Dzy" id="QiY-9I-IRV"/>
+                                    <outlet property="leadingConstraint" destination="ft5-84-JKC" id="NaZ-km-gur"/>
+                                    <outlet property="removeButton" destination="k1Q-5F-2kD" id="338-Pu-yaU"/>
+                                    <outlet property="removedMessageView" destination="56G-Uf-bCo" id="Ey3-ed-OvF"/>
+                                    <outlet property="saveButton" destination="gs4-VA-p6S" id="A70-sL-OYy"/>
+                                    <outlet property="savedImageView" destination="wls-dV-YIf" id="zrn-Cs-SDq"/>
+                                    <outlet property="shortDescriptionLabel" destination="yMc-ij-Hff" id="6es-jS-Apj"/>
+                                    <outlet property="titleLabel" destination="ntp-gx-c5r" id="rlr-Y0-CaL"/>
+                                    <outlet property="trailingConstraint" destination="Xfm-Zp-vOV" id="N1e-Xa-q7w"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
