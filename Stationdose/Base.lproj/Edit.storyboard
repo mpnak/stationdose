@@ -214,7 +214,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9qf-38-9Lw">
-                                                        <rect key="frame" x="-2" y="6" width="552" height="31"/>
+                                                        <rect key="frame" x="-12" y="6" width="572" height="31"/>
                                                         <connections>
                                                             <action selector="familiarityTouchUpInside:" destination="zw6-Np-wVJ" eventType="touchUpInside" id="SIR-hC-6FL"/>
                                                             <action selector="familiarityTouchUpOutside:" destination="zw6-Np-wVJ" eventType="touchUpOutside" id="PeW-lD-p4E"/>
@@ -227,8 +227,8 @@
                                                     <constraint firstItem="nXy-4P-U6p" firstAttribute="centerY" secondItem="MCL-3Y-q1Y" secondAttribute="centerY" id="4tp-uH-UAL"/>
                                                     <constraint firstAttribute="trailing" secondItem="9qf-38-9Lw" secondAttribute="trailing" constant="-10" id="6IJ-gL-Itt"/>
                                                     <constraint firstAttribute="trailing" secondItem="nXy-4P-U6p" secondAttribute="trailing" id="GB7-NM-bPD"/>
-                                                    <constraint firstAttribute="trailing" secondItem="9qf-38-9Lw" secondAttribute="trailing" id="Paa-B2-Zo9"/>
-                                                    <constraint firstItem="9qf-38-9Lw" firstAttribute="leading" secondItem="MCL-3Y-q1Y" secondAttribute="leading" id="RkZ-47-hi0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="9qf-38-9Lw" secondAttribute="trailing" constant="-10" id="Paa-B2-Zo9"/>
+                                                    <constraint firstItem="9qf-38-9Lw" firstAttribute="leading" secondItem="MCL-3Y-q1Y" secondAttribute="leading" constant="-10" id="RkZ-47-hi0"/>
                                                     <constraint firstItem="9qf-38-9Lw" firstAttribute="centerY" secondItem="MCL-3Y-q1Y" secondAttribute="centerY" id="RqN-fY-USY"/>
                                                     <constraint firstItem="nXy-4P-U6p" firstAttribute="leading" secondItem="MCL-3Y-q1Y" secondAttribute="leading" id="ddK-b9-P0W"/>
                                                     <constraint firstItem="9qf-38-9Lw" firstAttribute="leading" secondItem="MCL-3Y-q1Y" secondAttribute="leading" constant="-10" id="khu-rg-mcZ"/>
