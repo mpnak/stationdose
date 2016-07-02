@@ -19,6 +19,7 @@ class EditStationViewController: BaseViewController, DetailsPageScrollDelegate {
     @IBOutlet weak var familiarityOutlet: UIView!
     @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var familiaritySlider: UISlider!
+    @IBOutlet weak var getPlaylistButton: UIButton!
     
     private let fullscreenView = FullScreenLoadingView()
     private var somethingChanged: Bool = false
