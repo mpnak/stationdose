@@ -105,8 +105,10 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         super.viewWillAppear(animated)
         
         if station?.tracks != nil {
-            let ip = NSIndexPath(forRow: 0, inSection: 0)
-            self.tracksTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: true)
+            if self.tracksTableView.numberOfRowsInSection(0) > 0 {
+                let ip = NSIndexPath(forRow: 0, inSection: 0)
+                self.tracksTableView.scrollToRowAtIndexPath(ip, atScrollPosition: .Top, animated: true)
+            }
         }
     }
     deinit {
