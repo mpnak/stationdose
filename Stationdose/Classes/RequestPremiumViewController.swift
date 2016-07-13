@@ -23,6 +23,7 @@ class RequestPremiumViewController: UIViewController, SFSafariViewControllerDele
         activityIndicator.hidden = true
         radioActivityIndicator = NVActivityIndicatorView(frame: activityIndicator.frame, type: .LineScale, color:UIColor.customSectionDividersColor())
         self.view.addSubview(radioActivityIndicator)
+        SpotifyManager.sharedInstance.logout()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,6 +39,10 @@ class RequestPremiumViewController: UIViewController, SFSafariViewControllerDele
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func signUpPremium(sender: AnyObject) {
         activityIndicator.startAnimating()
         //radioActivityIndicator.stopAnimation()
