@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TLQ-fv-9An">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TLQ-fv-9An">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -134,12 +134,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkz-k8-hfr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wKA-2l-tXf">
-                                        <rect key="frame" x="145" y="95" width="86" height="73"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="wKA-2l-tXf" secondAttribute="height" multiplier="161:136" id="BGu-Dk-dQK"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF5-hd-Ads">
                                         <rect key="frame" x="0.0" y="182" width="375" height="34"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
@@ -188,6 +182,12 @@ Please sign in to your account to start.</string>
                                             <action selector="loginWithSpotifyTouchDragExit:" destination="BYZ-38-t0r" eventType="touchDragExit" id="8sD-Ce-GFU"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wKA-2l-tXf">
+                                        <rect key="frame" x="144" y="95" width="86" height="73"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="wKA-2l-tXf" secondAttribute="height" multiplier="161:136" id="BGu-Dk-dQK"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="wKA-2l-tXf" firstAttribute="width" secondItem="Rkz-k8-hfr" secondAttribute="width" multiplier="0.23" id="11q-qg-CF8"/>
@@ -244,7 +244,7 @@ Please sign in to your account to start.</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-Wa-afx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDY-KY-Q4s">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LDY-KY-Q4s">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="604"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBH-K0-lSX">
@@ -291,13 +291,13 @@ Please sign in to your account to start.</string>
                                                     <constraint firstItem="cGr-A0-kn3" firstAttribute="top" secondItem="JBH-K0-lSX" secondAttribute="top" id="nrP-Xo-FZj"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWr-pu-nM5">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWr-pu-nM5">
                                                 <rect key="frame" x="0.0" y="110" width="375" height="198"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEl-xf-zgg">
+                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WEl-xf-zgg">
                                                         <rect key="frame" x="0.0" y="33" width="375" height="165"/>
                                                         <subviews>
-                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C09-e5-zHc">
+                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C09-e5-zHc">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="OVS-6n-KEL">
                                                                     <size key="itemSize" width="375" height="164"/>
@@ -307,7 +307,7 @@ Please sign in to your account to start.</string>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FeaturedStationsCollectionViewCellIdentifier" id="1nC-FA-hQs" customClass="FeaturedStationsCollectionViewCell" customModule="Stationdose" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.5" width="375" height="164"/>
+                                                                        <rect key="frame" x="0.0" y="1" width="375" height="164"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
@@ -469,7 +469,7 @@ Please sign in to your account to start.</string>
                                                     <constraint firstItem="i2m-dF-Eh5" firstAttribute="top" secondItem="dWr-pu-nM5" secondAttribute="top" constant="17" id="pV2-do-284"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JW1-be-RUO">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JW1-be-RUO">
                                                 <rect key="frame" x="0.0" y="308" width="375" height="296"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sQj-RJ-pN8">
@@ -1019,7 +1019,7 @@ Please sign in to your account to start.</string>
                                                     <action selector="playButtonPressed:" destination="ExW-W1-YQY" eventType="touchUpInside" id="urH-6u-4PF"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moments ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHL-S2-qI0">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Moments ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHL-S2-qI0">
                                                 <rect key="frame" x="111" y="46" width="185" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="Aj5-s7-ZJx"/>
@@ -1149,13 +1149,13 @@ Please sign in to your account to start.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hju-j6-oZW">
-                                        <rect key="frame" x="144" y="121" width="86" height="73"/>
+                                        <rect key="frame" x="144" y="116" width="86" height="73"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hju-j6-oZW" secondAttribute="height" multiplier="161:136" id="djM-03-Nwg"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sorry, you must be a Spotify Premium subscriber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeY-kN-N8I">
-                                        <rect key="frame" x="8" y="205" width="359" height="68"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, you must be a Spotify Premium subscriber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeY-kN-N8I">
+                                        <rect key="frame" x="0.0" y="203" width="375" height="68"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1166,17 +1166,8 @@ Please sign in to your account to start.</string>
                                             <constraint firstAttribute="width" secondItem="czK-i2-ikF" secondAttribute="height" multiplier="286:150" id="xtc-Vu-io7"/>
                                         </constraints>
                                     </imageView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="C1c-pk-A8w">
-                                        <rect key="frame" x="178" y="430" width="20" height="20"/>
-                                    </activityIndicatorView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please use Safari to sign out of your free account before attempting to sign in again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9f-7g-n1W">
-                                        <rect key="frame" x="8" y="296" width="359" height="42"/>
-                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
-                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfE-NY-Nf6">
-                                        <rect key="frame" x="62" y="374" width="251" height="56"/>
+                                        <rect key="frame" x="62" y="306" width="251" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="1Ju-Er-PYY"/>
                                         </constraints>
@@ -1201,13 +1192,23 @@ Please sign in to your account to start.</string>
                                             <action selector="loginWithSpotifyTouchDragExit:" destination="BYZ-38-t0r" eventType="touchDragExit" id="Jhi-aU-KZg"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please use Safari to sign out of your free account before attempting to sign in again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9f-7g-n1W">
+                                        <rect key="frame" x="8" y="376" width="359" height="42"/>
+                                        <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
+                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="C1c-pk-A8w">
+                                        <rect key="frame" x="178" y="431" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="czK-i2-ikF" firstAttribute="centerX" secondItem="c1r-oQ-Fqq" secondAttribute="centerX" id="8sM-W9-oWA"/>
+                                    <constraint firstItem="QfE-NY-Nf6" firstAttribute="centerY" secondItem="c1r-oQ-Fqq" secondAttribute="centerY" id="HB2-fp-KAW"/>
                                     <constraint firstAttribute="bottom" secondItem="czK-i2-ikF" secondAttribute="bottom" constant="27" id="Mee-PA-nT4"/>
                                     <constraint firstItem="XeY-kN-N8I" firstAttribute="leading" secondItem="c1r-oQ-Fqq" secondAttribute="leading" id="O8M-xY-gHR"/>
                                     <constraint firstAttribute="bottom" secondItem="C1c-pk-A8w" secondAttribute="bottom" constant="217" id="UIW-bD-634"/>
-                                    <constraint firstItem="C1c-pk-A8w" firstAttribute="top" secondItem="QfE-NY-Nf6" secondAttribute="bottom" id="ZcF-Ju-v1i"/>
+                                    <constraint firstItem="C1c-pk-A8w" firstAttribute="top" secondItem="v9f-7g-n1W" secondAttribute="bottom" constant="13" id="UiA-d7-bzf"/>
                                     <constraint firstItem="C1c-pk-A8w" firstAttribute="centerX" secondItem="c1r-oQ-Fqq" secondAttribute="centerX" id="b4D-D3-9oj"/>
                                     <constraint firstItem="czK-i2-ikF" firstAttribute="width" secondItem="c1r-oQ-Fqq" secondAttribute="width" multiplier="0.38" id="gX4-gU-naY"/>
                                     <constraint firstItem="hju-j6-oZW" firstAttribute="centerX" secondItem="c1r-oQ-Fqq" secondAttribute="centerX" id="gkN-RM-yWm"/>
@@ -1215,10 +1216,17 @@ Please sign in to your account to start.</string>
                                     <constraint firstAttribute="trailing" secondItem="XeY-kN-N8I" secondAttribute="trailing" id="iTB-Qp-UJo"/>
                                     <constraint firstItem="XeY-kN-N8I" firstAttribute="top" secondItem="hju-j6-oZW" secondAttribute="bottom" constant="14" id="lhU-1G-ybe"/>
                                     <constraint firstAttribute="trailing" secondItem="QfE-NY-Nf6" secondAttribute="trailing" constant="62" id="nAg-WO-r4z"/>
+                                    <constraint firstItem="v9f-7g-n1W" firstAttribute="top" secondItem="QfE-NY-Nf6" secondAttribute="bottom" constant="14" id="q2q-Uu-zVd"/>
+                                    <constraint firstItem="v9f-7g-n1W" firstAttribute="leading" secondItem="c1r-oQ-Fqq" secondAttribute="leading" constant="8" id="qne-jh-ofH"/>
+                                    <constraint firstAttribute="trailing" secondItem="v9f-7g-n1W" secondAttribute="trailing" constant="8" id="s63-L5-9ja"/>
                                     <constraint firstItem="QfE-NY-Nf6" firstAttribute="leading" secondItem="c1r-oQ-Fqq" secondAttribute="leading" constant="62" id="siQ-e3-dv9"/>
-                                    <constraint firstItem="hju-j6-oZW" firstAttribute="top" secondItem="c1r-oQ-Fqq" secondAttribute="top" constant="121" id="vcw-5T-27d"/>
-                                    <constraint firstItem="QfE-NY-Nf6" firstAttribute="top" secondItem="XeY-kN-N8I" secondAttribute="bottom" constant="70" id="xpA-Uz-hX9"/>
+                                    <constraint firstItem="QfE-NY-Nf6" firstAttribute="top" secondItem="XeY-kN-N8I" secondAttribute="bottom" constant="35" id="yPQ-Sk-qaY"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="UIW-bD-634"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1550,28 +1558,28 @@ Please sign in to your account to start.</string>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationsListCell" rowHeight="104" id="xgJ-Nm-s7V" customClass="StationsListTableViewCell" customModule="Stationdose" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xgJ-Nm-s7V" id="0lb-Ee-Q2X">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="103.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="xgJ-Nm-s7V" id="0lb-Ee-Q2X">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-87-PFS">
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-87-PFS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stations-list-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="C6W-7r-Dzy" userLabel="CoverImageView">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="stations-list-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="C6W-7r-Dzy" userLabel="CoverImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="84" id="Zgl-fa-yrx"/>
                                                         <constraint firstAttribute="width" secondItem="C6W-7r-Dzy" secondAttribute="height" multiplier="1:1" id="fZp-TT-xJ2"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saved-station" translatesAutoresizingMaskIntoConstraints="NO" id="wls-dV-YIf" userLabel="SavedImageView">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="saved-station" translatesAutoresizingMaskIntoConstraints="NO" id="wls-dV-YIf" userLabel="SavedImageView">
                                                     <rect key="frame" x="56" y="56" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="GWs-28-Pes"/>
                                                         <constraint firstAttribute="width" secondItem="wls-dV-YIf" secondAttribute="height" multiplier="1:1" id="LGK-7v-8vy"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntp-gx-c5r" userLabel="TitleLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="The Living Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntp-gx-c5r" userLabel="TitleLabel">
                                                     <rect key="frame" x="99" y="5" width="110" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="6hW-Y8-P3j"/>
@@ -1580,7 +1588,7 @@ Please sign in to your account to start.</string>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMc-ij-Hff" userLabel="ShortDescriptionLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Put on the hi-fi " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMc-ij-Hff" userLabel="ShortDescriptionLabel">
                                                     <rect key="frame" x="99" y="26" width="238" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IOJ-9I-ghR"/>
@@ -1597,7 +1605,7 @@ Please sign in to your account to start.</string>
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1Q-5F-2kD" userLabel="RemoveButton">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1Q-5F-2kD" userLabel="RemoveButton">
                                                     <rect key="frame" x="216" y="0.0" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="k1Q-5F-2kD" secondAttribute="height" multiplier="1:1" id="BT2-ME-zRQ"/>
@@ -1609,7 +1617,7 @@ Please sign in to your account to start.</string>
                                                         <action selector="removeStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="Srs-Ri-1DU"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gs4-VA-p6S" userLabel="Save Button">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gs4-VA-p6S" userLabel="Save Button">
                                                     <rect key="frame" x="216" y="0.0" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="gs4-VA-p6S" secondAttribute="height" multiplier="1:1" id="9iI-0J-AYm"/>
@@ -1621,7 +1629,7 @@ Please sign in to your account to start.</string>
                                                         <action selector="saveStation:" destination="ISF-u2-Npe" eventType="touchUpInside" id="zfV-aS-wz8"/>
                                                     </connections>
                                                 </button>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56G-Uf-bCo" userLabel="RemovedFromView">
+                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56G-Uf-bCo" userLabel="RemovedFromView">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Removed from My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tD4-ED-0a4">
@@ -1633,7 +1641,7 @@ Please sign in to your account to start.</string>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eth-g2-jed" userLabel="AddedToView">
+                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eth-g2-jed" userLabel="AddedToView">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Added to My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13b-kB-xDC">
@@ -1748,7 +1756,7 @@ Please sign in to your account to start.</string>
         <image name="track-placeholder" width="43" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="etf-Up-yf7"/>
         <segue reference="Fl5-av-fhj"/>
-        <segue reference="N0U-zU-k6a"/>
     </inferredMetricsTieBreakers>
 </document>
