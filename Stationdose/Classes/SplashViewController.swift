@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import Darwin
 
 
 class SplashViewController: UIViewController, SpotifyManagerLoginDelegate {
@@ -35,7 +36,6 @@ class SplashViewController: UIViewController, SpotifyManagerLoginDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
         if (SpotifyManager.sharedInstance.hasSession) {
             SpotifyManager.sharedInstance.loginWithExistingSession(self)
         } else {
@@ -54,12 +54,10 @@ class SplashViewController: UIViewController, SpotifyManagerLoginDelegate {
     }
     
     func loginSuccess() {
-        //ModelManager.sharedInstance.initialCache { () -> Void in
             self.performSegueWithIdentifier(Constants.Segues.SplashToHomeSegue, sender: self)
-        //}
     }
     
-    func loginFailure(error: NSError) {
+    func loginFailure(error: NSError?) {
         self.performSegueWithIdentifier(Constants.Segues.SplashToLoginSegue, sender: self)
     }
     

@@ -23,7 +23,16 @@ enum ModelManagerNotificationKey: String {
 
 class ModelManager: NSObject {
     
-    static let sharedInstance = ModelManager()
+    static var shared: ModelManager?
+    static var sharedInstance: ModelManager {
+        get {
+            if shared == nil {
+                shared = ModelManager()
+            }
+            return shared!
+        }
+    }
+    
     
     var savedStations: [Station]
     var stations: [Station]

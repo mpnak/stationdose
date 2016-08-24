@@ -61,7 +61,7 @@ class LoginViewController: UIViewController, SpotifyManagerLoginDelegate {
         //}
     }
     
-    func loginFailure(error: NSError) {
+    func loginFailure(error: NSError?) {
         self.loginButton.hidden = false
         self.radioActivityIndicator.stopAnimation()
         showGenericErrorMessage()

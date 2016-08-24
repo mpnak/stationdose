@@ -11,7 +11,15 @@ import MediaPlayer
 
 class PlaybackManager: NSObject {
     
-    static let sharedInstance = PlaybackManager()
+    static var shared: PlaybackManager?
+    static var sharedInstance: PlaybackManager {
+        get {
+            if shared == nil {
+                shared = PlaybackManager()
+            }
+            return shared!
+        }
+    }
     
     var currentImage:UIImage?
     var currentTrack:Track?
@@ -30,19 +38,27 @@ class PlaybackManager: NSObject {
     override init() {
         tracksMap = [String: Track]()
         deletedTacksUrls = [String]()
-        player = SpotifyManager.sharedInstance.player!
         alwaysOnTop = true
+        player = SPTAudioStreamingController(clientId:  SpotifyManager.sharedInstance.clientID)
         
         super.init()
         
         player.playbackDelegate = self
-        player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
-            if let error = error {
-                print(error)
-            }
-        }
+        
+        loginToPlayer() {_ in }
+        
         currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(PlaybackManager.currentTimeReload), userInfo: nil, repeats: true)
         setupRemoteCommandCenter()
+    }
+    
+    func loginToPlayer(callback: (error: NSError?) -> Void) {
+        player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
+            callback(error: error)
+        }
+    }
+    
+    func logout() {
+        player.logout() { error in }
     }
     
     func setupRemoteCommandCenter() {
@@ -154,15 +170,16 @@ class PlaybackManager: NSObject {
             return
         }
         
-        if player != SpotifyManager.sharedInstance.player! {
-            player = SpotifyManager.sharedInstance.player!
-            player.playbackDelegate = self
-            player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
-                if let error = error {
-                    print(error)
-                }
-            }
-        }
+        // Why would the player not equal the player? Commenting out for now.
+//        if player != SpotifyManager.sharedInstance.player! {
+//            player = SpotifyManager.sharedInstance.player!
+//            player.playbackDelegate = self
+//            player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
+//                if let error = error {
+//                    print(error)
+//                }
+//            }
+//        }
         
         deletedTacksUrls = [String]()
         nextQueue = nil

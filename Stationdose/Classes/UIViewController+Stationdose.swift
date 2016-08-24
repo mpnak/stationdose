@@ -39,9 +39,16 @@ extension UIViewController {
         let alert = UIAlertController(title: "", message: "Are you sure you want to sign out?", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (_) -> Void in }))
         alert.addAction(UIAlertAction(title: "Sign Out", style: .Default, handler: { (_) -> Void in
+            PlaybackManager.shared?.hide()
             SpotifyManager.sharedInstance.logout()
-            PlaybackManager.sharedInstance.hide()
-            self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in })
+            
+            
+            self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                SpotifyManager.shared = nil
+                PlaybackManager.shared = nil
+                SongSortApiManager.shared = nil
+                ModelManager.shared = nil
+            })
         }))
         self.presentViewController(alert, animated: true) { () -> Void in }
     }

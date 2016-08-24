@@ -17,7 +17,17 @@ enum SongSortApiManagerNotificationKey: String {
 
 class SongSortApiManager {
     
-    static let sharedInstance = SongSortApiManager()
+    static var shared: SongSortApiManager?
+    static var sharedInstance: SongSortApiManager {
+        get {
+            if shared == nil {
+                shared = SongSortApiManager()
+            }
+            return shared!
+        }
+    }
+    
+    
     var manager: Manager
     var baseURL: String
     
