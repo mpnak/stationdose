@@ -447,7 +447,7 @@
 				TargetAttributes = {
 					CDBE23091BF92DFB00291F56 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = NGB2T9XWW3;
+						DevelopmentTeam = 9DBVBC4284;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -806,7 +806,7 @@
 					"\"Alamofire\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.luckydayenterprises.ios.Stationdose;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stationdose.core;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stationdose/Classes/Stationdose-Bridging-Header.h";
@@ -837,7 +837,7 @@
 					"\"Alamofire\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.luckydayenterprises.ios.Stationdose;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stationdose.core;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stationdose/Classes/Stationdose-Bridging-Header.h";

@@ -12,7 +12,7 @@ import SafariServices
 protocol SpotifyManagerLoginDelegate {
     func loginAcountNeedsPremium() -> Void
     func loginSuccess() -> Void
-    func loginFailure(error: NSError) -> Void
+    func loginFailure(error: NSError?) -> Void
     func loginCancelled() -> Void
 }
 
@@ -31,9 +31,9 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
         spotifyAuthenticator.tokenRefreshURL = NSURL(string:Constants.Spotify.RefreshUrl)
         spotifyAuthenticator.tokenSwapURL = NSURL(string:Constants.Spotify.SwapUrl)
         
-        if let session = spotifyAuthenticator.session where session.isValid() {
-            self.player = SPTAudioStreamingController(clientId: spotifyAuthenticator.clientID)
-        }
+//        if let session = spotifyAuthenticator.session where session.isValid() {
+//            self.player = SPTAudioStreamingController(clientId: spotifyAuthenticator.clientID)
+//        }
     }
     
     var hasSession: Bool {
@@ -48,7 +48,11 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
         return SPTAuth.defaultInstance().session
     }
     
-    var player: SPTAudioStreamingController?
+    var clientID: String {
+        return SPTAuth.defaultInstance().clientID
+    }
+    
+    //var player: SPTAudioStreamingController?
     
     var loginDelegate: SpotifyManagerLoginDelegate?
     
@@ -104,7 +108,7 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
         if let error = error {
             self.loginDelegate?.loginFailure(error)
             self.loginDelegate = nil
-            SpotifyManager.sharedInstance.player = nil
+            //SpotifyManager.sharedInstance.player = nil
             
         } else {
             self.checkPremium({ (isPremium: Bool) -> Void in
@@ -123,7 +127,7 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
             if let user = user where error == nil {
                 ModelManager.sharedInstance.user = user
                 ModelManager.sharedInstance.initialCache { () -> Void in
-                    SpotifyManager.sharedInstance.player = SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
+                    //SpotifyManager.sharedInstance.player = SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
                     
                     self.loginDelegate?.loginSuccess()
                     self.loginDelegate = nil

@@ -11,7 +11,15 @@ import MediaPlayer
 
 class PlaybackManager: NSObject {
     
-    static let sharedInstance = PlaybackManager()
+    static var shared: PlaybackManager?
+    static var sharedInstance: PlaybackManager {
+        get {
+            if shared == nil {
+                shared = PlaybackManager()
+            }
+            return shared!
+        }
+    }
     
     var currentImage:UIImage?
     var currentTrack:Track?
@@ -30,7 +38,8 @@ class PlaybackManager: NSObject {
     override init() {
         tracksMap = [String: Track]()
         deletedTacksUrls = [String]()
-        player = SpotifyManager.sharedInstance.player!
+        //player = SpotifyManager.sharedInstance.player!
+        player = SPTAudioStreamingController(clientId:  SpotifyManager.sharedInstance.clientID)
         alwaysOnTop = true
         
         super.init()
@@ -154,15 +163,15 @@ class PlaybackManager: NSObject {
             return
         }
         
-        if player != SpotifyManager.sharedInstance.player! {
-            player = SpotifyManager.sharedInstance.player!
-            player.playbackDelegate = self
-            player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
-                if let error = error {
-                    print(error)
-                }
-            }
-        }
+//        if player != SpotifyManager.sharedInstance.player! {
+//            player = SpotifyManager.sharedInstance.player!
+//            player.playbackDelegate = self
+//            player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
+//                if let error = error {
+//                    print(error)
+//                }
+//            }
+//        }
         
         deletedTacksUrls = [String]()
         nextQueue = nil
