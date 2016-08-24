@@ -40,8 +40,12 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (_) -> Void in }))
         alert.addAction(UIAlertAction(title: "Sign Out", style: .Default, handler: { (_) -> Void in
             SpotifyManager.sharedInstance.logout()
-            PlaybackManager.sharedInstance.hide()
-            self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in })
+            PlaybackManager.sharedInstance.logout() { error in
+                if let error = error {
+                    print("Error logging out of PlaybackManager")
+                }
+                self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in })
+            }
         }))
         self.presentViewController(alert, animated: true) { () -> Void in }
     }

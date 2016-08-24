@@ -11,15 +11,7 @@ import MediaPlayer
 
 class PlaybackManager: NSObject {
     
-    static var shared: PlaybackManager?
-    static var sharedInstance: PlaybackManager {
-        get {
-            if shared == nil {
-                shared = PlaybackManager()
-            }
-            return shared!
-        }
-    }
+    static var sharedInstance = PlaybackManager()
     
     var currentImage:UIImage?
     var currentTrack:Track?
@@ -28,7 +20,7 @@ class PlaybackManager: NSObject {
     var alwaysOnTop: Bool
     
     private var tracksMap:[String: Track]
-    private var player:SPTAudioStreamingController
+    private var player:SPTAudioStreamingController!
     private var currentTimeReloadTimer: NSTimer?
     private var nextQueue:[Track]?
     private var deletedTacksUrls:[String]
@@ -39,19 +31,34 @@ class PlaybackManager: NSObject {
         tracksMap = [String: Track]()
         deletedTacksUrls = [String]()
         //player = SpotifyManager.sharedInstance.player!
-        player = SPTAudioStreamingController(clientId:  SpotifyManager.sharedInstance.clientID)
+        
         alwaysOnTop = true
         
         super.init()
         
+        player = SPTAudioStreamingController(clientId:  SpotifyManager.sharedInstance.clientID)
         player.playbackDelegate = self
+
+        //setupPlayer()
+       
+        currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(PlaybackManager.currentTimeReload), userInfo: nil, repeats: true)
+        setupRemoteCommandCenter()
+    }
+    
+    func setupPlayer() {
+        
         player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
             if let error = error {
                 print(error)
             }
         }
-        currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(PlaybackManager.currentTimeReload), userInfo: nil, repeats: true)
-        setupRemoteCommandCenter()
+    }
+    
+    func logout(callback: (error: NSError?) -> Void) {
+        hide()
+        player?.logout() { error in
+            callback(error: error)
+        }
     }
     
     func setupRemoteCommandCenter() {

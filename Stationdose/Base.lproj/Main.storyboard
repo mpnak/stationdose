@@ -244,8 +244,8 @@ Please sign in to your account to start.</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-Wa-afx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LDY-KY-Q4s">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="604"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDY-KY-Q4s">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBH-K0-lSX">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
@@ -291,14 +291,14 @@ Please sign in to your account to start.</string>
                                                     <constraint firstItem="cGr-A0-kn3" firstAttribute="top" secondItem="JBH-K0-lSX" secondAttribute="top" id="nrP-Xo-FZj"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWr-pu-nM5">
-                                                <rect key="frame" x="0.0" y="110" width="375" height="198"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWr-pu-nM5">
+                                                <rect key="frame" x="0.0" y="110" width="375" height="197"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WEl-xf-zgg">
-                                                        <rect key="frame" x="0.0" y="33" width="375" height="165"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEl-xf-zgg">
+                                                        <rect key="frame" x="0.0" y="33" width="375" height="164"/>
                                                         <subviews>
-                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C09-e5-zHc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C09-e5-zHc">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="OVS-6n-KEL">
                                                                     <size key="itemSize" width="375" height="164"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -307,7 +307,7 @@ Please sign in to your account to start.</string>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FeaturedStationsCollectionViewCellIdentifier" id="1nC-FA-hQs" customClass="FeaturedStationsCollectionViewCell" customModule="Stationdose" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="1" width="375" height="164"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
@@ -469,8 +469,8 @@ Please sign in to your account to start.</string>
                                                     <constraint firstItem="i2m-dF-Eh5" firstAttribute="top" secondItem="dWr-pu-nM5" secondAttribute="top" constant="17" id="pV2-do-284"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JW1-be-RUO">
-                                                <rect key="frame" x="0.0" y="308" width="375" height="296"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JW1-be-RUO">
+                                                <rect key="frame" x="0.0" y="307" width="375" height="296"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sQj-RJ-pN8">
                                                         <rect key="frame" x="70" y="20" width="235" height="29"/>
@@ -1019,8 +1019,8 @@ Please sign in to your account to start.</string>
                                                     <action selector="playButtonPressed:" destination="ExW-W1-YQY" eventType="touchUpInside" id="urH-6u-4PF"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Moments ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHL-S2-qI0">
-                                                <rect key="frame" x="111" y="46" width="185" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moments ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHL-S2-qI0">
+                                                <rect key="frame" x="111" y="46" width="185" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="Aj5-s7-ZJx"/>
                                                 </constraints>

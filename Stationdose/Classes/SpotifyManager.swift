@@ -100,42 +100,58 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
      */
 
     func logout() {
-        //SPTAuthViewController.authenticationViewController().clearCookies(nil)
         return SPTAuth.defaultInstance().session = nil
     }
     
     func spotifyAuthCallback(error: NSError!, session: SPTSession!) -> Void {
         if let error = error {
-            self.loginDelegate?.loginFailure(error)
-            self.loginDelegate = nil
-            //SpotifyManager.sharedInstance.player = nil
-            
+            self.loginFailure(error)
         } else {
             self.checkPremium({ (isPremium: Bool) -> Void in
                 if isPremium {
                     self.loginToSongSort(session)
                 } else {
-                    self.loginDelegate?.loginAcountNeedsPremium()
-                    self.loginDelegate = nil
+                    self.loginAcountNeedsPremium()
                 }
             })
+        }
+    }
+    
+    func loginSuccess() {
+        self.loginDelegate?.loginSuccess()
+        self.loginDelegate = nil
+    }
+    
+    func loginFailure(error: NSError?) {
+        self.loginDelegate?.loginFailure(error!)
+        self.loginDelegate = nil
+    }
+    
+    func loginAcountNeedsPremium() {
+        self.loginDelegate?.loginAcountNeedsPremium()
+        self.loginDelegate = nil
+    }
+    
+    func loginCancelled() {
+        loginDelegate?.loginCancelled()
+        self.loginDelegate = nil
+    }
+    
+    func completeLogin(user: User) {
+        PlaybackManager.sharedInstance.setupPlayer() // Bubbles away sync (probably not good)
+        ModelManager.sharedInstance.user = user
+        ModelManager.sharedInstance.initialCache { () -> Void in
+            self.loginSuccess()
         }
     }
     
     func loginToSongSort(session: SPTSession) {
         SongSortApiManager.sharedInstance.renewSession(session.accessToken, onCompletion: { (user, error) -> Void in
             if let user = user where error == nil {
-                ModelManager.sharedInstance.user = user
-                ModelManager.sharedInstance.initialCache { () -> Void in
-                    //SpotifyManager.sharedInstance.player = SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
-                    
-                    self.loginDelegate?.loginSuccess()
-                    self.loginDelegate = nil
-                }
-                
+                self.completeLogin(user)
             } else {
-                self.loginDelegate?.loginFailure(error!)
-                self.loginDelegate = nil
+                self.loginFailure(error)
+                
             }
         })
     }
@@ -157,8 +173,7 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
     }
     
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        loginDelegate?.loginCancelled()
-        self.loginDelegate = nil
+        loginCancelled()
         dismissSafariLoginView()
     }
     
