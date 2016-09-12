@@ -18,6 +18,7 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
     let fullscreenView = FullScreenLoadingView()
     //var currentTrackIndex = -1
     var isPlaying = false
+    var tracksAreLoadedInPlayer = false
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var bannerImageView: UIImageView!
@@ -78,16 +79,6 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         removeButton?.alpha = station?.savedStation == true ? 1 : 0
         savedImageView?.alpha = station?.savedStation == true ? 1 : 0
         
-        //        let location = LocationManager.sharedInstance.isEnabled
-        //        if location{
-        //            ModelManager.sharedInstance.onNexStationSaveUseTime = station?.savedStation == true ? true : ModelManager.sharedInstance.onNexStationSaveUseTime
-        //            ModelManager.sharedInstance.onNexStationSaveUseWeather = station?.savedStation == true ? true : ModelManager.sharedInstance.onNexStationSaveUseWeather
-        //        }
-        //        if let isPlaying = station?.isPlaying where isPlaying { } else {
-        //            ModelManager.sharedInstance.onNexStationSaveUseWeather = true
-        //            ModelManager.sharedInstance.onNexStationSaveUseTime = true
-        //        }
-        
         if let _tracks = station?.tracks {
             self.tracks = _tracks
         } else {
@@ -122,6 +113,13 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
             self.isPlaying = false
             self.playButton?.setImage(UIImage(named:"btn-play-list"), forState: .Normal)
         } else {
+            if tracksAreLoadedInPlayer {
+                PlaybackManager.sharedInstance.play()
+            } else {
+                let trackQueue = trackQueueForTrack(tracks.first)
+                PlaybackManager.sharedInstance.playTracks(trackQueue, callback: { (error) -> () in })
+                tracksAreLoadedInPlayer = true
+            }
 //            if currentTrackIndex < 0 {
 //                currentTrackIndex = 0
 //                var tracks = [Track]()
@@ -130,8 +128,7 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
 //            } else {
 //                PlaybackManager.sharedInstance.playFromMain()
 //            }
-            let trackQueue = trackQueueForTrack(tracks.first)
-            PlaybackManager.sharedInstance.playTracks(trackQueue, callback: { (error) -> () in })
+            
             PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
             self.station?.isPlaying = true
             self.isPlaying = true
