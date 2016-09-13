@@ -16,8 +16,9 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
     var station: Station?
     var tracks: [Track]!
     let fullscreenView = FullScreenLoadingView()
-    var currentTrackIndex = -1
+    //var currentTrackIndex = -1
     var isPlaying = false
+    var tracksAreLoadedInPlayer = false
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var bannerImageView: UIImageView!
@@ -78,16 +79,6 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         removeButton?.alpha = station?.savedStation == true ? 1 : 0
         savedImageView?.alpha = station?.savedStation == true ? 1 : 0
         
-        //        let location = LocationManager.sharedInstance.isEnabled
-        //        if location{
-        //            ModelManager.sharedInstance.onNexStationSaveUseTime = station?.savedStation == true ? true : ModelManager.sharedInstance.onNexStationSaveUseTime
-        //            ModelManager.sharedInstance.onNexStationSaveUseWeather = station?.savedStation == true ? true : ModelManager.sharedInstance.onNexStationSaveUseWeather
-        //        }
-        //        if let isPlaying = station?.isPlaying where isPlaying { } else {
-        //            ModelManager.sharedInstance.onNexStationSaveUseWeather = true
-        //            ModelManager.sharedInstance.onNexStationSaveUseTime = true
-        //        }
-        
         if let _tracks = station?.tracks {
             self.tracks = _tracks
         } else {
@@ -122,14 +113,13 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
             self.isPlaying = false
             self.playButton?.setImage(UIImage(named:"btn-play-list"), forState: .Normal)
         } else {
-            if currentTrackIndex < 0 {
-                currentTrackIndex = 0
-                var tracks = [Track]()
-                tracks.append(self.tracks[currentTrackIndex])
-                PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
+            if tracksAreLoadedInPlayer {
+                PlaybackManager.sharedInstance.play()
             } else {
-                PlaybackManager.sharedInstance.playFromMain()
-            }
+                let trackQueue = trackQueueForTrack(tracks.first)
+                PlaybackManager.sharedInstance.playTracks(trackQueue)
+                tracksAreLoadedInPlayer = true
+            }            
             PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
             self.station?.isPlaying = true
             self.isPlaying = true
@@ -177,61 +167,12 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         }
     }
     
-    //    // TODO func updateWeatherIcon(savedStation:SavedStation?) {
-    //    func updateWeatherIcon(station: Station?) {
-    //        if let station = station where station.isStandardType {
-    //            if let useWeather = station.useWeather where useWeather {
-    //                weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
-    //            } else {
-    //                weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
-    //            }
-    //        } else if let weatherButton = weatherButton {
-    //            if ModelManager.sharedInstance.onNexStationSaveUseWeather {
-    //                weatherButton.setImage(UIImage(named: "btn-weather"), forState: .Normal)
-    //            } else {
-    //                weatherButton.setImage(UIImage(named: "btn-weather-off"), forState: .Normal)
-    //            }
-    //        }
-    //    }
-    //
-    //    // TODO func updateTimeIcon(savedStation:SavedStation?) {
-    //    func updateTimeIcon(station: Station?) {
-    //        if let station = station where station.isStandardType {
-    //            if let useTime = station.useTimeofday where useTime {
-    //                timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
-    //            } else {
-    //                timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
-    //            }
-    //        } else if let timeButton = timeButton {
-    //            if ModelManager.sharedInstance.onNexStationSaveUseTime {
-    //                timeButton.setImage(UIImage(named: "btn-time"), forState: .Normal)
-    //            } else {
-    //                timeButton.setImage(UIImage(named: "btn-time-off"), forState: .Normal)
-    //            }
-    //        }
-    //    }
-    
     func willStartStationTracksReGeneration(notification: NSNotification){
         if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
             fullscreenView.setMessage("Just a moment")
             fullscreenView.show()
         }
     }
-    
-    //    func willStartStationTracksReGeneration(notification: NSNotification){
-    //        if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
-    //            fullscreenView.setMessage("Just a moment, we’re generating your playlist")
-    //            fullscreenView.show()
-    //        }
-    //    }
-    
-    //    func didEndStationTracksReGeneration(notification: NSNotification){
-    //        if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
-    //                self.tracks = self.station?.tracks
-    //                self.tracksTableView.reloadData()
-    //                fullscreenView.hide(1.5)
-    //        }
-    //    }
     
     func didEndStationTracksReGeneration(notification: NSNotification){
         if let notifInfo = notification.object as? [String: Int], id = notifInfo["id"] where self.station?.id == id {
@@ -286,30 +227,6 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         }
     }
     
-    //    @IBAction func toggleWeather(sender: UIButton) {
-    //        if let station = self.station {
-    //            station.toggleWeather()
-    //            updateWeatherIcon(station)
-    //            //showAlertFirstTimeAndSaveStation(station)
-    //        }
-    ////        } else {
-    ////            ModelManager.sharedInstance.onNexStationSaveUseWeather = !ModelManager.sharedInstance.onNexStationSaveUseWeather
-    ////            updateWeatherIcon(nil)
-    ////        }
-    //    }
-    //
-    //    @IBAction func toggleUseTime(sender: UIButton) {
-    //        if let station = station {
-    //            station.toggleTime()
-    //            updateTimeIcon(station)
-    //            //showAlertFirstTimeAndSaveStation(savedStation)
-    //        }
-    ////        else {
-    ////            ModelManager.sharedInstance.onNexStationSaveUseTime = !ModelManager.sharedInstance.onNexStationSaveUseTime
-    ////            updateTimeIcon(nil)
-    ////        }
-    //    }
-    
     @IBAction func saveStation(sender: UIButton) {
         sender.enabled = false
         ModelManager.sharedInstance.saveStation(station!) { (saved, savedStation) -> Void in
@@ -327,6 +244,26 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         if let destinationViewController = segue.destinationViewController as? EditStationViewController {
             destinationViewController.station = station
         }
+    }
+    
+    func trackQueueForTrack(track: Track?) -> [Track] {
+        
+        guard let track = track else {
+            return []
+        }
+        
+        var tracks = [Track]()
+        var addTacks = false
+        for _track in self.tracks {
+            if track.id == _track.id {
+                addTacks = true
+            }
+            if addTacks {
+                tracks.append(_track)
+            }
+        }
+        
+        return tracks
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -390,19 +327,8 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         cell.titleLabel.text = cell.track?.title
         cell.subtitleLabel.text = cell.track?.artist
         cell.touchUpInsideAction = {
-            self.currentTrackIndex = indexPath.row
-            var tracks = [Track]()
-            var addTacks = false
-            for track in self.tracks {
-                if track.id == cell.track.id {
-                    addTacks = true
-                }
-                if addTacks {
-                    tracks.append(track)
-                }
-            }
-            
-            PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
+            let trackQueue = self.trackQueueForTrack(cell.track!)
+            PlaybackManager.sharedInstance.playTracks(trackQueue)
             PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
             self.station?.isPlaying = true
             self.isPlaying = true

@@ -17,50 +17,39 @@ class PlaybackManager: NSObject {
     var currentTrack:Track?
     var needsStandardArtwork: Bool = false
     
-    var alwaysOnTop: Bool
+    var alwaysOnTop: Bool = true
     
-    private var tracksMap:[String: Track]
+    private var tracksMap = [String: Track]()
     private var player:SPTAudioStreamingController!
-    private var currentTimeReloadTimer: NSTimer?
-    private var nextQueue:[Track]?
-    private var deletedTacksUrls:[String]
-    
+    private var trackQueue = [Track]()
+    private var trackHistory = [Track]()
+    private var deletedTacksMap = [String: Track]()
+    private var currentTrackPosition = NSTimeInterval(0)
     private var playbackControlView:PlaybackControlView?
     
     override init() {
-        tracksMap = [String: Track]()
-        deletedTacksUrls = [String]()
-        //player = SpotifyManager.sharedInstance.player!
-        
-        alwaysOnTop = true
-        
         super.init()
-        
-        player = SPTAudioStreamingController(clientId:  SpotifyManager.sharedInstance.clientID)
-        player.playbackDelegate = self
-
-        //setupPlayer()
-       
-        currentTimeReloadTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(PlaybackManager.currentTimeReload), userInfo: nil, repeats: true)
         setupRemoteCommandCenter()
     }
     
+    // Call once there is a valid spotify session.
+    // logout() before calling a second time.
+    //
     func setupPlayer() {
-        
-        player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
-            if let error = error {
-                print(error)
-            }
-        }
+        player = SPTAudioStreamingController.sharedInstance()
+        try! player.startWithClientId(SpotifyManager.sharedInstance.clientID)
+        player.playbackDelegate = self
+        player.delegate = self
+        player.loginWithAccessToken(SpotifyManager.sharedInstance.session!.accessToken)
     }
     
-    func logout(callback: (error: NSError?) -> Void) {
-        hide()
-        player?.logout() { error in
-            callback(error: error)
-        }
+    func logout() {
+        stop()
+        player?.logout()
     }
     
+    // Lock screen
+    //
     func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
         commandCenter.playCommand.addTarget(self, action: #selector(MPMediaPlayback.play))
@@ -82,16 +71,21 @@ class PlaybackManager: NSObject {
         commandCenter.changePlaybackPositionCommand.enabled = false
     }
     
+    // For the lock screen
+    //
     func setNowPlayingInfo() {
-        var info = [String : AnyObject]()
-        info[MPMediaItemPropertyPlaybackDuration] = Double(player.currentTrackDuration)
-        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = Double(player.currentPlaybackPosition)
-        info[MPNowPlayingInfoPropertyPlaybackRate] = player.isPlaying ? 1.0 : 0.0
-//        info[MPMediaItemPropertyMediaType] = MPMediaType.Music.rawValue
+        guard let sptCurrentTrack = player.metadata.currentTrack else {
+            return
+        }
         
+        var info = [String : AnyObject]()
+        
+        info[MPMediaItemPropertyPlaybackDuration] = Double(sptCurrentTrack.duration)
+        info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentTrackPosition
+        info[MPNowPlayingInfoPropertyPlaybackRate] = player.playbackState.isPlaying ? 1.0 : 0.0
+        //        info[MPMediaItemPropertyMediaType] = MPMediaType.Music.rawValue
         info[MPMediaItemPropertyTitle] = currentTrack?.title
         info[MPMediaItemPropertyArtist] = currentTrack?.artist
-        
         info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: UIImage(named: "lock-screen-featured-placeholder")!)
         
         if let currentImage = currentImage {
@@ -103,29 +97,10 @@ class PlaybackManager: NSObject {
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = info
     }
     
-    func currentTimeReload() {
-        if player.currentTrackDuration > 0 {
-            playbackControlView?.currentTimeProgressView.progress = Float(player.currentPlaybackPosition/player.currentTrackDuration)
-        } else {
-            playbackControlView?.currentTimeProgressView.progress = 0.0
-        }
-        if alwaysOnTop {
-            if let superview = playbackControlView?.superview  {
-                playbackControlView?.removeFromSuperview()
-                superview.addSubview(playbackControlView!)
-            }
-        }
-    }
-    
     func play() {
         setPlayPauseButtonsEnabled(false)
         player.setIsPlaying(true, callback: { (error) -> Void in })
         NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.playbackDidResume, object: nil)
-    }
-    
-    func playFromMain() {
-        setPlayPauseButtonsEnabled(false)
-        player.setIsPlaying(true, callback: { (error) -> Void in })
     }
     
     func pause() {
@@ -141,79 +116,104 @@ class PlaybackManager: NSObject {
     
     func togglePlayPause() {
         setPlayPauseButtonsEnabled(false)
-        player.setIsPlaying(!player.isPlaying, callback: { (error) -> Void in })
+        player.setIsPlaying(!player.playbackState.isPlaying, callback: { (error) -> Void in })
+    }
+    
+    func stop() {
+        player.setIsPlaying(false, callback: { (error) -> Void in })
+        reset()
+        hide()
+    }
+    
+    func replaceQueue(tracks:[Track]) {
+        reset()
+        trackQueue = tracks
+    }
+    
+    func reset() {
+        trackHistory = []
+        trackQueue = []
+        deletedTacksMap = [:]
+        tracksMap = [:]
     }
     
     func nextTrack() {
-        player.skipNext({ (error) -> Void in})
+        playTracks(trackQueue)
     }
     
     func previousTrack() {
-        player.skipPrevious({ (error) -> Void in})
+        trackHistory.popLast()
+        if let currentTrack = currentTrack {
+            trackQueue.insert(currentTrack, atIndex: 0)
+        }
+        if let previousTrack = trackHistory.popLast() {
+            trackQueue.insert(previousTrack, atIndex: 0)
+        }
+        nextTrack()
     }
     
     func removeTrack(track:Track) {
         if let currentTrack = currentTrack {
             if currentTrack.id == track.id {
-                player.skipNext({ (error) -> Void in })
+                nextTrack()
             }
         }
         
-        let url = track.spotifyUrl()
-        deletedTacksUrls.append(url)
-        tracksMap.removeValueForKey(url)
+        deletedTacksMap[track.spotifyUrl()] = track
     }
     
-    func playTracks(tracks:[Track], callback:(error:NSError?)->()) {
+    //  playTracks: The meat of the matter
+    //
+    //  Play the first track and queue up the rest of them. Once the track has finished playing or has been skipped,
+    //  a delegate method will call playTracks(trackQueue). This has the effect of sudo-recursively calling playTracks
+    //  until the trackQueue is empty.
+    //  The empty case is handled.
+    //
+    func playTracks(tracks:[Track]) {
         
-        if tracks.count == 0 {
+        trackQueue = tracks
+        tracksMap = [:]
+        
+        for track in tracks {
+            tracksMap[track.spotifyUrl()] = track
+        }
+        
+        guard tracks.count > 0 else {
+            stop()
             return
         }
         
-//        if player != SpotifyManager.sharedInstance.player! {
-//            player = SpotifyManager.sharedInstance.player!
-//            player.playbackDelegate = self
-//            player.loginWithSession(SpotifyManager.sharedInstance.session) { (error) -> Void in
-//                if let error = error {
-//                    print(error)
-//                }
-//            }
-//        }
+        let firstTrack = trackQueue.removeAtIndex(0)
         
-        deletedTacksUrls = [String]()
-        nextQueue = nil
-        
-        if let track = tracks.first {
-            if track.id != currentTrack?.id {
-                cleanPlaybackControlView()
-            }
+        if firstTrack.id != currentTrack?.id {
+            cleanPlaybackControlView()
         }
         
-        var urls = [NSURL]()
-        for track in tracks {
-            let urlString = track.spotifyUrl()
-            urls.append(NSURL(string: urlString)!)
-            tracksMap[urlString] = track
-        }
-        
+        //printPlaylistState(firstTrack)
         
         player.setIsPlaying(false, callback: { (error) -> Void in })
-        player.stop({ (error) -> Void in })
-        
-        player.playURIs(urls, withOptions: nil) { (error) -> Void in
-            if let error = error {
-                print("error ", error)
-            }
-            callback(error: error)
-        }
-        
+        playTrack(firstTrack)
         showPlaybackControlView()
     }
     
-    func replaceQueue(tracks:[Track]) {
-        if tracks.count > 0 {
-            nextQueue = tracks
+    func printPlaylistState(playingTrack: Track) {
+        print("Playing Track:")
+        print(playingTrack.title!)
+        print("Queued:")
+        print(trackQueue.map { $0.title! })
+        print("History:")
+        print(trackHistory.map { $0.title! })
+        print("Deleted:")
+    }
+    
+    func playTrack(track: Track, startingPosition: NSTimeInterval = NSTimeInterval(0)) {
+        currentTrackPosition = startingPosition
+        player.playSpotifyURI(track.spotifyUrl(), startingWithIndex: 0, startingWithPosition: startingPosition) { error in
+            if let error = error {
+                print("playSpotifyURI error ", error)
+            }
         }
+        trackHistory.append(track)
     }
     
     private func setupPlaybackControlView() {
@@ -244,11 +244,21 @@ class PlaybackManager: NSObject {
         show()
     }
     
+    func show() {
+        let window = UIApplication.sharedApplication().keyWindow!
+        let baseViewControllerCustomViewHeight = window.bounds.size.height - 50 /*playback controller height*/ - 64 /*navigation bar height*/
+        if BaseViewController.customViewHeight != baseViewControllerCustomViewHeight {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                var frame = self.playbackControlView!.frame
+                frame.origin.y = window.bounds.size.height - 50
+                self.playbackControlView!.frame = frame
+            }) { (success) -> Void in
+                BaseViewController.customViewHeight = baseViewControllerCustomViewHeight
+            }
+        }
+    }
+    
     func hide() {
-        player.setIsPlaying(false, callback: { (error) -> Void in })
-        player.stop({ (error) -> Void in })
-        nextQueue = nil
-        
         let window = UIApplication.sharedApplication().keyWindow!
         let baseViewControllerCustomViewHeight = window.bounds.size.height - 64 /*navigation bar height*/
         BaseViewController.customViewHeight = baseViewControllerCustomViewHeight
@@ -259,20 +269,6 @@ class PlaybackManager: NSObject {
                 frame.origin.y = window.bounds.size.height
                 self.playbackControlView!.frame = frame
             }) { (success) -> Void in }
-        }
-    }
-    
-    func show() {
-        let window = UIApplication.sharedApplication().keyWindow!
-        let baseViewControllerCustomViewHeight = window.bounds.size.height - 50 /*playback controller height*/ - 64 /*navigation bar height*/
-        if BaseViewController.customViewHeight != baseViewControllerCustomViewHeight {
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
-                var frame = self.playbackControlView!.frame
-                frame.origin.y = window.bounds.size.height - 50
-                self.playbackControlView!.frame = frame
-                }) { (success) -> Void in
-                    BaseViewController.customViewHeight = baseViewControllerCustomViewHeight
-            }
         }
     }
     
@@ -292,23 +288,89 @@ class PlaybackManager: NSObject {
         playbackControlView?.playButton.enabled = enabled
         playbackControlView?.pauseButton.enabled = enabled
     }
+    
+}
+
+extension PlaybackManager: SPTAudioStreamingDelegate {
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didReceiveError errorCode: SpErrorCode, withName name: String!) {
+        AlertView.genericErrorAlert().show()
+    }
+    
+    func audioStreamingDidLogin(audioStreaming: SPTAudioStreamingController!) {
+    }
+    
+    func audioStreamingDidLogout(audioStreaming: SPTAudioStreamingController!) {
+        do {
+            try player.stop()
+        } catch _ {
+        }
+    }
+    
+    /** Called when the streaming controller encounters a temporary connection error.
+     
+     You should not throw an error to the user at this point. The library will attempt to reconnect without further action.
+     
+     @param audioStreaming The object that sent the message.
+     */
+    func audioStreamingDidEncounterTemporaryConnectionError(audioStreaming: SPTAudioStreamingController!) {
+    }
+    
+    /** Called when the streaming controller recieved a message for the end user from the Spotify service.
+     
+     This string should be presented to the user in a reasonable manner.
+     
+     @param audioStreaming The object that sent the message.
+     @param message The message to display to the user.
+     */
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didReceiveMessage message: String!) {
+        //let alertView = UIAlertView(title: "Message from Spotify", message: message, delegate: nil, cancelButtonTitle: "OK")
+        //alertView.show()
+    }
+    
+    /** Called when network connectivity is lost.
+     @param audioStreaming The object that sent the message.
+     */
+    func audioStreamingDidDisconnect(audioStreaming: SPTAudioStreamingController!) {
+    }
+
+    /** Called when network connectivitiy is back after being lost.
+     @param audioStreaming The object that sent the message.
+     */
+    func audioStreamingDidReconnect(audioStreaming: SPTAudioStreamingController!) {
+    }
 }
 
 extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
     
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
-        if let nextQueue = nextQueue {
-            self.nextQueue = nil
-            playTracks(nextQueue, callback: { (error) -> () in })
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePosition position: NSTimeInterval) {
+        guard player.metadata.currentTrack != nil else {
+            return
         }
+        
+        currentTrackPosition = position
+        
+        let progress = Float(player.metadata.currentTrack!.duration > 0 ? position/player.metadata.currentTrack!.duration : 0)
+
+        playbackControlView?.currentTimeProgressView.progress = progress
+        
+        // TODO not sure what the idea here was?
+//        if alwaysOnTop {
+//            if let superview = playbackControlView?.superview  {
+//                playbackControlView?.removeFromSuperview()
+//                superview.addSubview(playbackControlView!)
+//            }
+//        }
     }
     
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: NSURL!) {
-        for url in deletedTacksUrls {
-            if url == trackUri.absoluteString {
-                player.skipNext({ (_) -> Void in })
-                break
-            }
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
+        nextTrack()
+    }
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: String!) {
+        guard deletedTacksMap[trackUri] == nil else {
+            nextTrack()
+            return
         }
     }
     
@@ -319,24 +381,22 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
         setNowPlayingInfo()
     }
     
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
-        if trackMetadata != nil {
-            if let url = trackMetadata[SPTAudioStreamingMetadataTrackURI] {
-                if let track = tracksMap[url as! String] {
-                    playbackControlView?.titleLabel.text = track.title
-                    playbackControlView?.artistLabel.text = track.artist
-                    playbackControlView?.playButton.alpha = 0
-                    playbackControlView?.pauseButton.alpha = 1
-                    setPlayPauseButtonsEnabled(true)
-                    currentTrack = track
-                    setNowPlayingInfo()
-                    NSNotificationCenter.defaultCenter().postNotificationName("playbackCurrentTrackDidChange", object: nil)
-                }
-            }
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeMetadata metadata: SPTPlaybackMetadata!) {
+        guard let uri = metadata.currentTrack?.uri else {
+            return
         }
-    }
-    
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
-        AlertView.genericErrorAlert().show()
+        
+        guard let  track = tracksMap[uri] else {
+            return
+        }
+        
+        playbackControlView?.titleLabel.text = track.title
+        playbackControlView?.artistLabel.text = track.artist
+        playbackControlView?.playButton.alpha = 0
+        playbackControlView?.pauseButton.alpha = 1
+        setPlayPauseButtonsEnabled(true)
+        currentTrack = track
+        setNowPlayingInfo()
+        NSNotificationCenter.defaultCenter().postNotificationName("playbackCurrentTrackDidChange", object: nil)
     }
 }
