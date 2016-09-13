@@ -117,18 +117,9 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
                 PlaybackManager.sharedInstance.play()
             } else {
                 let trackQueue = trackQueueForTrack(tracks.first)
-                PlaybackManager.sharedInstance.playTracks(trackQueue, callback: { (error) -> () in })
+                PlaybackManager.sharedInstance.playTracks(trackQueue)
                 tracksAreLoadedInPlayer = true
-            }
-//            if currentTrackIndex < 0 {
-//                currentTrackIndex = 0
-//                var tracks = [Track]()
-//                tracks.append(self.tracks[currentTrackIndex])
-//                PlaybackManager.sharedInstance.playTracks(tracks, callback: { (error) -> () in })
-//            } else {
-//                PlaybackManager.sharedInstance.playFromMain()
-//            }
-            
+            }            
             PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
             self.station?.isPlaying = true
             self.isPlaying = true
@@ -336,19 +327,8 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         cell.titleLabel.text = cell.track?.title
         cell.subtitleLabel.text = cell.track?.artist
         cell.touchUpInsideAction = {
-//            self.currentTrackIndex = indexPath.row
-//            var tracks = [Track]()
-//            var addTacks = false
-//            for track in self.tracks {
-//                if track.id == cell.track.id {
-//                    addTacks = true
-//                }
-//                if addTacks {
-//                    tracks.append(track)
-//                }
-//            }
             let trackQueue = self.trackQueueForTrack(cell.track!)
-            PlaybackManager.sharedInstance.playTracks(trackQueue, callback: { (error) -> () in })
+            PlaybackManager.sharedInstance.playTracks(trackQueue)
             PlaybackManager.sharedInstance.currentImage = self.coverImageView?.image
             self.station?.isPlaying = true
             self.isPlaying = true

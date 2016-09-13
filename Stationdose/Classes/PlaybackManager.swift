@@ -29,12 +29,12 @@ class PlaybackManager: NSObject {
     
     override init() {
         super.init()
-        
-        //setupPlayer()
-       
         setupRemoteCommandCenter()
     }
     
+    // Call once there is a valid spotify session.
+    // logout() before calling a second time.
+    //
     func setupPlayer() {
         player = SPTAudioStreamingController.sharedInstance()
         try! player.startWithClientId(SpotifyManager.sharedInstance.clientID)
@@ -48,6 +48,8 @@ class PlaybackManager: NSObject {
         player?.logout()
     }
     
+    // Lock screen
+    //
     func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
         commandCenter.playCommand.addTarget(self, action: #selector(MPMediaPlayback.play))
@@ -69,8 +71,8 @@ class PlaybackManager: NSObject {
         commandCenter.changePlaybackPositionCommand.enabled = false
     }
     
+    // For the lock screen
     //
-    
     func setNowPlayingInfo() {
         guard let sptCurrentTrack = player.metadata.currentTrack else {
             return
@@ -136,7 +138,7 @@ class PlaybackManager: NSObject {
     }
     
     func nextTrack() {
-        playTracks(trackQueue) { (error) -> Void in }
+        playTracks(trackQueue)
     }
     
     func previousTrack() {
@@ -147,7 +149,7 @@ class PlaybackManager: NSObject {
         if let previousTrack = trackHistory.popLast() {
             trackQueue.insert(previousTrack, atIndex: 0)
         }
-        playTracks(trackQueue) { (error) in }
+        nextTrack()
     }
     
     func removeTrack(track:Track) {
@@ -160,11 +162,18 @@ class PlaybackManager: NSObject {
         deletedTacksMap[track.spotifyUrl()] = track
     }
     
-    func playTracks(tracks:[Track], callback:(error:NSError?)->()) {
+    //  playTracks: The meat of the matter
+    //
+    //  Play the first track and queue up the rest of them. Once the track has finished playing or has been skipped,
+    //  a delegate method will call playTracks(trackQueue). This has the effect of sudo-recursively calling playTracks
+    //  until the trackQueue is empty.
+    //  The empty case is handled.
+    //
+    func playTracks(tracks:[Track]) {
         
         trackQueue = tracks
-        
         tracksMap = [:]
+        
         for track in tracks {
             tracksMap[track.spotifyUrl()] = track
         }
@@ -180,19 +189,21 @@ class PlaybackManager: NSObject {
             cleanPlaybackControlView()
         }
         
+        //printPlaylistState(firstTrack)
+        
+        player.setIsPlaying(false, callback: { (error) -> Void in })
+        playTrack(firstTrack)
+        showPlaybackControlView()
+    }
+    
+    func printPlaylistState(playingTrack: Track) {
         print("Playing Track:")
-        print(firstTrack.title!)
+        print(playingTrack.title!)
         print("Queued:")
         print(trackQueue.map { $0.title! })
         print("History:")
         print(trackHistory.map { $0.title! })
         print("Deleted:")
-        
-        player.setIsPlaying(false, callback: { (error) -> Void in })
-        
-        playTrack(firstTrack)
-        
-        showPlaybackControlView()
     }
     
     func playTrack(track: Track, startingPosition: NSTimeInterval = NSTimeInterval(0)) {
@@ -202,7 +213,6 @@ class PlaybackManager: NSObject {
                 print("playSpotifyURI error ", error)
             }
         }
-        
         trackHistory.append(track)
     }
     
@@ -260,7 +270,6 @@ class PlaybackManager: NSObject {
                 self.playbackControlView!.frame = frame
             }) { (success) -> Void in }
         }
-
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -335,7 +344,6 @@ extension PlaybackManager: SPTAudioStreamingDelegate {
 extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePosition position: NSTimeInterval) {
-        
         guard player.metadata.currentTrack != nil else {
             return
         }
@@ -346,14 +354,13 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
 
         playbackControlView?.currentTimeProgressView.progress = progress
         
+        // TODO not sure what the idea here was?
 //        if alwaysOnTop {
 //            if let superview = playbackControlView?.superview  {
 //                playbackControlView?.removeFromSuperview()
 //                superview.addSubview(playbackControlView!)
 //            }
 //        }
-        
-        //print(progress)
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
@@ -393,36 +400,3 @@ extension PlaybackManager: SPTAudioStreamingPlaybackDelegate {
         NSNotificationCenter.defaultCenter().postNotificationName("playbackCurrentTrackDidChange", object: nil)
     }
 }
-
-    //    -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didReceivePlaybackEvent:(SpPlaybackEvent)event withName:(NSString*)name;
-    //    -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangePosition:(NSTimeInterval)position;
-    //    -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didSeekToPosition:(NSTimeInterval)position;
-    //    -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeVolume:(SPTVolume)volume;
-    //    -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeShuffleStatus:(BOOL)isShuffled;
-    //    -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeRepeatStatus:(BOOL)isRepeated;
-    //    -(void)audioStreamingDidSkipToNextTrack:(SPTAudioStreamingController *)audioStreaming;
-    //    -(void)audioStreamingDidSkipToPreviousTrack:(SPTAudioStreamingController *)audioStreaming;
-    
-    /** Called when the audio streaming object becomes the active playback device on the user's account.
-     @param audioStreaming The object that sent the message.
-     */
-    //   -(void)audioStreamingDidBecomeActivePlaybackDevice:(SPTAudioStreamingController *)audioStreaming;
-    
-    /** Called when the audio streaming object becomes an inactive playback device on the user's account.
-     @param audioStreaming The object that sent the message.
-     */
-    //    -(void)audioStreamingDidBecomeInactivePlaybackDevice:(SPTAudioStreamingController *)audioStreaming;
-    
-    /** Called when the streaming controller lost permission to play audio.
-     
-     This typically happens when the user plays audio from their account on another device.
-     
-     @param audioStreaming The object that sent the message.
-     */
-    //    -(void)audioStreamingDidLosePermissionForPlayback:(SPTAudioStreamingController *)audioStreaming;
-    
-    /** Called when the streaming controller popped a new item from the playqueue.
-     
-     @param audioStreaming The object that sent the message.
-     */
-    //    -(void)audioStreamingDidPopQueue:(SPTAudioStreamingController *)audioStreaming;
