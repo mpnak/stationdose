@@ -211,7 +211,7 @@ class ShareView: NSObject {
 extension ShareView: MFMailComposeViewControllerDelegate {
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true) { () -> Void in
-            self.callback(shared: result==MFMailComposeResultSaved)
+            self.callback(shared: result == .Saved)
             self.hide()
             PlaybackManager.sharedInstance.alwaysOnTop = true
         }

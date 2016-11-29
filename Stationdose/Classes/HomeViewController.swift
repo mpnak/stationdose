@@ -499,7 +499,7 @@ extension HomeViewController {
     
  
     func buildWeatherButton(on:Bool)->MGSwipeButton{
-        return MGSwipeButton(title: nil, icon: UIImage(named: on ? "btn-cell-weather" : "btn-cell-weather-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
+        return MGSwipeButton(title: "", icon: UIImage(named: on ? "btn-cell-weather" : "btn-cell-weather-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
             if let cell = cell as? MyStationsTableViewCell {
                 if cell.station != nil {
                     //savedStation.useWeather = !on
@@ -516,7 +516,7 @@ extension HomeViewController {
     }
     
     func buildTimeButton(on:Bool)->MGSwipeButton{
-        return MGSwipeButton(title: nil, icon: UIImage(named: on ? "btn-cell-time" : "btn-cell-time-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
+        return MGSwipeButton(title: "", icon: UIImage(named: on ? "btn-cell-time" : "btn-cell-time-off"), backgroundColor: UIColor.clearColor(), callback: { (cell) -> Bool in
             if let cell = cell as? MyStationsTableViewCell {
 //                if let savedStation = cell.station {
                 if cell.station != nil {

@@ -274,7 +274,7 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
     }
     
     func like()->MGSwipeButton{
-        return MGSwipeButton(title: nil, icon: UIImage(named: "btn-like-track"), backgroundColor: UIColor.customToggleOnColor(), callback: { (cell) -> Bool in
+        return MGSwipeButton(title: "", icon: UIImage(named: "btn-like-track"), backgroundColor: UIColor.customToggleOnColor(), callback: { (cell) -> Bool in
             
             if let cell = cell as? TrackTableViewCell {
                 if cell.track.liked == nil || !cell.track.liked! {
@@ -297,7 +297,7 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
     }
     
     func unlike()->MGSwipeButton{
-        return MGSwipeButton(title: nil, icon: UIImage(named: "btn-unlike-track"), backgroundColor: UIColor.customToggleOnColor(), callback: { (cell) -> Bool in
+        return MGSwipeButton(title: "", icon: UIImage(named: "btn-unlike-track"), backgroundColor: UIColor.customToggleOnColor(), callback: { (cell) -> Bool in
             
             if let cell = cell as? TrackTableViewCell {
                 if cell.track.liked! {
@@ -343,7 +343,7 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
         
         if station?.savedStation == true {
             
-            let deleteButton = MGSwipeButton(title: nil, icon: UIImage(named: "btn-delete-track"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
+            let deleteButton = MGSwipeButton(title: "", icon: UIImage(named: "btn-delete-track"), backgroundColor: UIColor.customWarningColor(), callback: { (cell) -> Bool in
                 if let cell = cell as? TrackTableViewCell {
                     // TODO  SongSortApiManager.sharedInstance.banTrack(self.savedStation!.station!.id!,savedStationId: (self.savedStation?.id)!, trackId: cell.track.id!)
                     SongSortApiManager.sharedInstance.banTrack(
@@ -393,8 +393,8 @@ class PlaylistBaseViewController: BaseViewController, UIScrollViewDelegate, UITa
             }
             
         } else {
-            cell.rightButtons = nil
-            cell.leftButtons = nil
+            cell.rightButtons = []
+            cell.leftButtons = []
         }
         
         cell.validatePlaying()

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import AlamofireObjectMapper
-import netfox
+//import netfox
 
 enum SongSortApiManagerNotificationKey: String {
     case StationDidChangeUpdatedAt
@@ -37,7 +37,7 @@ class SongSortApiManager {
     init() {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.timeoutIntervalForRequest = 20 // seconds
-        configuration.protocolClasses?.insert(NFXProtocol.self, atIndex: 0)
+        //configuration.protocolClasses?.insert(NFXProtocol.self, atIndex: 0)
         self.manager = Manager(configuration: configuration)
         self.baseURL = Constants.SongSort.baseUrl
     }

@@ -34,7 +34,7 @@ class WeatherSideScrollerViewController: SideScrollerViewController {
         manualLabel.textColor = .whiteColor()
         scrollView?.addSubview(manualLabel)
         
-        if let defaultView = NSBundle.mainBundle().loadNibNamed("EditPlaylistChartWeatherView", owner: self, options: nil).first as? EditPlaylistChartWeatherView {
+        if let defaultView = NSBundle.mainBundle().loadNibNamed("EditPlaylistChartWeatherView", owner: self, options: nil)!.first as? EditPlaylistChartWeatherView {
             defaultView.frame = scrollView!.bounds
             defaultView.frame.origin.x = scrollView!.bounds.width
             conditionsView = defaultView

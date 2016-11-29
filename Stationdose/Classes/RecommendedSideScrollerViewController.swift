@@ -35,7 +35,7 @@ class RecommendedSideScrollerViewController: SideScrollerViewController {
         manualLabel.backgroundColor = .clearColor()
         scrollView?.addSubview(manualLabel)
         
-        if let defaultView = NSBundle.mainBundle().loadNibNamed("EditPlaylistContentView", owner: self, options: nil).first as? EditPlaylistContentView {
+        if let defaultView = NSBundle.mainBundle().loadNibNamed("EditPlaylistContentView", owner: self, options: nil)!.first as? EditPlaylistContentView {
             defaultView.frame = scrollView!.bounds
             defaultView.frame.origin.x = scrollView!.bounds.width
             contentView = defaultView

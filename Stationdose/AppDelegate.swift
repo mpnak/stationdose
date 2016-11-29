@@ -9,7 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
-import netfox
+//import netfox
 import Branch
 
 
@@ -23,9 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         Branch.getInstance().initSessionWithLaunchOptions(launchOptions) { (params, error) -> Void in
-            if let params = params {
-                print("params ", params)
-            }
+            print("params ", params)
         }
         
         Branch.getInstance().setDebug()

@@ -69,7 +69,7 @@ class TransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UIView
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
         transitionAnimation.transition(
-        container!,
+        container,
         fromViewController: fromViewController!,
         toViewController: toViewController!,
         isDismissing: isDismissing,

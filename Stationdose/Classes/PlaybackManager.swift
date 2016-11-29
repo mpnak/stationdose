@@ -68,7 +68,11 @@ class PlaybackManager: NSObject {
         commandCenter.skipBackwardCommand.enabled = false
         commandCenter.ratingCommand.enabled = false
         commandCenter.bookmarkCommand.enabled = false
-        commandCenter.changePlaybackPositionCommand.enabled = false
+        if #available(iOS 9.1, *) {
+            commandCenter.changePlaybackPositionCommand.enabled = false
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     // For the lock screen

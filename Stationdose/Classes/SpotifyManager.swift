@@ -101,6 +101,7 @@ class SpotifyManager: NSObject, SFSafariViewControllerDelegate {
     
     func spotifyAuthCallback(error: NSError!, session: SPTSession!) -> Void {
         if let error = error {
+            print(error)
             self.loginFailure(error)
         } else {
             self.checkPremium({ (isPremium: Bool) -> Void in
