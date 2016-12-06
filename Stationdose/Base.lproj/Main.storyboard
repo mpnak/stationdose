@@ -1,43 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TLQ-fv-9An">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TLQ-fv-9An">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Yantramanav-Light.ttf">
+        <array key="Yantramanav-Light.ttf">
             <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-            <string>Yantramanav-Light</string>
-        </mutableArray>
-        <mutableArray key="Yantramanav-Regular.ttf">
+        </array>
+        <array key="Yantramanav-Regular.ttf">
             <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-            <string>Yantramanav-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Splash View Controller-->
@@ -63,7 +42,7 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpn-hw-NLz">
                                 <rect key="frame" x="0.0" y="324" width="375" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="kGu-Pi-HoB"/>
                                 </constraints>
@@ -84,7 +63,7 @@
                                 <rect key="frame" x="177" y="423" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="o85-PH-mQD" firstAttribute="width" secondItem="KaV-Bg-Kmx" secondAttribute="width" multiplier="0.38" id="1Wx-hd-sLu"/>
                             <constraint firstItem="TpR-cu-YYe" firstAttribute="centerX" secondItem="KaV-Bg-Kmx" secondAttribute="centerX" id="6k2-dp-jsN"/>
@@ -107,7 +86,6 @@
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="activityIndicator" destination="sOd-Aj-ifF" id="Fhs-cl-Ejh"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="SplashToLoginSegue" id="l4Z-Ym-l6q"/>
@@ -137,7 +115,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF5-hd-Ads">
                                         <rect key="frame" x="0.0" y="182" width="375" height="34"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotify-logo" translatesAutoresizingMaskIntoConstraints="NO" id="GDU-BE-pr5">
@@ -151,7 +129,7 @@
                                         <string key="text">Stationdose uses Spotify for music playback.
 Please sign in to your account to start.</string>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
-                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="HNp-Et-hTM">
@@ -164,14 +142,14 @@ Please sign in to your account to start.</string>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="20"/>
                                         <state key="normal" title="Log In to Spotify">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.11764705882352941" green="0.84313725490196079" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.11764705882352941" green="0.84313725490196079" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="YES"/>
                                         </userDefinedRuntimeAttributes>
@@ -210,7 +188,7 @@ Please sign in to your account to start.</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Rkz-k8-hfr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DnF-is-1Sa"/>
                             <constraint firstItem="Rkz-k8-hfr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FSp-Wb-O4I"/>
@@ -273,7 +251,7 @@ Please sign in to your account to start.</string>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="rTG-8G-nMg" secondAttribute="trailing" id="2SR-S7-aJV"/>
                                                     <constraint firstAttribute="bottom" secondItem="PD7-kf-3Gx" secondAttribute="bottom" constant="15" id="5WR-Fv-uok"/>
@@ -331,7 +309,7 @@ Please sign in to your account to start.</string>
                                                                                                         <constraint firstAttribute="height" constant="21" id="YCq-fu-EDh"/>
                                                                                                     </constraints>
                                                                                                     <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hot tracks Mr. Legend is listening to" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4e-98-N2h">
@@ -340,7 +318,7 @@ Please sign in to your account to start.</string>
                                                                                                         <constraint firstAttribute="height" constant="16" id="NQT-zv-UGZ"/>
                                                                                                     </constraints>
                                                                                                     <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
-                                                                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
                                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Peo-ac-41p">
@@ -352,7 +330,7 @@ Please sign in to your account to start.</string>
                                                                                                     <state key="normal" image="btn-show-feature-station"/>
                                                                                                 </button>
                                                                                             </subviews>
-                                                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="53" id="Svy-P2-sAh"/>
                                                                                                 <constraint firstItem="Peo-ac-41p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h4e-98-N2h" secondAttribute="trailing" id="cNh-4A-J3k"/>
@@ -371,7 +349,7 @@ Please sign in to your account to start.</string>
                                                                                             </connections>
                                                                                         </button>
                                                                                     </subviews>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <constraints>
                                                                                         <constraint firstItem="TxW-hr-67t" firstAttribute="leading" secondItem="wjG-hY-IPp" secondAttribute="leading" id="3BR-v9-qG6"/>
                                                                                         <constraint firstAttribute="trailing" secondItem="ANU-jO-wjY" secondAttribute="trailing" id="5Hl-Gs-3cU"/>
@@ -394,7 +372,6 @@ Please sign in to your account to start.</string>
                                                                                     </variation>
                                                                                 </view>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         </view>
                                                                         <constraints>
                                                                             <constraint firstAttribute="bottom" secondItem="wjG-hY-IPp" secondAttribute="bottom" id="BcO-hp-CCy"/>
@@ -415,7 +392,7 @@ Please sign in to your account to start.</string>
                                                                 </connections>
                                                             </collectionView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="C09-e5-zHc" firstAttribute="leading" secondItem="WEl-xf-zgg" secondAttribute="leading" id="Ci0-Zd-BSn"/>
                                                             <constraint firstAttribute="width" secondItem="WEl-xf-zgg" secondAttribute="height" multiplier="365:160" id="Omz-Ss-m51"/>
@@ -436,16 +413,16 @@ Please sign in to your account to start.</string>
                                                         <subviews>
                                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="kMz-kF-H1R">
                                                                 <rect key="frame" x="329" y="-2" width="39" height="37"/>
-                                                                <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="0.29871632996632996" colorSpace="calibratedRGB"/>
+                                                                <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="0.29871632996632996" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </pageControl>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured Stations" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYu-Ze-WsC">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured Playlists" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYu-Ze-WsC">
                                                                 <rect key="frame" x="8" y="0.0" width="102" height="33"/>
                                                                 <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="14"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="kMz-kF-H1R" firstAttribute="centerY" secondItem="V8x-UN-NQl" secondAttribute="centerY" id="1Ww-uO-Gl8"/>
                                                             <constraint firstItem="mYu-Ze-WsC" firstAttribute="top" secondItem="V8x-UN-NQl" secondAttribute="top" id="1i6-Ln-ffn"/>
@@ -456,7 +433,7 @@ Please sign in to your account to start.</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="WEl-xf-zgg" firstAttribute="leading" secondItem="dWr-pu-nM5" secondAttribute="leading" id="9yc-kH-N02"/>
                                                     <constraint firstAttribute="bottom" secondItem="WEl-xf-zgg" secondAttribute="bottom" id="ChP-y7-TKT"/>
@@ -481,7 +458,7 @@ Please sign in to your account to start.</string>
                                                             <segment title="My Stations"/>
                                                             <segment title="Station List"/>
                                                         </segments>
-                                                        <color key="tintColor" red="0.070588235289999995" green="0.82352941180000006" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.070588235289999995" green="0.82352941180000006" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="stationsSegmentedControlValueChanged:" destination="ISF-u2-Npe" eventType="valueChanged" id="eRA-SN-Fkr"/>
                                                         </connections>
@@ -493,7 +470,7 @@ Please sign in to your account to start.</string>
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                        <color key="value" red="0.013789165591243657" green="1" blue="0.000874117912566863" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="value" red="0.013789165591243657" green="1" blue="0.000874117912566863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
@@ -504,7 +481,7 @@ Please sign in to your account to start.</string>
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                        <color key="value" red="0.35385702463827273" green="0.00050169769054758022" blue="0.99927953890489918" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="value" red="0.35385702463827273" green="0.00050169769054758022" blue="0.99927953890489918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
@@ -512,7 +489,7 @@ Please sign in to your account to start.</string>
                                                                 </connections>
                                                             </containerView>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="qaa-C9-xKa" firstAttribute="top" secondItem="I01-N4-isG" secondAttribute="top" id="Dq2-36-Upg"/>
                                                             <constraint firstItem="dgG-2c-gdC" firstAttribute="top" secondItem="I01-N4-isG" secondAttribute="top" id="GBp-Ry-Qhx"/>
@@ -526,7 +503,7 @@ Please sign in to your account to start.</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="I01-N4-isG" firstAttribute="leading" secondItem="JW1-be-RUO" secondAttribute="leading" id="73d-w5-37L"/>
                                                     <constraint firstAttribute="bottom" secondItem="I01-N4-isG" secondAttribute="bottom" id="HwO-3T-V8T"/>
@@ -537,7 +514,7 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="JW1-be-RUO" secondAttribute="bottom" id="2ny-bE-srm"/>
                                             <constraint firstItem="dWr-pu-nM5" firstAttribute="leading" secondItem="LDY-KY-Q4s" secondAttribute="leading" id="B91-OR-Wow"/>
@@ -569,7 +546,7 @@ Please sign in to your account to start.</string>
                                 </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Rsf-3g-B4A" firstAttribute="top" secondItem="W6P-Wa-afx" secondAttribute="bottom" id="bAs-Ca-UeC"/>
                             <constraint firstAttribute="trailing" secondItem="W6P-Wa-afx" secondAttribute="trailing" id="gea-JK-g6f"/>
@@ -605,7 +582,7 @@ Please sign in to your account to start.</string>
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="L9z-Kv-LVJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.19275085295130001" green="0.0" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.19275085295130001" green="0.0" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="SRv-Qs-S3x">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -624,7 +601,6 @@ Please sign in to your account to start.</string>
                                             <rect key="frame" x="10" y="10" width="152" height="152"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="hlQ-Gb-lBo" secondAttribute="bottom" constant="10" id="8w2-LU-NWp"/>
@@ -652,7 +628,7 @@ Please sign in to your account to start.</string>
                                                 <constraint firstAttribute="height" constant="21" id="a12-Ki-Isc"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="20"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjG-hH-xPn">
@@ -663,7 +639,7 @@ Please sign in to your account to start.</string>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
                                             <state key="normal" title="+ Add Stations">
-                                                <color key="titleColor" red="0.070588235289999995" green="0.82352941180000006" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleColor" red="0.070588235289999995" green="0.82352941180000006" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="NO"/>
@@ -673,7 +649,7 @@ Please sign in to your account to start.</string>
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="zjG-hH-xPn" firstAttribute="centerX" secondItem="xKx-bF-qGR" secondAttribute="centerX" id="Ov6-ez-LOO"/>
                                         <constraint firstItem="xKx-bF-qGR" firstAttribute="centerX" secondItem="Ymi-6x-yid" secondAttribute="centerX" id="oUe-XB-LjZ"/>
@@ -691,7 +667,7 @@ Please sign in to your account to start.</string>
                         </collectionReusableView>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -737,19 +713,19 @@ Please sign in to your account to start.</string>
                                                             <constraint firstAttribute="height" constant="26" id="Hti-Ra-IHf"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="20"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Put on the hi-fi and get ready for some quality alt rock. Be sure to bring your friends." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAa-H9-Gdi">
                                                         <rect key="frame" x="14" y="28" width="253" height="37"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
-                                                        <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated: 8am, today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qE1-kr-vSc">
                                                         <rect key="frame" x="14" y="68" width="253" height="16"/>
                                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="12"/>
-                                                        <color key="textColor" white="0.49549470514950172" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" red="0.49549469351768494" green="0.49549469351768494" blue="0.49549469351768494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-9X-4C8">
@@ -775,7 +751,7 @@ Please sign in to your account to start.</string>
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="qE1-kr-vSc" secondAttribute="trailing" constant="14" id="4U2-rV-nT1"/>
                                                     <constraint firstItem="6IW-9X-4C8" firstAttribute="centerY" secondItem="b9i-kw-Dqn" secondAttribute="centerY" id="6D7-ZX-j5d"/>
@@ -796,7 +772,7 @@ Please sign in to your account to start.</string>
                                                 <rect key="frame" x="66" y="66" width="28" height="28"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="8PJ-RW-fZn" secondAttribute="trailing" id="0bu-ca-kV6"/>
                                             <constraint firstAttribute="bottom" secondItem="6GT-pO-Hwi" secondAttribute="bottom" id="Ben-iD-l8o"/>
@@ -841,7 +817,7 @@ Please sign in to your account to start.</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="YNB-3M-LYK" secondAttribute="trailing" constant="5" id="2Cp-yv-fxq"/>
                                             <constraint firstItem="vTz-za-ELG" firstAttribute="top" secondItem="ZQA-Sp-QCj" secondAttribute="top" id="3Is-Cn-mVT"/>
@@ -857,7 +833,7 @@ Please sign in to your account to start.</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ZQA-Sp-QCj" firstAttribute="top" secondItem="eJd-Rb-Ab2" secondAttribute="bottom" id="4yn-PV-gI4"/>
                                     <constraint firstAttribute="bottom" secondItem="ZQA-Sp-QCj" secondAttribute="bottom" constant="-45" id="I1W-VL-Hdb"/>
@@ -870,7 +846,7 @@ Please sign in to your account to start.</string>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MZw-7r-iZt">
                                 <rect key="frame" x="0.0" y="92" width="375" height="511"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackTableViewCellIdentifier" id="xz5-g1-l8B" customClass="TrackTableViewCell" customModule="Stationdose" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="53"/>
@@ -898,8 +874,8 @@ Please sign in to your account to start.</string>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="XvR-ks-huG"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="XvR-ks-huG"/>
@@ -913,8 +889,8 @@ Please sign in to your account to start.</string>
                                                         <constraint firstAttribute="height" constant="15" id="lkx-GR-ecf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
-                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="aOP-Ig-ggz"/>
@@ -929,7 +905,7 @@ Please sign in to your account to start.</string>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="TNk-p5-led" secondAttribute="trailing" id="BXy-VQ-KPE"/>
                                                 <constraint firstItem="bdu-B8-trg" firstAttribute="leading" secondItem="cmN-OB-qUb" secondAttribute="leading" id="VPB-fh-52y"/>
@@ -978,12 +954,12 @@ Please sign in to your account to start.</string>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="9MX-kP-LZt"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="14"/>
-                                                <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBm-IU-3cE">
                                                 <rect key="frame" x="304" y="21" width="50" height="50"/>
-                                                <color key="backgroundColor" red="0.066666666666666666" green="0.57871575955963794" blue="0.87058823529411766" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.066666666666666666" green="0.57871575955963794" blue="0.87058823529411766" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="01M-o7-6SC"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Ine-gO-wGd"/>
@@ -997,7 +973,7 @@ Please sign in to your account to start.</string>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3K-rt-w6h">
                                                 <rect key="frame" x="20" y="6" width="80" height="80"/>
-                                                <color key="backgroundColor" red="0.066666666666666666" green="0.63266353779884055" blue="0.87058823529411766" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.066666666666666666" green="0.63266353779884055" blue="0.87058823529411766" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="ktq-Zn-k6y"/>
                                                     <constraint firstAttribute="width" constant="80" id="lOY-YC-3fZ"/>
@@ -1009,7 +985,7 @@ Please sign in to your account to start.</string>
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="0.0"/>
@@ -1025,11 +1001,11 @@ Please sign in to your account to start.</string>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="Aj5-s7-ZJx"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="14"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ZBm-IU-3cE" secondAttribute="trailing" constant="21" id="5BL-zX-2y1"/>
                                             <constraint firstItem="vHL-S2-qI0" firstAttribute="leading" secondItem="A3K-rt-w6h" secondAttribute="trailing" constant="11" id="7Ol-Da-3Oj"/>
@@ -1053,7 +1029,7 @@ Please sign in to your account to start.</string>
                                         </variation>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="FSJ-VS-dXg" firstAttribute="centerY" secondItem="6hI-12-2EF" secondAttribute="centerY" id="0Za-XO-wtE"/>
                                     <constraint firstItem="FSJ-VS-dXg" firstAttribute="centerY" secondItem="6hI-12-2EF" secondAttribute="centerY" id="2iG-Th-jKX"/>
@@ -1068,7 +1044,7 @@ Please sign in to your account to start.</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HZX-4K-ADa" firstAttribute="top" secondItem="qa8-jW-sG9" secondAttribute="bottom" id="2jd-a8-YBL"/>
                             <constraint firstItem="MZw-7r-iZt" firstAttribute="top" secondItem="HZX-4K-ADa" secondAttribute="bottom" id="8qi-Af-1h6"/>
@@ -1157,7 +1133,7 @@ Please sign in to your account to start.</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, you must be a Spotify Premium subscriber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeY-kN-N8I">
                                         <rect key="frame" x="0.0" y="203" width="375" height="68"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="26"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotify-logo" translatesAutoresizingMaskIntoConstraints="NO" id="czK-i2-ikF">
@@ -1173,14 +1149,14 @@ Please sign in to your account to start.</string>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="20"/>
                                         <state key="normal" title="Back">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.1176470588" green="0.84313725490000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.1176470588" green="0.84313725490000002" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="cornerIsCircle" value="YES"/>
                                         </userDefinedRuntimeAttributes>
@@ -1195,7 +1171,7 @@ Please sign in to your account to start.</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please use Safari to sign out of your free account before attempting to sign in again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9f-7g-n1W">
                                         <rect key="frame" x="8" y="376" width="359" height="42"/>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
-                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="C1c-pk-A8w">
@@ -1229,7 +1205,7 @@ Please sign in to your account to start.</string>
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="c1r-oQ-Fqq" secondAttribute="trailing" id="0np-A6-4Ed"/>
                             <constraint firstItem="c1r-oQ-Fqq" firstAttribute="leading" secondItem="O91-nR-DfB" secondAttribute="leading" id="5Tu-Hl-JdM"/>
@@ -1237,7 +1213,6 @@ Please sign in to your account to start.</string>
                             <constraint firstItem="c1r-oQ-Fqq" firstAttribute="top" secondItem="O91-nR-DfB" secondAttribute="top" id="puN-Be-n3w"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="activityIndicator" destination="C1c-pk-A8w" id="hQs-uA-uEH"/>
                         <segue destination="4mP-Aw-GMw" kind="presentation" identifier="RequestPremiumToHomeSegue" id="N0U-zU-k6a"/>
@@ -1264,7 +1239,7 @@ Please sign in to your account to start.</string>
                                 <items>
                                     <navigationItem title="Request Spotify Premium" id="abv-F5-FIC">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="0uW-4R-6KP">
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="done:" destination="RVk-ll-xBb" id="iqX-ao-aAX"/>
                                             </connections>
@@ -1274,10 +1249,10 @@ Please sign in to your account to start.</string>
                             </navigationBar>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5d-Es-1aL">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Z5d-Es-1aL" firstAttribute="top" secondItem="sNO-PD-P42" secondAttribute="bottom" id="DTD-3C-nO2"/>
                             <constraint firstAttribute="trailing" secondItem="sNO-PD-P42" secondAttribute="trailing" id="Hjc-jo-gbI"/>
@@ -1289,7 +1264,6 @@ Please sign in to your account to start.</string>
                             <constraint firstItem="x4o-3s-8Fs" firstAttribute="top" secondItem="Z5d-Es-1aL" secondAttribute="bottom" id="f7i-1x-4Md"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="webView" destination="Z5d-Es-1aL" id="2Lv-Va-GPo"/>
                         <segue destination="4mP-Aw-GMw" kind="presentation" identifier="RequestPremiumToHomeSegue" id="rRp-fM-fvN"/>
@@ -1324,7 +1298,7 @@ Please sign in to your account to start.</string>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="TWq-9w-xit" secondAttribute="trailing" id="8xr-6Z-EU6"/>
                                             <constraint firstAttribute="bottom" secondItem="TWq-9w-xit" secondAttribute="bottom" id="G2j-vC-MaJ"/>
@@ -1342,8 +1316,8 @@ Please sign in to your account to start.</string>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="asq-ou-ruC"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="asq-ou-ruC"/>
@@ -1351,7 +1325,7 @@ Please sign in to your account to start.</string>
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="9Ym-u3-0xp"/>
                                             <constraint firstItem="cjL-4f-yDC" firstAttribute="centerY" secondItem="CB1-CF-pVo" secondAttribute="centerY" id="Cuy-C1-kml"/>
@@ -1368,8 +1342,8 @@ Please sign in to your account to start.</string>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ncK-kp-QOq"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="ncK-kp-QOq"/>
@@ -1383,7 +1357,7 @@ Please sign in to your account to start.</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="Ub3-i0-ZmU" firstAttribute="top" secondItem="VDf-mD-lnB" secondAttribute="top" id="3pI-Kt-nXj"/>
                                             <constraint firstAttribute="trailing" secondItem="Ub3-i0-ZmU" secondAttribute="trailing" id="S15-yB-AoL"/>
@@ -1394,7 +1368,7 @@ Please sign in to your account to start.</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="iUC-Eh-59y" firstAttribute="leading" secondItem="aPK-JE-JwP" secondAttribute="leading" id="9z2-og-9lh"/>
                                     <constraint firstAttribute="trailing" secondItem="CB1-CF-pVo" secondAttribute="trailing" id="Cz8-oO-yhK"/>
@@ -1416,11 +1390,11 @@ Please sign in to your account to start.</string>
                                         <rect key="frame" x="14" y="-8" width="316" height="73"/>
                                         <string key="text">John Legend is just that, a legend. Check out his station for some of the artsits that influenced him as well as some of the tracks he’s listening to. In his lounge of course.  </string>
                                         <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
-                                        <color key="textColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="highlightedColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="highlightedColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="1fA-n0-9z7" firstAttribute="leading" secondItem="nze-LZ-Rd8" secondAttribute="leading" constant="14" id="Axr-IR-zKQ"/>
                                     <constraint firstAttribute="trailing" secondItem="1fA-n0-9z7" secondAttribute="trailing" constant="45" id="Eqb-Az-Skd"/>
@@ -1431,7 +1405,7 @@ Please sign in to your account to start.</string>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gi4-rs-Nfr">
                                 <rect key="frame" x="0.0" y="277" width="375" height="326"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackTableViewCellIdentifier" id="T4U-Rp-nD7" customClass="TrackTableViewCell" customModule="Stationdose" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="53"/>
@@ -1447,8 +1421,8 @@ Please sign in to your account to start.</string>
                                                         <constraint firstAttribute="height" constant="21" id="VX0-Fg-bID"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="BD8-RK-YbU"/>
@@ -1462,8 +1436,8 @@ Please sign in to your account to start.</string>
                                                         <constraint firstAttribute="height" constant="15" id="UL9-Uw-MhP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
-                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="PlS-n9-PHC"/>
@@ -1478,7 +1452,7 @@ Please sign in to your account to start.</string>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Hew-20-24b" firstAttribute="centerY" secondItem="gPH-8G-dWi" secondAttribute="centerY" id="4bI-If-2ML"/>
                                                 <constraint firstAttribute="trailing" secondItem="quD-x6-5cS" secondAttribute="trailing" id="Mcc-Cp-fUu"/>
@@ -1507,7 +1481,7 @@ Please sign in to your account to start.</string>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gw7-zR-Fqm" firstAttribute="top" secondItem="gi4-rs-Nfr" secondAttribute="bottom" id="5QB-lD-psy"/>
                             <constraint firstItem="gi4-rs-Nfr" firstAttribute="top" secondItem="aPK-JE-JwP" secondAttribute="bottom" id="Bx4-ZF-ioP"/>
@@ -1553,7 +1527,7 @@ Please sign in to your account to start.</string>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="oId-0X-5Ut">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.17582993048402726" blue="0.78039445244956773" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.17582993048402726" blue="0.78039445244956773" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationsListCell" rowHeight="104" id="xgJ-Nm-s7V" customClass="StationsListTableViewCell" customModule="Stationdose" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="104"/>
@@ -1585,8 +1559,8 @@ Please sign in to your account to start.</string>
                                                         <constraint firstAttribute="height" constant="21" id="6hW-Y8-P3j"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Put on the hi-fi " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMc-ij-Hff" userLabel="ShortDescriptionLabel">
                                                     <rect key="frame" x="99" y="26" width="238" height="21"/>
@@ -1596,7 +1570,7 @@ Please sign in to your account to start.</string>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="t2E-SM-50c"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Yantramanav-Light" family="Yantramanav" pointSize="14"/>
-                                                    <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -1634,27 +1608,29 @@ Please sign in to your account to start.</string>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Removed from My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tD4-ED-0a4">
                                                             <rect key="frame" x="98" y="31" width="178" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eth-g2-jed" userLabel="AddedToView">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Added to My Stations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13b-kB-xDC">
                                                             <rect key="frame" x="116" y="31" width="142" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Yantramanav-Regular" family="Yantramanav" pointSize="16"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="56G-Uf-bCo" secondAttribute="bottom" constant="20" id="2pK-D2-Boz"/>
                                                 <constraint firstAttribute="bottom" secondItem="C6W-7r-Dzy" secondAttribute="bottom" constant="20" id="5da-7x-AF1"/>
@@ -1687,7 +1663,7 @@ Please sign in to your account to start.</string>
                                             </variation>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="wgl-87-PFS" secondAttribute="bottom" id="Q7f-e1-JP8"/>
                                         <constraint firstAttribute="trailing" secondItem="wgl-87-PFS" secondAttribute="trailing" id="Xfm-Zp-vOV"/>
@@ -1695,10 +1671,10 @@ Please sign in to your account to start.</string>
                                         <constraint firstItem="wgl-87-PFS" firstAttribute="top" secondItem="0lb-Ee-Q2X" secondAttribute="top" id="vsw-Ks-qI3"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.78039445244956773" green="0.0" blue="0.045384163321293289" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.78039445244956773" green="0.0" blue="0.045384163321293289" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -1717,7 +1693,7 @@ Please sign in to your account to start.</string>
                         </prototypes>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" red="0.0" green="0.66100645332858987" blue="0.99927953890489918" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.0" green="0.66100645332858987" blue="0.99927953890489918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
