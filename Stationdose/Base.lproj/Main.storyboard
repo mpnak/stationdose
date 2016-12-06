@@ -244,7 +244,7 @@ Please sign in to your account to start.</string>
                                                         </constraints>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn-check-playlist" translatesAutoresizingMaskIntoConstraints="NO" id="PD7-kf-3Gx">
-                                                        <rect key="frame" x="210" y="67" width="150" height="28"/>
+                                                        <rect key="frame" x="210" y="72" width="150" height="28"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="bWZ-Eu-5zJ"/>
                                                             <constraint firstAttribute="width" secondItem="PD7-kf-3Gx" secondAttribute="height" multiplier="75:14" id="nby-bw-DV4"/>
@@ -254,7 +254,7 @@ Please sign in to your account to start.</string>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="rTG-8G-nMg" secondAttribute="trailing" id="2SR-S7-aJV"/>
-                                                    <constraint firstAttribute="bottom" secondItem="PD7-kf-3Gx" secondAttribute="bottom" constant="15" id="5WR-Fv-uok"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PD7-kf-3Gx" secondAttribute="bottom" constant="10" id="5WR-Fv-uok"/>
                                                     <constraint firstItem="rTG-8G-nMg" firstAttribute="width" secondItem="JBH-K0-lSX" secondAttribute="width" multiplier="0.184" id="6Kq-zH-7F0"/>
                                                     <constraint firstItem="rTG-8G-nMg" firstAttribute="top" secondItem="JBH-K0-lSX" secondAttribute="top" constant="2" id="Bt5-dI-KjQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="PD7-kf-3Gx" secondAttribute="trailing" constant="15" id="JVe-cK-Bcr"/>
